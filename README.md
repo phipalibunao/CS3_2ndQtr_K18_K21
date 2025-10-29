@@ -1,7 +1,7 @@
 # CS3_2ndQtr_K18_K21
 Project Proposal of Phipa Libunao and Tomas Macalintal
 
-# Fractured Night
+# Fractured Night 🌚
 
 ## Website Overview
 **Fractured Night** is an interactive website that tells the story of a bridge collapse from four different points of view.  
@@ -17,7 +17,7 @@ The goal is to let players see how people can misunderstand events when they onl
 - **Tagline:** One Event. Four stories. Broken pieces of the truth.  
 - **Logo/Favicon:**  ![Fractured Night Logo](assets/cspairproj_favicon.png)
 
-## Website Outline
+## Website Outline 🌐
 
 ### 1. Home / The Beginning
 - Title screen with “Start” and “Continue” buttons  
