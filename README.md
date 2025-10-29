@@ -3,6 +3,13 @@ Project Proposal of Phipa Libunao and Tomas Macalintal
 
 # Fractured Night 🌚
 
+## Titles and Logo
+- **Main Title:** Fractured Night  
+- **Tagline:** One Event. Four stories. Broken pieces of the truth.  
+- **Logo/Favicon:**  
+
+![Fractured Night Logo](assets/cspairproj_favicon.png)
+
 ## Website Overview
 **Fractured Night** is an interactive website that shows the events of a bridge collapse through different perspectives.  
 Players explore the event as four people: a journalist, an engineer, a supervisor, and a mayor.  
@@ -11,11 +18,6 @@ The public story may be different from the real story, so players must decide wh
 The goal is to show how different perspectives and partial information can change how people understand events.
 
 > Can you find the full story or only the version that people believe?
-
-## Titles and Logo
-- **Main Title:** Fractured Night  
-- **Tagline:** One Event. Four stories. Broken pieces of the truth.  
-- **Logo/Favicon:**  ![Fractured Night Logo](assets/cspairproj_favicon.png)
 
 ## Website Outline
 
