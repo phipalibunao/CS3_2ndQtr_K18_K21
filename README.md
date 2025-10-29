@@ -14,6 +14,7 @@ Project Proposal of Phipa Libunao and Tomas Macalintal
 **Fractured Night** is an interactive website that shows the events of a bridge collapse through different perspectives.  
 Players explore the event as four people: a journalist, an engineer, a supervisor, and a mayor.  
 Each act presents clues and mini-games that reveal how each person acted, and what is known.  
+
 The public story may be different from the real story, so players must find the clues to the truth.  
 Hidden or true clues are found by winning games, which hold the ability to piece together the real story.
 The goal is to show how different perspectives and partial information can change how people understand events.
@@ -22,10 +23,13 @@ The goal is to show how different perspectives and partial information can chang
 
 ## Website Outline
 
+---
+
 ### 1. Home / The Beginning
 - Title screen with “Start” button
+- Description of the website
 - Short introduction explaining that a bridge collapsed in the city  
-- Navigation bar: **Home | Act 1 | Act 2 | Act 3 | Act 4 | About Us**  
+- Navigation bar (also applies for all pages): **Home | Act 1 | Act 2 | Act 3 | Act 4 | About Us**  
 - The home page sets up the event and explains that players can explore different viewpoints  
 - Players learn that the public story may not be the full story
 
@@ -120,7 +124,28 @@ The public praises him for his actions, and the engineer and supervisor are arre
 
 > Players can see how decisions and reports shape public opinion, even if they are not the full story.  
 
+**Mini-Game Details:** 
+Math problems. Place budgets on different topics according to what is asked.
+
 **False Clue:** The mayor did maintenance and managed the budget.
 **True Clue:** The mayor cut the budget for reputation, other projects, and himself.
+
+---
+
+### True Story Summary
+The journalist found much more than the shadow photo. They find photos of the bridge looking weak. The engineer was actually trying to fix the bridge. The supervisor was just looking out for the engineer's safety. The mayor actually restricted maintenance. The evidence was unfortunate enough to look like a sabotage, but the truth was not spread. Only lies and incomplete truths flooded the news.
+
+> Players may find the true story by winning all the games, or may get stuck and piece out an incomplete ending.
+
+---
+
+### 6. About Us
+- Display text about the creators
+- Images of the creators
+
+---
+
+## USE OF JAVASCRIPT ON THE WEBSITE
+JS will be used on the multiple games of the website to allow for drag and drop, points, and randomizing. JS will also be used on all pages for buttons, audio, and the changing of elements and text.
 
 [Wireframe](https://www.canva.com/design/DAG3Kq1fF2w/QB8ZXY0owkpqdNUfHf5pgw/edit?utm_content=DAG3Kq1fF2w&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
