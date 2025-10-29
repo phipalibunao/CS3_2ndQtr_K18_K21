@@ -103,3 +103,5 @@ Players can see how decisions and reports shape public opinion, even if they are
 
 **True Clue:** The mayor did maintenance and managed the budget.  
 **False Clue:** The mayor caused the sabotage.
+
+[Wireframe](https://www.canva.com/design/DAG3Kq1fF2w/QB8ZXY0owkpqdNUfHf5pgw/edit?utm_content=DAG3Kq1fF2w&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
