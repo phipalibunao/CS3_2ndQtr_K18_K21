@@ -12,7 +12,7 @@ Each act reveals a fragment of the truth, hidden within mini-games and clues tha
 ## Titles and Logo
 - **Main Title:** Fractured Night  
 - **Tagline:** One Event. Four stories. Broken pieces of the truth.  
-- **Logo/Favicon:**  
+- **Logo/Favicon:**  'assets/cspairproj_favicon.png'
 
 ## Website Outline
 
