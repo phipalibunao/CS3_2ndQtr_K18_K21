@@ -1,39 +1,39 @@
 # CS3_2ndQtr_K18_K21
 Project Proposal of Phipa Libunao and Tomas Macalintal
 
-# Fractured Night 🌚
+# Fractured Night
 
 ## Website Overview
-**Fractured Night** is an interactive website that tells the story of a bridge collapse from four different points of view.  
-The website allows players to explore the event through the perspectives of a journalist, an engineer, a supervisor, and a mayor.  
-Each act shows part of the story and provides mini-games and clues that players must use to understand what really happened.  
-Some clues are true and some are false, so players must pay attention to find the correct story.  
-The goal is to let players see how people can misunderstand events when they only see part of the information.  
+**Fractured Night** is an interactive website that shows the events of a bridge collapse through different perspectives.  
+Players explore the event as four people: a journalist, an engineer, a supervisor, and a mayor.  
+Each act presents clues and mini-games that reveal what each person knows or thinks happened.  
+The public story may be different from the real story, so players must decide which clues to trust.  
+The goal is to show how different perspectives and partial information can change how people understand events.
 
-> Will you find the real story or only fragments of it?
+> Can you find the full story or only the version that people believe?
 
 ## Titles and Logo
 - **Main Title:** Fractured Night  
 - **Tagline:** One Event. Four stories. Broken pieces of the truth.  
 - **Logo/Favicon:**  ![Fractured Night Logo](assets/cspairproj_favicon.png)
 
-## Website Outline 🌐
+## Website Outline
 
 ### 1. Home / The Beginning
 - Title screen with “Start” and “Continue” buttons  
-- Short introduction explaining that the bridge collapsed and the city is in shock  
+- Short introduction explaining that a bridge collapsed in the city  
 - Navigation bar: **Home | Act 1 | Act 2 | Act 3 | Act 4 | About Us**  
-- Players can read a brief background of the city, the bridge, and the people involved  
-- The home page sets up the main event and encourages players to explore each perspective
+- The home page sets up the event and explains that players can explore different viewpoints  
+- Players learn that the public story may not be the full story
 
 ---
 
 ### Story Summary
-The bridge collapses during the night. A journalist sees someone on the bridge before the collapse and reports it as sabotage.  
-The mayor blames the engineer and the supervisor, saying they ignored orders and failed to maintain the bridge.  
-The public praises the mayor for taking action, and the engineer and supervisor are arrested.  
-If players explore all acts and find every clue, they learn the real story: the engineer was trying to fix the bridge, the supervisor was protecting him, and the mayor covered up the cause to protect his image.  
-Players can see how incomplete information and false reports can change public opinion.
+The bridge collapses one night. A journalist finds a shadowy figure on the bridge and reports it.  
+The mayor blames the engineer and supervisor, saying they did not follow orders and were in conflict with him.  
+The mayor says the sabotage was a stunt to send a message, but he himself is innocent because he provided maintenance checks.  
+The public praises the mayor for acting responsibly, and the engineer and supervisor are arrested.  
+The website lets players explore each character’s perspective to understand how the official story is formed from partial information.
 
 ---
 
@@ -41,68 +41,65 @@ Players can see how incomplete information and false reports can change public o
 **Title:** Headline  
 **Perspective:** The Journalist  
 **Mini-Game:** Spot the Detail / Memory Matching  
-**Goal:** Collect evidence and decide which story to publish.  
+**Goal:** Collect evidence and decide what to report.  
 **Story Summary:**  
-The journalist investigates the bridge collapse and finds a photo of a shadowy figure on the bridge.  
-Other clues suggest different possibilities, but the editor pressures the journalist to write the most exciting story.  
-The journalist chooses the photo as the main evidence, reporting it as sabotage.  
-The public believes this story, and the engineer and supervisor are blamed.  
-Players who find all clues learn the figure in the photo was the engineer, and the real cause of the collapse was not sabotage.
+The journalist finds a shadowy photo of someone on the bridge the night before.  
+They investigate other clues but choose to report the most striking one, the shadow photo.  
+The story published claims sabotage and names the engineer as responsible.  
+The public believes this story, which affects the outcomes for all the other characters.  
+Players can explore the evidence to see how one piece of misleading information can shape public opinion.
 
-**True Clue:** Maintenance of the bridge was overdue for weeks.  
-**False Clue:** A shadowy figure caused sabotage.
+**True Clue:** The mayor performed regular maintenance checks.  
+**False Clue:** The shadow figure on the bridge was sabotaging it.
 
 ---
 
 ### 3. Act 2: The Engineer
-**Title:** Silent Fix  
+**Title:** Silent Night  
 **Perspective:** The Engineer  
 **Mini-Game:** Fix Wires  
-**Goal:** Repair the bridge without being seen.  
+**Goal:** Try to act while avoiding blame.  
 **Story Summary:**  
-The engineer goes to the bridge at night to repair damaged beams.  
-He hides from patrols and works quickly in the dark.  
-Before finishing, he is discovered and must leave, leaving the bridge still weak.  
-The next morning, his blurred photo appears in the news labeled as sabotage.  
-Players who complete the mini-game see that he was trying to repair the bridge, not damage it.
+The engineer is accused of tampering with the bridge.  
+In reality, he may have been trying to prevent further damage, but his actions are misunderstood.  
+He is forced to leave the bridge, and the next day, his blurred photo appears in news reports suggesting sabotage.  
+Players completing the mini-game can see how partial information creates a false impression.  
+The engineer is arrested in the public story.
 
 **Mini-Game Details:**  
-The player removes wires and reconnects them correctly.  
-Without clues, it looks like the engineer is sabotaging the bridge, but he is actually fixing it.
+Players reconnect wires or fix bridge sections to see how actions are interpreted differently.  
 
-**True Clue:** The engineer was repairing the bridge.  
-**False Clue:** He sabotaged the bridge.
+**True Clue:** The bridge had maintenance done by the mayor.  
+**False Clue:** The engineer intentionally damaged the bridge.
 
 ---
 
 ### 4. Act 3: The Supervisor
-**Title:** Orders and Silence  
+**Title:** Orders and Conflict  
 **Perspective:** The Supervisor  
 **Mini-Game:** Scheduling / Organizing  
-**Goal:** Manage workers and resources and decide whether the engineer can go back to fix the bridge.  
+**Goal:** Balance instructions and safety while handling limited resources.  
 **Story Summary:**  
-The supervisor sees that the bridge is unsafe and knows repairs are needed.  
-They are ordered by higher officials to delay work and not act until told otherwise.  
-They tell the engineer not to go back to the bridge to keep him safe.  
-The public believes the supervisor ignored their responsibilities and caused sabotage.  
-Players who find all clues see that the supervisor was trying to protect the engineer and follow the rules under pressure.
+The supervisor tells the engineer not to fix the bridge, following the mayor’s rules.  
+The public believes this shows negligence or sabotage, though the supervisor was following orders.  
+Rumors suggest the supervisor was involved in the collapse, but the real reason is administrative pressure.  
+Players can see how following instructions can be misinterpreted when only part of the story is reported.  
 
-**True Clue:** The supervisor protected the engineer.  
-**False Clue:** The supervisor caused sabotage.
+**True Clue:** The supervisor was following orders from the mayor.  
+**False Clue:** The supervisor caused the bridge to collapse.
 
 ---
 
 ### 5. Act 4: The Mayor
-**Title:** Behind Closed Doors  
+**Title:** Public Duty  
 **Perspective:** The Mayor  
-**Mini-Game:** Math / Budget Allocation  
-**Goal:** Manage city resources and public image after the collapse.  
+**Mini-Game:** Budget Allocation  
+**Goal:** Manage the city and maintain public image.  
 **Story Summary:**  
-The mayor learns about the engineer’s attempts to repair the bridge.  
-To protect the city and his image, he stops the engineer and allows false reports of sabotage to spread.  
-The public believes the engineer or unknown forces caused the collapse and praises the mayor for his actions.  
-Players who find all clues see that the mayor hid the real cause to avoid blame.  
-This act shows how public opinion can be shaped by what leaders choose to reveal or hide.
+The mayor performed maintenance checks on the bridge and managed the budget responsibly.  
+He publicly blames the engineer and supervisor to maintain trust in the city.  
+The public praises him for his actions, and the engineer and supervisor are arrested.  
+Players can see how decisions and reports shape public opinion, even if they are not the full story.  
 
-**True Clue:** The mayor hid the real cause to protect his image.  
+**True Clue:** The mayor did maintenance and managed the budget.  
 **False Clue:** The mayor caused the sabotage.
