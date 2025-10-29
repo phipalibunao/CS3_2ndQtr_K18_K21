@@ -33,8 +33,6 @@ The goal is to show how different perspectives and partial information can chang
 - The home page sets up the event and explains that players can explore different viewpoints  
 - Players learn that the public story may not be the full story
 
----
-
 ### Public Story Summary
 The bridge collapses one night. A journalist discovers a photo of a shadowy figure on the bridge and reports it.  
 The journalist also finds a written memo of the supervisor telling the engineer not to fix the bridge and reports it.
@@ -156,4 +154,5 @@ The journalist found much more than the shadow photo. They find photos of the br
 ## USE OF JAVASCRIPT ON THE WEBSITE
 JS will be used on the multiple games of the website to allow for drag and drop, points, and randomizing. JS will also be used on all pages for buttons, audio, and the changing of elements and text.
 
-[## Wireframe](https://www.canva.com/design/DAG3Kq1fF2w/QB8ZXY0owkpqdNUfHf5pgw/edit?utm_content=DAG3Kq1fF2w&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
+## Wireframe
+[Wireframe](https://www.canva.com/design/DAG3Kq1fF2w/QB8ZXY0owkpqdNUfHf5pgw/edit?utm_content=DAG3Kq1fF2w&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
