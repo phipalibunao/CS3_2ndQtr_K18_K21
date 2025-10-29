@@ -20,3 +20,4 @@ Each act reveals a fragment of the truth, hidden within mini-games and puzzles t
 - Title screen with “Start” and “Continue” buttons.  
 - Short prologue introducing the event.  
 - Background: animated rain or flickering streetlights (via JS).
+- Navigation bar: **Home | Act 1 | Act 2 | Act 3 | Act 4 | Act 5 | About Us**  
