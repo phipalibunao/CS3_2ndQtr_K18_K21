@@ -1,6 +1,8 @@
 # CS3_2ndQtr_K18_K21
 Project Proposal of Phipa Libunao and Tomas Macalintal
 
+Team: WDProjPotassiumLibunaoMacalintal
+
 # Fractured Night 🌚
 
 ## Titles and Logo
