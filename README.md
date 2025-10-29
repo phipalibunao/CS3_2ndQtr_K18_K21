@@ -62,6 +62,7 @@ The story published claims sabotage and names the engineer and supervisor as res
 > Players can explore the evidence to see how one piece of information can shape public opinion.
 
 **Incomplete Clue:** The shadow figure on the bridge was sabotaging it, and the memo makes the engineer and supervisor guilty.
+
 **Hidden Clue:** The journalist found one last piece of information aside from the incriminating evidence. 
 They find photos of the bridge looking weak. However, they deemed it not newsworthy, as a potential saboteur is much more exciting than a more probable faulty bridge.
 
@@ -86,6 +87,7 @@ The engineer is arrested.
 Players reconnect wires or fix bridge sections to see how actions are interpreted differently.  
 
 **False Clue:** The engineer reads about the memo and ignores it. They intentionally damaged the bridge.
+
 **True Clue:** The engineer reads about the memo and ignores it. They try to restore the bridge, but they were framed of doing the opposite.
 The engineer knows something is wrong with the bridge.
 
@@ -108,6 +110,7 @@ The supervisor gets arrested.
 Players are given a calendar with different people and resources to be placed on a day. Players have to arrange them according to the criteria.
 
 **False Clue:** The supervisor tried to cause the bridge to collapse.
+
 **True Clue:** The supervisor kept the engineer safe because they have low resources and people (shown with the mini-game).
 
 ---
@@ -128,6 +131,7 @@ The public praises him for his actions, and the engineer and supervisor are arre
 Math problems. Place budgets on different topics according to what is asked.
 
 **False Clue:** The mayor did maintenance and managed the budget.
+
 **True Clue:** The mayor cut the budget for reputation, other projects, and himself.
 
 ---
