@@ -29,7 +29,7 @@ Each act reveals a fragment of the truth, hidden within mini-games and puzzles t
 **Perspective:** The Journalist  
 **Mini-Game:** Memory/Clue-Finding Game  
 **Goal:** Collect evidence about the bridge collapse and decide what story to publish.  
-If the player uncovers every clue, they learn that the figure on the bridge—the one who appears to be sabotaging it—was actually an engineer secretly trying to fix the damage.  
+If the player uncovers every clue, they learn that the figure on the bridge, the one who appears to be sabotaging it, was actually an engineer secretly trying to fix the damage.  
 He was ordered not to intervene by higher authorities, but he tried anyway.  
 When he was caught acting suspiciously, he didn’t have time to finish the repairs.  
 The bridge still collapsed.
