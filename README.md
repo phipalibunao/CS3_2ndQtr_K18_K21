@@ -13,8 +13,9 @@ Project Proposal of Phipa Libunao and Tomas Macalintal
 ## Website Overview
 **Fractured Night** is an interactive website that shows the events of a bridge collapse through different perspectives.  
 Players explore the event as four people: a journalist, an engineer, a supervisor, and a mayor.  
-Each act presents clues and mini-games that reveal what each person knows or thinks happened.  
-The public story may be different from the real story, so players must decide which clues to trust.  
+Each act presents clues and mini-games that reveal how each person acted before the incident, and what is known.  
+The public story may be different from the real story, so players must find the clues to the truth.  
+Hidden clues are found by winning games, which piece together the real story.
 The goal is to show how different perspectives and partial information can change how people understand events.
 
 > Can you find the full story or only the version that people believe?
@@ -30,7 +31,7 @@ The goal is to show how different perspectives and partial information can chang
 
 ---
 
-### Story Summary
+### Public Story Summary
 The bridge collapses one night. A journalist finds a shadowy figure on the bridge and reports it.  
 The mayor blames the engineer and supervisor, saying they did not follow orders and were in conflict with him.  
 The mayor says the sabotage was a stunt to send a message, but he himself is innocent because he provided maintenance checks.  
@@ -44,15 +45,14 @@ The website lets players explore each character’s perspective to understand ho
 **Perspective:** The Journalist  
 **Mini-Game:** Spot the Detail / Memory Matching  
 **Goal:** Collect evidence and decide what to report.  
-**Story Summary:**  
+**What the Public Believe:**  
 The journalist finds a shadowy photo of someone on the bridge the night before.  
-They investigate other clues but choose to report the most striking one, the shadow photo.  
 The story published claims sabotage and names the engineer as responsible.  
-The public believes this story, which affects the outcomes for all the other characters.  
-Players can explore the evidence to see how one piece of misleading information can shape public opinion.
 
-**True Clue:** The mayor performed regular maintenance checks.  
+> Players can explore the evidence to see how one piece of misleading information can shape public opinion.
+
 **False Clue:** The shadow figure on the bridge was sabotaging it.
+**Hidden Clue:** The mayor performed regular maintenance checks.  
 
 ---
 
@@ -65,8 +65,9 @@ Players can explore the evidence to see how one piece of misleading information 
 The engineer is accused of tampering with the bridge.  
 In reality, he may have been trying to prevent further damage, but his actions are misunderstood.  
 He is forced to leave the bridge, and the next day, his blurred photo appears in news reports suggesting sabotage.  
-Players completing the mini-game can see how partial information creates a false impression.  
-The engineer is arrested in the public story.
+The engineer is arrested.
+
+> Players completing the mini-game can see how partial information creates a false impression.  
 
 **Mini-Game Details:**  
 Players reconnect wires or fix bridge sections to see how actions are interpreted differently.  
