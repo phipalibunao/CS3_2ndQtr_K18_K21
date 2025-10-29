@@ -1,7 +1,7 @@
 # CS3_2ndQtr_K18_K21
 Project Proposal of Phipa Libunao and Tomas Macalintal
 
-# Fractured Night
+# Fractured Night 🌚
 
 ## Website Overview
 **Fractured Night** is an interactive website that shows the events of a bridge collapse through different perspectives.  
