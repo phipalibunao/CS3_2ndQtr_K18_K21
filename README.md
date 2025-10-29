@@ -24,7 +24,7 @@ Each act reveals a fragment of the truth, hidden within mini-games and puzzles t
 
 ---
 
-## Act 1: The Journalist
+### 2. Act 1: The Journalist
 **Title:** Headline  
 **Perspective:** The Journalist  
 **Mini-Game:** Memory/Clue-Finding Game  
