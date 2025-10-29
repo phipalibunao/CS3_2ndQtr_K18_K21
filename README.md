@@ -1,10 +1,10 @@
 # CS3_2ndQtr_K18_K21
-Pair Project of Phipa Libunao and Tomas Macalintal
+Project Proposal of Phipa Libunao and Tomas Macalintal
 
 # Fractured Night
 
 ## Website Overview
-**Fractured Night** is an interactive narrative website where a single event is retold through the perspectives of five different people.  
+**Fractured Night** is an interactive narrative website where a single event is retold through the perspectives of four different people.  
 Each act reveals a fragment of the truth, hidden within mini-games and clues that reflect their memories, fears, and lies.
 
 > Will you remember the truth or only fragments of it?
@@ -23,10 +23,18 @@ Navigation bar: **Home | Act 1 | Act 2 | Act 3 | Act 4 | About Us**
 
 ---
 
+### Story Summary
+The bridge collapses. A journalist finds out somebody was on the bridge the night before, possibly tampering with it.  
+It is believed that the engineer and the supervisor are in on the sabotage. The mayor backs it up, saying that repairs were scheduled.  
+People commend the mayor for doing what he could, and the engineer and supervisor are arrested.  
+If players uncover all the clues, they learn the truth: the figure on the bridge was the engineer secretly trying to fix it, the supervisor was protecting him, and the mayor covered up the real cause.
+
+---
+
 ### 2. Act 1: The Journalist  
 **Title:** Headline  
 **Perspective:** The Journalist  
-**Mini-Game:** Memory / Clue-Finding  
+**Mini-Game:** Spot the Detail / Memory Matching  
 **Goal:** Collect evidence about the bridge collapse and decide what story to publish.  
 **Story Summary:**  
 The journalist investigates the bridge collapse and discovers a photo of a figure on the bridge the night before.  
@@ -45,7 +53,7 @@ The bridge still collapses.
 ### 3. Act 2: The Engineer  
 **Title:** Silent Fix  
 **Perspective:** The Engineer  
-**Mini-Game:** Stealth / Time-Based Puzzle  
+**Mini-Game:** Fix Wires  
 **Goal:** Repair the bridge before being discovered.  
 **Story Summary:**  
 The engineer disobeys orders to stay silent and sneaks onto the bridge at night to fix the damaged beams.  
@@ -55,6 +63,10 @@ The bridge collapses hours later, and the next morning, his blurred photo spread
 In the canon story, this false report becomes accepted as truth.  
 If the player completes the game correctly, they realize he was never trying to destroy the bridge but to save it.  
 
+**Mini-Game Details:**  
+The player first removes wires from their original spots, then rearranges them to restore proper connections.  
+Without the clues, it appears as if the engineer is sabotaging the bridge, but he is actually fixing it.
+
 **True Clue:** The engineer was trying to fix the bridge.  
 **False Clue:** He was caught and framed for damaging the bridge.
 
@@ -63,7 +75,7 @@ If the player completes the game correctly, they realize he was never trying to 
 ### 4. Act 3: The Supervisor  
 **Title:** Orders and Silence  
 **Perspective:** The Supervisor  
-**Mini-Game:** Decision / Management  
+**Mini-Game:** Scheduling / Organizing  
 **Goal:** Balance orders, safety, and limited resources while deciding whether to send the engineer back to the bridge.  
 **Story Summary:**  
 The supervisor oversees the maintenance team and knows the bridge’s condition is worsening.  
@@ -80,7 +92,7 @@ Rumors spread that the supervisor was part of the sabotage, though the truth is 
 ### 5. Act 4: The Mayor  
 **Title:** Behind Closed Doors  
 **Perspective:** The Mayor  
-**Mini-Game:** Decision / Strategy  
+**Mini-Game:** Math / Budget Allocation  
 **Goal:** Manage the city and cover up the disaster while maintaining public image.  
 **Story Summary:**  
 The mayor learns about the bridge’s structural issues and the engineer’s attempts to fix it.  
