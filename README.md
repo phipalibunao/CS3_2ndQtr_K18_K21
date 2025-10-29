@@ -5,7 +5,7 @@ Pair Project of Phipa Libunao and Tomas Macalintal
 
 ## Website Overview
 **Fractured Night** is an interactive narrative website where a single event is retold through the perspectives of five different people.  
-Each act reveals a fragment of the truth, hidden within mini-games and puzzles that reflect their memories, fears, and lies.
+Each act reveals a fragment of the truth, hidden within mini-games and clues that reflect their memories, fears, and lies.
 
 > Will you remember the truth or only fragments of it?
 
@@ -17,19 +17,35 @@ Each act reveals a fragment of the truth, hidden within mini-games and puzzles t
 ## Website Outline
 
 ### 1. Home / The Beginning
-- Title screen with “Start” and “Continue” buttons  
-- Short prologue introducing the event  
-- Background: animated rain or flickering streetlights  
-- Navigation bar: **Home | Act 1 | Act 2 | Act 3 | Act 4 | Act 5 | About Us**
+Title screen with “Start” and “Continue” buttons  
+Short prologue introducing the event  
+Navigation bar: **Home | Act 1 | Act 2 | Act 3 | Act 4 | Act 5 | About Us**
 
 ---
 
-### 2. Act 1: The Journalist
+### 2. Act 1: The Journalist  
 **Title:** Headline  
 **Perspective:** The Journalist  
-**Mini-Game:** Memory/Clue-Finding Game  
+**Mini-Game:** Memory / Clue-Finding  
 **Goal:** Collect evidence about the bridge collapse and decide what story to publish.  
-If the player uncovers every clue, they learn that the figure on the bridge, the one who appears to be sabotaging it, was actually an engineer secretly trying to fix the damage.  
-He was ordered not to intervene by higher authorities, but he tried anyway.  
-When he was caught acting suspiciously, he didn’t have time to finish the repairs.  
-The bridge still collapsed.
+**Story Summary:**  
+The journalist investigates the bridge collapse and discovers a photo of a figure on the bridge the night before.  
+Although there are other leads, fear from their editor pushes them to choose the most sensational one—the photo.  
+That story becomes the headline, accusing someone of sabotage.  
+If the player finds every clue, they learn the figure was actually an engineer trying to fix the damage in secret.  
+He was ordered not to, and when caught, he didn’t have time to finish the repairs.  
+The bridge still collapses.
+
+---
+
+### 3. Act 2: The Engineer  
+**Title:** Silent Fix  
+**Perspective:** The Engineer  
+**Mini-Game:** Stealth / Time-Based Puzzle  
+**Goal:** Repair the bridge before being discovered.  
+**Story Summary:**  
+The engineer disobeys orders to stay silent and sneaks onto the bridge at night to fix the damaged beams.  
+He works in the dark, hiding from passing patrols.  
+Before he can finish, he’s caught and forced to leave.  
+The bridge collapses hours later, and the next morning, his blurred photo spreads across the news under the headline “Sabotage Suspect Identified.”  
+He never gets the chance to explain.
