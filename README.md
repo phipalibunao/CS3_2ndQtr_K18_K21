@@ -1,7 +1,7 @@
 # CS3_2ndQtr_K18_K21
 Pair Project of Phipa Libunao and Tomas Macalintal
 
-# Fractured Night
+# Fractured Night 
 
 ## Website Overview
 **Fractured Night** is an interactive narrative website where a single event is retold through the perspectives of five different people.  
@@ -13,3 +13,10 @@ Each act reveals a fragment of the truth, hidden within mini-games and puzzles t
 - **Main Title:** Fractured Night
 - **Tagline:** One Event. Five stories. Broken pieces of the truth.
 - **Logo:**
+
+## Website Outline
+
+###  *** 1. Home/The Beginning ***
+- Title screen with “Start” and “Continue” buttons.  
+- Short prologue introducing the event.  
+- Background: animated rain or flickering streetlights (via JS).
