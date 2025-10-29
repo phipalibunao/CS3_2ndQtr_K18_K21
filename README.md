@@ -53,6 +53,7 @@ The public praises the mayor for acting responsibly, and the engineer and superv
 **Perspective:** The Journalist  
 **Mini-Game:** Spot the Detail / Memory Matching  
 **Goal:** Collect evidence and decide what to report.  
+
 **What the Public Believe:**  
 The journalist looks for information that could help solve the case.
 The journalist finds a shadowy photo of someone on the bridge the night before.  
@@ -73,6 +74,7 @@ They find photos of the bridge looking weak. However, they deemed it not newswor
 **Perspective:** The Engineer  
 **Mini-Game:** Wires  
 **Goal:** Remove and rearrange different wires.
+
 **What the Public Believe:**  
 The engineer reads about the memo.
 They go to the bridge to instead try to make it worse.
@@ -98,6 +100,7 @@ The engineer knows something is wrong with the bridge.
 **Perspective:** The Supervisor  
 **Mini-Game:** Scheduling / Organizing  
 **Goal:** Balance instructions and safety with limited resources and time.  
+
 **What the Public Believe:**  
 The supervisor tells the engineer not to fix the bridge, with a motive to go against the mayor.  
 The public believes this shows negligence or sabotage.
@@ -120,6 +123,7 @@ Players are given a calendar with different people and resources to be placed on
 **Perspective:** The Mayor  
 **Mini-Game:** Budget Allocation  
 **Goal:** Manage the city and maintain public image.  
+
 **What the Public Believe:**  
 The mayor performed maintenance checks on the bridge and managed the budget responsibly.  
 He publicly blames the engineer and supervisor to maintain trust in the city.  
@@ -152,4 +156,4 @@ The journalist found much more than the shadow photo. They find photos of the br
 ## USE OF JAVASCRIPT ON THE WEBSITE
 JS will be used on the multiple games of the website to allow for drag and drop, points, and randomizing. JS will also be used on all pages for buttons, audio, and the changing of elements and text.
 
-[Wireframe](https://www.canva.com/design/DAG3Kq1fF2w/QB8ZXY0owkpqdNUfHf5pgw/edit?utm_content=DAG3Kq1fF2w&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
+[## Wireframe](https://www.canva.com/design/DAG3Kq1fF2w/QB8ZXY0owkpqdNUfHf5pgw/edit?utm_content=DAG3Kq1fF2w&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
