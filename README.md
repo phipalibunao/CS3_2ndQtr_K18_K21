@@ -11,7 +11,7 @@ Each act reveals a fragment of the truth, hidden within mini-games and clues tha
 
 ## Titles and Logo
 - **Main Title:** Fractured Night  
-- **Tagline:** One Event. Five stories. Broken pieces of the truth.  
+- **Tagline:** One Event. Four stories. Broken pieces of the truth.  
 - **Logo/Favicon:**  
 
 ## Website Outline
@@ -19,7 +19,7 @@ Each act reveals a fragment of the truth, hidden within mini-games and clues tha
 ### 1. Home / The Beginning
 Title screen with “Start” and “Continue” buttons  
 Short prologue introducing the event  
-Navigation bar: **Home | Act 1 | Act 2 | Act 3 | Act 4 | Act 5 | About Us**
+Navigation bar: **Home | Act 1 | Act 2 | Act 3 | Act 4 | About Us**
 
 ---
 
@@ -57,3 +57,36 @@ If the player completes the game correctly, they realize he was never trying to 
 
 **True Clue:** The engineer was trying to fix the bridge.  
 **False Clue:** He was caught and framed for damaging the bridge.
+
+---
+
+### 4. Act 3: The Supervisor  
+**Title:** Orders and Silence  
+**Perspective:** The Supervisor  
+**Mini-Game:** Decision / Management  
+**Goal:** Balance orders, safety, and limited resources while deciding whether to send the engineer back to the bridge.  
+**Story Summary:**  
+The supervisor oversees the maintenance team and knows the bridge’s condition is worsening.  
+They are aware that repairs are overdue but are pressured by higher officials to delay work until further notice.  
+They tell the engineer not to fix the bridge, hoping to keep him safe and avoid conflict with the mayor’s office.  
+In the canon story, this decision leads to disaster when the engineer goes against orders and is caught.  
+Rumors spread that the supervisor was part of the sabotage, though the truth is that they were simply trying to protect their worker in a system that gave them no power.  
+
+**True Clue:** The supervisor was looking out for the engineer, as resources and manpower were scarce.  
+**False Clue:** The supervisor was involved in sabotaging the bridge.
+
+---
+
+### 5. Act 4: The Mayor  
+**Title:** Behind Closed Doors  
+**Perspective:** The Mayor  
+**Mini-Game:** Decision / Strategy  
+**Goal:** Manage the city and cover up the disaster while maintaining public image.  
+**Story Summary:**  
+The mayor learns about the bridge’s structural issues and the engineer’s attempts to fix it.  
+To protect the city’s reputation and political position, the mayor orders that the engineer be prevented from intervening and lets misinformation about sabotage spread.  
+In the canon story, the public believes the sabotage narrative, and the disaster is blamed on the engineer or unknown forces.  
+If the player uncovers all clues throughout the acts, they understand the mayor’s orders were motivated by corruption and fear, not genuine concern for safety, and the engineer’s actions were heroic.  
+
+**True Clue:** The mayor wanted to maintain political image and hid the real reason for the collapse.  
+**False Clue:** The mayor orchestrated the bridge sabotage deliberately.
