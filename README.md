@@ -30,10 +30,10 @@ Navigation bar: **Home | Act 1 | Act 2 | Act 3 | Act 4 | Act 5 | About Us**
 **Goal:** Collect evidence about the bridge collapse and decide what story to publish.  
 **Story Summary:**  
 The journalist investigates the bridge collapse and discovers a photo of a figure on the bridge the night before.  
-Although there are other leads, fear from their editor pushes them to choose the most sensational one—the photo.  
+Although there are other leads, fear from their editor pushes them to choose the most sensational one, the photo.  
 That story becomes the headline, accusing someone of sabotage.  
 If the player finds every clue, they learn the figure was actually an engineer trying to fix the damage in secret.  
-He was ordered not to, and when caught, he didn’t have time to finish the repairs.  
+He was ordered not to, and when caught, he did not have time to finish the repairs.  
 The bridge still collapses.
 
 ---
@@ -46,6 +46,6 @@ The bridge still collapses.
 **Story Summary:**  
 The engineer disobeys orders to stay silent and sneaks onto the bridge at night to fix the damaged beams.  
 He works in the dark, hiding from passing patrols.  
-Before he can finish, he’s caught and forced to leave.  
-The bridge collapses hours later, and the next morning, his blurred photo spreads across the news under the headline “Sabotage Suspect Identified.”  
+Before he can finish, he is caught and forced to leave.  
+The bridge collapses hours later, and the next morning, his blurred photo spreads across the news under the headline "Sabotage Suspect Identified."  
 He never gets the chance to explain.
