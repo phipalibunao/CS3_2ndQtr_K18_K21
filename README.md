@@ -8,7 +8,7 @@ Project Proposal of Phipa Libunao and Tomas Macalintal
 - **Tagline:** One Event. Four stories. Broken pieces of the truth.  
 - **Logo/Favicon:**  
 
-![Fractured Night Logo](assets/cspairproj_favicon2.png)
+![Fractured Night Logo](https://github.com/phipalibunao/CS3_2ndQtr_K18_K21/blob/main/assests/cspairproj_favicon2.png?raw=true)
 
 ## Website Overview
 **Fractured Night** is an interactive website that shows the events of a bridge collapse through different perspectives.  
