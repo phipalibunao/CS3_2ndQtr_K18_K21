@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- favicon -->
+    <link rel="icon" href="https://raw.githubusercontent.com/tomasdmacalintal/CS3_2ndQtrPortfolio/main/assets/images/clap_board.png" sizes="any">
+    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/tomasdmacalintal/CS3_2ndQtrPortfolio/main/assets/images/clap_board.png">
+
+    <!-- Encoding + mobile responsiveness -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Page info -->
+    <title>Lights</title>
+    <meta name="description" content="The second chapter.">
+    <meta name="author" content="Datu Macalintal, Phipa Libunao">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&family=Cormorant+Garamond:wght@600&display=swap" rel="stylesheet">
+
+    <!-- Link Stylesheet -->
+
+
+    <style>
+        .box{
+            width: 100px;
+            height: 100px;
+            background-color: aquamarine;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <div class="box" id="box"></div>
+
+    <script>
+        const box = document.getElementById("box");
+        boxStays = true;
+        box.style.left = "200px";
+        box.style.top = "500px";
+
+        box.addEventListener("mousedown", move)
+        function move() {
+            boxStays = false;
+        }
+
+        document.addEventListener("mousemove", moving)
+        function moving(event) {
+            if (boxStays == false){
+                box.style.left = `${event.clientX - 50}px`;
+                box.style.top = `${event.clientY - 50}px`;
+                console.log(box.style.left);
+                console.log(event.clientX);
+            }
+        }
+
+        document.addEventListener("mouseup", stay)
+        function stay() {
+            boxStays = true;
+        }
+    </script>
+</body>
