@@ -20,39 +20,72 @@
 
     <style>
         .box{
-            width: 100px;
-            height: 100px;
             background-color: aquamarine;
             position: absolute;
+            left: 200px;
+            top: 500px;
         }
+        .container{
+            background-color: brown;
+            position: absolute;
+        }
+
     </style>
 </head>
 <body>
-    <div class="box" id="box"></div>
+    <div class="container" id="container" style="width: 1200px; height: 800px; left: 200px; top: 100px;">
+        <div style="width: 100px; height: 100px; top: 500px; left: 1000px; background-color: red; position: absolute;"></div>
+        <div class="box" id="box" style="width: 100px; height: 100px;"></div>
+    </div>
+    
 
     <script>
         const box = document.getElementById("box");
+        const container = document.getElementById("container");
         boxStays = true;
-        box.style.left = "200px";
-        box.style.top = "500px";
+        originalLeft = box.style.left;
+        originalTop = box.style.top;
+        console.log(container.style.left);
 
         box.addEventListener("mousedown", move)
         function move() {
             boxStays = false;
+            box.style.transition = "none";
         }
 
         document.addEventListener("mousemove", moving)
         function moving(event) {
             if (boxStays == false){
-                box.style.left = `${event.clientX - 50}px`;
-                box.style.top = `${event.clientY - 50}px`;
-                console.log(box.style.left);
-                console.log(event.clientX);
+                if (event.clientX > parseInt(container.style.left) + parseInt(box.style.width)/2 && event.clientX < parseInt(container.style.left) + parseInt(container.style.width) - parseInt(box.style.width)/2)
+                    box.style.left = `${event.clientX - parseInt(box.style.width)/2 - parseInt(container.style.left)}px`;
+                else if (event.clientX <= parseInt(container.style.left) + parseInt(box.style.width)/2)
+                    box.style.left = 0;
+                else
+                    box.style.left = `${parseInt(container.style.width) - parseInt(box.style.width)}px`;
+                if (event.clientY > parseInt(container.style.top) + parseInt(box.style.height)/2 && event.clientY < parseInt(container.style.top) + parseInt(container.style.height) - parseInt(box.style.height)/2)
+                    box.style.top = `${event.clientY - parseInt(box.style.height)/2 - parseInt(container.style.top)}px`;
+                else if (event.clientY <= parseInt(container.style.top) + parseInt(box.style.height)/2)
+                    box.style.top = 0;
+                else
+                    box.style.top = `${parseInt(container.style.height) - parseInt(box.style.height)}px`;
+                console.log(box.style.top);
+                console.log(event.clientY);
+                if (event.clientX > 1000 + parseInt(container.style.left) && event.clientX < 1100 + parseInt(container.style.left) && event.clientY > 500 + parseInt(container.style.top) && event.clientY < 600 + parseInt(container.style.top)){
+                    box.style.left = "1000px";
+                    box.style.top = "500px";
+                }
             }
         }
 
         document.addEventListener("mouseup", stay)
-        function stay() {
+        function stay(event) {
+            if (event.clientX < 1000 + parseInt(container.style.left) || event.clientX > 1100 + parseInt(container.style.left) || event.clientY < 500 + parseInt(container.style.top) || event.clientY > 600 + parseInt(container.style.top)){
+                if (boxStays == false){
+                    box.style.left = originalLeft;
+                    box.style.top = originalTop;
+                    box.style.transition = "ease-out 0.5s";
+                }
+            }
             boxStays = true;
         }
     </script>
