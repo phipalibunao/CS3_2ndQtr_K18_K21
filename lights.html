@@ -23,7 +23,6 @@
             background-color: aquamarine;
             position: absolute;
             left: 200px;
-            top: 500px;
         }
         .container{
             background-color: brown;
@@ -35,58 +34,72 @@
 <body>
     <div class="container" id="container" style="width: 1200px; height: 800px; left: 200px; top: 100px;">
         <div style="width: 100px; height: 100px; top: 500px; left: 1000px; background-color: red; position: absolute;"></div>
-        <div class="box" id="box" style="width: 100px; height: 100px;"></div>
+        <div class="box" id="0" style="width: 100px; height: 100px;"></div>
+        <div class="box" id="1" style="width: 100px; height: 100px;"></div>
+        <div class="box" id="2" style="width: 100px; height: 100px;"></div>
     </div>
     
 
     <script>
-        const box = document.getElementById("box");
         const container = document.getElementById("container");
-        boxStays = true;
-        originalLeft = box.style.left;
-        originalTop = box.style.top;
-        console.log(container.style.left);
 
-        box.addEventListener("mousedown", move)
-        function move() {
-            boxStays = false;
-            box.style.transition = "none";
+        boxes = [];
+        boxNumber = [];
+        originalLeft = [];
+        originalTop = [];
+        boxStays = [];
+        boxSelected = 0;
+        for (i = 0; i < 3; i++){
+            boxes[i] = document.getElementById(`${i}`);
+            boxNumber[i] = i;
+            boxes[i].style.top = `${(i+1)*150}px`;
+            originalLeft[i] = boxes[i].style.left;
+            originalTop[i] = boxes[i].style.top;
+            boxStays[i] = true;
+
+            boxes[i].addEventListener("mousedown", move);
+            
         }
 
-        document.addEventListener("mousemove", moving)
+        function move(e) {
+            boxSelected = e.target.id;
+            boxStays[boxSelected] = false;
+            boxes[boxSelected].style.transition = "none";
+            console.log(e.target.id);
+        }
+
+        document.addEventListener("mousemove", moving);
         function moving(event) {
-            if (boxStays == false){
-                if (event.clientX > parseInt(container.style.left) + parseInt(box.style.width)/2 && event.clientX < parseInt(container.style.left) + parseInt(container.style.width) - parseInt(box.style.width)/2)
-                    box.style.left = `${event.clientX - parseInt(box.style.width)/2 - parseInt(container.style.left)}px`;
-                else if (event.clientX <= parseInt(container.style.left) + parseInt(box.style.width)/2)
-                    box.style.left = 0;
+            if (boxStays[boxSelected] == false){
+                if (event.clientX > parseInt(container.style.left) + parseInt(boxes[boxSelected].style.width)/2 && event.clientX < parseInt(container.style.left) + parseInt(container.style.width) - parseInt(boxes[boxSelected].style.width)/2)
+                    boxes[boxSelected].style.left = `${event.clientX - parseInt(boxes[boxSelected].style.width)/2 - parseInt(container.style.left)}px`;
+                else if (event.clientX <= parseInt(container.style.left) + parseInt(boxes[boxSelected].style.width)/2)
+                    boxes[boxSelected].style.left = 0;
                 else
-                    box.style.left = `${parseInt(container.style.width) - parseInt(box.style.width)}px`;
-                if (event.clientY > parseInt(container.style.top) + parseInt(box.style.height)/2 && event.clientY < parseInt(container.style.top) + parseInt(container.style.height) - parseInt(box.style.height)/2)
-                    box.style.top = `${event.clientY - parseInt(box.style.height)/2 - parseInt(container.style.top)}px`;
-                else if (event.clientY <= parseInt(container.style.top) + parseInt(box.style.height)/2)
-                    box.style.top = 0;
+                    boxes[boxSelected].style.left = `${parseInt(container.style.width) - parseInt(boxes[boxSelected].style.width)}px`;
+                if (event.clientY > parseInt(container.style.top) + parseInt(boxes[boxSelected].style.height)/2 && event.clientY < parseInt(container.style.top) + parseInt(container.style.height) - parseInt(boxes[boxSelected].style.height)/2)
+                    boxes[boxSelected].style.top = `${event.clientY - parseInt(boxes[boxSelected].style.height)/2 - parseInt(container.style.top)}px`;
+                else if (event.clientY <= parseInt(container.style.top) + parseInt(boxes[boxSelected].style.height)/2)
+                    boxes[boxSelected].style.top = 0;
                 else
-                    box.style.top = `${parseInt(container.style.height) - parseInt(box.style.height)}px`;
-                console.log(box.style.top);
-                console.log(event.clientY);
+                    boxes[boxSelected].style.top = `${parseInt(container.style.height) - parseInt(boxes[boxSelected].style.height)}px`;
                 if (event.clientX > 1000 + parseInt(container.style.left) && event.clientX < 1100 + parseInt(container.style.left) && event.clientY > 500 + parseInt(container.style.top) && event.clientY < 600 + parseInt(container.style.top)){
-                    box.style.left = "1000px";
-                    box.style.top = "500px";
+                    boxes[boxSelected].style.left = "1000px";
+                    boxes[boxSelected].style.top = "500px";
                 }
             }
         }
-
+        
         document.addEventListener("mouseup", stay)
         function stay(event) {
             if (event.clientX < 1000 + parseInt(container.style.left) || event.clientX > 1100 + parseInt(container.style.left) || event.clientY < 500 + parseInt(container.style.top) || event.clientY > 600 + parseInt(container.style.top)){
-                if (boxStays == false){
-                    box.style.left = originalLeft;
-                    box.style.top = originalTop;
-                    box.style.transition = "ease-out 0.5s";
+                if (boxStays[boxSelected] == false){
+                    boxes[boxSelected].style.left = originalLeft[boxSelected];
+                    boxes[boxSelected].style.top = originalTop[boxSelected];
+                    boxes[boxSelected].style.transition = "ease-out 0.5s";
                 }
             }
-            boxStays = true;
+            boxStays[boxSelected] = true;
         }
     </script>
 </body>
