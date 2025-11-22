@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Mini-Game 1: Evidence Match</title>
+<style>
+ body {
+   font-family: Arial, sans-serif;
+   background: #0b0b0f;
+   color: white;
+   text-align: center;
+   padding: 20px;
+ }
+ h1 { margin-bottom: 10px; }
+ #game {
+   width: 600px;
+   margin: auto;
+   display: grid;
+   grid-template-columns: repeat(4, 1fr);
+   gap: 12px;
+ }
+ .card {
+   background: linear-gradient(135deg, #1c1c23, #262630);
+   border-radius: 12px;
+   height: 120px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   cursor: pointer;
+   font-size: 22px;
+   user-select: none;
+   transition: transform 0.3s;
+ }
+ .card.flipped {
+   background: white;
+   color: black;
+   cursor: default;
+ }
+ #hiddenClue {
+   margin-top: 25px;
+   display: none;
+   padding: 20px;
+   font-size: 20px;
+   background: rgba(255,255,255,0.1);
+   border-radius: 10px;
+ }
+</style>
+</head>
+<body>
+
+<h1>Evidence Memory Match</h1>
+<p>Match all pieces of evidence to unlock the hidden clue.</p>
+
+<div id="game"></div>
+
+<div id="hiddenClue">
+  <h2>Hidden Clue Found!</h2>
+  <p>The journalist actually found photos showing the bridge structure already weak.  
+  They ignored it because a sabotage story was more exciting for the public.</p>
+</div>
+
+<script>
+const items = ["📝","📝","📸","📸","👤","👤","📄","📄"];
+const game = document.getElementById("game");
+let flipped = [];
+let matched = 0;
+
+const shuffle = arr => arr.sort(() => Math.random() - 0.5);
+shuffle(items);
+
+items.forEach((item, index) => {
+  const card = document.createElement("div");
+  card.className = "card";
+  card.dataset.value = item;
+  card.dataset.index = index;
+  card.onclick = () => flipCard(card);
+  game.appendChild(card);
+});
+
+function flipCard(card) {
+  if (card.classList.contains("flipped") || flipped.length === 2) return;
+
+  card.classList.add("flipped");
+  card.textContent = card.dataset.value;
+  flipped.push(card);
+
+  if (flipped.length === 2) {
+    if (flipped[0].dataset.value === flipped[1].dataset.value) {
+      matched += 2;
+      flipped = [];
+      if (matched === items.length) {
+        document.getElementById("hiddenClue").style.display = "block";
+      }
+    } else {
+      setTimeout(() => {
+        flipped.forEach(c => {
+          c.classList.remove("flipped");
+          c.textContent = "";
+        });
+        flipped = [];
+      }, 800);
+    }
+  }
+}
+</script>
+</body>
+</html>
