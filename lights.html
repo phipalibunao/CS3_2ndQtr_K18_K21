@@ -148,6 +148,8 @@
             }
             if (inHole == false){
                 if (boxStays[boxSelected] == false){
+                    stretchboxes[boxSelected].style.transition = "ease-out 0.5s";
+                    stretchboxes[boxSelected].style.width = boxes[boxSelected].style.width;
                     boxes[boxSelected].style.left = originalLeft[boxSelected];
                     boxes[boxSelected].style.top = originalTop[boxSelected];
                     boxes[boxSelected].style.transition = "ease-out 0.5s";
