@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <!-- favicon -->
-    <link rel="icon" href="https://raw.githubusercontent.com/tomasdmacalintal/CS3_2ndQtrPortfolio/main/assets/images/clap_board.png" sizes="any">
-    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/tomasdmacalintal/CS3_2ndQtrPortfolio/main/assets/images/clap_board.png">
+    <link rel="icon" href="https://raw.githubusercontent.com/tomasdmacalintal/CS3_2ndQtrPortfolio/main/assets/images/cspairproj_favicon2.png" sizes="any">
+    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/tomasdmacalintal/CS3_2ndQtrPortfolio/main/assets/images/cspairproj_favicon2.png">
 
     <!-- Encoding + mobile responsiveness -->
     <meta charset="UTF-8">
@@ -22,7 +22,11 @@
         .box{
             background-color: aquamarine;
             position: absolute;
-            left: 200px;
+        }
+        .stretchbox{
+            background-color: blue;
+            position: absolute;
+            transform-origin: left;
         }
         .hole{
             background-color: red;
@@ -36,31 +40,47 @@
     </style>
 </head>
 <body>
-    <div class="container" id="container" style="width: 1200px; height: 800px; left: 200px; top: 100px;">
+    <div class="container" id="container" style="width: 1000px; height: 800px; left: 100px; top: 0px;">
         <div class="hole" id="hole_0" style="width: 100px; height: 100px;"></div>
         <div class="hole" id="hole_1" style="width: 100px; height: 100px;"></div>
         <div class="hole" id="hole_2" style="width: 100px; height: 100px;"></div>
+        <div class="hole" id="hole_3" style="width: 100px; height: 100px;"></div>
+        <div class="stretchbox" id="stretchbox_0" style="width: 100px; height: 100px;"></div>
+        <div class="stretchbox" id="stretchbox_1" style="width: 100px; height: 100px;"></div>
+        <div class="stretchbox" id="stretchbox_2" style="width: 100px; height: 100px;"></div>
+        <div class="stretchbox" id="stretchbox_3" style="width: 100px; height: 100px;"></div>
         <div class="box" id="0" style="width: 100px; height: 100px;"></div>
         <div class="box" id="1" style="width: 100px; height: 100px;"></div>
         <div class="box" id="2" style="width: 100px; height: 100px;"></div>
+        <div class="box" id="3" style="width: 100px; height: 100px;"></div>
     </div>
     
 
     <script>
         const container = document.getElementById("container");
+        const TOTAL = 4;
 
-        boxes = [];
         holes = [];
+        stretchboxes = [];
+        boxes = [];
+        
         originalLeft = [];
         originalTop = [];
         boxStays = [];
         boxSelected = 0;
-        for (i = 0; i < 3; i++){
-            boxes[i] = document.getElementById(`${i}`);
+
+        for (i = 0; i < TOTAL; i++){
             holes[i] = document.getElementById(`hole_${i}`);
-            boxes[i].style.top = `${(i+1)*150}px`;
-            holes[i].style.left = "1000px"
+            stretchboxes[i] = document.getElementById(`stretchbox_${i}`);
+            boxes[i] = document.getElementById(`${i}`);
+            
+            holes[i].style.left = `${parseInt(container.style.width) - parseInt(holes[i].style.width)}px`;
             holes[i].style.top = `${(i+1)*150}px`;
+            stretchboxes[i].style.left = "0px";
+            stretchboxes[i].style.top = `${(i+1)*150}px`;
+            boxes[i].style.left = "0px";
+            boxes[i].style.top = `${(i+1)*150}px`;
+            
             originalLeft[i] = boxes[i].style.left;
             originalTop[i] = boxes[i].style.top;
             boxStays[i] = true;
@@ -72,6 +92,7 @@
             boxSelected = e.target.id;
             boxStays[boxSelected] = false;
             boxes[boxSelected].style.transition = "none";
+            stretchboxes[boxSelected].style.transition = "none";
             console.log(e.target.id);
         }
 
@@ -90,19 +111,34 @@
                     boxes[boxSelected].style.top = 0;
                 else
                     boxes[boxSelected].style.top = `${parseInt(container.style.height) - parseInt(boxes[boxSelected].style.height)}px`;
-                for(i = 0; i < 3; i++){
+                for(i = 0; i < TOTAL; i++){
                     if (event.clientX >= parseInt(holes[i].style.left) + parseInt(container.style.left) && event.clientX <= parseInt(holes[i].style.left) + parseInt(holes[i].style.width) + parseInt(container.style.left) && event.clientY >= parseInt(holes[i].style.top) + parseInt(container.style.top) && event.clientY <= parseInt(holes[i].style.top) + parseInt(holes[i].style.height) + parseInt(container.style.top)){
                         boxes[boxSelected].style.left = holes[i].style.left;
                         boxes[boxSelected].style.top = holes[i].style.top;
                     }
                 } 
+
+                angle = Math.atan2(parseInt(boxes[boxSelected].style.top) - parseInt(originalTop[boxSelected]), parseInt(boxes[boxSelected].style.left) - parseInt(originalLeft[boxSelected]));
+                displacement = Math.sqrt((parseInt(originalTop[boxSelected]) - parseInt(boxes[boxSelected].style.top))**2 + (parseInt(boxes[boxSelected].style.left) - parseInt(originalLeft[boxSelected]))**2);
+
+                console.log(parseInt(originalTop[boxSelected]) - parseInt(boxes[boxSelected].style.top));
+                console.log(parseInt(boxes[boxSelected].style.left) - parseInt(originalLeft[boxSelected]));
+                console.log(displacement);
+                stretchboxes[boxSelected].style.rotate = `${angle}rad`;
+                stretchboxes[boxSelected].style.left = `${parseInt(originalLeft[boxSelected]) + parseInt(boxes[boxSelected].style.width)/2}px`;
+                boxes[boxSelected].style.rotate = `${angle}rad`;
+                stretchboxes[boxSelected].style.width = `${displacement}px`;
+
+                
+                
+                
             }
         }
 
         document.addEventListener("mouseup", stay)
         function stay(event) {
             inHole = false;
-            for (i = 0; i < 3; i++){
+            for (i = 0; i < TOTAL; i++){
                 if (event.clientX < parseInt(holes[i].style.left) + parseInt(container.style.left) || event.clientX > parseInt(holes[i].style.left) + parseInt(holes[i].style.width) + parseInt(container.style.left) || event.clientY < parseInt(holes[i].style.top) + parseInt(container.style.top) || event.clientY > parseInt(holes[i].style.top) + parseInt(holes[i].style.height) + parseInt(container.style.top)){
                 }
                 else{
