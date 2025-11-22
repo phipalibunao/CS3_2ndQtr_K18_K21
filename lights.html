@@ -24,6 +24,10 @@
             position: absolute;
             left: 200px;
         }
+        .hole{
+            background-color: red;
+            position: absolute;
+        }
         .container{
             background-color: brown;
             position: absolute;
@@ -33,7 +37,9 @@
 </head>
 <body>
     <div class="container" id="container" style="width: 1200px; height: 800px; left: 200px; top: 100px;">
-        <div style="width: 100px; height: 100px; top: 500px; left: 1000px; background-color: red; position: absolute;"></div>
+        <div class="hole" id="hole_0" style="width: 100px; height: 100px;"></div>
+        <div class="hole" id="hole_1" style="width: 100px; height: 100px;"></div>
+        <div class="hole" id="hole_2" style="width: 100px; height: 100px;"></div>
         <div class="box" id="0" style="width: 100px; height: 100px;"></div>
         <div class="box" id="1" style="width: 100px; height: 100px;"></div>
         <div class="box" id="2" style="width: 100px; height: 100px;"></div>
@@ -44,19 +50,20 @@
         const container = document.getElementById("container");
 
         boxes = [];
-        boxNumber = [];
+        holes = [];
         originalLeft = [];
         originalTop = [];
         boxStays = [];
         boxSelected = 0;
         for (i = 0; i < 3; i++){
             boxes[i] = document.getElementById(`${i}`);
-            boxNumber[i] = i;
+            holes[i] = document.getElementById(`hole_${i}`);
             boxes[i].style.top = `${(i+1)*150}px`;
+            holes[i].style.left = "1000px"
+            holes[i].style.top = `${(i+1)*150}px`;
             originalLeft[i] = boxes[i].style.left;
             originalTop[i] = boxes[i].style.top;
             boxStays[i] = true;
-
             boxes[i].addEventListener("mousedown", move);
             
         }
@@ -83,22 +90,34 @@
                     boxes[boxSelected].style.top = 0;
                 else
                     boxes[boxSelected].style.top = `${parseInt(container.style.height) - parseInt(boxes[boxSelected].style.height)}px`;
-                if (event.clientX > 1000 + parseInt(container.style.left) && event.clientX < 1100 + parseInt(container.style.left) && event.clientY > 500 + parseInt(container.style.top) && event.clientY < 600 + parseInt(container.style.top)){
-                    boxes[boxSelected].style.left = "1000px";
-                    boxes[boxSelected].style.top = "500px";
-                }
+                for(i = 0; i < 3; i++){
+                    if (event.clientX >= parseInt(holes[i].style.left) + parseInt(container.style.left) && event.clientX <= parseInt(holes[i].style.left) + parseInt(holes[i].style.width) + parseInt(container.style.left) && event.clientY >= parseInt(holes[i].style.top) + parseInt(container.style.top) && event.clientY <= parseInt(holes[i].style.top) + parseInt(holes[i].style.height) + parseInt(container.style.top)){
+                        boxes[boxSelected].style.left = holes[i].style.left;
+                        boxes[boxSelected].style.top = holes[i].style.top;
+                    }
+                } 
             }
         }
-        
+
         document.addEventListener("mouseup", stay)
         function stay(event) {
-            if (event.clientX < 1000 + parseInt(container.style.left) || event.clientX > 1100 + parseInt(container.style.left) || event.clientY < 500 + parseInt(container.style.top) || event.clientY > 600 + parseInt(container.style.top)){
+            inHole = false;
+            for (i = 0; i < 3; i++){
+                if (event.clientX < parseInt(holes[i].style.left) + parseInt(container.style.left) || event.clientX > parseInt(holes[i].style.left) + parseInt(holes[i].style.width) + parseInt(container.style.left) || event.clientY < parseInt(holes[i].style.top) + parseInt(container.style.top) || event.clientY > parseInt(holes[i].style.top) + parseInt(holes[i].style.height) + parseInt(container.style.top)){
+                }
+                else{
+                    inHole = true;
+                    break;
+                }
+            }
+            if (inHole == false){
                 if (boxStays[boxSelected] == false){
                     boxes[boxSelected].style.left = originalLeft[boxSelected];
                     boxes[boxSelected].style.top = originalTop[boxSelected];
                     boxes[boxSelected].style.transition = "ease-out 0.5s";
                 }
             }
+
             boxStays[boxSelected] = true;
         }
     </script>
