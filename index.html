@@ -1,177 +1,157 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Phipa Libunao and Tomas Macalintal's Portfolio</title>
-  <link rel="icon" type="image/png" href="https://iconsdb.com/yellow-icons/clapperboard-icon.png">
-  <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;600&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      display: flex;
-      height: 100vh;
-      overflow: hidden;
-      color: #3c2f2f;
-      background-color: #fdfaf6;
-    }
+<meta charset="UTF-8">
+<title>Phipa & Tomas Portfolio</title>
+<link rel="icon" type="image/png" href="https://iconsdb.com/yellow-icons/clapperboard-icon.png">
+<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;600&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Poppins', sans-serif;
+}
 
-    .sidebar {
-      width: 260px;
-      background-color: #d9c4ff;
-      padding: 40px 25px;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      border-right: 3px solid #c1a7ff;
-      z-index: 10;
-    }
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('assets/cspmlwtbg.png') no-repeat center center;
+  background-size: cover;
+  z-index: 0;
+}
 
-    .sidebar h2 {
-      font-size: 20px;
-      color: #4c2e9a;
-      margin-bottom: 20px;
-      text-align: center;
-    }
+.container {
+  display: flex;
+  height: 100%;
+  position: relative;
+  z-index: 10;
+}
 
-    .sidebar nav ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
+.sidebar {
+  width: 260px;
+  background-color: rgba(217, 196, 255, 0.4);
+  padding: 40px 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  border-right: 3px solid rgba(193, 167, 255, 0.5);
+}
 
-    .sidebar nav a {
-      display: block;
-      background-color: #a78bfa;
-      color: white;
-      padding: 10px 15px;
-      border-radius: 10px;
-      font-weight: 500;
-      text-decoration: none;
-      transition: background-color 0.3s, transform 0.2s;
-    }
+.sidebar h2 {
+  font-size: 20px;
+  color: #4c2e9a;
+  margin-bottom: 20px;
+  text-align: center;
+}
 
-    .sidebar nav a:hover {
-      background-color: #7c3aed;
-      transform: scale(1.05);
-    }
+.sidebar nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
 
-    .main {
-      flex: 1;
-      overflow-y: auto;
-      padding: 50px 80px;
-      background-color: #fdfaf6;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
+.sidebar nav a {
+  display: block;
+  background-color: #a78bfa;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 10px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background-color 0.3s, transform 0.2s;
+}
 
-    header {
-      text-align: center;
-      padding-bottom: 30px;
-      background-color: #fff9f4;
-      border-radius: 20px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-    }
+.sidebar nav a:hover {
+  background-color: #7c3aed;
+  transform: scale(1.05);
+}
 
-    header h1 {
-      font-family: 'Spectral', serif;
-      font-size: 2.8em;
-      color: #d66a4d;
-      margin: 0;
-    }
+.main {
+  flex: 1;
+  overflow-y: auto;
+  padding: 50px 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
 
-    header p {
-      color: #9c7a6a;
-      margin-top: 8px;
-      font-size: 1.1em;
-    }
+header, section, footer {
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 20px;
+  padding: 30px 40px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
 
-    section {
-      background-color: #fff;
-      border: 1px solid #f2e3d5;
-      border-radius: 20px;
-      padding: 30px 40px;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.05);
-      margin-bottom: 40px;
-    }
+header h1 {
+  font-family: 'Spectral', serif;
+  font-size: 2.8em;
+  color: #d66a4d;
+  margin: 0;
+  text-align: center;
+}
 
-    section h2 {
-      font-family: 'Spectral', serif;
-      color: #d66a4d;
-      font-size: 1.8em;
-      margin-top: 0;
-    }
+header p {
+  color: #9c7a6a;
+  text-align: center;
+  margin-top: 8px;
+}
 
-    section p {
-      color: #5a4b43;
-      line-height: 1.8em;
-    }
+section h2 {
+  font-family: 'Spectral', serif;
+  color: #d66a4d;
+  font-size: 1.8em;
+  margin-top: 0;
+}
 
-    .gallery-grid {
-      display: flex;
-      justify-content: center;
-      gap: 25px;
-      margin-top: 30px;
-      flex-wrap: wrap;
-    }
+section p {
+  color: #5a4b43;
+  line-height: 1.8em;
+}
 
-    .gallery-grid img {
-      width: 300px;
-      height: 300px;
-      object-fit: cover;
-      border-radius: 15px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      transition: transform 0.3s;
-    }
+footer h3 {
+  font-family: 'Spectral', serif;
+  font-size: 1.6em;
+  color: #d66a4d;
+  margin-bottom: 10px;
+  text-align: center;
+}
 
-    .gallery-grid img:hover {
-      transform: scale(1.05);
-    }
+footer p {
+  margin: 5px 0;
+  text-align: center;
+}
 
-    footer {
-      text-align: center;
-      margin-top: 40px;
-      padding: 20px;
-      color: #6f5c4d;
-      background-color: #fff9f4;
-      border-radius: 20px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    }
+footer a {
+  color: #a78bfa;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
 
-    footer h3 {
-      font-family: 'Spectral', serif;
-      font-size: 1.6em;
-      color: #d66a4d;
-      margin-bottom: 10px;
-    }
+footer a:hover {
+  color: #7c3aed;
+}
 
-    footer p {
-      margin: 5px 0;
-    }
-
-    footer a {
-      color: #a78bfa;
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.2s;
-    }
-
-    footer a:hover {
-      color: #7c3aed;
-    }
-
-    .copyright {
-      font-size: 0.9em;
-      color: #9c7a6a;
-      margin-top: 15px;
-    }
-  </style>
+footer div {
+  font-size: 0.9em;
+  color: #9c7a6a;
+  margin-top: 10px;
+  text-align: center;
+}
+</style>
 </head>
 <body>
+
+<div class="background"></div>
+
+<div class="container">
   <div class="sidebar">
     <h2>🗂️ Tasks</h2>
     <nav>
@@ -184,32 +164,29 @@
   </div>
 
   <div class="main">
-    <div>
-      <header>
-        <h1>2nd Quarter Portfolio</h1>
-        <p>Welcome to our Second Quarter Portfolio ! </p>
-      </header>
+    <header>
+      <h1>2nd Quarter Portfolio</h1>
+      <p>Welcome to our Second Quarter Portfolio !</p>
+    </header>
 
-      <section>
-        <h2>🍦 about phipa</h2>
-        <p>Hi! I’m Phipa, a Grade 9 student from Potassium who loves performing, reading, movies, and writing. I enjoy listening to musicals, painting landscapes, and reading novels. I also like rock bands like Goodkid, The Beatles, and The Cranberries.</p>
-      </section>
+    <section>
+      <h2>🍦 about phipa</h2>
+      <p>Hi! I’m Phipa, a Grade 9 student from Potassium who loves performing, reading, movies, and writing. I enjoy listening to musicals, painting landscapes, and reading novels. I also like rock bands like Goodkid, The Beatles, and The Cranberries.</p>
+    </section>
 
-      <section>
-        <h2>🍔 about tomas</h2>
-        <p>My name is Tomas, a Grade 9 student from Potassium who loves coding. I enjoy listening to music, MAKING music, and doing arts and crafts. My idol is my bed.</p>
-      </section>
-
-    </div>
+    <section>
+      <h2>🍔 about tomas</h2>
+      <p>My name is Tomas, a Grade 9 student from Potassium who loves coding. I enjoy listening to music, MAKING music, and doing arts and crafts. My idol is my bed.</p>
+    </section>
 
     <footer>
       <h3>📬 Let's Connect</h3>
       <p>Phipa's Email: <a href="mailto:b2029pmlibunao@pshs.edu.ph">b2029pmlibunao@pshs.edu.ph</a></p>
       <p>Tomas' Email: <a href="mailto:b2029dptdmacalintal@pshs.edu.ph">b2029dptdmacalintal@pshs.edu.ph</a></p>
-      <div class="copyright">
-        &copy; 2025 Phipa Libunao & Tomas Macalintal ☕ All rights reserved.
-      </div>
+      <div>&copy; 2025 Phipa Libunao & Tomas Macalintal ☕ All rights reserved.</div>
     </footer>
   </div>
+</div>
+
 </body>
 </html>
