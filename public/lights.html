@@ -20,20 +20,28 @@
 
     <style>
         .box{
-            background-color: aquamarine;
             position: absolute;
+            color: white;
+            text-shadow: 0 0 3px black, 0 0 3px black, 0 0 3px black, 0 0 3px black;
+        }
+        .box:hover{
+            cursor: grab;
+        }
+        .box:active{
+            cursor: grabbing;
         }
         .stretchbox{
-            background-color: blue;
             position: absolute;
             transform-origin: left;
         }
         .hole{
-            background-color: red;
             position: absolute;
+            text-align: right;
+            color: white;
+            text-shadow: 0 0 3px black, 0 0 3px black, 0 0 3px black, 0 0 3px black;
         }
         .container{
-            background-color: brown;
+            background-color: grey;
             position: absolute;
         }
 
@@ -45,13 +53,13 @@
         <div class="hole" id="hole_1" style="width: 100px; height: 100px;"></div>
         <div class="hole" id="hole_2" style="width: 100px; height: 100px;"></div>
         <div class="hole" id="hole_3" style="width: 100px; height: 100px;"></div>
-        <div class="stretchbox" id="stretchbox_0" style="width: 100px; height: 100px;"></div>
-        <div class="stretchbox" id="stretchbox_1" style="width: 100px; height: 100px;"></div>
-        <div class="stretchbox" id="stretchbox_2" style="width: 100px; height: 100px;"></div>
-        <div class="stretchbox" id="stretchbox_3" style="width: 100px; height: 100px;"></div>
+        <div class="stretchbox" id="stretchbox_0" style="width: 0px; height: 100px;"></div>
         <div class="box" id="0" style="width: 100px; height: 100px;"></div>
+        <div class="stretchbox" id="stretchbox_1" style="width: 0px; height: 100px;"></div>
         <div class="box" id="1" style="width: 100px; height: 100px;"></div>
+        <div class="stretchbox" id="stretchbox_2" style="width: 0px; height: 100px;"></div>
         <div class="box" id="2" style="width: 100px; height: 100px;"></div>
+        <div class="stretchbox" id="stretchbox_3" style="width: 0px; height: 100px;"></div>
         <div class="box" id="3" style="width: 100px; height: 100px;"></div>
     </div>
     
@@ -63,13 +71,18 @@
         holes = [];
         stretchboxes = [];
         boxes = [];
+        colors = [];
         
         originalLeft = [];
         originalTop = [];
         boxStays = [];
-        boxSelected = 0;
+        correctlyPlaced = [];
+        boxSelected = null;
+        score = 0;
 
         for (i = 0; i < TOTAL; i++){
+            colors.push(i);
+            correctlyPlaced.push(false);
             holes[i] = document.getElementById(`hole_${i}`);
             stretchboxes[i] = document.getElementById(`stretchbox_${i}`);
             boxes[i] = document.getElementById(`${i}`);
@@ -87,13 +100,24 @@
             boxes[i].addEventListener("mousedown", move);
             
         }
+        for (i = TOTAL; i > 0; i--){
+            color = Math.floor(Math.random() * i);
+            boxes[TOTAL - i].style.backgroundColor = `rgb(${Math.floor(Math.random() * ((colors[color] + 1) * 60 - 20) + 20)}, ${Math.floor(Math.random() * ((colors[color] + 1) * 40 - 10) + 10)}, ${Math.floor(Math.random() * ((colors[color] + 1) * 50 - 10) + 10)})`;
+            boxes[TOTAL - i].innerHTML = TOTAL - i + 1;
+            holes[colors[color]].style.backgroundColor = boxes[TOTAL - i].style.backgroundColor;
+            holes[colors[color]].innerHTML = boxes[TOTAL - i].innerHTML;
+            stretchboxes[TOTAL - i].style.backgroundColor = boxes[TOTAL - i].style.backgroundColor;
+            colors.splice(color, 1);
+
+        }
+
 
         function move(e) {
             boxSelected = e.target.id;
             boxStays[boxSelected] = false;
             boxes[boxSelected].style.transition = "none";
             stretchboxes[boxSelected].style.transition = "none";
-            console.log(e.target.id);
+
         }
 
         document.addEventListener("mousemove", moving);
@@ -121,9 +145,7 @@
                 angle = Math.atan2(parseInt(boxes[boxSelected].style.top) - parseInt(originalTop[boxSelected]), parseInt(boxes[boxSelected].style.left) - parseInt(originalLeft[boxSelected]));
                 displacement = Math.sqrt((parseInt(originalTop[boxSelected]) - parseInt(boxes[boxSelected].style.top))**2 + (parseInt(boxes[boxSelected].style.left) - parseInt(originalLeft[boxSelected]))**2);
 
-                console.log(parseInt(originalTop[boxSelected]) - parseInt(boxes[boxSelected].style.top));
-                console.log(parseInt(boxes[boxSelected].style.left) - parseInt(originalLeft[boxSelected]));
-                console.log(displacement);
+                
                 stretchboxes[boxSelected].style.rotate = `${angle}rad`;
                 stretchboxes[boxSelected].style.left = `${parseInt(originalLeft[boxSelected]) + parseInt(boxes[boxSelected].style.width)/2}px`;
                 boxes[boxSelected].style.rotate = `${angle}rad`;
@@ -140,21 +162,43 @@
             inHole = false;
             for (i = 0; i < TOTAL; i++){
                 if (event.clientX < parseInt(holes[i].style.left) + parseInt(container.style.left) || event.clientX > parseInt(holes[i].style.left) + parseInt(holes[i].style.width) + parseInt(container.style.left) || event.clientY < parseInt(holes[i].style.top) + parseInt(container.style.top) || event.clientY > parseInt(holes[i].style.top) + parseInt(holes[i].style.height) + parseInt(container.style.top)){
+                    if (boxSelected != null){
+                        if (correctlyPlaced[i] == true && boxes[boxSelected].style.backgroundColor == holes[i].style.backgroundColor){
+                            score = score - 1;
+                            correctlyPlaced[i] = false;
+                        }
+                    }
                 }
                 else{
-                    inHole = true;
-                    break;
+                    if (boxSelected != null){
+                        inHole = true;
+                        if (boxes[boxSelected].style.backgroundColor == holes[i].style.backgroundColor){
+                            if (correctlyPlaced[i] == false){
+                                score = score + 1;
+                                correctlyPlaced[i] = true;
+                            }
+                            
+                        }
+                    }
                 }
             }
             if (inHole == false){
                 if (boxStays[boxSelected] == false){
+                    stretchboxes[boxSelected].style.transition = "ease-out 0.5s";
+                    stretchboxes[boxSelected].style.width = "0px";
                     boxes[boxSelected].style.left = originalLeft[boxSelected];
                     boxes[boxSelected].style.top = originalTop[boxSelected];
                     boxes[boxSelected].style.transition = "ease-out 0.5s";
                 }
             }
 
+            if (score == TOTAL){
+                console.log("Hooray!");
+            }
+
             boxStays[boxSelected] = true;
+            boxSelected = null;
+            console.log(score);
         }
     </script>
 </body>
