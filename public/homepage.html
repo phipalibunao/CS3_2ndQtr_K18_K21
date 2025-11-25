@@ -2,265 +2,142 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Fractured Night 🌚</title>
+<title>Fractured Night Intro</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Roboto:wght@300;400;500&display=swap');
 
 body, html {
-  margin:0;
-  padding:0;
-  height:100%;
-  overflow:hidden;
-  font-family:'Roboto', sans-serif;
-  background:black;
-  color:white;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Roboto', sans-serif;
+  background: black;
+  color: white;
 }
 
-/* Intro Click Screen */
 #introScreen {
-  position:fixed;
-  top:0;left:0;right:0;bottom:0;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  flex-direction:column;
-  cursor:pointer;
-  text-align:center;
-  background:black;
-  z-index:10;
+  position: fixed;
+  top:0; left:0; right:0; bottom:0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  flex-direction: column;
+  background: black;
+  z-index: 10;
+  text-align: center;
 }
+
 #introScreen h1 {
-  font-size:48px;
-  font-family:'Roboto Slab', serif;
-  text-shadow:2px 2px 20px #000;
+  font-size: 48px;
+  font-family: 'Roboto Slab', serif;
+  color: #fff;
+  margin: 0;
+  text-shadow: 2px 2px 15px #000;
 }
-#introScreen p {color:#ccc; margin-top:10px;}
 
-/* Storm & Rain */
 #stormScreen {
-  position:fixed;
-  top:0;left:0;right:0;bottom:0;
-  background:#0b0b0f;
-  display:none;
-  overflow:hidden;
-  z-index:9;
-}
-.rain {
-  position:absolute;
-  width:2px;
-  height:15px;
-  background:rgba(255,255,255,0.3);
-  animation:fall linear infinite;
-}
-@keyframes fall {
-  to{transform:translateY(100vh);}
-}
-.flash {
-  position:absolute;
-  top:0; left:0; width:100%; height:100%;
-  background:white;
-  opacity:0;
-  pointer-events:none;
+  position: fixed;
+  top:0; left:0; right:0; bottom:0;
+  background: #0b0b0f;
+  overflow: hidden;
+  display: none;
+  z-index: 9;
 }
 
-/* Title Screen */
 #titleScreen {
-  position:fixed;
-  top:0;left:0;right:0;bottom:0;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  flex-direction:column;
-  text-align:center;
-  opacity:0;
-  z-index:8;
-  background:rgba(0,0,0,0.6);
+  position: fixed;
+  top:0; left:0; right:0; bottom:0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  opacity: 0;
+  z-index: 8;
 }
+
 #titleScreen h1 {
-  font-family:'Roboto Slab', serif;
-  font-size:72px;
-  text-shadow:3px 3px 20px #000;
+  font-family: 'Roboto Slab', serif;
+  font-size: 72px;
+  text-shadow: 3px 3px 20px #000;
+  color: #fff;
 }
 
-/* Timeline Section */
-#timelineScreen {
-  position:fixed;
-  top:0;left:0;right:0;bottom:0;
-  background:#0b0b0f;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  flex-direction:column;
-  text-align:center;
-  opacity:0;
-  padding:50px 20px;
-  overflow-y:auto;
-  z-index:7;
-}
-.timeline {
-  max-width:700px;
-  display:flex;
-  flex-direction:column;
-  gap:30px;
-  font-size:20px;
-  line-height:1.6;
-}
-.timeline div {
-  background:rgba(255,255,255,0.05);
-  padding:20px;
-  border-radius:12px;
-  border-left:4px solid #6b6bff;
-  transform:translateX(-50px);
-  opacity:0;
-  transition:all 1s ease;
-}
-.timeline div.show {
-  opacity:1;
-  transform:translateX(0);
-}
-.question {
-  margin-top:40px;
-  font-size:22px;
-  color:#ccc;
-}
-.start-btn {
-  margin-top:20px;
-  padding:15px 40px;
-  font-size:20px;
-  font-weight:700;
-  border:2px solid #6b6bff;
-  color:#fff;
-  background:transparent;
-  border-radius:12px;
-  cursor:pointer;
-  transition:0.3s;
-}
-.start-btn:hover {
-  background:#6b6bff;
-  transform:scale(1.05);
-  box-shadow:0 12px 25px rgba(107,107,255,0.6);
+.rain {
+  position: absolute;
+  width: 2px;
+  height: 15px;
+  background: rgba(255,255,255,0.3);
+  animation: fall linear infinite;
 }
 
-/* Stars background */
-.stars {
-  position:absolute;
-  width:100%;
-  height:100%;
+@keyframes fall {
+  to { transform: translateY(100vh); }
+}
+
+.flash {
+  position: absolute;
+  top:0; left:0; width:100%; height:100%;
+  background: white;
+  opacity:0;
   pointer-events:none;
-  overflow:hidden;
 }
-.star {
-  position:absolute;
-  background:white;
-  border-radius:50%;
-  opacity:0.7;
-  animation:twinkle 3s infinite alternate;
-}
-@keyframes twinkle {
-  0% {opacity:0.2;}
-  100% {opacity:0.9;}
-}
+
 </style>
 </head>
 <body>
 
-<!-- Intro Click Screen -->
 <div id="introScreen">
   <h1>Click to Start</h1>
-  <p>Enter the fractured night…</p>
+  <p style="color:#ccc;margin-top:10px;">Enter the night…</p>
 </div>
 
-<!-- Storm -->
 <div id="stormScreen"></div>
 <div class="flash" id="flash"></div>
 
-<!-- Title -->
 <div id="titleScreen">
   <h1>THE FRACTURED NIGHT 🌚</h1>
 </div>
 
-<!-- Timeline -->
-<div id="timelineScreen">
-  <div class="timeline">
-    <div>It was a quiet night when the bridge collapsed…</div>
-    <div>The journalist found a shadowy figure… but is it the truth?</div>
-    <div>The engineer tried to act, yet someone reported sabotage.</div>
-    <div>The supervisor protected the engineer, but no one saw.</div>
-    <div>The mayor acted publicly, yet secretly the budget was cut.</div>
-  </div>
-  <div class="question">Do you dare to uncover the full story?</div>
-  <button class="start-btn" onclick="window.location.href='act1.html'">Continue</button>
-</div>
-
-<div class="stars" id="stars"></div>
-
 <script>
-// Stars
-const starContainer = document.getElementById('stars');
-for(let i=0;i<100;i++){
-  const star = document.createElement('div');
-  star.className='star';
-  const size=Math.random()*3+1+'px';
-  star.style.width=size;
-  star.style.height=size;
-  star.style.top=Math.random()*100+'%';
-  star.style.left=Math.random()*100+'%';
-  star.style.animationDuration=(Math.random()*3+2)+'s';
-  starContainer.appendChild(star);
-}
+const intro = document.getElementById('introScreen');
+const storm = document.getElementById('stormScreen');
+const title = document.getElementById('titleScreen');
+const flash = document.getElementById('flash');
 
-// Intro click
-const intro=document.getElementById('introScreen');
-const storm=document.getElementById('stormScreen');
-const title=document.getElementById('titleScreen');
-const flash=document.getElementById('flash');
-const timelineScreen=document.getElementById('timelineScreen');
-
-intro.addEventListener('click',()=>{
-  intro.style.display='none';
-  storm.style.display='block';
+intro.addEventListener('click', () => {
+  intro.style.display = 'none';
+  storm.style.display = 'block';
   startStorm();
 });
 
-function startStorm(){
-  // Rain
+function startStorm() {
   for(let i=0;i<200;i++){
-    const drop=document.createElement('div');
-    drop.className='rain';
-    drop.style.left=Math.random()*100+'%';
-    drop.style.animationDuration=0.5+Math.random()*0.5+'s';
-    drop.style.animationDelay=Math.random()*2+'s';
+    const drop = document.createElement('div');
+    drop.className = 'rain';
+    drop.style.left = Math.random()*100+'%';
+    drop.style.animationDuration = 0.5+Math.random()*0.5+'s';
+    drop.style.animationDelay = Math.random()*2+'s';
     storm.appendChild(drop);
   }
 
-  // Thunder flashes
-  let flashes=0;
-  const flashInterval=setInterval(()=>{
-    flash.style.opacity=Math.random()*0.5+0.3;
+  let flashes = 0;
+  const flashInterval = setInterval(() => {
+    flash.style.opacity = Math.random()*0.5 + 0.3;
     flashes++;
-    if(flashes>5){
+    if(flashes>5){ 
       clearInterval(flashInterval);
-      flash.style.opacity=0;
+      flash.style.opacity = 0;
       showTitle();
     }
-  },400);
+  }, 400);
 }
 
 function showTitle(){
-  title.style.transition="opacity 3s";
-  title.style.opacity=1;
-  setTimeout(showTimeline,3000);
-}
-
-function showTimeline(){
-  title.style.display='none';
-  storm.style.display='none';
-  timelineScreen.style.opacity=1;
-  // Reveal timeline items sequentially
-  const items=document.querySelectorAll('.timeline div');
-  items.forEach((item,i)=>{
-    setTimeout(()=>{item.classList.add('show');}, i*1500);
-  });
+  title.style.transition = "opacity 3s";
+  title.style.opacity = 1;
 }
 </script>
 
