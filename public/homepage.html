@@ -62,19 +62,23 @@ body, html {
   font-size: 72px;
   text-shadow: 3px 3px 20px #000;
   color: #fff;
-  white-space: nowrap;
+}
+
+#titleScreen h1 span {
+  display: inline-block;
   overflow: hidden;
+  white-space: nowrap;
   border-right: 0.15em solid #fff;
-  animation: typing 4s steps(30, end), blink 0.75s step-end infinite;
+  width: 0;
 }
 
 @keyframes typing {
-  from { width: 0 }
-  to { width: 100% }
+  from { width: 0; }
+  to { width: 100%; }
 }
 
 @keyframes blink {
-  50% { border-color: transparent }
+  50% { border-color: transparent; }
 }
 
 .rain {
@@ -110,23 +114,33 @@ body, html {
 <div class="flash" id="flash"></div>
 
 <div id="titleScreen">
-  <h1>THE FRACTURED NIGHT 🌚</h1>
+  <h1 id="titleText"><span>THE FRACTURED NIGHT 🌚</span></h1>
 </div>
 
 <script>
 const intro = document.getElementById('introScreen');
 const storm = document.getElementById('stormScreen');
-const title = document.getElementById('titleScreen');
+const titleScreen = document.getElementById('titleScreen');
+const titleSpan = document.querySelector('#titleText span');
 const flash = document.getElementById('flash');
 
+let stormStarted = false;
+let readyForTitle = false;
+
 intro.addEventListener('click', () => {
-  intro.style.display = 'none';
-  storm.style.display = 'block';
-  startStorm();
+  if(!stormStarted){
+    stormStarted = true;
+    intro.style.display = 'none';
+    storm.style.display = 'block';
+    startStorm();
+  } else if(readyForTitle){
+    finalLightning();
+    readyForTitle = false;
+  }
 });
 
 function startStorm() {
-  for(let i=0;i<200;i++){
+  for(let i=0;i<150;i++){
     const drop = document.createElement('div');
     drop.className = 'rain';
     drop.style.left = Math.random()*100+'%';
@@ -135,27 +149,11 @@ function startStorm() {
     storm.appendChild(drop);
   }
 
-  let flashes = 0;
-  const flashInterval = setInterval(() => {
-    flash.style.opacity = Math.random()*0.5 + 0.3;
-    setTimeout(() => { flash.style.opacity = 0; }, 100);
-    flashes++;
-    if(flashes>5){ 
-      clearInterval(flashInterval);
-      setTimeout(() => {
-        finalLightning();
-      }, 500);
-    }
-  }, 400);
-
-  function lightningStrike() {
-    const duration = Math.random()*200 + 100;
-    flash.style.opacity = Math.random()*0.6 + 0.4;
-    setTimeout(() => { flash.style.opacity = 0; }, duration);
-    setTimeout(lightningStrike, 2000 + Math.random()*3000); 
-  }
-
-  setTimeout(lightningStrike, 3000);
+  setTimeout(() => {
+    flash.style.opacity = 0.3;
+    setTimeout(() => { flash.style.opacity = 0; }, 150);
+    readyForTitle = true;
+  }, 800);
 }
 
 function finalLightning() {
@@ -163,12 +161,12 @@ function finalLightning() {
   setTimeout(() => {
     flash.style.opacity = 0;
     showTitle();
-  }, 200);
+  }, 300);
 }
 
 function showTitle(){
-  title.style.transition = "opacity 1s";
-  title.style.opacity = 1;
+  titleScreen.style.opacity = 1;
+  titleSpan.style.animation = 'typing 4s steps(30, end), blink 0.75s step-end infinite';
 }
 </script>
 
