@@ -3,9 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Fractured Night Intro</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&family=Special+Elite&display=swap" rel="stylesheet">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Roboto:wght@300;400;500&display=swap');
-
 body, html {
   margin: 0;
   padding: 0;
@@ -31,7 +30,7 @@ body, html {
 
 #introScreen h1 {
   font-size: 48px;
-  font-family: 'Roboto Slab', serif;
+  font-family: 'Special Elite', monospace;
   color: #fff;
   margin: 0;
   text-shadow: 2px 2px 15px #000;
@@ -59,10 +58,23 @@ body, html {
 }
 
 #titleScreen h1 {
-  font-family: 'Roboto Slab', serif;
+  font-family: 'Special Elite', monospace;
   font-size: 72px;
   text-shadow: 3px 3px 20px #000;
   color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 0.15em solid #fff;
+  animation: typing 4s steps(30, end), blink 0.75s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink {
+  50% { border-color: transparent }
 }
 
 .rain {
@@ -98,7 +110,7 @@ body, html {
 <div class="flash" id="flash"></div>
 
 <div id="titleScreen">
-  <h1>THE FRACTURED NIGHT 🌚</h1>
+  <h1>THE FRACTURED NIGHT</h1>
 </div>
 
 <script>
