@@ -110,7 +110,7 @@ body, html {
 <div class="flash" id="flash"></div>
 
 <div id="titleScreen">
-  <h1>THE FRACTURED NIGHT</h1>
+  <h1>THE FRACTURED NIGHT 🌚</h1>
 </div>
 
 <script>
@@ -145,6 +145,14 @@ function startStorm() {
       showTitle();
     }
   }, 400);
+
+  function lightningStrike() {
+    flash.style.opacity = Math.random()*0.7 + 0.3;
+    setTimeout(() => { flash.style.opacity = 0 }, 150);
+    setTimeout(lightningStrike, 2000 + Math.random()*3000);
+  }
+
+  setTimeout(lightningStrike, 3000);
 }
 
 function showTitle(){
