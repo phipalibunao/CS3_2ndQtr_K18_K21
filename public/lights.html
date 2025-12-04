@@ -19,10 +19,17 @@
 
 
     <style>
+        .bg{
+            height: 100%;
+            background-size: cover;
+            background-position: ;
+            filter: blur(8px);
+        }
         .box{
             position: absolute;
             color: white;
             text-shadow: 0 0 3px black, 0 0 3px black, 0 0 3px black, 0 0 3px black;
+            user-select: none;
         }
         .box:hover{
             cursor: grab;
@@ -33,29 +40,33 @@
         .stretchbox{
             position: absolute;
             transform-origin: left;
+            user-select: none;
         }
         .hole{
             position: absolute;
             text-align: right;
             color: white;
             text-shadow: 0 0 3px black, 0 0 3px black, 0 0 3px black, 0 0 3px black;
+            user-select: none;
         }
         .container{
             background-color: grey;
             position: absolute;
+            box-shadow: 0 5px 10px black;
         }
 
     </style>
 </head>
 <body>
-    <div class="container" id="container" style="width: 1000px; left: 0px; top: 0px;">
+    <img class="bg" src="/assets/csminigamebg2.png">
+    <div class="container" id="container" style="width: 1000px; left: 100px; top: 100px;">
         
     </div>
     
 
     <script>
         const container = document.getElementById("container");
-        const TOTAL = 10;
+        const TOTAL = 3;
         const CONTAINER_SPACE = 50;
         const BOX_SPACE = 150;
         const SIDE_LENGTH = "100px";
