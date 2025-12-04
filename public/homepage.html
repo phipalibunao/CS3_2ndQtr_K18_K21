@@ -43,6 +43,7 @@ body, html {
   overflow: hidden;
   display: none;
   z-index: 9;
+  transition: opacity 1s ease;
 }
 
 #titleScreen {
@@ -55,6 +56,11 @@ body, html {
   text-align: center;
   opacity: 0;
   z-index: 8;
+  background-image: url('./assets/cshomepagebg1.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: opacity 1s ease;
 }
 
 #titleScreen h1 {
@@ -79,6 +85,10 @@ body, html {
 
 @keyframes blink {
   50% { border-color: transparent; }
+}
+
+span.typing {
+  animation: typing 4s steps(19, end), blink 0.75s step-end infinite;
 }
 
 .rain {
@@ -126,6 +136,7 @@ const flash = document.getElementById('flash');
 
 let stormStarted = false;
 let readyForTitle = false;
+let rainDrops = [];
 
 intro.addEventListener('click', () => {
   if(!stormStarted){
@@ -146,9 +157,11 @@ function startStorm() {
     drop.style.left = Math.random()*100+'%';
     drop.style.animationDuration = 0.5+Math.random()*0.5+'s';
     drop.style.animationDelay = Math.random()*2+'s';
-    storm.appendChild(drop);
+    storm.appendChild(drop); 
+    rainDrops.push(drop);
   }
 
+  // initial flash before enabling final click
   setTimeout(() => {
     flash.style.opacity = 0.3;
     setTimeout(() => { flash.style.opacity = 0; }, 150);
@@ -158,17 +171,23 @@ function startStorm() {
 
 function finalLightning() {
   flash.style.opacity = 1;
+
+  // fade out rain gradually
+  storm.style.opacity = 0;
   setTimeout(() => {
+    storm.style.display = 'none';
+    rainDrops.forEach(drop => drop.remove());
     flash.style.opacity = 0;
     showTitle();
-  }, 300);
+  }, 400); // lightning + fade
 }
 
 function showTitle(){
   titleScreen.style.opacity = 1;
-  titleSpan.style.animation = 'typing 4s steps(30, end), blink 0.75s step-end infinite';
+  titleScreen.offsetHeight; // force reflow
+  titleSpan.classList.add('typing');
 }
-</script>
+</script>  
 
 </body>
 </html>
