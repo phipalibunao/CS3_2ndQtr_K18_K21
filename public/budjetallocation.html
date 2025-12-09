@@ -2,28 +2,28 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Public Duty</title>
+<title>Public Duty – Extreme Mode</title>
 <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
 <style>
-  body { font-family: 'Special Elite', monospace; background: #0b0b0f; color: white; text-align: center; padding: 20px; overflow: hidden; }
-  h1 { margin-bottom: 10px; }
-  #timer { font-size: 28px; margin-bottom: 20px; }
-  #projects { width: 800px; margin: auto; display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-bottom: 30px; }
-  .project { border: 2px dashed #888; border-radius: 12px; height: 120px; display: flex; align-items: center; justify-content: center; font-size: 20px; }
-  #game { width: 800px; margin: auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; }
-  .budget-item { background: linear-gradient(135deg, #1c1c23, #262630); border-radius: 12px; padding: 15px; font-size: 22px; cursor: grab; user-select: none; transition: transform 0.3s; }
-  #hiddenClue { margin-top: 25px; display: none; padding: 20px; font-size: 20px; background: rgba(255,255,255,0.1); border-radius: 10px; }
-  .rain { position: fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; overflow:hidden; }
-  .drop { position:absolute; width:2px; height:15px; background: rgba(255,255,255,0.6); animation: fall linear infinite; }
-  @keyframes fall {0%{transform:translateY(-20px);}100%{transform:translateY(120vh);}}
-  .warning { color: red; font-weight: bold; }
+body { font-family: 'Special Elite', monospace; background:#0b0b0f; color:white; text-align:center; padding:20px; overflow:hidden; }
+h1 { margin-bottom:10px; }
+#timer { font-size:28px; margin-bottom:20px; }
+#projects { width:850px; margin:auto; display:grid; grid-template-columns:repeat(2,1fr); gap:20px; margin-bottom:30px; }
+.project { border:2px dashed #888; border-radius:12px; height:130px; display:flex; align-items:center; justify-content:center; font-size:20px; padding:10px; }
+#game { width:850px; margin:auto; display:grid; grid-template-columns:repeat(4,1fr); gap:15px; }
+.budget-item { background:linear-gradient(135deg,#1c1c23,#262630); border-radius:12px; padding:15px; font-size:22px; cursor:grab; user-select:none; }
+#hiddenClue { margin-top:25px; display:none; padding:20px; font-size:20px; background:rgba(255,255,255,0.1); border-radius:10px; }
+.rain { position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; overflow:hidden; }
+.drop { position:absolute; width:2px; height:15px; background:rgba(255,255,255,0.6); animation:fall linear infinite; }
+@keyframes fall {0%{transform:translateY(-20px);}100%{transform:translateY(120vh);}}
+.warning { color:red; }
 </style>
 </head>
 <body>
 
-<h1>Act 4: Public Duty - Hard Mode</h1>
-<p>Drag the budgets to the correct city projects. Wrong placements reduce your time!</p>
-<h2 id="timer">45</h2>
+<h1>Act 4: Public Duty – Extreme Mode</h1>
+<p>Drag the budgets to their correct projects. Wrong moves cost 7 seconds.</p>
+<h2 id="timer">40</h2>
 
 <div class="rain" id="rain"></div>
 
@@ -31,77 +31,80 @@
   <div class="project" data-accept="maintenance">Bridge Maintenance</div>
   <div class="project" data-accept="reputation">City Reputation</div>
   <div class="project" data-accept="parks">Parks & Culture</div>
-  <div class="project" data-accept="personal">Mayor's Personal Project</div>
+  <div class="project" data-accept="personal">Mayor’s Personal Project</div>
 </div>
 
 <div id="game">
-  <div class="budget-item" draggable="true" data-type="maintenance">💰 $50k</div>
   <div class="budget-item" draggable="true" data-type="reputation">💰 $45k</div>
+  <div class="budget-item" draggable="true" data-type="maintenance">💰 $50k</div>
   <div class="budget-item" draggable="true" data-type="parks">💰 $35k</div>
-  <div class="budget-item" draggable="true" data-type="personal">💰 $30k</div>
   <div class="budget-item" draggable="true" data-type="reputation">💰 $10k</div>
-  <div class="budget-item" draggable="true" data-type="maintenance">💰 $25k</div>
+  <div class="budget-item" draggable="true" data-type="personal">💰 $25k</div>
+  <div class="budget-item" draggable="true" data-type="maintenance">💰 $30k</div>
+  <div class="budget-item" draggable="true" data-type="fake">💰 $5k</div>
+  <div class="budget-item" draggable="true" data-type="fake">💰 $60k</div>
 </div>
 
 <div id="hiddenClue">
   <h2>Hidden Clue Found!</h2>
-  <p>The mayor actually cut the budget for bridge maintenance and diverted funds to reputation and personal projects. The public only sees responsible management.</p>
+  <p>The mayor cut the budget for reputation, other projects, and himself.</p>
 </div>
 
 <script>
-const items = document.querySelectorAll('.budget-item');
-const projects = document.querySelectorAll('.project');
-let timeLeft = 45;
-const timerDisplay = document.getElementById("timer");
+const items=document.querySelectorAll('.budget-item');
+const projects=document.querySelectorAll('.project');
+let timeLeft=40;
+const timerDisplay=document.getElementById("timer");
 
-const countdown = setInterval(() => {
+const countdown=setInterval(()=>{
   timeLeft--;
-  timerDisplay.textContent = timeLeft;
-  if(timeLeft <= 10 && timeLeft > 0) timerDisplay.classList.add("warning");
-  if(timeLeft <= 0){
+  timerDisplay.textContent=timeLeft;
+  if(timeLeft<=10 && timeLeft>0) timerDisplay.classList.add("warning");
+  if(timeLeft<=0){
     clearInterval(countdown);
     items.forEach(i=>i.setAttribute('draggable',false));
-    timerDisplay.textContent = "Time's up!";
+    timerDisplay.textContent="Time's up!";
   }
 },1000);
 
 items.forEach(item=>{
-  item.addEventListener('dragstart', e=>{
-    e.dataTransfer.setData('text', item.dataset.type);
+  item.addEventListener('dragstart',e=>{
+    e.dataTransfer.setData('text',item.dataset.type);
+    e.dataTransfer.setData('id',item.innerHTML);
   });
 });
 
 projects.forEach(proj=>{
-  proj.addEventListener('dragover', e=>e.preventDefault());
-  proj.addEventListener('drop', e=>{
+  proj.addEventListener('dragover',e=>e.preventDefault());
+  proj.addEventListener('drop',e=>{
     e.preventDefault();
-    const type = e.dataTransfer.getData('text');
-    if(proj.dataset.accept === type){
-      proj.textContent = `✅ ${proj.textContent}`;
-      const dragged = Array.from(items).find(i=>i.dataset.type===type && i.style.display!=='none');
-      dragged.style.display='none';
+    const type=e.dataTransfer.getData('text');
+    const draggedItem=[...items].find(i=>i.innerHTML===e.dataTransfer.getData('id'));
+    if(proj.dataset.accept===type){
+      proj.style.borderColor="#0f0";
+      draggedItem.style.display='none';
       checkWin();
     } else {
-      timeLeft -= 5; 
-      alert('Wrong placement! 5 seconds deducted.');
+      timeLeft-=7;
+      alert("Wrong placement! 7 seconds lost.");
     }
   });
 });
 
 function checkWin(){
-  if(Array.from(items).every(i=>i.style.display==='none')){
+  if([...items].every(i=>i.style.display==='none')){
     document.getElementById('hiddenClue').style.display='block';
     clearInterval(countdown);
   }
 }
 
 function shuffleBudgets(){
-  const gameDiv=document.getElementById('game');
-  for(let i=gameDiv.children.length; i>=0; i--){
-    gameDiv.appendChild(gameDiv.children[Math.random()*i|0]);
+  const game=document.getElementById('game');
+  for(let i=game.children.length;i>=0;i--){
+    game.appendChild(game.children[Math.random()*i|0]);
   }
 }
-setInterval(shuffleBudgets,15000);
+setInterval(shuffleBudgets,10000);
 
 function createRain(){
   const rain=document.getElementById("rain");
@@ -109,7 +112,7 @@ function createRain(){
     const drop=document.createElement("div");
     drop.className="drop";
     drop.style.left=Math.random()*100+"vw";
-    drop.style.animationDuration=0.5+Math.random()*1.5+"s";
+    drop.style.animationDuration=0.4+Math.random()*1.2+"s";
     drop.style.opacity=Math.random();
     rain.appendChild(drop);
   }
