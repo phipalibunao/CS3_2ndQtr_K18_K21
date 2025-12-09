@@ -179,12 +179,12 @@ function finalLightning() {
     rainDrops.forEach(drop => drop.remove());
     flash.style.opacity = 0;
     showTitle();
-  }, 400); // lightning + fade
+  }, 400);
 }
 
 function showTitle(){
   titleScreen.style.opacity = 1;
-  titleScreen.offsetHeight; // force reflow
+  titleScreen.offsetHeight;
   titleSpan.classList.add('typing');
 }
 </script>  

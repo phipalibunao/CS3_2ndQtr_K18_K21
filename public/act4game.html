@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Fractured Night - Act 4</title>
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #111;
+        color: #f1f1f1;
+        line-height: 1.6;
+        padding-bottom: 100px;
+    }
+
+    .container {
+        width: 90%;
+        max-width: 900px;
+        margin: auto;
+        padding-top: 30px;
+    }
+
+    h1, h2 {
+        text-align: center;
+    }
+
+    .story {
+        background: #1c1c1c;
+        padding: 20px;
+        border-radius: 10px;
+        margin-bottom: 40px;
+    }
+
+    .game-section {
+        background: #222;
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    .budget-item {
+        background: #444;
+        padding: 10px 15px;
+        margin: 8px 0;
+        border-radius: 8px;
+        cursor: grab;
+        user-select: none;
+        text-align: center;
+    }
+
+    .budget-targets {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+        gap: 15px;
+    }
+
+    .target {
+        flex: 1;
+        background: #333;
+        padding: 15px;
+        border-radius: 10px;
+        min-height: 120px;
+        text-align: center;
+    }
+
+    .target h3 {
+        margin-bottom: 10px;
+    }
+
+    button {
+        width: 100%;
+        padding: 12px;
+        margin-top: 20px;
+        font-size: 16px;
+        border: none;
+        border-radius: 8px;
+        background: crimson;
+        color: white;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background: red;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Fractured Night 🌚</h1>
+    <h2>Act 4: Public Duty</h2>
+
+    <!-- STORY ALWAYS VISIBLE -->
+    <div class="story">
+        <p>
+            The mayor performed maintenance checks on the bridge and managed the budget responsibly.
+            At least, that is what the public was told.
+        </p>
+        <p>
+            To preserve his reputation, the mayor publicly blamed the engineer and supervisor.
+            The people praised him, believing he had acted decisively.
+        </p>
+        <p>
+            But behind the scenes, the decisions were not as noble as they appeared.
+            As you scroll down, you will help allocate the city's budget—and uncover the truth.
+        </p>
+    </div>
+
+    <!-- GAME STARTS HERE -->
+    <div class="game-section">
+        <h2>Budget Allocation Game</h2>
+        <p>Drag each budget amount into the correct category below.</p>
+
+        <div class="budget-items">
+            <div class="budget-item" draggable="true" data-category="maintenance">Bridge Maintenance: 50k</div>
+            <div class="budget-item" draggable="true" data-category="projects">City Projects: 40k</div>
+            <div class="budget-item" draggable="true" data-category="personal">Mayor’s Fund: 10k</div>
+            <div class="budget-item" draggable="true" data-category="emergency">Emergency Funds: 30k</div>
+        </div>
+
+        <div class="budget-targets">
+            <div class="target" data-category="maintenance">
+                <h3>Maintenance</h3>
+            </div>
+            <div class="target" data-category="projects">
+                <h3>City Projects</h3>
+            </div>
+            <div class="target" data-category="personal">
+                <h3>Mayor’s Fund</h3>
+            </div>
+            <div class="target" data-category="emergency">
+                <h3>Emergency Funds</h3>
+            </div>
+        </div>
+
+        <button id="checkBtn">Check Allocation</button>
+    </div>
+
+</div>
+
+<script>
+    const items = document.querySelectorAll('.budget-item');
+    const targets = document.querySelectorAll('.target');
+    let draggedItem = null;
+
+    items.forEach(item => {
+        item.addEventListener('dragstart', () => {
+            draggedItem = item;
+            setTimeout(() => item.style.opacity = "0.5", 0);
+        });
+
+        item.addEventListener('dragend', () => {
+            draggedItem = null;
+            item.style.opacity = "1";
+        });
+    });
+
+    targets.forEach(target => {
+        target.addEventListener('dragover', e => e.preventDefault());
+        target.addEventListener('drop', () => {
+            if (draggedItem) {
+                target.appendChild(draggedItem);
+            }
+        });
+    });
+
+    document.getElementById('checkBtn').addEventListener('click', () => {
+        let correct = 0;
+
+        items.forEach(item => {
+            const parent = item.parentElement;
+            if (parent.dataset.category === item.dataset.category) {
+                correct++;
+            }
+        });
+
+        if (correct === items.length) {
+            alert("Perfect! You've revealed the mayor's true budget priorities.");
+        } else {
+            alert(`${correct}/${items.length} correct. Try again to uncover the truth.`);
+        }
+    });
+</script>
+
+</body>
+</html>
