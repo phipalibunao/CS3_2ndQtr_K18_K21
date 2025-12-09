@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Fractured Night — Chapter 1: Headline</title>
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#0b0b0f;--card1:#1c1c23;--card2:#262630;--accent:#e6e6e6}
+  html,body{height:100%;margin:0;font-family:'Special Elite',monospace;background:var(--bg);color:var(--accent);-webkit-font-smoothing:antialiased}
+  .wrap{min-height:100%;display:flex;flex-direction:column;align-items:center;padding:28px;box-sizing:border-box}
+  header{max-width:1000px;width:100%;text-align:center}
+  h1{margin:6px 0;font-size:36px;letter-spacing:1px}
+  p.lead{margin:6px 0 18px;opacity:.9;max-width:900px}
+  .scene{width:100%;max-width:1000px;display:grid;grid-template-columns:2fr 1fr;gap:18px;align-items:start}
+  .card-scene{background:linear-gradient(135deg,var(--card1),var(--card2));border-radius:12px;padding:18px;min-height:380px;position:relative;overflow:hidden}
+  .description{font-size:16px;line-height:1.4;margin-bottom:10px}
+  .hotspots{display:flex;flex-wrap:wrap;gap:10px}
+  .hotspot{flex:1 1 140px;min-width:120px;background:rgba(255,255,255,0.03);padding:12px;border-radius:10px;cursor:pointer;user-select:none;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:transform .18s,box-shadow .18s}
+  .hotspot:active{transform:translateY(2px)}
+  .hotspot.locked{opacity:.35;cursor:not-allowed}
+  .hotspot .title{font-size:14px;margin-top:8px}
+  .inventory{background:linear-gradient(135deg,#0f1720,#14141a);border-radius:12px;padding:14px;min-height:380px}
+  .inv-title{font-size:18px;margin-bottom:10px}
+  .inv-list{display:flex;flex-direction:column;gap:10px}
+  .inv-item{background:rgba(255,255,255,0.03);padding:10px;border-radius:8px;display:flex;align-items:center;justify-content:space-between}
+  .inv-item span{font-size:14px}
+  .controls{display:flex;gap:12px;margin-top:14px;align-items:center;flex-wrap:wrap}
+  .btn{background:#222228;border:1px solid rgba(255,255,255,0.04);padding:10px 14px;border-radius:8px;cursor:pointer;color:var(--accent);font-family:'Special Elite',monospace}
+  .btn.primary{background:#0e5fff;color:white;border:none}
+  .outcome{margin-top:16px;padding:12px;border-radius:10px;background:rgba(255,255,255,0.03);min-height:80px}
+  .hidden-clue{display:none;margin-top:12px;background:rgba(12,12,12,0.7);padding:12px;border-radius:8px;color:#ffdca3}
+  .public-story{color:#d6eaff}
+  .rain{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+  .drop{position:absolute;width:2px;height:14px;background:rgba(255,255,255,0.08);animation:fall linear infinite}
+  @keyframes fall{0%{transform:translateY(-20px)}100%{transform:translateY(120vh)}}
+  .typewriter{white-space:pre-wrap;overflow:hidden}
+  footer{margin-top:26px;opacity:.6;font-size:13px}
+  @media(max-width:900px){.scene{grid-template-columns:1fr;}.inventory{order:2}}
+</style>
+</head>
+<body>
+<div class="rain" id="rain"></div>
+<div class="wrap">
+  <header>
+    <h1>Fractured Night</h1>
+    <p class="lead">Play as the journalist: explore the scene, collect evidence, and decide what becomes the story.</p>
+  </header>
+
+  <div class="scene">
+    <div class="card-scene" id="sceneArea">
+      <div class="description typewriter" id="sceneText">Night settles over the city. The bridge is broken and scattered with debris. You walk the scene, camera in hand, searching for anything that will make a headline.</div>
+
+      <div style="margin-top:16px" id="hotspots" class="hotspots">
+        <div class="hotspot" data-id="shadow" tabindex="0">
+          <div class="emoji" style="font-size:28px">📸</div>
+          <div class="title">Blurry Shadow Photo</div>
+        </div>
+        <div class="hotspot" data-id="memo" tabindex="0">
+          <div class="emoji" style="font-size:28px">📝</div>
+          <div class="title">Supervisor's Memo</div>
+        </div>
+        <div class="hotspot locked" id="weakSpot" data-id="weak">
+          <div class="emoji" style="font-size:28px">📷</div>
+          <div class="title">Bridge Condition Photo</div>
+        </div>
+        <div class="hotspot" data-id="witness" tabindex="0">
+          <div class="emoji" style="font-size:28px">👣</div>
+          <div class="title">Witness Note</div>
+        </div>
+      </div>
+
+      <div class="controls" style="margin-top:18px">
+        <button class="btn" id="investigateBtn">Investigate more</button>
+        <button class="btn primary" id="publishBtn">Publish Selected</button>
+        <div style="flex:1"></div>
+        <div id="status" style="opacity:.9">Selected: <strong id="count">0</strong></div>
+      </div>
+
+      <div class="outcome" id="outcome">
+        <div class="public-story" id="publicStory">The city waits for a story that makes sense. Choose carefully.</div>
+        <div class="hidden-clue" id="hiddenClue">Hidden clue: The journalist had a photo showing the bridge already weak, but they left it out of the report.</div>
+      </div>
+    </div>
+
+    <aside class="inventory">
+      <div class="inv-title">Inventory</div>
+      <div class="inv-list" id="inventoryList">
+        <div class="inv-empty">No evidence collected yet.</div>
+      </div>
+      <div style="margin-top:12px">
+        <div style="font-size:13px;opacity:.9">Click items in the scene to collect them. When you're ready, select which pieces to include in your published story.</div>
+      </div>
+    </aside>
+  </div>
+
+  <footer>Fractured Night — Act 1 • Use the clues to discover the truth</footer>
+</div>
+
+<script>
+  const hotspots = document.querySelectorAll('.hotspot');
+  const invList = document.getElementById('inventoryList');
+  const countEl = document.getElementById('count');
+  const publishBtn = document.getElementById('publishBtn');
+  const investigateBtn = document.getElementById('investigateBtn');
+  const weakSpot = document.getElementById('weakSpot');
+  const hiddenClueEl = document.getElementById('hiddenClue');
+  const publicStoryEl = document.getElementById('publicStory');
+  let inventory = [];
+
+  function refreshInv(){
+    invList.innerHTML = '';
+    if(inventory.length === 0){
+      const e = document.createElement('div'); e.className='inv-empty'; e.textContent='No evidence collected yet.'; invList.appendChild(e);
+    } else {
+      inventory.forEach(item=>{
+        const el = document.createElement('div'); el.className='inv-item';
+        const span = document.createElement('span'); span.textContent = item.label;
+        const checkbox = document.createElement('input'); checkbox.type='checkbox'; checkbox.style.marginLeft='10px'; checkbox.checked = true;
+        checkbox.dataset.id = item.id;
+        el.appendChild(span); el.appendChild(checkbox); invList.appendChild(el);
+      });
+    }
+    countEl.textContent = inventory.length;
+  }
+
+  function addToInventory(id){
+    if(inventory.some(i=>i.id===id)) return;
+    const labels = {
+      shadow: 'Blurry Shadow Photo (looks like someone was there)',
+      memo: 'Supervisor Memo (orders: do not repair)',
+      weak: 'Bridge Condition Photo (shows rust and sagging)',
+      witness: 'Witness Note (mentions loud cracks earlier)'
+    };
+    inventory.push({id:id,label:labels[id]||id});
+    refreshInv();
+  }
+
+  hotspots.forEach(h=>{
+    h.addEventListener('click',()=>{
+      if(h.classList.contains('locked')) return;
+      const id = h.dataset.id;
+      if(id === 'shadow'){
+        publicStoryEl.textContent = 'You found a blurry photo of a shadowy figure on the bridge the night before.';
+        addToInventory('shadow');
+      } else if(id === 'memo'){
+        publicStoryEl.textContent = 'You find a memo that tells the engineer not to perform repairs.';
+        addToInventory('memo');
+      } else if(id === 'witness'){
+        publicStoryEl.textContent = 'A witness left a hurried note describing loud cracks hours before the collapse.';
+        addToInventory('witness');
+      } else if(id === 'weak'){
+        publicStoryEl.textContent = 'You discover a photo showing clear structural weakness in the bridge.';
+        addToInventory('weak');
+      }
+    });
+    h.addEventListener('keydown',e=>{ if(e.key==='Enter') h.click(); });
+  });
+
+  investigateBtn.addEventListener('click',()=>{
+    weakSpot.classList.remove('locked');
+    weakSpot.style.boxShadow = '0 0 0 3px rgba(255,220,140,0.08)';
+    publicStoryEl.textContent = 'You investigate a darker corner and spot an overlooked camera on the ground.';
+    setTimeout(()=>{ publicStoryEl.textContent = 'The camera contains a photo of the bridge condition.' },1600);
+  });
+
+  publishBtn.addEventListener('click',()=>{
+    const checked = Array.from(invList.querySelectorAll('input[type="checkbox"]')).filter(c=>c.checked).map(c=>c.dataset.id);
+    if(checked.length === 0){
+      publicStoryEl.textContent = 'You publish nothing. The city remains hungry for answers.';
+      return;
+    }
+    const includesWeak = checked.includes('weak');
+    if(includesWeak){
+      publicStoryEl.textContent = 'You publish a careful story that includes the bridge condition. The public hears the fuller truth.';
+      hiddenClueEl.style.display = 'block';
+      hiddenClueEl.textContent = 'Hidden clue revealed: The mayor cut the budget for reputation, other projects, and himself.';
+    } else {
+      publicStoryEl.textContent = 'You publish the sensational pieces: the shadow photo and the memo. The public believes sabotage.';
+      hiddenClueEl.style.display = 'none';
+    }
+  });
+
+  ;(function createRain(){
+    const rain = document.getElementById('rain');
+    for(let i=0;i<120;i++){
+      const d = document.createElement('div'); d.className='drop';
+      d.style.left = Math.random()*100 + 'vw';
+      d.style.top = Math.random()*-100 + 'vh';
+      d.style.animationDuration = (0.7 + Math.random()*1.6) + 's';
+      d.style.opacity = (0.05 + Math.random()*0.18);
+      rain.appendChild(d);
+    }
+  })();
+
+  (function typewriterIntro(){
+    const el = document.getElementById('sceneText');
+    const text = el.textContent;
+    el.textContent = '';
+    let i=0;
+    const t = setInterval(()=>{ el.textContent += text[i++] || ''; if(i>text.length) clearInterval(t); },28);
+  })();
+</script>
+</body>
+</html>
