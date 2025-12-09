@@ -5,29 +5,30 @@
 <title>Mini-Game 1: Evidence Match</title>
 <style>
  body {
-   font-family: Arial, sans-serif;
+   font-family: Special Elite, sans-serif;
    background: #0b0b0f;
    color: white;
    text-align: center;
    padding: 20px;
+   overflow: hidden;
  }
  h1 { margin-bottom: 10px; }
  #game {
-   width: 600px;
+   width: 700px;
    margin: auto;
    display: grid;
-   grid-template-columns: repeat(4, 1fr);
+   grid-template-columns: repeat(6, 1fr);
    gap: 12px;
  }
  .card {
    background: linear-gradient(135deg, #1c1c23, #262630);
    border-radius: 12px;
-   height: 120px;
+   height: 110px;
    display: flex;
    align-items: center;
    justify-content: center;
    cursor: pointer;
-   font-size: 22px;
+   font-size: 24px;
    user-select: none;
    transition: transform 0.3s;
  }
@@ -44,6 +45,26 @@
    background: rgba(255,255,255,0.1);
    border-radius: 10px;
  }
+ .rain {
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   pointer-events: none;
+   overflow: hidden;
+ }
+ .drop {
+   position: absolute;
+   width: 2px;
+   height: 15px;
+   background: rgba(255,255,255,0.6);
+   animation: fall linear infinite;
+ }
+ @keyframes fall {
+   0% { transform: translateY(-20px); }
+   100% { transform: translateY(120vh); }
+ }
 </style>
 </head>
 <body>
@@ -51,16 +72,16 @@
 <h1>Evidence Memory Match</h1>
 <p>Match all pieces of evidence to unlock the hidden clue.</p>
 
+<div class="rain" id="rain"></div>
 <div id="game"></div>
 
 <div id="hiddenClue">
   <h2>Hidden Clue Found!</h2>
-  <p>The journalist actually found photos showing the bridge structure already weak.  
-  They ignored it because a sabotage story was more exciting for the public.</p>
+  <p>The journalist actually found photos showing the bridge structure already weak. They ignored it because a sabotage story was more exciting for the public.</p>
 </div>
 
 <script>
-const items = ["📝","📝","📸","📸","👤","👤","📄","📄"];
+const items = ["📝","📝","📸","📸","👤","👤","📄","📄","🔍","🔍","🕒","🕒"];
 const game = document.getElementById("game");
 let flipped = [];
 let matched = 0;
@@ -98,10 +119,24 @@ function flipCard(card) {
           c.textContent = "";
         });
         flipped = [];
-      }, 800);
+      }, 700);
     }
   }
 }
+
+function createRain() {
+  const rain = document.getElementById("rain");
+  for (let i = 0; i < 150; i++) {
+    const drop = document.createElement("div");
+    drop.className = "drop";
+    drop.style.left = Math.random() * 100 + "vw";
+    drop.style.animationDuration = 0.5 + Math.random() * 1.5 + "s";
+    drop.style.opacity = Math.random();
+    rain.appendChild(drop);
+  }
+}
+
+createRain();
 </script>
 </body>
 </html>
