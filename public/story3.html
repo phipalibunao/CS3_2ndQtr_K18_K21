@@ -2,159 +2,256 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Fractured Night — Chapter 1: Headline</title>
+<title>Fractured Night — Orders and Conflict</title>
 <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#0b0b0f;--card1:#1c1c23;--card2:#262630;--accent:#e6e6e6;--nav:#14141a;--nav-hover:#0e5fff}
-html,body{height:100%;margin:0;font-family:'Special+Elite',monospace;background:var(--bg);color:var(--accent)}
-.navbar{width:100%;background:var(--nav);padding:12px 0;display:flex;justify-content:center;gap:24px;position:sticky;top:0;z-index:100}
-.navbar a{color:var(--accent);text-decoration:none;font-weight:bold;transition:.2s}
+:root{
+  --bg:#0b0b0f;
+  --card1:#1c1c23;
+  --card2:#262630;
+  --accent:#e6e6e6;
+  --nav:#14141a;
+  --nav-hover:#78f7a2;
+  --highlight:#78f7a2;
+}
+html,body{
+  height:100%;
+  margin:0;
+  font-family:'Special Elite',monospace;
+  background:var(--bg);
+  color:var(--accent);
+  overflow-x:hidden;
+}
+.navbar{
+  width:100%;
+  background:var(--nav);
+  padding:12px 0;
+  display:flex;
+  justify-content:center;
+  gap:24px;
+  position:sticky;
+  top:0;
+  z-index:100
+}
+.navbar a{
+  color:var(--accent);
+  text-decoration:none;
+  font-weight:bold;
+  transition:.2s
+}
 .navbar a:hover{color:var(--nav-hover)}
-.wrap{min-height:100%;display:flex;flex-direction:column;align-items:center;padding:28px;box-sizing:border-box}
+.wrap{
+  min-height:100%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding:28px;
+  box-sizing:border-box;
+  position:relative;
+  z-index:2;
+  width:100%;
+}
 header{text-align:center;width:100%;max-width:1000px}
-h1{margin:6px 0;font-size:36px}
-p.lead{opacity:.9;margin:6px 0 18px}
+h1{margin:6px 0;font-size:36px;color:var(--highlight);}
+p.lead{opacity:.9;margin:6px 0 18px;font-size:18px;line-height:1.6;}
+.pov-sign{
+  display:inline-block;
+  background:rgba(120,247,162,0.1);
+  color:var(--highlight);
+  padding:6px 12px;
+  border-radius:12px;
+  font-weight:bold;
+  margin-bottom:12px;
+}
 .scene{display:grid;grid-template-columns:2fr 1fr;gap:18px;max-width:1000px;width:100%}
-.card-scene{background:linear-gradient(135deg,var(--card1),var(--card2));border-radius:12px;padding:18px;position:relative;overflow:hidden;min-height:380px}
-.description{font-size:16px;line-height:1.4}
-.hotspots{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
-.hotspot{flex:1 1 140px;background:rgba(255,255,255,0.035);padding:12px;border-radius:10px;cursor:pointer;text-align:center;transition:.2s}
-.hotspot.locked{opacity:.35;cursor:not-allowed}
-.hotspot:active{transform:translateY(2px)}
-.inventory{background:linear-gradient(135deg,#0f1720,#14141a);border-radius:12px;padding:14px}
-.inv-item{background:rgba(255,255,255,0.03);padding:10px;border-radius:8px;display:flex;justify-content:space-between}
-.outcome{margin-top:16px;background:rgba(255,255,255,0.03);padding:12px;border-radius:10px;min-height:80px}
-.placeholder-img{width:100%;height:180px;background:#111;border:1px solid #333;border-radius:8px;margin-top:10px;object-fit:cover}
-.controls{display:flex;gap:12px;margin-top:14px}
-.btn{background:#222228;color:white;padding:10px 14px;border-radius:8px;font-family:'Special Elite';cursor:pointer}
-.btn.primary{background:#0e5fff}
-@media(max-width:900px){.scene{grid-template-columns:1fr}}
+.card-scene{
+  background:linear-gradient(135deg,var(--card1),var(--card2));
+  border-radius:12px;
+  padding:18px;
+  position:relative;
+  overflow:hidden;
+  min-height:380px;
+  z-index:2;
+  transition: transform 0.5s ease;
+}
+.card-scene:hover{transform:scale(1.02);}
+.description{
+  font-size:16px;
+  line-height:1.5;
+  opacity:0;
+  transform:translateY(10px);
+  transition: all 0.5s ease;
+}
+.description.show{opacity:1;transform:translateY(0);}
+.grid-calendar{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+  margin-top:16px;
+}
+.day-slot{
+  background:rgba(255,255,255,0.03);
+  padding:12px;
+  border-radius:8px;
+  min-height:80px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  font-weight:bold;
+  color:var(--highlight);
+}
+.resource{
+  padding:6px 10px;
+  margin:4px 0;
+  background:rgba(255,255,255,0.05);
+  border-radius:6px;
+  cursor:pointer;
+  text-align:center;
+  transition:.3s;
+}
+.resource:hover{background:rgba(120,247,162,0.3);}
+.resource.dragging{opacity:.5;}
+.controls{display:flex;gap:12px;margin-top:14px;flex-wrap:wrap;align-items:center;}
+.btn{
+  background:#222228;
+  color:white;
+  padding:10px 14px;
+  border-radius:8px;
+  font-family:'Special Elite';
+  cursor:pointer;
+  transition:all 0.3s;
+}
+.btn:hover{background:var(--highlight);color:#000;}
+.btn.primary{background:var(--highlight)}
+.inventory{
+  background:linear-gradient(135deg,#0f1720,#14141a);
+  border-radius:12px;
+  padding:14px;
+  margin-top:20px;
+}
+.inv-item{
+  background:rgba(255,255,255,0.03);
+  padding:10px;
+  border-radius:8px;
+  display:flex;
+  justify-content:center;
+  opacity:0;
+  transform:translateY(10px);
+  transition:all 0.5s ease;
+  color:var(--highlight);
+}
+.inv-item.show{opacity:1;transform:translateY(0);}
+.outcome{
+  margin-top:16px;
+  background:rgba(255,255,255,0.03);
+  padding:12px;
+  border-radius:10px;
+  min-height:80px;
+  font-style:italic;
+}
 </style>
 </head>
 <body>
-
 <div class="navbar">
   <a href="homepage.html">Home</a>
-  <a href="story 1.html">Act 1</a>
-  <a href="story 2.html">Act 2</a>
-  <a href="story 3.html">Act 3</a>
+  <a href="story1.html">Act 1</a>
+  <a href="story2.html">Act 2</a>
+  <a href="story3.html">Act 3</a>
   <a href="story4.html">Act 4</a>
-  <a href="#">About Us</a>
+  <a href="aboutus.html">About Us</a>
 </div>
-
 <div class="wrap">
 <header>
-  <h1>Fractured Night</h1>
-  <p class="lead">Play as the journalist: explore the scene, collect evidence, and decide what becomes the story.</p>
+  <h1>Chapter 3: Orders and Conflict</h1>
+  <div class="pov-sign">POV: Supervisor</div>
+  <p class="lead">Arrange the engineer and resources to keep the bridge safe. Only when all tasks are correctly scheduled can you finish your shift.</p>
 </header>
-
 <div class="scene">
-
-  <div class="card-scene" id="sceneArea">
-    <div class="description" id="sceneText">
-      Night settles over the city. The bridge is broken and scattered with debris. You walk the scene, camera in hand, searching for anything that will make a headline.
+  <div class="card-scene">
+    <div class="description show">Drag each resource into the correct day to ensure safety and proper supervision.</div>
+    <div class="grid-calendar" id="calendar">
+      <div class="day-slot" data-day="mon">Monday</div>
+      <div class="day-slot" data-day="tue">Tuesday</div>
+      <div class="day-slot" data-day="wed">Wednesday</div>
     </div>
-
-    <img id="photoPlaceholder" class="placeholder-img" style="display:none" src="https://via.placeholder.com/400x180?text=Photo">
-
-    <div class="hotspots" id="hotspots">
-      <div class="hotspot" data-id="shadow">📸<br>Blurry Shadow Photo</div>
-      <div class="hotspot" data-id="memo">📝<br>Supervisor's Memo</div>
-      <div class="hotspot locked" id="weakSpot" data-id="weak">📷<br>Bridge Condition Photo</div>
-      <div class="hotspot" data-id="witness">👣<br>Witness Note</div>
-    </div>
-
     <div class="controls">
-      <button class="btn" id="investigateBtn">Investigate more</button>
-      <button class="btn primary" id="publishBtn">Publish Selected</button>
+      <div id="resources">
+        <div class="resource" draggable="true" data-day="mon">Engineer</div>
+        <div class="resource" draggable="true" data-day="tue">Inspection Team</div>
+        <div class="resource" draggable="true" data-day="wed">Equipment Check</div>
+      </div>
+      <button class="btn primary" id="finishBtn" disabled>Finish Shift</button>
       <div style="flex:1"></div>
-      <div id="status">Selected: <strong id="count">0</strong></div>
+      <div id="status">Tasks Scheduled: <strong id="count">0</strong>/3</div>
     </div>
-
-    <div class="outcome">
-      <div id="publicStory">The city waits for a story that makes sense. Choose carefully.</div>
-    </div>
+    <div class="outcome" id="publicStory">Arrange all tasks to record your supervision efforts.</div>
   </div>
-
   <aside class="inventory">
-    <div class="inv-title">Inventory</div>
-    <div id="inventoryList"><div class="inv-empty">No evidence collected yet.</div></div>
+    <div class="inv-title">Scheduled Tasks</div>
+    <div id="inventoryList"><div class="inv-empty show">Nothing yet.</div></div>
   </aside>
-
 </div>
 </div>
-
 <script>
 let inventory=[];
 const invList=document.getElementById("inventoryList");
 const countEl=document.getElementById("count");
-const photo=document.getElementById("photoPlaceholder");
+const finishBtn=document.getElementById("finishBtn");
 const publicStory=document.getElementById("publicStory");
-const weakSpot=document.getElementById("weakSpot");
+const resources = document.querySelectorAll('.resource');
+const slots = document.querySelectorAll('.day-slot');
 
 function refreshInv(){
   invList.innerHTML="";
   if(inventory.length===0){
     let e=document.createElement("div");
-    e.className="inv-empty";
-    e.textContent="No evidence collected yet.";
+    e.className="inv-empty show";
+    e.textContent="Nothing yet.";
     invList.appendChild(e);
   }else{
     inventory.forEach(i=>{
       let box=document.createElement("div");
       box.className="inv-item";
-      let span=document.createElement("span");
-      span.textContent=i.label;
-      let check=document.createElement("input");
-      check.type="checkbox";
-      check.checked=true;
-      check.dataset.id=i.id;
-      box.appendChild(span);
-      box.appendChild(check);
+      box.textContent=i.label;
       invList.appendChild(box);
+      setTimeout(()=>{box.classList.add('show')},50);
     });
   }
   countEl.textContent=inventory.length;
+  finishBtn.disabled = inventory.length < 3;
 }
 
-function addItem(id,label,img){
-  if(inventory.some(x=>x.id===id))return;
+resources.forEach(res=>{
+  res.addEventListener('dragstart', e=>{e.dataTransfer.setData('text', res.dataset.day);res.classList.add('dragging');});
+  res.addEventListener('dragend', e=>{res.classList.remove('dragging');});
+});
+
+slots.forEach(slot=>{
+  slot.addEventListener('dragover', e=>e.preventDefault());
+  slot.addEventListener('drop', e=>{
+    e.preventDefault();
+    const day = e.dataTransfer.getData('text');
+    if(slot.dataset.day===day && !inventory.some(x=>x.id===day)){
+      const resName = [...resources].find(r=>r.dataset.day===day).textContent;
+      addItem(day,resName+" scheduled on "+slot.dataset.day);
+      publicStory.textContent=resName+" successfully scheduled!";
+    } else {
+      publicStory.textContent="Incorrect slot. Try again.";
+    }
+  });
+});
+
+function addItem(id,label){
+  if(inventory.some(x=>x.id===id)) return;
   inventory.push({id,label});
-  photo.style.display="block";
-  photo.src=img;
   refreshInv();
 }
 
-document.querySelectorAll(".hotspot").forEach(h=>{
-  h.onclick=()=>{
-    if(h.classList.contains("locked"))return;
-    let id=h.dataset.id;
-    if(id==="shadow"){addItem("shadow","Blurry Shadow Photo","https://via.placeholder.com/400x180?text=Shadow");publicStory.textContent="You found a blurry photo of a shadowy figure on the bridge.";}
-    if(id==="memo"){addItem("memo","Supervisor Memo","https://via.placeholder.com/400x180?text=Memo");publicStory.textContent="You find a memo telling the engineer not to repair the bridge.";}
-    if(id==="witness"){addItem("witness","Witness Note","https://via.placeholder.com/400x180?text=Witness");publicStory.textContent="A witness left a note describing loud cracks the previous night.";}
-    if(id==="weak"){addItem("weak","Bridge Condition Photo","https://via.placeholder.com/400x180?text=Bridge+Weakness");publicStory.textContent="You find a photo showing clear structural weakness in the bridge.";}
-  };
-});
-
-document.getElementById("investigateBtn").onclick=()=>{
-  weakSpot.classList.remove("locked");
-  publicStory.textContent="You search deeper into the debris and uncover a hidden camera.";
-  setTimeout(()=>{publicStory.textContent="The camera contains another photo."},1400);
-};
-
-document.getElementById("publishBtn").onclick=()=>{
-  let checked=[...invList.querySelectorAll("input[type=checkbox]")].filter(c=>c.checked).map(c=>c.dataset.id);
-  if(checked.length===0){publicStory.textContent="You publish nothing. The city remains hungry for answers.";return;}
-  publicStory.textContent="You publish the dramatic pieces. The public believes sabotage.";
-  document.getElementById("publishBtn").style.display="none";
-  let truthBtn=document.createElement("button");
-  truthBtn.className="btn primary";
-  truthBtn.textContent="Wanna find out the truth?";
-  truthBtn.style.marginTop="12px";
-  truthBtn.onclick=()=>{window.location.href="act1_game.html";};
-  document.querySelector(".controls").appendChild(truthBtn);
+finishBtn.onclick = () => {
+  publicStory.textContent = "All tasks scheduled. Shift completed.";
+  setTimeout(()=>{window.location.href="act3game.html";},1500);
 };
 </script>
-
 </body>
 </html>

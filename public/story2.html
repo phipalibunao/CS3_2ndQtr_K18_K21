@@ -234,8 +234,22 @@ function showRiddle(id){
   if(id==="riddle1"){riddleText="I flow without moving, I carry no weight, but I power your life and light up your state. What am I?"; answer="electricity";}
   if(id==="riddle2"){riddleText="I’m a wire without legs, I’m full of potential, I can shock if you touch me, yet I’m essential. What am I?"; answer="a live wire";}
   if(id==="riddle3"){riddleText="I can be static or dynamic, I run through circuits, I make your devices run, and sometimes I spark. What am I?"; answer="current";}
-  
-  riddleArea.innerHTML=`<div>${riddleText}</div><input type="text" id="riddleInput" placeholder="Your answer"><button class="btn" id="submitRiddle">Submit</button>`;
+
+  riddleArea.innerHTML=`
+    <div>${riddleText}</div>
+    <input type="text" id="riddleInput" placeholder="Your answer">
+    <button class="btn" id="submitRiddle">Submit</button>
+    <button class="btn" id="hintBtn">Need Help?</button>
+    <div id="hangmanArea" style="margin-top:8px; font-family: monospace; color:#f27f78; font-weight:bold;"></div>
+    <div id="hangmanMsg" style="margin-top:4px; color:#f27f78; font-style:italic;"></div>
+  `;
+
+  let answerLetters = answer.toLowerCase().split('');
+  let displayLetters = answerLetters.map(l => (l===' ' ? ' ' : '_'));
+  let hangmanArea = document.getElementById("hangmanArea");
+  let hangmanMsg = document.getElementById("hangmanMsg");
+  hangmanArea.textContent = displayLetters.join(' ');
+
   document.getElementById("submitRiddle").onclick=()=>{
     let user= document.getElementById("riddleInput").value.toLowerCase().trim();
     if(user===answer){
@@ -245,7 +259,19 @@ function showRiddle(id){
     } else {
       publicStory.textContent="Incorrect. Try again.";
     }
-  }
+  };
+
+  document.getElementById("hintBtn").onclick = ()=>{
+    let letter = prompt("Guess a letter:").toLowerCase();
+    if(letter && letter.length===1){
+      let found=false;
+      displayLetters = displayLetters.map((l,i)=>{
+        if(l==='_' && answerLetters[i]===letter){found=true; return letter;} else return l;
+      });
+      hangmanArea.textContent = displayLetters.join(' ');
+      hangmanMsg.textContent = found ? "Good guess!" : "Letter not in answer.";
+    }
+  };
 }
 
 function addItem(id,label){
