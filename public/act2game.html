@@ -19,6 +19,9 @@
 
 
     <style>
+        body{
+            background-color: black;
+        }
         .bg{
             height: 100vh;
             width: 100vw;
@@ -105,6 +108,11 @@
 
         function create() {
             container.style.left = CONTAINER_LEFT;
+            document.body.style.overflowX = "hidden";
+            container.addEventListener("animationend", start);
+            function start() {
+                document.body.style.overflowX = "visible";
+            }
             for (i = 0; i < totalBoxes; i++){
                 const hole = document.createElement("div");
                 const stretchbox = document.createElement("div");
