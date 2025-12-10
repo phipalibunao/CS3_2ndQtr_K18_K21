@@ -2,83 +2,158 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Mini-Game 1: Evidence Match</title>
+<title>Mini-Game: Evidence Match</title>
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
 <style>
- body {
-   font-family: 'Special Elite', sans-serif;
-   background: #0b0b0f;
-   color: white;
-   text-align: center;
-   padding: 20px;
-   overflow: hidden;
- }
- h1 { margin-bottom: 10px; }
- #game {
-   width: 700px;
-   margin: auto;
-   display: grid;
-   grid-template-columns: repeat(6, 1fr);
-   gap: 12px;
- }
- .card {
-   background: linear-gradient(135deg, #1c1c23, #262630);
-   border-radius: 12px;
-   height: 110px;
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   cursor: pointer;
-   font-size: 24px;
-   user-select: none;
-   transition: transform 0.3s;
- }
- .card.flipped {
-   background: white;
-   color: black;
-   cursor: default;
- }
- #hiddenClue {
-   margin-top: 25px;
-   display: none;
-   padding: 20px;
-   font-size: 20px;
-   background: rgba(255,255,255,0.1);
-   border-radius: 10px;
- }
- .rain {
-   position: fixed;
-   top: 0;
-   left: 0;
-   width: 100%;
-   height: 100%;
-   pointer-events: none;
-   overflow: hidden;
- }
- .drop {
-   position: absolute;
-   width: 2px;
-   height: 15px;
-   background: rgba(255,255,255,0.6);
-   animation: fall linear infinite;
- }
- @keyframes fall {
-   0% { transform: translateY(-20px); }
-   100% { transform: translateY(120vh); }
- }
+body {
+  font-family: 'Special Elite', monospace;
+  background: #050506;
+  color: #eee;
+  text-align: center;
+  padding: 20px;
+  overflow-x: hidden;
+  position: relative;
+}
+h1 { 
+  color: #78a2f7; 
+  text-shadow: 0 0 8px #0e5fff; 
+  margin-bottom: 15px;
+}
+#summary {
+  max-width: 700px;
+  margin: 10px auto 20px;
+  background: rgba(20,20,30,0.9);
+  padding: 15px;
+  border-radius: 12px;
+  font-size: 18px;
+  line-height: 1.5;
+  box-shadow: 0 0 10px rgba(0,0,0,0.8);
+}
+#timer {
+  font-size: 22px;
+  margin-bottom: 15px;
+  color: #78a2f7;
+  text-shadow: 0 0 4px #0e5fff;
+}
+#game {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  max-width: 500px;
+  margin: auto;
+  position: relative;
+  z-index: 1;
+}
+.card {
+  background: #1c1c23;
+  border-radius: 12px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 24px;
+  user-select: none;
+  color: #555;
+  perspective: 600px;
+  transition: transform 0.4s, box-shadow 0.3s;
+}
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 12px rgba(14,95,255,0.5);
+}
+.card.flipped {
+  background: #0e0e14;
+  color: #78a2f7;
+  cursor: default;
+  transform: rotateY(180deg);
+}
+.card.matched {
+  box-shadow: 0 0 15px #0e5fff;
+  animation: glow 0.7s;
+}
+@keyframes glow {
+  0% { box-shadow: 0 0 2px #0e5fff; }
+  50% { box-shadow: 0 0 15px #0e5fff; }
+  100% { box-shadow: 0 0 2px #0e5fff; }
+}
+.card.wrong {
+  animation: shake 0.5s;
+}
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
+}
+#hiddenClue {
+  margin-top: 20px;
+  padding: 15px;
+  font-size: 20px;
+  background: rgba(20,20,30,0.9);
+  border-radius: 12px;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  display: none;
+  box-shadow: 0 0 12px rgba(0,0,0,0.8);
+  position: relative;
+  z-index: 1;
+}
+/* Rain overlay */
+.rain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+.drop {
+  position: absolute;
+  width: 2px;
+  height: 15px;
+  background: rgba(255,255,255,0.3);
+  animation: fall linear infinite;
+}
+@keyframes fall {
+  0% { transform: translateY(-20px); }
+  100% { transform: translateY(120vh); }
+}
+/* Flickering light */
+@keyframes flicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
+  20%, 22%, 24%, 55% { opacity: 0.2; }
+}
+.flicker-overlay {
+  position: absolute;
+  top:0; left:0;
+  width:100%; height:100%;
+  background: rgba(255,255,255,0.02);
+  animation: flicker 1.5s infinite;
+  pointer-events: none;
+  z-index: 0;
+}
 </style>
 </head>
 <body>
 
 <h1>Evidence Memory Match</h1>
-<p>Match all pieces of evidence to unlock the hidden clue.</p>
+
+<div id="summary">
+  Match pairs of symbols to uncover evidence. Wrong matches deduct 5 seconds. Time is limited — can you find the truth before the city believes the lie?
+</div>
+
+<div id="timer">Time Remaining: <span id="time">50</span>s</div>
 
 <div class="rain" id="rain"></div>
-<div id="game"></div>
+<div class="flicker-overlay"></div>
 
-<div id="hiddenClue">
-  <h2>Hidden Clue Found!</h2>
-  <p>The journalist actually found photos showing the bridge structure already weak. They ignored it because a sabotage story was more exciting for the public.</p>
-</div>
+<div id="game"></div>
+<div id="hiddenClue"></div>
 
 <script>
 const items = ["📝","📝","📸","📸","👤","👤","📄","📄","🔍","🔍","🕒","🕒"];
@@ -86,57 +161,71 @@ const game = document.getElementById("game");
 let flipped = [];
 let matched = 0;
 
-const shuffle = arr => arr.sort(() => Math.random() - 0.5);
-shuffle(items);
+function shuffle(arr) { return arr.sort(() => Math.random() - 0.5); }
 
-items.forEach((item, index) => {
+shuffle(items).forEach(item => {
   const card = document.createElement("div");
   card.className = "card";
   card.dataset.value = item;
-  card.dataset.index = index;
   card.onclick = () => flipCard(card);
   game.appendChild(card);
 });
 
-function flipCard(card) {
-  if (card.classList.contains("flipped") || flipped.length === 2) return;
+let timeLeft = 50;
+const timeEl = document.getElementById("time");
+const clueDiv = document.getElementById("hiddenClue");
 
+function flipCard(card){
+  if(card.classList.contains("flipped") || flipped.length===2) return;
   card.classList.add("flipped");
   card.textContent = card.dataset.value;
   flipped.push(card);
 
-  if (flipped.length === 2) {
-    if (flipped[0].dataset.value === flipped[1].dataset.value) {
-      matched += 2;
-      flipped = [];
-      if (matched === items.length) {
-        document.getElementById("hiddenClue").style.display = "block";
+  if(flipped.length===2){
+    if(flipped[0].dataset.value === flipped[1].dataset.value){
+      flipped.forEach(c => c.classList.add("matched"));
+      matched+=2;
+      flipped=[];
+      if(matched===items.length){
+        clearInterval(timerInterval);
+        clueDiv.style.display="block";
+        clueDiv.innerHTML="<strong>Hidden Clue Found!</strong><br>The journalist found photos showing the bridge structure already weak. They ignored it because a sabotage story was more exciting.";
       }
     } else {
-      setTimeout(() => {
-        flipped.forEach(c => {
-          c.classList.remove("flipped");
-          c.textContent = "";
-        });
-        flipped = [];
-      }, 700);
+      timeLeft = Math.max(0,timeLeft-5);
+      flipped.forEach(c => c.classList.add("wrong"));
+      setTimeout(()=>{
+        flipped.forEach(c=>{c.classList.remove("flipped","wrong"); c.textContent="";});
+        flipped=[];
+      },700);
     }
   }
 }
 
-function createRain() {
+const timerInterval = setInterval(()=>{
+  timeLeft--;
+  timeEl.textContent=timeLeft;
+  if(timeLeft<=0){
+    clearInterval(timerInterval);
+    document.querySelectorAll(".card").forEach(c=>c.onclick=null);
+    clueDiv.style.display="block";
+    clueDiv.innerHTML="<strong>Time's Up!</strong><br>You couldn't reveal the hidden clue. The story continues with the version the city believes.";
+  }
+},1000);
+
+function createRain(){
   const rain = document.getElementById("rain");
-  for (let i = 0; i < 150; i++) {
-    const drop = document.createElement("div");
-    drop.className = "drop";
-    drop.style.left = Math.random() * 100 + "vw";
-    drop.style.animationDuration = 0.5 + Math.random() * 1.5 + "s";
-    drop.style.opacity = Math.random();
+  for(let i=0;i<150;i++){
+    const drop=document.createElement("div");
+    drop.className="drop";
+    drop.style.left=Math.random()*100+"vw";
+    drop.style.animationDuration=0.5+Math.random()*1.5+"s";
+    drop.style.opacity=Math.random()*0.4+0.2;
     rain.appendChild(drop);
   }
 }
-
 createRain();
 </script>
+
 </body>
 </html>
