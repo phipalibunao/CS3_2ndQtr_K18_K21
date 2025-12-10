@@ -2,38 +2,47 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Fractured Night — Chapter 1: Headline</title>
+<title>Fractured Night — Chapter 2: Silent Night</title>
 <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#0b0b0f;--card1:#1c1c23;--card2:#262630;--accent:#e6e6e6;--nav:#14141a;--nav-hover:#0e5fff}
+:root{
+  --bg:#0b0b0f;
+  --card1:#1a1a22;
+  --card2:#23232b;
+  --accent:#cfcfcf;
+  --nav:#101018;
+  --nav-hover:#ff6a00;
+}
 html,body{height:100%;margin:0;font-family:'Special Elite',monospace;background:var(--bg);color:var(--accent);overflow-x:hidden;}
 .navbar{width:100%;background:var(--nav);padding:12px 0;display:flex;justify-content:center;gap:24px;position:sticky;top:0;z-index:100}
 .navbar a{color:var(--accent);text-decoration:none;font-weight:bold;transition:.2s}
 .navbar a:hover{color:var(--nav-hover)}
 .wrap{min-height:100%;display:flex;flex-direction:column;align-items:center;padding:28px;box-sizing:border-box;position:relative;z-index:2; width:100%;}
 header{text-align:center;width:100%;max-width:1000px}
-h1{margin:6px 0;font-size:36px}
-p.lead{opacity:.9;margin:6px 0 18px}
+h1{margin:6px 0;font-size:36px;color:#ff6a00}
+p.lead{opacity:.9;margin:6px 0 18px;color:#b0b0b0}
 .scene{display:grid;grid-template-columns:2fr 1fr;gap:18px;max-width:1000px;width:100%}
 .card-scene{background:linear-gradient(135deg,var(--card1),var(--card2));border-radius:12px;padding:18px;position:relative;overflow:hidden;min-height:380px;z-index:2;transition: transform 0.5s ease;}
 .card-scene:hover{transform:scale(1.02);}
 .description{font-size:16px;line-height:1.5;opacity:0;transform:translateY(10px);transition: all 0.5s ease;}
 .description.show{opacity:1;transform:translateY(0);}
-.hotspots{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
-.hotspot{flex:1 1 140px;background:rgba(255,255,255,0.035);padding:12px;border-radius:10px;cursor:pointer;text-align:center;transition:.3s;}
-.hotspot:hover{transform:scale(1.1);background:rgba(14,95,255,0.2);}
+.hotspots{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;justify-content:center;}
+.hotspot{flex:1 1 120px;background:rgba(255,255,255,0.02);padding:12px;border-radius:10px;cursor:pointer;text-align:center;transition:.3s;color:#ff6a00}
+.hotspot:hover{transform:scale(1.1);background:rgba(255,106,0,0.2);}
 .hotspot.locked{opacity:.35;cursor:not-allowed}
 .hotspot:active{transform:translateY(2px)}
-.inventory{background:linear-gradient(135deg,#0f1720,#14141a);border-radius:12px;padding:14px;margin-top:20px;}
-.inv-item{background:rgba(255,255,255,0.03);padding:10px;border-radius:8px;display:flex;justify-content:space-between;opacity:0;transform:translateY(10px);transition:all 0.5s ease;}
+.inventory{background:linear-gradient(135deg,#0d0d12,#14141a);border-radius:12px;padding:14px;margin-top:20px;}
+.inv-item{background:rgba(255,255,255,0.02);padding:10px;border-radius:8px;display:flex;justify-content:space-between;opacity:0;transform:translateY(10px);transition:all 0.5s ease;color:#ff6a00;}
 .inv-item.show{opacity:1;transform:translateY(0);}
-.outcome{margin-top:16px;background:rgba(255,255,255,0.03);padding:12px;border-radius:10px;min-height:80px}
+.outcome{margin-top:16px;background:rgba(255,255,255,0.02);padding:12px;border-radius:10px;min-height:80px}
 .placeholder-img{width:100%;height:180px;background:#111;border:1px solid #333;border-radius:8px;margin-top:10px;object-fit:cover;transition:opacity 0.5s;}
-.controls{display:flex;gap:12px;margin-top:14px;flex-wrap:wrap;}
+.controls{display:flex;gap:12px;margin-top:14px;flex-wrap:wrap;justify-content:center;}
 .btn{background:#222228;color:white;padding:10px 14px;border-radius:8px;font-family:'Special Elite';cursor:pointer}
-.btn.primary{background:#0e5fff}
-@media(max-width:900px){.scene{grid-template-columns:1fr}}
-.rain{position:absolute;width:2px;height:15px;background:rgba(255,255,255,0.3);animation:fall linear infinite;z-index:1}
+.btn.primary{background:#ff6a00}
+.mini-game{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:16px;}
+.wire{width:60px;height:60px;border-radius:8px;background:#333;border:2px solid #555;display:flex;align-items:center;justify-content:center;color:#ff6a00;font-weight:bold;cursor:pointer;transition:.3s;}
+.wire:hover{transform:scale(1.1);border-color:#ff6a00;}
+.rain{position:absolute;width:2px;height:15px;background:rgba(255,255,255,0.2);animation:fall linear infinite;z-index:1}
 @keyframes fall{to{transform:translateY(100vh);}}
 .flash{position:absolute;top:0;left:0;width:100%;height:100%;background:white;opacity:0;pointer-events:none;z-index:3;transition:opacity 0.1s;}
 </style>
@@ -50,47 +59,57 @@ p.lead{opacity:.9;margin:6px 0 18px}
 </div>
 <div class="wrap">
 <header>
-  <h1>Chapter 1: Headline</h1>
-  <p class="lead">Step into the shoes of a journalist on a stormy night. Explore the scene, uncover hidden truths, and decide what the city will see as reality.</p>
+  <h1>Chapter 2: Silent Night</h1>
+  <p class="lead">Experience the night from the engineer's perspective. Fix wires and sections of the bridge before the city misinterprets your actions.</p>
 </header>
 <div class="scene">
-  <div class="card-scene" id="sceneArea">
-    <div class="description" id="sceneText">
-      Rain lashes down as darkness envelops the city. Debris from the collapsed bridge litters the street. The air is heavy with tension, and distant sirens wail. You clutch your camera tightly, knowing that every photo and note you collect could change the story the city will believe.
+  <div class="card-scene">
+    <div class="description show" id="sceneText">
+      You arrive at the bridge, aware of the memo warning of danger. The structure creaks dangerously. Your goal is to fix the wires and stabilize the bridge before anyone sees you.
     </div>
-    <img id="photoPlaceholder" class="placeholder-img" style="display:none" src="https://via.placeholder.com/400x180?text=Photo">
-    <div class="hotspots" id="hotspots">
-      <div class="hotspot" data-id="shadow">📸<br>Mysterious Shadow</div>
-      <div class="hotspot" data-id="memo">📝<br>Supervisor's Memo</div>
-      <div class="hotspot locked" id="weakSpot" data-id="weak">📷<br>Bridge Weakness</div>
-      <div class="hotspot" data-id="witness">👣<br>Witness Notes</div>
+    <div class="mini-game" id="wireGame">
+      <div class="wire" data-id="A">A</div>
+      <div class="wire" data-id="B">B</div>
+      <div class="wire" data-id="C">C</div>
+      <div class="wire" data-id="D">D</div>
     </div>
     <div class="controls">
-      <button class="btn" id="investigateBtn">Investigate Deeper</button>
-      <button class="btn primary" id="publishBtn">Publish Findings</button>
-      <div style="flex:1"></div>
-      <div id="status">Evidence Collected: <strong id="count">0</strong></div>
+      <button class="btn primary" id="completeBtn">Complete Repairs</button>
     </div>
     <div class="outcome">
-      <div id="publicStory">The city waits. Each decision you make will shape their perception.</div>
+      <div id="publicStory">The public doesn't see the whole picture yet.</div>
     </div>
   </div>
   <aside class="inventory">
-    <div class="inv-title">Collected Evidence</div>
+    <div class="inv-title">Collected Evidence / Notes</div>
     <div id="inventoryList"><div class="inv-empty show">Nothing yet.</div></div>
   </aside>
 </div>
 </div>
 <script>
-let inventory=[]; 
-const invList=document.getElementById("inventoryList");
-const countEl=document.getElementById("count");
-const photo=document.getElementById("photoPlaceholder");
+const wires = document.querySelectorAll(".wire");
 const publicStory=document.getElementById("publicStory");
-const weakSpot=document.getElementById("weakSpot");
-const flash=document.getElementById("flash");
-const desc=document.getElementById('sceneText');
-setTimeout(()=>{desc.classList.add('show')},300);
+let fixedWires = [];
+wires.forEach(wire=>{
+  wire.onclick=()=>{
+    if(!fixedWires.includes(wire.dataset.id)){
+      fixedWires.push(wire.dataset.id);
+      wire.style.background="#ff6a00";
+    } else {
+      fixedWires = fixedWires.filter(id=>id!==wire.dataset.id);
+      wire.style.background="#333";
+    }
+  }
+});
+document.getElementById("completeBtn").onclick=()=>{
+  if(fixedWires.length===0){
+    publicStory.textContent="You did nothing. The bridge remains dangerous and the public is suspicious.";
+  } else if(fixedWires.length<4){
+    publicStory.textContent="You fixed some wires, but the public misinterprets your actions as tampering.";
+  } else {
+    publicStory.textContent="You successfully stabilize all wires, but the blurry photo still makes it look like sabotage. The engineer is framed.";
+  }
+};
 for(let i=0;i<150;i++){
   const drop=document.createElement('div');
   drop.className='rain';
@@ -100,74 +119,13 @@ for(let i=0;i<150;i++){
   document.body.appendChild(drop);
   drop.style.top='-20px';
 }
+const flash=document.getElementById("flash");
 function lightning(){
   flash.style.opacity=0.6;
   setTimeout(()=>{flash.style.opacity=0;},100);
-  setTimeout(lightning, 2000 + Math.random()*4000);
+  setTimeout(lightning, 3000 + Math.random()*5000);
 }
 lightning();
-function refreshInv(){
-  invList.innerHTML="";
-  if(inventory.length===0){
-    let e=document.createElement("div");
-    e.className="inv-empty show";
-    e.textContent="Nothing yet.";
-    invList.appendChild(e);
-  }else{
-    inventory.forEach(i=>{
-      let box=document.createElement("div");
-      box.className="inv-item";
-      let span=document.createElement("span");
-      span.textContent=i.label;
-      let check=document.createElement("input");
-      check.type="checkbox";
-      check.checked=true;
-      check.dataset.id=i.id;
-      box.appendChild(span);
-      box.appendChild(check);
-      invList.appendChild(box);
-      setTimeout(()=>{box.classList.add('show')},50);
-    });
-  }
-  countEl.textContent=inventory.length;
-}
-function addItem(id,label,img,storyText){
-  if(inventory.some(x=>x.id===id))return;
-  inventory.push({id,label});
-  photo.style.display="block";
-  photo.style.opacity=0;
-  photo.src=img;
-  setTimeout(()=>{photo.style.opacity=1},50);
-  refreshInv();
-  publicStory.textContent=storyText;
-}
-document.querySelectorAll(".hotspot").forEach(h=>{
-  h.onclick=()=>{
-    if(h.classList.contains("locked"))return;
-    let id=h.dataset.id;
-    if(id==="shadow"){addItem("shadow","Blurry Shadow Photo","https://via.placeholder.com/400x180?text=Shadow","You capture a shadowy figure moving across the bridge, almost lost to the storm.");}
-    if(id==="memo"){addItem("memo","Supervisor Memo","https://via.placeholder.com/400x180?text=Memo","A memo warning the engineer not to repair the bridge. The motives are unclear.");}
-    if(id==="witness"){addItem("witness","Witness Note","https://via.placeholder.com/400x180?text=Witness","A witness notes the creaking sounds and panic the night before the collapse.");}
-    if(id==="weak"){addItem("weak","Bridge Condition Photo","https://via.placeholder.com/400x180?text=Bridge+Weakness","Hidden beneath the rubble, a photo reveals the bridge's crumbling structure, evidence of neglect.");}
-  };
-});
-document.getElementById("investigateBtn").onclick=()=>{
-  weakSpot.classList.remove("locked");
-  publicStory.textContent="You dig through the debris, finding a hidden camera that might reveal more.";
-  setTimeout(()=>{publicStory.textContent="The camera holds a new, revealing photograph of the bridge."},1400);
-};
-document.getElementById("publishBtn").onclick=()=>{
-  let checked=[...invList.querySelectorAll("input[type=checkbox]")].filter(c=>c.checked).map(c=>c.dataset.id);
-  if(checked.length===0){publicStory.textContent="You publish nothing. The city remains hungry for answers.";return;}
-  publicStory.textContent="You publish the collected evidence. The city quickly spins the story into sabotage and blame.";
-  document.getElementById("publishBtn").style.display="none";
-  let truthBtn=document.createElement("button");
-  truthBtn.className="btn primary";
-  truthBtn.textContent="Discover the truth behind the shadows";
-  truthBtn.style.marginTop="12px";
-  truthBtn.onclick=()=>{window.location.href="act1_game.html";};
-  document.querySelector(".controls").appendChild(truthBtn);
-};
 </script>
 </body>
 </html>
