@@ -15,16 +15,20 @@ header{text-align:center;width:100%;max-width:1000px}
 h1{margin:6px 0;font-size:36px}
 p.lead{opacity:.9;margin:6px 0 18px}
 .scene{display:grid;grid-template-columns:2fr 1fr;gap:18px;max-width:1000px;width:100%}
-.card-scene{background:linear-gradient(135deg,var(--card1),var(--card2));border-radius:12px;padding:18px;position:relative;overflow:hidden;min-height:380px;z-index:2}
-.description{font-size:16px;line-height:1.5}
+.card-scene{background:linear-gradient(135deg,var(--card1),var(--card2));border-radius:12px;padding:18px;position:relative;overflow:hidden;min-height:380px;z-index:2;transition: transform 0.5s ease;}
+.card-scene:hover{transform:scale(1.02);}
+.description{font-size:16px;line-height:1.5;opacity:0;transform:translateY(10px);transition: all 0.5s ease;}
+.description.show{opacity:1;transform:translateY(0);}
 .hotspots{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
-.hotspot{flex:1 1 140px;background:rgba(255,255,255,0.035);padding:12px;border-radius:10px;cursor:pointer;text-align:center;transition:.2s}
+.hotspot{flex:1 1 140px;background:rgba(255,255,255,0.035);padding:12px;border-radius:10px;cursor:pointer;text-align:center;transition:.3s;}
+.hotspot:hover{transform:scale(1.1);background:rgba(14,95,255,0.2);}
 .hotspot.locked{opacity:.35;cursor:not-allowed}
 .hotspot:active{transform:translateY(2px)}
 .inventory{background:linear-gradient(135deg,#0f1720,#14141a);border-radius:12px;padding:14px;margin-top:20px;}
-.inv-item{background:rgba(255,255,255,0.03);padding:10px;border-radius:8px;display:flex;justify-content:space-between}
+.inv-item{background:rgba(255,255,255,0.03);padding:10px;border-radius:8px;display:flex;justify-content:space-between;opacity:0;transform:translateY(10px);transition:all 0.5s ease;}
+.inv-item.show{opacity:1;transform:translateY(0);}
 .outcome{margin-top:16px;background:rgba(255,255,255,0.03);padding:12px;border-radius:10px;min-height:80px}
-.placeholder-img{width:100%;height:180px;background:#111;border:1px solid #333;border-radius:8px;margin-top:10px;object-fit:cover}
+.placeholder-img{width:100%;height:180px;background:#111;border:1px solid #333;border-radius:8px;margin-top:10px;object-fit:cover;transition:opacity 0.5s;}
 .controls{display:flex;gap:12px;margin-top:14px;flex-wrap:wrap;}
 .btn{background:#222228;color:white;padding:10px 14px;border-radius:8px;font-family:'Special Elite';cursor:pointer}
 .btn.primary{background:#0e5fff}
@@ -35,9 +39,7 @@ p.lead{opacity:.9;margin:6px 0 18px}
 </style>
 </head>
 <body>
-
 <div class="flash" id="flash"></div>
-
 <div class="navbar">
   <a href="homepage.html">Home</a>
   <a href="story1.html">Act 1</a>
@@ -46,58 +48,49 @@ p.lead{opacity:.9;margin:6px 0 18px}
   <a href="story4.html">Act 4</a>
   <a href="aboutus.html">About Us</a>
 </div>
-
 <div class="wrap">
 <header>
-  <h1>Fractured Night</h1>
+  <h1>Chapter 1: Headline</h1>
   <p class="lead">Step into the shoes of a journalist on a stormy night. Explore the scene, uncover hidden truths, and decide what the city will see as reality.</p>
 </header>
-
 <div class="scene">
-
   <div class="card-scene" id="sceneArea">
     <div class="description" id="sceneText">
       Rain lashes down as darkness envelops the city. Debris from the collapsed bridge litters the street. The air is heavy with tension, and distant sirens wail. You clutch your camera tightly, knowing that every photo and note you collect could change the story the city will believe.
     </div>
-
     <img id="photoPlaceholder" class="placeholder-img" style="display:none" src="https://via.placeholder.com/400x180?text=Photo">
-
     <div class="hotspots" id="hotspots">
       <div class="hotspot" data-id="shadow">📸<br>Mysterious Shadow</div>
       <div class="hotspot" data-id="memo">📝<br>Supervisor's Memo</div>
       <div class="hotspot locked" id="weakSpot" data-id="weak">📷<br>Bridge Weakness</div>
       <div class="hotspot" data-id="witness">👣<br>Witness Notes</div>
     </div>
-
     <div class="controls">
       <button class="btn" id="investigateBtn">Investigate Deeper</button>
       <button class="btn primary" id="publishBtn">Publish Findings</button>
       <div style="flex:1"></div>
       <div id="status">Evidence Collected: <strong id="count">0</strong></div>
     </div>
-
     <div class="outcome">
       <div id="publicStory">The city waits. Each decision you make will shape their perception.</div>
     </div>
   </div>
-
   <aside class="inventory">
     <div class="inv-title">Collected Evidence</div>
-    <div id="inventoryList"><div class="inv-empty">Nothing yet.</div></div>
+    <div id="inventoryList"><div class="inv-empty show">Nothing yet.</div></div>
   </aside>
-
 </div>
 </div>
-
 <script>
-let inventory=[];
+let inventory=[]; 
 const invList=document.getElementById("inventoryList");
 const countEl=document.getElementById("count");
 const photo=document.getElementById("photoPlaceholder");
 const publicStory=document.getElementById("publicStory");
 const weakSpot=document.getElementById("weakSpot");
 const flash=document.getElementById("flash");
-
+const desc=document.getElementById('sceneText');
+setTimeout(()=>{desc.classList.add('show')},300);
 for(let i=0;i<150;i++){
   const drop=document.createElement('div');
   drop.className='rain';
@@ -107,19 +100,17 @@ for(let i=0;i<150;i++){
   document.body.appendChild(drop);
   drop.style.top='-20px';
 }
-
 function lightning(){
   flash.style.opacity=0.6;
   setTimeout(()=>{flash.style.opacity=0;},100);
   setTimeout(lightning, 2000 + Math.random()*4000);
 }
 lightning();
-
 function refreshInv(){
   invList.innerHTML="";
   if(inventory.length===0){
     let e=document.createElement("div");
-    e.className="inv-empty";
+    e.className="inv-empty show";
     e.textContent="Nothing yet.";
     invList.appendChild(e);
   }else{
@@ -135,20 +126,21 @@ function refreshInv(){
       box.appendChild(span);
       box.appendChild(check);
       invList.appendChild(box);
+      setTimeout(()=>{box.classList.add('show')},50);
     });
   }
   countEl.textContent=inventory.length;
 }
-
 function addItem(id,label,img,storyText){
   if(inventory.some(x=>x.id===id))return;
   inventory.push({id,label});
   photo.style.display="block";
+  photo.style.opacity=0;
   photo.src=img;
+  setTimeout(()=>{photo.style.opacity=1},50);
   refreshInv();
   publicStory.textContent=storyText;
 }
-
 document.querySelectorAll(".hotspot").forEach(h=>{
   h.onclick=()=>{
     if(h.classList.contains("locked"))return;
@@ -159,13 +151,11 @@ document.querySelectorAll(".hotspot").forEach(h=>{
     if(id==="weak"){addItem("weak","Bridge Condition Photo","https://via.placeholder.com/400x180?text=Bridge+Weakness","Hidden beneath the rubble, a photo reveals the bridge's crumbling structure, evidence of neglect.");}
   };
 });
-
 document.getElementById("investigateBtn").onclick=()=>{
   weakSpot.classList.remove("locked");
   publicStory.textContent="You dig through the debris, finding a hidden camera that might reveal more.";
   setTimeout(()=>{publicStory.textContent="The camera holds a new, revealing photograph of the bridge."},1400);
 };
-
 document.getElementById("publishBtn").onclick=()=>{
   let checked=[...invList.querySelectorAll("input[type=checkbox]")].filter(c=>c.checked).map(c=>c.dataset.id);
   if(checked.length===0){publicStory.textContent="You publish nothing. The city remains hungry for answers.";return;}
@@ -179,6 +169,5 @@ document.getElementById("publishBtn").onclick=()=>{
   document.querySelector(".controls").appendChild(truthBtn);
 };
 </script>
-
 </body>
 </html>
