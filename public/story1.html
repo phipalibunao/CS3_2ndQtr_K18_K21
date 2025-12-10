@@ -6,11 +6,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#0b0b0f;--card1:#1c1c23;--card2:#262630;--accent:#e6e6e6;--nav:#14141a;--nav-hover:#0e5fff}
-html,body{height:100%;margin:0;font-family:'Special Elite',monospace;background:var(--bg);color:var(--accent);overflow:hidden;}
+html,body{height:100%;margin:0;font-family:'Special Elite',monospace;background:var(--bg);color:var(--accent);overflow-x:hidden;}
 .navbar{width:100%;background:var(--nav);padding:12px 0;display:flex;justify-content:center;gap:24px;position:sticky;top:0;z-index:100}
 .navbar a{color:var(--accent);text-decoration:none;font-weight:bold;transition:.2s}
 .navbar a:hover{color:var(--nav-hover)}
-.wrap{min-height:100%;display:flex;flex-direction:column;align-items:center;padding:28px;box-sizing:border-box;position:relative;z-index:2}
+.wrap{min-height:100%;display:flex;flex-direction:column;align-items:center;padding:28px;box-sizing:border-box;position:relative;z-index:2; width:100%;}
 header{text-align:center;width:100%;max-width:1000px}
 h1{margin:6px 0;font-size:36px}
 p.lead{opacity:.9;margin:6px 0 18px}
@@ -21,27 +21,30 @@ p.lead{opacity:.9;margin:6px 0 18px}
 .hotspot{flex:1 1 140px;background:rgba(255,255,255,0.035);padding:12px;border-radius:10px;cursor:pointer;text-align:center;transition:.2s}
 .hotspot.locked{opacity:.35;cursor:not-allowed}
 .hotspot:active{transform:translateY(2px)}
-.inventory{background:linear-gradient(135deg,#0f1720,#14141a);border-radius:12px;padding:14px}
+.inventory{background:linear-gradient(135deg,#0f1720,#14141a);border-radius:12px;padding:14px;margin-top:20px;}
 .inv-item{background:rgba(255,255,255,0.03);padding:10px;border-radius:8px;display:flex;justify-content:space-between}
 .outcome{margin-top:16px;background:rgba(255,255,255,0.03);padding:12px;border-radius:10px;min-height:80px}
 .placeholder-img{width:100%;height:180px;background:#111;border:1px solid #333;border-radius:8px;margin-top:10px;object-fit:cover}
-.controls{display:flex;gap:12px;margin-top:14px}
+.controls{display:flex;gap:12px;margin-top:14px;flex-wrap:wrap;}
 .btn{background:#222228;color:white;padding:10px 14px;border-radius:8px;font-family:'Special Elite';cursor:pointer}
 .btn.primary{background:#0e5fff}
 @media(max-width:900px){.scene{grid-template-columns:1fr}}
 .rain{position:absolute;width:2px;height:15px;background:rgba(255,255,255,0.3);animation:fall linear infinite;z-index:1}
 @keyframes fall{to{transform:translateY(100vh);}}
+.flash{position:absolute;top:0;left:0;width:100%;height:100%;background:white;opacity:0;pointer-events:none;z-index:3;transition:opacity 0.1s;}
 </style>
 </head>
 <body>
 
+<div class="flash" id="flash"></div>
+
 <div class="navbar">
   <a href="homepage.html">Home</a>
-  <a href="story 1.html">Act 1</a>
-  <a href="story 2.html">Act 2</a>
-  <a href="story 3.html">Act 3</a>
+  <a href="story1.html">Act 1</a>
+  <a href="story2.html">Act 2</a>
+  <a href="story3.html">Act 3</a>
   <a href="story4.html">Act 4</a>
-  <a href="#">About Us</a>
+  <a href="aboutus.html">About Us</a>
 </div>
 
 <div class="wrap">
@@ -93,8 +96,8 @@ const countEl=document.getElementById("count");
 const photo=document.getElementById("photoPlaceholder");
 const publicStory=document.getElementById("publicStory");
 const weakSpot=document.getElementById("weakSpot");
+const flash=document.getElementById("flash");
 
-// rain setup
 for(let i=0;i<150;i++){
   const drop=document.createElement('div');
   drop.className='rain';
@@ -104,6 +107,13 @@ for(let i=0;i<150;i++){
   document.body.appendChild(drop);
   drop.style.top='-20px';
 }
+
+function lightning(){
+  flash.style.opacity=0.6;
+  setTimeout(()=>{flash.style.opacity=0;},100);
+  setTimeout(lightning, 2000 + Math.random()*4000);
+}
+lightning();
 
 function refreshInv(){
   invList.innerHTML="";
