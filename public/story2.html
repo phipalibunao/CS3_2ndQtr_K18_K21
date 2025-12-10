@@ -2,53 +2,169 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Fractured Night — Chapter 2: Silent Night</title>
+<title>Fractured Night — Silent Night</title>
 <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#0b0b0f;
-  --card1:#1a1a22;
-  --card2:#23232b;
-  --accent:#cfcfcf;
-  --nav:#101018;
-  --nav-hover:#ff6a00;
+  --card1:#1c1c23;
+  --card2:#262630;
+  --accent:#e6e6e6;
+  --nav:#14141a;
+  --nav-hover:#f27f78;
+  --highlight:#f27f78;
 }
-html,body{height:100%;margin:0;font-family:'Special Elite',monospace;background:var(--bg);color:var(--accent);overflow-x:hidden;}
-.navbar{width:100%;background:var(--nav);padding:12px 0;display:flex;justify-content:center;gap:24px;position:sticky;top:0;z-index:100}
-.navbar a{color:var(--accent);text-decoration:none;font-weight:bold;transition:.2s}
+html,body{
+  height:100%;
+  margin:0;
+  font-family:'Special Elite',monospace;
+  background:var(--bg);
+  color:var(--accent);
+  overflow-x:hidden;
+}
+.navbar{
+  width:100%;
+  background:var(--nav);
+  padding:12px 0;
+  display:flex;
+  justify-content:center;
+  gap:24px;
+  position:sticky;
+  top:0;
+  z-index:100
+}
+.navbar a{
+  color:var(--accent);
+  text-decoration:none;
+  font-weight:bold;
+  transition:.2s
+}
 .navbar a:hover{color:var(--nav-hover)}
-.wrap{min-height:100%;display:flex;flex-direction:column;align-items:center;padding:28px;box-sizing:border-box;position:relative;z-index:2; width:100%;}
+.wrap{
+  min-height:100%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding:28px;
+  box-sizing:border-box;
+  position:relative;
+  z-index:2;
+  width:100%;
+}
 header{text-align:center;width:100%;max-width:1000px}
-h1{margin:6px 0;font-size:36px;color:#ff6a00}
-p.lead{opacity:.9;margin:6px 0 18px;color:#b0b0b0}
+h1{margin:6px 0;font-size:36px;color:var(--highlight);}
+p.lead{opacity:.9;margin:6px 0 18px;font-size:18px;line-height:1.6;}
+.pov-sign{
+  display:inline-block;
+  background:rgba(242,127,120,0.1);
+  color:var(--highlight);
+  padding:6px 12px;
+  border-radius:12px;
+  font-weight:bold;
+  margin-bottom:12px;
+}
 .scene{display:grid;grid-template-columns:2fr 1fr;gap:18px;max-width:1000px;width:100%}
-.card-scene{background:linear-gradient(135deg,var(--card1),var(--card2));border-radius:12px;padding:18px;position:relative;overflow:hidden;min-height:380px;z-index:2;transition: transform 0.5s ease;}
+.card-scene{
+  background:linear-gradient(135deg,var(--card1),var(--card2));
+  border-radius:12px;
+  padding:18px;
+  position:relative;
+  overflow:hidden;
+  min-height:380px;
+  z-index:2;
+  transition: transform 0.5s ease;
+}
 .card-scene:hover{transform:scale(1.02);}
-.description{font-size:16px;line-height:1.5;opacity:0;transform:translateY(10px);transition: all 0.5s ease;}
+.description{
+  font-size:16px;
+  line-height:1.5;
+  opacity:0;
+  transform:translateY(10px);
+  transition: all 0.5s ease;
+}
 .description.show{opacity:1;transform:translateY(0);}
-.hotspots{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;justify-content:center;}
-.hotspot{flex:1 1 120px;background:rgba(255,255,255,0.02);padding:12px;border-radius:10px;cursor:pointer;text-align:center;transition:.3s;color:#ff6a00}
-.hotspot:hover{transform:scale(1.1);background:rgba(255,106,0,0.2);}
+.hotspots{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.hotspot{
+  flex:1 1 140px;
+  background:rgba(255,255,255,0.035);
+  padding:12px;
+  border-radius:10px;
+  cursor:pointer;
+  text-align:center;
+  transition:.3s;
+  font-weight:bold;
+  color:var(--highlight);
+}
+.hotspot:hover{
+  transform:scale(1.1);
+  background:rgba(242,127,120,0.2);
+}
 .hotspot.locked{opacity:.35;cursor:not-allowed}
 .hotspot:active{transform:translateY(2px)}
-.inventory{background:linear-gradient(135deg,#0d0d12,#14141a);border-radius:12px;padding:14px;margin-top:20px;}
-.inv-item{background:rgba(255,255,255,0.02);padding:10px;border-radius:8px;display:flex;justify-content:space-between;opacity:0;transform:translateY(10px);transition:all 0.5s ease;color:#ff6a00;}
+.inventory{
+  background:linear-gradient(135deg,#0f1720,#14141a);
+  border-radius:12px;
+  padding:14px;
+  margin-top:20px;
+}
+.inv-item{
+  background:rgba(255,255,255,0.03);
+  padding:10px;
+  border-radius:8px;
+  display:flex;
+  justify-content:space-between;
+  opacity:0;
+  transform:translateY(10px);
+  transition:all 0.5s ease;
+  color:var(--highlight);
+}
 .inv-item.show{opacity:1;transform:translateY(0);}
-.outcome{margin-top:16px;background:rgba(255,255,255,0.02);padding:12px;border-radius:10px;min-height:80px}
-.placeholder-img{width:100%;height:180px;background:#111;border:1px solid #333;border-radius:8px;margin-top:10px;object-fit:cover;transition:opacity 0.5s;}
-.controls{display:flex;gap:12px;margin-top:14px;flex-wrap:wrap;justify-content:center;}
-.btn{background:#222228;color:white;padding:10px 14px;border-radius:8px;font-family:'Special Elite';cursor:pointer}
-.btn.primary{background:#ff6a00}
-.mini-game{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:16px;}
-.wire{width:60px;height:60px;border-radius:8px;background:#333;border:2px solid #555;display:flex;align-items:center;justify-content:center;color:#ff6a00;font-weight:bold;cursor:pointer;transition:.3s;}
-.wire:hover{transform:scale(1.1);border-color:#ff6a00;}
-.rain{position:absolute;width:2px;height:15px;background:rgba(255,255,255,0.2);animation:fall linear infinite;z-index:1}
-@keyframes fall{to{transform:translateY(100vh);}}
-.flash{position:absolute;top:0;left:0;width:100%;height:100%;background:white;opacity:0;pointer-events:none;z-index:3;transition:opacity 0.1s;}
+.action-card{
+  width:100%;
+  background:rgba(242,127,120,0.15);
+  border-left:4px solid var(--highlight);
+  padding:12px;
+  margin:8px 0;
+  border-radius:6px;
+  font-weight:bold;
+  color:var(--highlight);
+  opacity:0;
+  transform:translateY(10px);
+  transition:all 0.5s;
+}
+.action-card.show{opacity:1;transform:translateY(0);}
+.outcome{
+  margin-top:16px;
+  background:rgba(255,255,255,0.03);
+  padding:12px;
+  border-radius:10px;
+  min-height:80px;
+  font-style:italic;
+}
+.controls{display:flex;gap:12px;margin-top:14px;flex-wrap:wrap;}
+.btn{
+  background:#222228;
+  color:white;
+  padding:10px 14px;
+  border-radius:8px;
+  font-family:'Special Elite';
+  cursor:pointer;
+  transition:all 0.3s;
+}
+.btn:hover{background:var(--highlight);color:#000;}
+.btn.primary{background:var(--highlight)}
+@media(max-width:900px){.scene{grid-template-columns:1fr}}
+input[type=text]{
+  padding:6px;
+  border-radius:6px;
+  border:none;
+  outline:none;
+  width:70%;
+  margin-right:6px;
+}
 </style>
 </head>
 <body>
-<div class="flash" id="flash"></div>
 <div class="navbar">
   <a href="homepage.html">Home</a>
   <a href="story1.html">Act 1</a>
@@ -60,72 +176,92 @@ p.lead{opacity:.9;margin:6px 0 18px;color:#b0b0b0}
 <div class="wrap">
 <header>
   <h1>Chapter 2: Silent Night</h1>
-  <p class="lead">Experience the night from the engineer's perspective. Fix wires and sections of the bridge before the city misinterprets your actions.</p>
+  <div class="pov-sign">POV: Engineer</div>
+  <p class="lead">Solve the riddles to perform actions and repair the bridge. Only when all are solved can you finish your shift.</p>
 </header>
 <div class="scene">
   <div class="card-scene">
-    <div class="description show" id="sceneText">
-      You arrive at the bridge, aware of the memo warning of danger. The structure creaks dangerously. Your goal is to fix the wires and stabilize the bridge before anyone sees you.
-    </div>
-    <div class="mini-game" id="wireGame">
-      <div class="wire" data-id="A">A</div>
-      <div class="wire" data-id="B">B</div>
-      <div class="wire" data-id="C">C</div>
-      <div class="wire" data-id="D">D</div>
+    <div class="description show">The bridge creaks in the storm. Solve puzzles to reconnect wires, fix panels, and inspect hidden damage.</div>
+    <div class="hotspots" id="hotspots">
+      <div class="hotspot" data-id="riddle1">🔌<br>Reconnect Wires</div>
+      <div class="hotspot" data-id="riddle2">🛠️<br>Fix Panel</div>
+      <div class="hotspot" data-id="riddle3">🔍<br>Inspect Bridge</div>
     </div>
     <div class="controls">
-      <button class="btn primary" id="completeBtn">Complete Repairs</button>
+      <div id="riddleArea"></div>
+      <button class="btn primary" id="finishBtn" disabled>Finish Shift</button>
+      <div style="flex:1"></div>
+      <div id="status">Actions Solved: <strong id="count">0</strong></div>
     </div>
-    <div class="outcome">
-      <div id="publicStory">The public doesn't see the whole picture yet.</div>
-    </div>
+    <div class="outcome" id="publicStory">Solve all riddles to record your actions.</div>
   </div>
   <aside class="inventory">
-    <div class="inv-title">Collected Evidence / Notes</div>
+    <div class="inv-title">Recorded Actions</div>
     <div id="inventoryList"><div class="inv-empty show">Nothing yet.</div></div>
   </aside>
 </div>
 </div>
 <script>
-const wires = document.querySelectorAll(".wire");
+let inventory=[];
+const invList=document.getElementById("inventoryList");
+const countEl=document.getElementById("count");
 const publicStory=document.getElementById("publicStory");
-let fixedWires = [];
-wires.forEach(wire=>{
-  wire.onclick=()=>{
-    if(!fixedWires.includes(wire.dataset.id)){
-      fixedWires.push(wire.dataset.id);
-      wire.style.background="#ff6a00";
+const riddleArea=document.getElementById("riddleArea");
+const finishBtn=document.getElementById("finishBtn");
+
+function refreshInv(){
+  invList.innerHTML="";
+  if(inventory.length===0){
+    let e=document.createElement("div");
+    e.className="inv-empty show";
+    e.textContent="Nothing yet.";
+    invList.appendChild(e);
+  }else{
+    inventory.forEach(i=>{
+      let box=document.createElement("div");
+      box.className="action-card";
+      box.textContent=i.label;
+      invList.appendChild(box);
+      setTimeout(()=>{box.classList.add('show')},50);
+    });
+  }
+  countEl.textContent=inventory.length;
+  finishBtn.disabled = inventory.length < 3;
+}
+
+function showRiddle(id){
+  let riddleText="", answer="";
+  if(id==="riddle1"){riddleText="I flow without moving, I carry no weight, but I power your life and light up your state. What am I?"; answer="electricity";}
+  if(id==="riddle2"){riddleText="I’m a wire without legs, I’m full of potential, I can shock if you touch me, yet I’m essential. What am I?"; answer="a live wire";}
+  if(id==="riddle3"){riddleText="I can be static or dynamic, I run through circuits, I make your devices run, and sometimes I spark. What am I?"; answer="current";}
+  
+  riddleArea.innerHTML=`<div>${riddleText}</div><input type="text" id="riddleInput" placeholder="Your answer"><button class="btn" id="submitRiddle">Submit</button>`;
+  document.getElementById("submitRiddle").onclick=()=>{
+    let user= document.getElementById("riddleInput").value.toLowerCase().trim();
+    if(user===answer){
+      addItem(id,"Solved: "+riddleText);
+      riddleArea.innerHTML="";
+      publicStory.textContent="Correct! Action recorded.";
     } else {
-      fixedWires = fixedWires.filter(id=>id!==wire.dataset.id);
-      wire.style.background="#333";
+      publicStory.textContent="Incorrect. Try again.";
     }
   }
+}
+
+function addItem(id,label){
+  if(inventory.some(x=>x.id===id)) return;
+  inventory.push({id,label});
+  refreshInv();
+}
+
+document.querySelectorAll(".hotspot").forEach(h=>{
+  h.onclick=()=> showRiddle(h.dataset.id);
 });
-document.getElementById("completeBtn").onclick=()=>{
-  if(fixedWires.length===0){
-    publicStory.textContent="You did nothing. The bridge remains dangerous and the public is suspicious.";
-  } else if(fixedWires.length<4){
-    publicStory.textContent="You fixed some wires, but the public misinterprets your actions as tampering.";
-  } else {
-    publicStory.textContent="You successfully stabilize all wires, but the blurry photo still makes it look like sabotage. The engineer is framed.";
-  }
+
+finishBtn.onclick = () => {
+  publicStory.textContent = "Your shift ends. Actions recorded. Moving on...";
+  setTimeout(() => { window.location.href = "act2game.html"; }, 1500);
 };
-for(let i=0;i<150;i++){
-  const drop=document.createElement('div');
-  drop.className='rain';
-  drop.style.left=Math.random()*100+'%';
-  drop.style.animationDuration=0.5+Math.random()*0.5+'s';
-  drop.style.animationDelay=Math.random()*2+'s';
-  document.body.appendChild(drop);
-  drop.style.top='-20px';
-}
-const flash=document.getElementById("flash");
-function lightning(){
-  flash.style.opacity=0.6;
-  setTimeout(()=>{flash.style.opacity=0;},100);
-  setTimeout(lightning, 3000 + Math.random()*5000);
-}
-lightning();
 </script>
 </body>
 </html>

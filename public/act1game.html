@@ -101,6 +101,22 @@ h1 {
   position: relative;
   z-index: 1;
 }
+#nextChapterBtn {
+  display: none;
+  margin-top: 15px;
+  padding: 10px 20px;
+  font-family: 'Special Elite', monospace;
+  font-size: 18px;
+  color: #0e0e14;
+  background: #78a2f7;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  text-decoration: none;
+}
+#nextChapterBtn:hover {
+  background: #0e5fff;
+}
 /* Rain overlay */
 .rain {
   position: fixed;
@@ -153,7 +169,9 @@ h1 {
 <div class="flicker-overlay"></div>
 
 <div id="game"></div>
+
 <div id="hiddenClue"></div>
+<button id="nextChapterBtn" onclick="proceedChapter()">Proceed to Chapter 2</button>
 
 <script>
 const items = ["📝","📝","📸","📸","👤","👤","📄","📄","🔍","🔍","🕒","🕒"];
@@ -174,6 +192,7 @@ shuffle(items).forEach(item => {
 let timeLeft = 50;
 const timeEl = document.getElementById("time");
 const clueDiv = document.getElementById("hiddenClue");
+const nextBtn = document.getElementById("nextChapterBtn");
 
 function flipCard(card){
   if(card.classList.contains("flipped") || flipped.length===2) return;
@@ -187,9 +206,7 @@ function flipCard(card){
       matched+=2;
       flipped=[];
       if(matched===items.length){
-        clearInterval(timerInterval);
-        clueDiv.style.display="block";
-        clueDiv.innerHTML="<strong>Hidden Clue Found!</strong><br>The journalist found photos showing the bridge structure already weak. They ignored it because a sabotage story was more exciting.";
+        endGame(true);
       }
     } else {
       timeLeft = Math.max(0,timeLeft-5);
@@ -208,10 +225,24 @@ const timerInterval = setInterval(()=>{
   if(timeLeft<=0){
     clearInterval(timerInterval);
     document.querySelectorAll(".card").forEach(c=>c.onclick=null);
-    clueDiv.style.display="block";
-    clueDiv.innerHTML="<strong>Time's Up!</strong><br>You couldn't reveal the hidden clue. The story continues with the version the city believes.";
+    endGame(false);
   }
 },1000);
+
+function endGame(won){
+  document.querySelectorAll(".card").forEach(c=>c.onclick=null);
+  clueDiv.style.display="block";
+  if(won){
+    clueDiv.innerHTML="<strong>Hidden Clue Found!</strong><br>The journalist found photos showing the bridge structure already weak. They ignored it because a sabotage story was more exciting.";
+  } else {
+    clueDiv.innerHTML="<strong>Time's Up!</strong><br>You couldn't reveal the hidden clue. The story continues with the version the city believes.";
+  }
+  nextBtn.style.display="inline-block";
+}
+
+function proceedChapter(){
+  window.location.href = "story2.html";
+}
 
 function createRain(){
   const rain = document.getElementById("rain");
