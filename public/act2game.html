@@ -20,13 +20,16 @@
 
     <style>
         .bg{
-            width: 100%;
+            height: 100vh;
+            width: 100vw;
+            object-fit: cover;
             position: fixed;
             top: 0;
             left: 0;
             filter: blur(3px);
             user-select: none;
             -webkit-user-drag: none;
+            overflow: hidden;
         }
         .box{
             position: absolute;
@@ -56,7 +59,13 @@
             background-color: grey;
             position: absolute;
             box-shadow: 0 5px 10px black;
+            animation: slidein 1s;
             transition: 1s ease;
+        }
+
+        @keyframes slidein {
+            0% {transform: translateX(100vw);}
+            100% {transform: translateX(0);}
         }
 
     </style>
@@ -68,7 +77,7 @@
     
 
     <script>
-        const TOTAL = 3;
+        totalBoxes = 3;
         const CONTAINER_SPACE = 50;
         const CONTAINER_LEFT = "100px";
         const BOX_SPACE = 150;
@@ -87,7 +96,6 @@
         score = 0;
 
         const container = document.createElement("div");
-        container.style.left = CONTAINER_LEFT;
         container.style.width = "1000px";
         container.style.top = "100px";
         container.classList.add('container');
@@ -96,7 +104,8 @@
         create();
 
         function create() {
-            for (i = 0; i < TOTAL; i++){
+            container.style.left = CONTAINER_LEFT;
+            for (i = 0; i < totalBoxes; i++){
                 const hole = document.createElement("div");
                 const stretchbox = document.createElement("div");
                 const box = document.createElement("div");
@@ -134,27 +143,27 @@
                 container.appendChild(holes[i]);
             }
 
-            for (i = TOTAL; i > 0; i--){
+            for (i = totalBoxes; i > 0; i--){
                 color = Math.floor(Math.random() * i);
-                boxes[TOTAL - i].style.backgroundColor = `rgb(${Math.floor(Math.random() * ((colors[color] + 1) * 60 - 20) + 20)}, ${Math.floor(Math.random() * ((colors[color] + 1) * 40 - 10) + 10)}, ${Math.floor(Math.random() * ((colors[color] + 1) * 50 - 10) + 10)})`;
-                boxes[TOTAL - i].innerHTML = TOTAL - i + 1;
-                holes[colors[color]].style.backgroundColor = boxes[TOTAL - i].style.backgroundColor;
-                holes[colors[color]].innerHTML = boxes[TOTAL - i].innerHTML;
-                stretchboxes[TOTAL - i].style.backgroundColor = boxes[TOTAL - i].style.backgroundColor;
+                boxes[totalBoxes - i].style.backgroundColor = `rgb(${Math.floor(Math.random() * ((colors[color] + 1) * 60 - 20) + 20)}, ${Math.floor(Math.random() * ((colors[color] + 1) * 40 - 10) + 10)}, ${Math.floor(Math.random() * ((colors[color] + 1) * 50 - 10) + 10)})`;
+                boxes[totalBoxes - i].innerHTML = totalBoxes - i + 1;
+                holes[colors[color]].style.backgroundColor = boxes[totalBoxes - i].style.backgroundColor;
+                holes[colors[color]].innerHTML = boxes[totalBoxes - i].innerHTML;
+                stretchboxes[totalBoxes - i].style.backgroundColor = boxes[totalBoxes - i].style.backgroundColor;
                 colors.splice(color, 1);
 
-                container.appendChild(stretchboxes[TOTAL - i]);
-                container.appendChild(boxes[TOTAL - i]);
+                container.appendChild(stretchboxes[totalBoxes - i]);
+                container.appendChild(boxes[totalBoxes - i]);
             }
 
-            container.style.height = `${parseInt(boxes[TOTAL - 1].style.top) + parseInt(boxes[TOTAL - 1].style.height) + CONTAINER_SPACE}px`;
+            container.style.height = `${parseInt(boxes[totalBoxes - 1].style.top) + parseInt(boxes[totalBoxes - 1].style.height) + CONTAINER_SPACE}px`;
 
         }
         
         
 
         function move(event) {
-            if (score < TOTAL){
+            if (score < totalBoxes){
                 boxSelected = event.target.id;
                 console.log(boxSelected);
                 boxStays[boxSelected] = false;
@@ -178,7 +187,7 @@
                     boxes[boxSelected].style.top = 0;
                 else
                     boxes[boxSelected].style.top = `${parseInt(container.style.height) - parseInt(boxes[boxSelected].style.height)}px`;
-                for(i = 0; i < TOTAL; i++){
+                for(i = 0; i < totalBoxes; i++){
                     if (event.clientX + parseInt(window.scrollX) >= parseInt(holes[i].style.left) + parseInt(container.style.left) && event.clientX + parseInt(window.scrollX) <= parseInt(holes[i].style.left) + parseInt(holes[i].style.width) + parseInt(container.style.left) && event.clientY + parseInt(window.scrollY) >= parseInt(holes[i].style.top) + parseInt(container.style.top) && event.clientY + parseInt(window.scrollY) <= parseInt(holes[i].style.top) + parseInt(holes[i].style.height) + parseInt(container.style.top)){
                         boxes[boxSelected].style.left = holes[i].style.left;
                         boxes[boxSelected].style.top = holes[i].style.top;
@@ -203,7 +212,7 @@
         document.addEventListener("mouseup", stay);
         function stay(event) {
             inHole = false;
-            for (i = 0; i < TOTAL; i++){
+            for (i = 0; i < totalBoxes; i++){
                 if (event.clientX + parseInt(window.scrollX) < parseInt(holes[i].style.left) + parseInt(container.style.left) || event.clientX + parseInt(window.scrollX) > parseInt(holes[i].style.left) + parseInt(holes[i].style.width) + parseInt(container.style.left) || event.clientY + parseInt(window.scrollY) < parseInt(holes[i].style.top) + parseInt(container.style.top) || event.clientY + parseInt(window.scrollY) > parseInt(holes[i].style.top) + parseInt(holes[i].style.height) + parseInt(container.style.top)){
                     if (boxSelected != null){
                         if (correctlyPlaced[i] == true && boxes[boxSelected].style.backgroundColor == holes[i].style.backgroundColor){
@@ -235,28 +244,41 @@
                 }
             }
 
-            if (score == TOTAL && boxSelected != null){
+            if (score == totalBoxes && boxSelected != null){
                 console.log("Hooray!");
                 container.style.left = `-${parseInt(CONTAINER_LEFT) + parseInt(container.style.width)}px`;
-                for (i = 0; i < TOTAL; i++){
+                for (i = 0; i < totalBoxes; i++){
                     boxes[i].style.cursor = "default";
                 }
                 
                 container.addEventListener("transitionend", restart);
                 function restart() {
-                    for (i = 0; i < TOTAL; i++){
-                        boxes[i].remove();
-                        holes[i].remove();
-                        stretchboxes[i].remove();
+                    if (score == totalBoxes){
+                        for (i = 0; i < totalBoxes; i++){
+                            boxes[i].remove();
+                            holes[i].remove();
+                            stretchboxes[i].remove();
+                        }
+
+                        holes = [];
+                        stretchboxes = [];
+                        boxes = [];
+                        colors = [];
+                        
+                        originalLeft = [];
+                        originalTop = [];
+                        boxStays = [];
+                        correctlyPlaced = [];
+                        boxSelected = null;
+                        totalBoxes++;
+
+                        container.remove();
+                        document.body.appendChild(container);
+
+                        create();
+                        score = 0;
+                        console.log(boxes);
                     }
-
-                    
-                    container.remove();
-                    document.body.appendChild(container);
-                    container.style.left = CONTAINER_LEFT;
-
-                    create();
-                    score = 0;
                 }
                 
             }
