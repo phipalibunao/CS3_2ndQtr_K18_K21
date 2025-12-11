@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- favicon -->
+    <link rel="icon" href="https://raw.githubusercontent.com/tomasdmacalintal/CS3_2ndQtrPortfolio/main/assets/images/cspairproj_favicon2.png" sizes="any">
+    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/tomasdmacalintal/CS3_2ndQtrPortfolio/main/assets/images/cspairproj_favicon2.png">
+
+    <!-- Encoding + mobile responsiveness -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Page info -->
+    <title>Lights</title>
+    <meta name="description" content="The second chapter.">
+    <meta name="author" content="Datu Macalintal, Phipa Libunao">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&family=Cormorant+Garamond:wght@600&display=swap" rel="stylesheet">
+
+    <!-- Link Stylesheet -->
+
+
+    <style>
+        body{
+            background-color: black;
+        }
+        .bg{
+            height: 100vh;
+            width: 100vw;
+            object-fit: cover;
+            position: fixed;
+            top: 0;
+            left: 0;
+            filter: blur(3px);
+            user-select: none;
+            -webkit-user-drag: none;
+            overflow: hidden;
+        }
+        .box{
+            position: absolute;
+            color: white;
+            text-shadow: 0 0 3px black, 0 0 3px black, 0 0 3px black, 0 0 3px black;
+            user-select: none;
+        }
+        .box:hover{
+            cursor: grab;
+        }
+        .box:active{
+            cursor: grabbing;
+        }
+        .stretchbox{
+            position: absolute;
+            transform-origin: left;
+            user-select: none;
+        }
+        .hole{
+            position: absolute;
+            text-align: right;
+            color: white;
+            text-shadow: 0 0 3px black, 0 0 3px black, 0 0 3px black, 0 0 3px black;
+            user-select: none;
+        }
+        .container{
+            background-color: grey;
+            position: absolute;
+            box-shadow: 0 5px 10px black;
+            animation: slidein 1s;
+            transition: 1s ease;
+        }
+
+        @keyframes slidein {
+            0% {transform: translateX(100vw);}
+            100% {transform: translateX(0);}
+        }
+    </style>
+</head>
+<body>
+    <div class="container" style="width: 1000px; height: 800px;">
+        
+    </div>
+</body>
