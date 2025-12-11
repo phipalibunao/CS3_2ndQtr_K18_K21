@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Fractured Night — Story</title>
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
+<style>
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Special Elite', monospace;
+  background: #0b0b0f;
+  color: #e6e6e6;
+}
+
+header {
+  text-align: center;
+  padding: 20px;
+}
+
+h1 {
+  color: #f7d678;
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 20px;
+}
+
+.story-card {
+  background: linear-gradient(135deg, #1c1c23, #262630);
+  padding: 20px;
+  border-radius: 12px;
+  width: 400px;
+  min-height: 300px;
+  position: relative;
+  box-shadow: 0 0 15px rgba(120, 247, 162, 0.2);
+}
+
+.story-card h2 {
+  color: #78f7a2;
+  margin-bottom: 12px;
+}
+
+.story-card p {
+  line-height: 1.5;
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+
+.story-card .label {
+  position: absolute;
+  top: -10px;
+  left: 20px;
+  background: #f7d678;
+  color: #000;
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 14px;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Fractured Night</h1>
+  <p>The story has two sides. Can you discover the truth?</p>
+</header>
+
+<div class="container">
+  <div class="story-card">
+    <div class="label">Public Story</div>
+    <h2>The Mayor</h2>
+    <p>The mayor performed maintenance checks on the bridge and managed the city budget responsibly.</p>
+    <p>He publicly blames the engineer and supervisor to maintain trust in the city.</p>
+    <p>The public praises his actions; the engineer and supervisor are arrested.</p>
+  </div>
+
+  <div class="story-card" id="trueStory" style="display:none;">
+    <div class="label">True Story</div>
+    <h2>The Mayor</h2>
+    <p>In reality, the mayor restricted maintenance and redirected budget for personal gain and reputation management.</p>
+    <p>The engineer was actually trying to fix the bridge, and the supervisor ensured safety with limited resources.</p>
+    <p>The public was misled, and the mayor’s manipulation went unnoticed.</p>
+  </div>
+</div>
+
+<script>
+const urlParams = new URLSearchParams(window.location.search);
+const solved = urlParams.get('solved');
+if (solved === "true") {
+  document.getElementById('trueStory').style.display = "block";
+}
+</script>
+
+</body>
+</html>

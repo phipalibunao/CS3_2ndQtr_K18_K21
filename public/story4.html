@@ -67,6 +67,14 @@ p.lead{opacity:.9;margin:6px 0 18px;font-size:18px;line-height:1.6;}
   width:100%;
   max-width:900px;
 }
+.input-field{
+  padding:10px;
+  border-radius:6px;
+  border:none;
+  margin-top:10px;
+  width:80px;
+  text-align:center;
+}
 .choice-btn{
   background:#222228;
   color:white;
@@ -87,9 +95,6 @@ p.lead{opacity:.9;margin:6px 0 18px;font-size:18px;line-height:1.6;}
   font-style:italic;
   line-height:1.4;
 }
-.story-text{
-  margin-bottom:12px;
-}
 </style>
 </head>
 <body>
@@ -105,50 +110,94 @@ p.lead{opacity:.9;margin:6px 0 18px;font-size:18px;line-height:1.6;}
 <header>
   <h1>Chapter 4: Public Duty</h1>
   <div class="pov-sign">POV: Mayor</div>
-  <p class="lead">The bridge collapse has shaken the city. Every choice you make affects the public story. The citizens see you as a responsible mayor. Can you maintain appearances and manage the situation wisely?</p>
-  <p class="lead" style="opacity:0.7;">The public believes: You acted responsibly, performed maintenance, and managed the city well.</p>
+  <p class="lead">The bridge collapse shook the city. Publicly, I appear responsible. Now, I must allocate funds correctly, even if secretly some things remain hidden.</p>
 </header>
 <div class="card-scene">
   <div class="story-text" id="storyText">
-    You sit in your office late at night, reviewing city reports and budgets. The engineer and supervisor are under scrutiny, and the public is waiting for answers. Your choices now will decide what the city sees.
-  </div>
-  <div id="choices">
-    <button class="choice-btn" data-choice="safety">Prioritize Bridge Safety</button>
-    <button class="choice-btn" data-choice="image">Focus on Public Image</button>
-    <button class="choice-btn" data-choice="personal">Redirect Funds for Yourself</button>
+    The public believes I inspected the bridge, managed city projects, and balanced budgets. My hidden actions remain my own secret.
   </div>
   <div class="outcome" id="outcome">
-    Your choices will shape the public story.
+    Guess the correct amount for each budget item. 
   </div>
-  <button class="choice-btn" id="finishBtn" style="display:none">Finish Public Duty</button>
+  <div id="budget-game" style="margin-top:12px;">
+    <p>Bridge Repair Budget: 5000<br>How much did I spend on materials?</p>
+    <input type="number" class="input-field" id="q1">
+    <button class="choice-btn" onclick="checkQ1()">Submit</button>
+  </div>
+  <div id="budget-result" style="margin-top:12px;"></div>
 </div>
 </div>
 <script>
-const outcome = document.getElementById('outcome');
-const finishBtn = document.getElementById('finishBtn');
-const storyText = document.getElementById('storyText');
-let achieved=[];
+const answers = [2000, 750, 1000]; // correct numbers for each question
+let currentQ = 0;
 
-document.querySelectorAll('.choice-btn[data-choice]').forEach(btn=>{
-  btn.onclick=()=>{
-    const choice = btn.dataset.choice;
-    if(!achieved.includes(choice)) achieved.push(choice);
-    if(choice==="safety") outcome.innerHTML+="<p>Public sees the bridge as maintained and safe.</p>";
-    if(choice==="image") outcome.innerHTML+="<p>Public applauds your leadership and crisis handling.</p>";
-    if(choice==="personal") outcome.innerHTML+="<p>Minor funds are diverted personally; most citizens remain unaware.</p>";
-    btn.disabled=true;
-    if(achieved.length>=2) finishBtn.style.display='inline-block';
+function checkGuess(userGuess, correctAnswer) {
+  if(userGuess === correctAnswer) return "correct";
+  if(userGuess < correctAnswer) return "higher";
+  return "lower";
+}
+
+function checkQ1() {
+  const guess = Number(document.getElementById('q1').value);
+  const feedback = checkGuess(guess, answers[currentQ]);
+  const result = document.getElementById('budget-result');
+  if(feedback === "correct"){
+    result.innerHTML="<p>Correct!</p>";
+    currentQ++;
+    nextQuestion();
+  } else {
+    result.innerHTML="<p>"+feedback.toUpperCase()+"!</p>";
   }
-});
+}
 
-finishBtn.onclick=()=>{
-  let falseStory="The city believes the mayor acted responsibly. ";
-  if(achieved.includes("safety")) falseStory+="Bridge maintenance was done properly. ";
-  if(achieved.includes("image")) falseStory+="City projects and public image were well-managed. ";
-  if(achieved.includes("personal")) falseStory+="Some personal expenditures went unnoticed. ";
-  storyText.innerHTML = "<p>The story so far:</p><p>"+falseStory+"</p>";
-  outcome.innerHTML = "<p>The public sees one story, and you have shaped it through your choices. The hidden truths remain unseen.</p>";
-  setTimeout(()=>{window.location.href="act4game.html";},3000);
+function nextQuestion(){
+  const gameDiv = document.getElementById('budget-game');
+  if(currentQ===1){
+    gameDiv.innerHTML = `
+      <p>Staff Salaries: 3000<br>How much went to overtime?</p>
+      <input type="number" class="input-field" id="q2">
+      <button class="choice-btn" onclick="checkQ2()">Submit</button>
+    `;
+  } else if(currentQ===2){
+    gameDiv.innerHTML = `
+      <p>City Projects Fund: 4000<br>How much went to community outreach?</p>
+      <input type="number" class="input-field" id="q3">
+      <button class="choice-btn" onclick="checkQ3()">Submit</button>
+    `;
+  }
+}
+
+function checkQ2(){
+  const guess = Number(document.getElementById('q2').value);
+  const feedback = checkGuess(guess, answers[currentQ]);
+  const result = document.getElementById('budget-result');
+  if(feedback==="correct"){
+    result.innerHTML="<p>Correct!</p>";
+    currentQ++;
+    nextQuestion();
+  } else {
+    result.innerHTML="<p>"+feedback.toUpperCase()+"!</p>";
+  }
+}
+
+function checkQ3(){
+  const guess = Number(document.getElementById('q3').value);
+  const feedback = checkGuess(guess, answers[currentQ]);
+  const result = document.getElementById('budget-result');
+  if(feedback==="correct"){
+    result.innerHTML="<p>All budget allocations complete.</p>";
+    endGame();
+  } else {
+    result.innerHTML="<p>"+feedback.toUpperCase()+"!</p>";
+  }
+}
+
+function endGame(){
+  const gameDiv = document.getElementById('budget-game');
+  gameDiv.innerHTML="<p>The city sees a responsible mayor at work.</p>";
+  const outcome = document.getElementById('outcome');
+  outcome.innerHTML="<p>The public applauds my careful management. My hidden actions remain secret.</p>";
+  setTimeout(()=>{window.location.href='story.html';},3000);
 }
 </script>
 </body>
