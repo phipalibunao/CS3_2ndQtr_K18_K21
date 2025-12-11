@@ -18,7 +18,7 @@ html,body{
   height:100%;
   margin:0;
   font-family:'Special Elite',monospace;
-  background:var(--bg);
+  background:linear-gradient(135deg,#0b0b0f,#13131a);
   color:var(--accent);
   overflow-x:hidden;
 }
@@ -31,13 +31,14 @@ html,body{
   gap:24px;
   position:sticky;
   top:0;
-  z-index:100
+  z-index:100;
+  box-shadow:0 4px 8px rgba(0,0,0,0.5);
 }
 .navbar a{
   color:var(--accent);
   text-decoration:none;
   font-weight:bold;
-  transition:.2s
+  transition:.2s;
 }
 .navbar a:hover{color:var(--nav-hover)}
 .wrap{
@@ -51,30 +52,35 @@ html,body{
   z-index:2;
   width:100%;
 }
-header{text-align:center;width:100%;max-width:1000px}
-h1{margin:6px 0;font-size:36px;color:var(--highlight);}
+header{text-align:center;width:100%;max-width:1000px;}
+h1{margin:6px 0;font-size:42px;color:var(--highlight);text-shadow:0 0 6px rgba(120,247,162,0.5);}
 p.lead{opacity:.9;margin:6px 0 18px;font-size:18px;line-height:1.6;}
 .pov-sign{
   display:inline-block;
-  background:rgba(120,247,162,0.1);
+  background:rgba(120,247,162,0.15);
   color:var(--highlight);
-  padding:6px 12px;
-  border-radius:12px;
+  padding:8px 16px;
+  border-radius:20px;
   font-weight:bold;
   margin-bottom:12px;
+  text-shadow:0 0 4px rgba(0,0,0,0.3);
 }
-.scene{display:grid;grid-template-columns:2fr 1fr;gap:18px;max-width:1000px;width:100%}
+.scene{display:grid;grid-template-columns:2fr 1fr;gap:24px;max-width:1000px;width:100%;}
 .card-scene{
-  background:linear-gradient(135deg,var(--card1),var(--card2));
-  border-radius:12px;
-  padding:18px;
+  background:linear-gradient(145deg,#1b1b27,#262636);
+  border-radius:16px;
+  padding:24px;
   position:relative;
   overflow:hidden;
-  min-height:380px;
+  min-height:400px;
   z-index:2;
-  transition: transform 0.5s ease;
+  box-shadow:0 8px 20px rgba(0,0,0,0.5);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
-.card-scene:hover{transform:scale(1.02);}
+.card-scene:hover{
+  transform:scale(1.03);
+  box-shadow:0 12px 24px rgba(120,247,162,0.5);
+}
 .description{
   font-size:16px;
   line-height:1.5;
@@ -86,69 +92,79 @@ p.lead{opacity:.9;margin:6px 0 18px;font-size:18px;line-height:1.6;}
 .grid-calendar{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:12px;
-  margin-top:16px;
+  gap:16px;
+  margin-top:20px;
 }
 .day-slot{
-  background:rgba(255,255,255,0.03);
-  padding:12px;
-  border-radius:8px;
-  min-height:80px;
+  background:rgba(255,255,255,0.05);
+  padding:14px;
+  border-radius:12px;
+  min-height:90px;
   display:flex;
   flex-direction:column;
   align-items:center;
   justify-content:center;
   font-weight:bold;
   color:var(--highlight);
+  transition:0.3s all;
+  box-shadow:0 4px 12px rgba(0,0,0,0.3);
 }
+.day-slot:hover{background:rgba(120,247,162,0.2);}
 .resource{
-  padding:6px 10px;
-  margin:4px 0;
-  background:rgba(255,255,255,0.05);
-  border-radius:6px;
+  padding:8px 12px;
+  margin:6px 0;
+  background:rgba(255,255,255,0.07);
+  border-radius:10px;
   cursor:pointer;
   text-align:center;
-  transition:.3s;
+  transition:0.3s all;
+  box-shadow:0 4px 10px rgba(0,0,0,0.3);
 }
-.resource:hover{background:rgba(120,247,162,0.3);}
-.resource.dragging{opacity:.5;}
-.controls{display:flex;gap:12px;margin-top:14px;flex-wrap:wrap;align-items:center;}
+.resource:hover{background:rgba(120,247,162,0.35);transform:scale(1.05);}
+.resource.dragging{opacity:0.5;}
+.controls{display:flex;gap:16px;margin-top:18px;flex-wrap:wrap;align-items:center;}
 .btn{
   background:#222228;
   color:white;
-  padding:10px 14px;
-  border-radius:8px;
+  padding:12px 18px;
+  border-radius:12px;
   font-family:'Special Elite';
   cursor:pointer;
   transition:all 0.3s;
+  box-shadow:0 4px 12px rgba(0,0,0,0.4);
 }
-.btn:hover{background:var(--highlight);color:#000;}
-.btn.primary{background:var(--highlight)}
+.btn:hover{background:var(--highlight);color:#000;transform:scale(1.05);}
+.btn.primary{background:var(--highlight);}
 .inventory{
-  background:linear-gradient(135deg,#0f1720,#14141a);
-  border-radius:12px;
-  padding:14px;
+  background:linear-gradient(145deg,#121822,#1a1f28);
+  border-radius:16px;
+  padding:18px;
   margin-top:20px;
+  box-shadow:0 8px 16px rgba(0,0,0,0.5);
 }
 .inv-item{
-  background:rgba(255,255,255,0.03);
-  padding:10px;
-  border-radius:8px;
+  background:rgba(255,255,255,0.05);
+  padding:12px;
+  border-radius:10px;
   display:flex;
   justify-content:center;
   opacity:0;
   transform:translateY(10px);
-  transition:all 0.5s ease;
+  transition:all 0.5s ease, transform 0.5s ease;
   color:var(--highlight);
+  margin-bottom:8px;
+  box-shadow:0 4px 10px rgba(0,0,0,0.3);
 }
 .inv-item.show{opacity:1;transform:translateY(0);}
 .outcome{
-  margin-top:16px;
-  background:rgba(255,255,255,0.03);
-  padding:12px;
-  border-radius:10px;
-  min-height:80px;
+  margin-top:18px;
+  background:rgba(255,255,255,0.05);
+  padding:14px;
+  border-radius:12px;
+  min-height:90px;
   font-style:italic;
+  box-shadow:0 4px 12px rgba(0,0,0,0.3);
+  transition:all 0.3s;
 }
 </style>
 </head>
@@ -223,8 +239,13 @@ function refreshInv(){
 }
 
 resources.forEach(res=>{
-  res.addEventListener('dragstart', e=>{e.dataTransfer.setData('text', res.dataset.day);res.classList.add('dragging');});
-  res.addEventListener('dragend', e=>{res.classList.remove('dragging');});
+  res.addEventListener('dragstart', e=>{
+    e.dataTransfer.setData('text', res.dataset.day);
+    res.classList.add('dragging');
+  });
+  res.addEventListener('dragend', e=>{
+    res.classList.remove('dragging');
+  });
 });
 
 slots.forEach(slot=>{
@@ -234,8 +255,8 @@ slots.forEach(slot=>{
     const day = e.dataTransfer.getData('text');
     if(slot.dataset.day===day && !inventory.some(x=>x.id===day)){
       const resName = [...resources].find(r=>r.dataset.day===day).textContent;
-      addItem(day,resName+" scheduled on "+slot.dataset.day);
-      publicStory.textContent=resName+" successfully scheduled!";
+      addItem(day,resName+" assigned.");
+      publicStory.textContent=resName+" assigned successfully.";
     } else {
       publicStory.textContent="Incorrect slot. Try again.";
     }
@@ -249,8 +270,8 @@ function addItem(id,label){
 }
 
 finishBtn.onclick = () => {
-  publicStory.textContent = "All tasks scheduled. Shift completed.";
-  setTimeout(()=>{window.location.href="act3game.html";},1500);
+  publicStory.textContent = "All tasks scheduled. Your shift is over. Here's what happened: The bridge was sabotaged by a hidden rival, but your logs were filed as usual. ";
+  setTimeout(()=>{window.location.href="act3game.html";},3000);
 };
 </script>
 </body>
