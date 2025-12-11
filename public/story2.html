@@ -10,183 +10,61 @@
   --card1:#1c1c23;
   --card2:#262630;
   --accent:#e6e6e6;
-  --nav:#14141a;
-  --nav-hover:#f27f78;
   --highlight:#f27f78;
+  --cctv-green:#9be79b;
 }
-html,body{
-  height:100%;
-  margin:0;
-  font-family:'Special Elite',monospace;
-  background:var(--bg);
-  color:var(--accent);
-  overflow-x:hidden;
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:'Special Elite',monospace;background:var(--bg);color:var(--accent);overflow-x:hidden}
+#grain{
+  position:fixed;inset:0;pointer-events:none;z-index:9999;mix-blend-mode:overlay;opacity:0.12;background-image:
+  linear-gradient(transparent 50%, rgba(255,255,255,0.02) 50%),
+  linear-gradient(90deg, transparent 50%, rgba(255,255,255,0.02) 50%);
+  background-size:2px 2px,2px 2px;
 }
-#rain {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  overflow: hidden;
-  z-index: 0;
-}
-.raindrop {
-  position: absolute;
-  top: -10px;
-  width: 2px;
-  height: 12px;
-  background: rgba(242,127,120,0.4);
-  animation: fall linear infinite;
-}
-@keyframes fall {
-  to { transform: translateY(100vh); }
-}
-.navbar{
-  width:100%;
-  background:var(--nav);
-  padding:12px 0;
-  display:flex;
-  justify-content:center;
-  gap:24px;
-  position:sticky;
-  top:0;
-  z-index:100
-}
-.navbar a{
-  color:var(--accent);
-  text-decoration:none;
-  font-weight:bold;
-  transition:.2s
-}
-.navbar a:hover{color:var(--nav-hover)}
-.wrap{
-  min-height:100%;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  padding:28px;
-  box-sizing:border-box;
-  position:relative;
-  z-index:2;
-  width:100%;
-}
+.navbar{width:100%;background:#0d0d10;padding:12px 0;display:flex;justify-content:center;gap:24px;position:sticky;top:0;z-index:50}
+.navbar a{color:var(--accent);text-decoration:none;font-weight:bold;transition:.2s}
+.navbar a:hover{color:var(--highlight)}
+.wrap{min-height:100%;display:flex;flex-direction:column;align-items:center;padding:28px;position:relative;z-index:2;width:100%}
 header{text-align:center;width:100%;max-width:1000px}
-h1{margin:6px 0;font-size:36px;color:var(--highlight);}
-p.lead{opacity:.9;margin:6px 0 18px;font-size:18px;line-height:1.6;}
-.pov-sign{
-  display:inline-block;
-  background:rgba(242,127,120,0.1);
-  color:var(--highlight);
-  padding:6px 12px;
-  border-radius:12px;
-  font-weight:bold;
-  margin-bottom:12px;
-}
+h1{margin:6px 0;font-size:36px;color:var(--highlight)}
+.pov-sign{display:inline-block;background:rgba(18,18,18,0.6);color:var(--cctv-green);padding:6px 12px;border-radius:12px;font-weight:bold;margin-bottom:12px}
+.lead{opacity:.9;margin:6px 0 18px;font-size:16px;line-height:1.6}
 .scene{display:grid;grid-template-columns:2fr 1fr;gap:18px;max-width:1000px;width:100%}
-.card-scene{
-  background:linear-gradient(135deg,var(--card1),var(--card2));
-  border-radius:12px;
-  padding:18px;
-  position:relative;
-  overflow:hidden;
-  min-height:380px;
-  z-index:2;
-  transition: transform 0.5s ease;
-}
-.card-scene:hover{transform:scale(1.02);}
-.description{
-  font-size:16px;
-  line-height:1.5;
-  opacity:0;
-  transform:translateY(10px);
-  transition: all 0.5s ease;
-}
-.description.show{opacity:1;transform:translateY(0);}
+.card-scene{background:linear-gradient(135deg,#0b0b0f,#111117);border-radius:12px;padding:18px;position:relative;overflow:hidden;min-height:420px;z-index:2;box-shadow:0 6px 30px rgba(0,0,0,0.6)}
+.description{font-size:15px;line-height:1.5;opacity:0.95;transform:translateY(0)}
 .hotspots{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
-.hotspot{
-  flex:1 1 140px;
-  background:rgba(255,255,255,0.035);
-  padding:12px;
-  border-radius:10px;
-  cursor:pointer;
-  text-align:center;
-  transition:.3s;
-  font-weight:bold;
-  color:var(--highlight);
+.hotspot{flex:1 1 140px;background:rgba(255,255,255,0.02);padding:12px;border-radius:10px;cursor:pointer;text-align:center;transition:.25s;font-weight:bold;color:var(--highlight)}
+.hotspot:hover{transform:scale(1.04);background:rgba(242,127,120,0.08)}
+.inventory{background:linear-gradient(135deg,#071017,#0c0d10);border-radius:12px;padding:14px;margin-top:20px}
+.inv-title{color:var(--cctv-green);font-weight:bold;margin-bottom:8px}
+.inv-empty{opacity:0.9}
+.action-card{width:100%;background:rgba(242,127,120,0.06);border-left:4px solid var(--highlight);padding:10px;margin:8px 0;border-radius:6px;color:var(--highlight);font-weight:bold;opacity:0;transform:translateY(8px);transition:all .45s}
+.action-card.show{opacity:1;transform:translateY(0)}
+.controls{display:flex;gap:12px;margin-top:14px;align-items:center;flex-wrap:wrap}
+.btn{background:#111114;color:white;padding:10px 14px;border-radius:8px;cursor:pointer;transition:all .25s;border:1px solid rgba(255,255,255,0.02)}
+.btn:hover{background:var(--highlight);color:#000}
+.btn.primary{background:var(--highlight);color:#000}
+.outcome{margin-top:16px;background:rgba(0,0,0,0.25);padding:12px;border-radius:10px;min-height:80px;font-style:italic;color:var(--cctv-green);border:1px solid rgba(155,231,155,0.06)}
+.transcript{
+  margin-top:14px;background:#060607;border-radius:8px;padding:12px;min-height:140px;color:var(--cctv-green);
+  font-family:monospace;font-size:14px;line-height:1.4;border:1px solid rgba(155,231,155,0.06);position:relative;overflow:auto;
+  max-height:220px;
 }
-.hotspot:hover{
-  transform:scale(1.1);
-  background:rgba(242,127,120,0.2);
+.timestamp{position:absolute;top:8px;right:12px;color:rgba(155,231,155,0.7);font-size:12px;letter-spacing:0.6px}
+.transcript .line{opacity:0.95;margin:6px 0}
+.input-row{display:flex;gap:8px;margin-top:10px}
+input[type=text]{padding:8px;border-radius:6px;border:none;outline:none;background:#0b0b0d;color:var(--accent);width:70%}
+.cctv-overlay{
+  position:fixed;inset:0;pointer-events:none;background:linear-gradient(transparent 40%, rgba(0,0,0,0.2) 100%);mix-blend-mode:multiply;z-index:40;opacity:0.9;filter:grayscale(1) contrast(0.95)
 }
-.hotspot.locked{opacity:.35;cursor:not-allowed}
-.hotspot:active{transform:translateY(2px)}
-.inventory{
-  background:linear-gradient(135deg,#0f1720,#14141a);
-  border-radius:12px;
-  padding:14px;
-  margin-top:20px;
-}
-.inv-item{
-  background:rgba(255,255,255,0.03);
-  padding:10px;
-  border-radius:8px;
-  display:flex;
-  justify-content:space-between;
-  opacity:0;
-  transform:translateY(10px);
-  transition:all 0.5s ease;
-  color:var(--highlight);
-}
-.inv-item.show{opacity:1;transform:translateY(0);}
-.action-card{
-  width:100%;
-  background:rgba(242,127,120,0.15);
-  border-left:4px solid var(--highlight);
-  padding:12px;
-  margin:8px 0;
-  border-radius:6px;
-  font-weight:bold;
-  color:var(--highlight);
-  opacity:0;
-  transform:translateY(10px);
-  transition:all 0.5s;
-}
-.action-card.show{opacity:1;transform:translateY(0);}
-.outcome{
-  margin-top:16px;
-  background:rgba(255,255,255,0.03);
-  padding:12px;
-  border-radius:10px;
-  min-height:80px;
-  font-style:italic;
-}
-.controls{display:flex;gap:12px;margin-top:14px;flex-wrap:wrap;}
-.btn{
-  background:#222228;
-  color:white;
-  padding:10px 14px;
-  border-radius:8px;
-  font-family:'Special Elite';
-  cursor:pointer;
-  transition:all 0.3s;
-}
-.btn:hover{background:var(--highlight);color:#000;}
-.btn.primary{background:var(--highlight)}
-@media(max-width:900px){.scene{grid-template-columns:1fr}}
-input[type=text]{
-  padding:6px;
-  border-radius:6px;
-  border:none;
-  outline:none;
-  width:70%;
-  margin-right:6px;
-}
+.screen-overlay{position:fixed;inset:0;z-index:1000;pointer-events:none;opacity:0;transition:opacity .45s}
+.flash-red{position:fixed;inset:0;background:rgba(255,0,0,0.55);z-index:1100;opacity:0;pointer-events:none}
+.cctv-ticker{position:fixed;left:12px;bottom:12px;color:rgba(155,231,155,0.6);font-family:monospace;font-size:12px;z-index:200}
+@media(max-width:900px){.scene{grid-template-columns:1fr}.transcript{max-height:180px}}
 </style>
 </head>
 <body>
-<div id="rain"></div>
+<div id="grain"></div>
 <div class="navbar">
   <a href="homepage.html">Home</a>
   <a href="story1.html">Act 1</a>
@@ -199,43 +77,85 @@ input[type=text]{
 <header>
   <h1>Chapter 2: Silent Night</h1>
   <div class="pov-sign">POV: Engineer</div>
-  <p class="lead">Solve the riddles to perform actions and repair the bridge. Only when all are solved can you finish your shift.</p>
+  <p class="lead">This is your interrogation record. Answer truthfully or let the public narrative stand.</p>
 </header>
 <div class="scene">
   <div class="card-scene">
-    <div class="description show">The bridge creaks in the storm. Solve puzzles to reconnect wires, fix panels, and inspect hidden damage.</div>
+    <div class="description">The bridge creaks in the storm. Cameras watch. The transcript records your words.</div>
     <div class="hotspots" id="hotspots">
-      <div class="hotspot" data-id="riddle1">🔌<br>Reconnect Wires</div>
-      <div class="hotspot" data-id="riddle2">🛠️<br>Fix Panel</div>
-      <div class="hotspot" data-id="riddle3">🔍<br>Inspect Bridge</div>
+      <div class="hotspot" data-id="q1">🔌<br>Question 1</div>
+      <div class="hotspot" data-id="q2">🛠️<br>Question 2</div>
+      <div class="hotspot" data-id="q3">🔍<br>Question 3</div>
+    </div>
+    <div class="transcript" id="transcript">
+      <div class="timestamp" id="tsTop"></div>
+      <div id="lines">
+        <div class="line">[SYSTEM] Camera feed active. Recording initiated.</div>
+      </div>
     </div>
     <div class="controls">
       <div id="riddleArea"></div>
       <button class="btn primary" id="finishBtn" disabled>Finish Shift</button>
       <div style="flex:1"></div>
-      <div id="status">Actions Solved: <strong id="count">0</strong></div>
+      <div id="status">Actions Recorded: <strong id="count">0</strong></div>
     </div>
-    <div class="outcome" id="publicStory">Solve all riddles to record your actions.</div>
+    <div class="outcome" id="publicStory"></div>
   </div>
   <aside class="inventory">
     <div class="inv-title">Recorded Actions</div>
-    <div id="inventoryList"><div class="inv-empty show">Nothing yet.</div></div>
+    <div id="inventoryList"><div class="inv-empty">Nothing yet.</div></div>
   </aside>
 </div>
 </div>
+<div class="cctv-overlay"></div>
+<div class="screen-overlay" id="screenOverlay"></div>
+<div class="flash-red" id="flashRed"></div>
+<div class="cctv-ticker" id="ticker"></div>
 <script>
 let inventory=[];
 const invList=document.getElementById("inventoryList");
 const countEl=document.getElementById("count");
-const publicStory=document.getElementById("publicStory");
+const transcript=document.getElementById("transcript");
+const linesEl=document.getElementById("lines");
+const tsTop=document.getElementById("tsTop");
 const riddleArea=document.getElementById("riddleArea");
 const finishBtn=document.getElementById("finishBtn");
+const screenOverlay=document.getElementById("screenOverlay");
+const flashRed=document.getElementById("flashRed");
+const ticker=document.getElementById("ticker");
+
+const questions = {
+  q1: "Officer: Why were you at the bridge during the night of the incident?",
+  q2: "Officer: Multiple witnesses claim you were touching the wiring. What exactly were you doing?",
+  q3: "Officer: Why did you leave the bridge quickly when the patrol arrived?"
+};
+
+const storyLines = [
+  "The engineer reads about the memo.",
+  "They go to the bridge to instead try to make it worse.",
+  "The engineer is seen on the bridge.",
+  "They are forced to leave the bridge, and the next day, their blurred photo appears in news reports suggesting sabotage.",
+  "The engineer is accused of tampering with the bridge.",
+  "The engineer is arrested."
+];
+
+function nowStamp(){
+  const d=new Date();
+  const pad=(n)=>n.toString().padStart(2,'0');
+  return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
+}
+function updateTimestamps(){
+  tsTop.textContent = 'REC: ' + nowStamp();
+  ticker.textContent = 'CAM 03 | ' + nowStamp();
+}
+setInterval(updateTimestamps,1000);
+updateTimestamps();
 
 function refreshInv(){
   invList.innerHTML="";
   if(inventory.length===0){
     let e=document.createElement("div");
-    e.className="inv-empty show";
+    e.className="inv-empty";
     e.textContent="Nothing yet.";
     invList.appendChild(e);
   }else{
@@ -251,47 +171,41 @@ function refreshInv(){
   finishBtn.disabled = inventory.length < 3;
 }
 
-function showRiddle(id){
-  let riddleText="", answer="";
-  if(id==="riddle1"){riddleText="I flow without moving, I carry no weight, but I power your life and light up your state. What am I?"; answer="electricity";}
-  if(id==="riddle2"){riddleText="I’m a wire without legs, I’m full of potential, I can shock if you touch me, yet I’m essential. What am I?"; answer="a live wire";}
-  if(id==="riddle3"){riddleText="I can be static or dynamic, I run through circuits, I make your devices run, and sometimes I spark. What am I?"; answer="current";}
+function typeLine(text,cb){
+  const container=document.createElement('div');
+  container.className='line';
+  linesEl.appendChild(container);
+  let i=0;
+  const t=setInterval(()=>{
+    container.textContent = text.slice(0,i+1);
+    i++;
+    transcript.scrollTop = transcript.scrollHeight;
+    if(i>=text.length){clearInterval(t);if(cb)cb();}
+  },15);
+}
 
-  riddleArea.innerHTML=`
-    <div>${riddleText}</div>
-    <input type="text" id="riddleInput" placeholder="Your answer">
-    <button class="btn" id="submitRiddle">Submit</button>
-    <button class="btn" id="hintBtn">Need Help?</button>
-    <div id="hangmanArea" style="margin-top:8px; font-family: monospace; color:#f27f78; font-weight:bold;"></div>
-    <div id="hangmanMsg" style="margin-top:4px; color:#f27f78; font-style:italic;"></div>
+function showQuestion(id){
+  riddleArea.innerHTML = `
+    <div style="color:var(--cctv-green);font-family:monospace;margin-top:8px">${questions[id]}</div>
+    <div class="input-row">
+      <input type="text" id="answerInput" placeholder="Your response">
+      <button class="btn" id="submitAnswer">Submit</button>
+    </div>
   `;
-
-  let answerLetters = answer.toLowerCase().split('');
-  let displayLetters = answerLetters.map(l => (l===' ' ? ' ' : '_'));
-  let hangmanArea = document.getElementById("hangmanArea");
-  let hangmanMsg = document.getElementById("hangmanMsg");
-  hangmanArea.textContent = displayLetters.join(' ');
-
-  document.getElementById("submitRiddle").onclick=()=>{
-    let user= document.getElementById("riddleInput").value.toLowerCase().trim();
-    if(user===answer){
-      addItem(id,"Solved: "+riddleText);
-      riddleArea.innerHTML="";
-      publicStory.textContent="Correct! Action recorded.";
-    } else {
-      publicStory.textContent="Incorrect. Try again.";
-    }
-  };
-
-  document.getElementById("hintBtn").onclick = ()=>{
-    let letter = prompt("Guess a letter:").toLowerCase();
-    if(letter && letter.length===1){
-      let found=false;
-      displayLetters = displayLetters.map((l,i)=>{
-        if(l==='_' && answerLetters[i]===letter){found=true; return letter;} else return l;
-      });
-      hangmanArea.textContent = displayLetters.join(' ');
-      hangmanMsg.textContent = found ? "Good guess!" : "Letter not in answer.";
+  document.getElementById("submitAnswer").onclick = () => {
+    let user = document.getElementById("answerInput").value.trim();
+    if(user.length>0){
+      const entry = `${nowStamp()} | ENGINEER: ${user}`;
+      typeLine(entry);
+      addItem(id, questions[id] + " — " + user);
+      riddleArea.innerHTML = '';
+      screenPulse();
+      const pub = document.getElementById('publicStory');
+      if(pub.children.length < storyLines.length){
+        const div=document.createElement('div');
+        div.textContent = storyLines[pub.children.length];
+        pub.appendChild(div);
+      }
     }
   };
 }
@@ -303,25 +217,24 @@ function addItem(id,label){
 }
 
 document.querySelectorAll(".hotspot").forEach(h=>{
-  h.onclick=()=> showRiddle(h.dataset.id);
+  h.onclick=()=> showQuestion(h.dataset.id);
 });
 
 finishBtn.onclick = () => {
-  publicStory.textContent = "Your shift ends. Actions recorded. Moving on...";
-  setTimeout(() => { window.location.href = "act2game.html"; }, 1500);
+  screenOverlay.style.background = 'rgba(0,0,0,0.6)';
+  screenOverlay.style.opacity = '1';
+  flashRed.style.transition = 'opacity .12s';
+  flashRed.style.opacity = '1';
+  setTimeout(()=>{flashRed.style.opacity='0'},350);
+  setTimeout(()=>{screenOverlay.style.opacity='0'; window.location.href='act2game.html'},800);
 };
 
-const rainContainer = document.getElementById("rain");
-const numDrops = 100;
-for(let i=0; i<numDrops; i++){
-  let drop = document.createElement("div");
-  drop.className = "raindrop";
-  drop.style.left = Math.random() * window.innerWidth + "px";
-  drop.style.animationDuration = (0.5 + Math.random() * 0.5) + "s";
-  drop.style.animationDelay = Math.random() * 2 + "s";
-  drop.style.height = (10 + Math.random() * 15) + "px";
-  rainContainer.appendChild(drop);
+function screenPulse(){
+  screenOverlay.style.background = 'rgba(255,0,0,0.02)';
+  screenOverlay.style.opacity = '1';
+  setTimeout(()=>{screenOverlay.style.opacity='0'},240);
 }
+
 </script>
 </body>
 </html>
