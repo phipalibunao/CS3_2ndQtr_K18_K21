@@ -60,16 +60,6 @@ h1{
   max-width:900px;
   line-height:1.6;
 }
-.card-scene{
-  margin-top:20px;
-  width:100%;
-  max-width:950px;
-  background:linear-gradient(135deg,var(--card1),var(--card2));
-  padding:25px;
-  border-radius:16px;
-  box-shadow:0 0 20px rgba(0,0,0,0.5);
-  transition:0.3s;
-}
 #timer{
   font-size:28px;
   color:var(--highlight);
@@ -77,9 +67,21 @@ h1{
   font-weight:bold;
 }
 .warning{color:#ff4d4d!important;}
+.game-area{
+  display:flex;
+  gap:20px;
+  width:100%;
+  max-width:1200px;
+}
+.card-scene{
+  flex:3;
+  background:linear-gradient(135deg,var(--card1),var(--card2));
+  padding:25px;
+  border-radius:16px;
+  box-shadow:0 0 20px rgba(0,0,0,0.5);
+  transition:0.3s;
+}
 #projects{
-  width:900px;
-  margin:auto;
   display:grid;
   grid-template-columns:repeat(2,1fr);
   gap:20px;
@@ -99,7 +101,6 @@ h1{
 .project:hover{border-color:var(--highlight);}
 #game{
   margin-top:25px;
-  width:900px;
   display:grid;
   grid-template-columns:repeat(4,1fr);
   gap:15px;
@@ -139,26 +140,6 @@ h1{
   75%{transform:translateX(-5px);}
   100%{transform:translateX(0);}
 }
-.rain{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  pointer-events:none;
-  overflow:hidden;
-}
-.drop{
-  position:absolute;
-  width:2px;
-  height:15px;
-  background:rgba(255,255,255,0.5);
-  animation:fall linear infinite;
-}
-@keyframes fall{
-  0%{transform:translateY(-20px);}
-  100%{transform:translateY(120vh);}
-}
 #hiddenClue{
   margin-top:25px;
   display:none;
@@ -166,7 +147,6 @@ h1{
   background:rgba(255,255,255,0.05);
   border-radius:12px;
   font-size:20px;
-  max-width:900px;
   color:var(--highlight);
   font-weight:bold;
 }
@@ -188,9 +168,38 @@ h1{
   color:#000;
   transform:scale(1.05);
 }
+#clues{
+  flex:1;
+  background:rgba(255,255,255,0.05);
+  padding:20px;
+  border-radius:12px;
+  text-align:left;
+  font-size:18px;
+  line-height:1.5;
+  color:var(--highlight);
+}
+.rain{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  pointer-events:none;
+  overflow:hidden;
+}
+.drop{
+  position:absolute;
+  width:2px;
+  height:15px;
+  background:rgba(255,255,255,0.5);
+  animation:fall linear infinite;
+}
+@keyframes fall{
+  0%{transform:translateY(-20px);}
+  100%{transform:translateY(120vh);}
+}
 </style>
 </head>
-
 <body>
 
 <div class="navbar">
@@ -205,10 +214,11 @@ h1{
 <div class="wrap">
 <h1>Act 4: Public Duty</h1>
 <p class="lead">Drag the budgets to the correct project.<br><span style="color:var(--highlight);">Every wrong move = -7 seconds.</span></p>
-<h2 id="timer">45</h2>
+<h2 id="timer">60</h2>
 
 <div class="rain" id="rain"></div>
 
+<div class="game-area">
 <div class="card-scene">
 
 <div id="projects">
@@ -230,7 +240,20 @@ h1{
 </div>
 
 <div id="hiddenClue"></div>
-<button id="storyBtn" onclick="window.location.href='story4.html'">Get Story</button>
+<button id="storyBtn" onclick="window.location.href='story.html'">Get Story</button>
+
+</div>
+
+<div id="clues">
+<h3>Clues</h3>
+<ul>
+<li>Bridge Maintenance is substantial but not the highest budget.</li>
+<li>City Reputation is smaller but important for appearances.</li>
+<li>Parks & Culture is moderate, smaller than the bridge budget.</li>
+<li>The Mayor’s Personal Project is the largest allocation.</li>
+</ul>
+<p>Use these hints to deduce the correct budget allocation.</p>
+</div>
 
 </div>
 </div>
@@ -238,7 +261,7 @@ h1{
 <script>
 const items = document.querySelectorAll('.budget-item');
 const projects = document.querySelectorAll('.project');
-let timeLeft = 45;
+let timeLeft = 60;
 const timerDisplay = document.getElementById("timer");
 const hiddenClue = document.getElementById("hiddenClue");
 const storyBtn = document.getElementById("storyBtn");
@@ -247,11 +270,11 @@ let gameEnded = false;
 const countdown = setInterval(() => {
   timeLeft--;
   timerDisplay.textContent = timeLeft;
-  if(timeLeft<=10 && timeLeft>0) timerDisplay.classList.add("warning");
-  if(timeLeft<=0 && !gameEnded){
+  if(timeLeft <= 10 && timeLeft > 0) timerDisplay.classList.add("warning");
+  if(timeLeft <= 0 && !gameEnded){
     endGame(false);
   }
-},1000);
+}, 1000);
 
 items.forEach(item => {
   item.addEventListener('dragstart', e => {
