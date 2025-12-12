@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Page info -->
-    <title>Lights</title>
+    <title>act3</title>
     <meta name="description" content="The second chapter.">
     <meta name="author" content="Datu Macalintal, Phipa Libunao">
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&family=Cormorant+Garamond:wght@600&display=swap" rel="stylesheet">
@@ -95,6 +95,7 @@
         boxStays = [];
         correctlyPlaced = [];
         dates = [];
+        assignment = [];
         boxSelected = null;
         score = 0;
 
@@ -113,6 +114,22 @@
             function start() {
                 document.body.style.overflowX = "visible";
             }
+
+            for (i = 0; i < 30; i++){
+                dates.push(i);
+                const hole = document.createElement("div");
+                holes.push(hole);
+                holes[i].classList.add('hole');
+                holes[i].style.width = SIDE_LENGTH;
+                holes[i].style.height = SIDE_LENGTH;
+                holes[i].style.left = `${(i%7)*BOX_SPACE}px`;
+                holes[i].style.top = `${Math.floor(i/7)*BOX_SPACE + CONTAINER_SPACE}px`;
+                holes[i].style.backgroundColor = "white";
+                holes[i].innerHTML = i+1;
+
+                container.appendChild(holes[i]);
+            }
+
             for (i = 0; i < totalBoxes; i++){
                 const box = document.createElement("div");
 
@@ -131,23 +148,11 @@
                 originalTop[i] = boxes[i].style.top;
                 boxStays[i] = true;
                 boxes[i].addEventListener("mousedown", move);
+
+                assignment[i] = Math.floor(Math.random() * dates.length);
+
             }
             
-            for (i = 0; i < 30; i++){
-                dates.push(i);
-                const hole = document.createElement("div");
-                holes.push(hole);
-                holes[i].classList.add('hole');
-                holes[i].style.width = SIDE_LENGTH;
-                holes[i].style.height = SIDE_LENGTH;
-                holes[i].style.left = `${(i%7)*BOX_SPACE}px`;
-                holes[i].style.top = `${Math.floor(i/7)*BOX_SPACE + CONTAINER_SPACE}px`;
-                holes[i].style.backgroundColor = "white";
-                holes[i].innerHTML = i+1;
-
-                container.appendChild(holes[i]);
-            }
-
             for (i = totalBoxes; i > 0; i--){
                 color = Math.floor(Math.random() * i);
                 boxes[totalBoxes - i].style.backgroundColor = `rgb(${Math.floor(Math.random() * ((colors[color] + 1) * 60 - 20) + 20)}, ${Math.floor(Math.random() * ((colors[color] + 1) * 40 - 10) + 10)}, ${Math.floor(Math.random() * ((colors[color] + 1) * 50 - 10) + 10)})`;
