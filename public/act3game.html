@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Page info -->
-    <title>Lights</title>
+    <title>act3</title>
     <meta name="description" content="The second chapter.">
     <meta name="author" content="Datu Macalintal, Phipa Libunao">
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&family=Cormorant+Garamond:wght@600&display=swap" rel="stylesheet">
@@ -70,10 +70,178 @@
             0% {transform: translateX(100vw);}
             100% {transform: translateX(0);}
         }
+
     </style>
 </head>
 <body>
-    <div class="container" style="width: 1000px; height: 800px;">
+    <img class="bg" src="/assets/csminigamebg2.png">
         
     </div>
+    
+
+    <script>
+        totalBoxes = 3;
+        const CONTAINER_SPACE = 50;
+        const CONTAINER_LEFT = "100px";
+        const BOX_SPACE = 150;
+        const SIDE_LENGTH = "100px";
+
+        holes = [];
+        boxes = [];
+        colors = [];
+        
+        originalLeft = [];
+        originalTop = [];
+        boxStays = [];
+        correctlyPlaced = [];
+        dates = [];
+        assignment = [];
+        boxSelected = null;
+        score = 0;
+
+        const container = document.createElement("div");
+        container.style.width = "1000px";
+        container.style.top = "100px";
+        container.classList.add('container');
+        document.body.appendChild(container);
+
+        create();
+
+        function create() {
+            container.style.left = CONTAINER_LEFT;
+            document.body.style.overflowX = "hidden";
+            container.addEventListener("animationend", start);
+            function start() {
+                document.body.style.overflowX = "visible";
+            }
+
+            for (i = 0; i < 30; i++){
+                dates.push(i);
+                const hole = document.createElement("div");
+                holes.push(hole);
+                holes[i].classList.add('hole');
+                holes[i].style.width = SIDE_LENGTH;
+                holes[i].style.height = SIDE_LENGTH;
+                holes[i].style.left = `${(i%7)*BOX_SPACE}px`;
+                holes[i].style.top = `${Math.floor(i/7)*BOX_SPACE + CONTAINER_SPACE}px`;
+                holes[i].style.backgroundColor = "white";
+                holes[i].innerHTML = i+1;
+
+                container.appendChild(holes[i]);
+            }
+
+            for (i = 0; i < totalBoxes; i++){
+                const box = document.createElement("div");
+
+                colors.push(i);
+                correctlyPlaced.push(false);
+                boxes.push(box);
+
+                boxes[i].classList.add('box');
+                boxes[i].id = i;
+                boxes[i].style.width = SIDE_LENGTH;
+                boxes[i].style.height = SIDE_LENGTH;
+                boxes[i].style.left = `${(i)*BOX_SPACE}px`;
+                boxes[i].style.top = 0;
+                
+                originalLeft[i] = boxes[i].style.left;
+                originalTop[i] = boxes[i].style.top;
+                boxStays[i] = true;
+                boxes[i].addEventListener("mousedown", move);
+
+                assignment[i] = Math.floor(Math.random() * dates.length);
+
+            }
+            
+            for (i = totalBoxes; i > 0; i--){
+                color = Math.floor(Math.random() * i);
+                boxes[totalBoxes - i].style.backgroundColor = `rgb(${Math.floor(Math.random() * ((colors[color] + 1) * 60 - 20) + 20)}, ${Math.floor(Math.random() * ((colors[color] + 1) * 40 - 10) + 10)}, ${Math.floor(Math.random() * ((colors[color] + 1) * 50 - 10) + 10)})`;
+                boxes[totalBoxes - i].innerHTML = totalBoxes - i + 1;
+    
+                colors.splice(color, 1);
+
+                document.body.appendChild(boxes[totalBoxes - i]);
+            }
+
+            container.style.height = `${parseInt(holes[29].style.top) + parseInt(holes[29].style.height) + CONTAINER_SPACE}px`;
+
+        }
+        
+        
+
+        function move(event) {
+            if (score < totalBoxes){
+                boxSelected = event.target.id;
+                console.log(boxSelected);
+                boxStays[boxSelected] = false;
+                boxes[boxSelected].style.transition = "none";
+            }
+        }
+
+        document.addEventListener("mousemove", moving);
+        function moving(event) {
+            if (boxStays[boxSelected] == false){
+                
+                boxes[boxSelected].style.left = `${event.clientX - parseInt(boxes[boxSelected].style.width)/2 + parseInt(window.scrollX)}px`;
+            
+                boxes[boxSelected].style.top = `${event.clientY - parseInt(boxes[boxSelected].style.height)/2 + parseInt(window.scrollY)}px`;
+
+                for(i = 0; i < 30; i++){
+                    if (event.clientX + parseInt(window.scrollX) >= parseInt(holes[i].style.left) + parseInt(container.style.left) && event.clientX + parseInt(window.scrollX) <= parseInt(holes[i].style.left) + parseInt(holes[i].style.width) + parseInt(container.style.left) && event.clientY + parseInt(window.scrollY) >= parseInt(holes[i].style.top) + parseInt(container.style.top) && event.clientY + parseInt(window.scrollY) <= parseInt(holes[i].style.top) + parseInt(holes[i].style.height) + parseInt(container.style.top)){
+                        boxes[boxSelected].style.left = `${parseInt(holes[i].style.left) + parseInt(holes[i].style.width)}px`;
+                        boxes[boxSelected].style.top = `${parseInt(holes[i].style.top) + parseInt(holes[i].style.height)}px`;
+                    }
+                } 
+
+                
+                
+                
+            }
+        }
+
+        document.addEventListener("mouseup", stay);
+        function stay(event) {
+            inHole = false;
+            for (i = 0; i < 30; i++){
+                if (event.clientX + parseInt(window.scrollX) < parseInt(holes[i].style.left) + parseInt(container.style.left) || event.clientX + parseInt(window.scrollX) > parseInt(holes[i].style.left) + parseInt(holes[i].style.width) + parseInt(container.style.left) || event.clientY + parseInt(window.scrollY) < parseInt(holes[i].style.top) + parseInt(container.style.top) || event.clientY + parseInt(window.scrollY) > parseInt(holes[i].style.top) + parseInt(holes[i].style.height) + parseInt(container.style.top)){
+                    if (boxSelected != null){
+                        if (correctlyPlaced[i] == true && boxes[boxSelected].style.backgroundColor == holes[i].style.backgroundColor){
+                            score = score - 1;
+                            correctlyPlaced[i] = false;
+                        }
+                    }
+                }
+                else{
+                    if (boxSelected != null){
+                        inHole = true;
+                        if (boxes[boxSelected].style.backgroundColor == holes[i].style.backgroundColor){
+                            if (correctlyPlaced[i] == false){
+                                score = score + 1;
+                                correctlyPlaced[i] = true;
+                            }
+                            
+                        }
+                    }
+                }
+            }
+            if (inHole == false){
+                if (boxStays[boxSelected] == false){
+                    boxes[boxSelected].style.left = originalLeft[boxSelected];
+                    boxes[boxSelected].style.top = originalTop[boxSelected];
+                    boxes[boxSelected].style.transition = "ease-out 0.5s";
+                }
+            }
+
+            if (score == totalBoxes && boxSelected != null){
+                console.log("Hooray!");
+                for (i = 0; i < totalBoxes; i++){
+                    boxes[i].style.cursor = "default";
+                }
+            }
+
+            boxStays[boxSelected] = true;
+            boxSelected = null;
+            console.log(score);
+        }
+    </script>
 </body>
