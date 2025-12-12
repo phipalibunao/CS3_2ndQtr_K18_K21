@@ -104,7 +104,7 @@ The engineer knows something is wrong with the bridge.
 **What the Public Believe:**  
 The supervisor tells the engineer not to fix the bridge, with a motive to go against the mayor.  
 The public believes this shows negligence or sabotage.
-Evidence suggest the supervisor was involved in the collapse.
+Evidence suggest the supervisor' was involved in the collapse.
 The supervisor gets arrested.
 
 > Players can see how following instructions can be misinterpreted when only part of the story is reported.  

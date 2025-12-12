@@ -142,7 +142,6 @@ h1{
 }
 #hiddenClue{
   margin-top:25px;
-  display:none;
   padding:20px;
   background:rgba(255,255,255,0.05);
   border-radius:12px;
@@ -150,23 +149,12 @@ h1{
   color:var(--highlight);
   font-weight:bold;
 }
-#storyBtn{
+#gameOver{
   margin-top:30px;
-  padding:12px 25px;
-  font-size:20px;
-  border:none;
-  border-radius:12px;
-  background:var(--highlight);
-  color:#000;
-  cursor:pointer;
-  transition:.3s;
-  font-family:'Special Elite', monospace;
+  font-size:24px;
+  font-weight:bold;
+  color:#f7d678;
   display:none;
-}
-#storyBtn:hover{
-  background:#fff;
-  color:#000;
-  transform:scale(1.05);
 }
 #clues{
   flex:1;
@@ -240,7 +228,7 @@ h1{
 </div>
 
 <div id="hiddenClue"></div>
-<button id="storyBtn" onclick="window.location.href='story.html'">Get Story</button>
+<div id="gameOver">GAME OVER</div>
 
 </div>
 
@@ -264,7 +252,7 @@ const projects = document.querySelectorAll('.project');
 let timeLeft = 60;
 const timerDisplay = document.getElementById("timer");
 const hiddenClue = document.getElementById("hiddenClue");
-const storyBtn = document.getElementById("storyBtn");
+const gameOver = document.getElementById("gameOver");
 let gameEnded = false;
 
 const countdown = setInterval(() => {
@@ -301,7 +289,6 @@ projects.forEach(proj => {
       draggedItem.classList.add('wrong');
       setTimeout(()=>draggedItem.classList.remove('wrong'), 300);
       timeLeft -= 7;
-      alert("Incorrect placement! -7 seconds.");
     }
   });
 });
@@ -310,14 +297,13 @@ function endGame(won){
   gameEnded = true;
   clearInterval(countdown);
   items.forEach(i => i.setAttribute('draggable', false));
+  hiddenClue.style.display = 'block';
+  gameOver.style.display = 'block';
   if(won){
-    hiddenClue.style.display = 'block';
-    hiddenClue.innerHTML = "Hidden Clue Unlocked: The mayor quietly redirected the biggest budget to himself.";
+    hiddenClue.innerHTML = "**True Clue:** The mayor cut the budget for reputation, other projects, and himself.";
   } else {
-    hiddenClue.style.display = 'none';
-    timerDisplay.textContent = "Time’s up! You failed!";
+    hiddenClue.innerHTML = "The mayor did maintenance and managed the budget.";
   }
-  storyBtn.style.display = 'inline-block';
 }
 
 function shuffleBudgets(){

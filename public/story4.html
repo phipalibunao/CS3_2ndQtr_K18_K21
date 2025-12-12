@@ -67,14 +67,6 @@ p.lead{opacity:.9;margin:6px 0 18px;font-size:18px;line-height:1.6;}
   width:100%;
   max-width:900px;
 }
-.input-field{
-  padding:10px;
-  border-radius:6px;
-  border:none;
-  margin-top:10px;
-  width:80px;
-  text-align:center;
-}
 .choice-btn{
   background:#222228;
   color:white;
@@ -84,6 +76,10 @@ p.lead{opacity:.9;margin:6px 0 18px;font-size:18px;line-height:1.6;}
   cursor:pointer;
   margin-top:12px;
   transition:.3s;
+  display:block;
+  width:100%;
+  max-width:250px;
+  text-align:center;
 }
 .choice-btn:hover{background:var(--highlight);color:#000;}
 .outcome{
@@ -110,93 +106,72 @@ p.lead{opacity:.9;margin:6px 0 18px;font-size:18px;line-height:1.6;}
 <header>
   <h1>Chapter 4: Public Duty</h1>
   <div class="pov-sign">POV: Mayor</div>
-  <p class="lead">The bridge collapse shook the city. Publicly, I appear responsible. Now, I must allocate funds correctly, even if secretly some things remain hidden.</p>
+  <p class="lead">The bridge collapse shook the city. Publicly, I appear responsible, managing budgets and overseeing maintenance. Behind the scenes, I must protect the city's trust while holding others accountable.</p>
 </header>
 <div class="card-scene">
   <div class="story-text" id="storyText">
-    The public believes I inspected the bridge, managed city projects, and balanced budgets. My hidden actions remain my own secret.
+    I personally performed maintenance checks on the bridge and managed the budget responsibly. Publicly, I blame the engineer and supervisor to maintain trust in the city.
   </div>
   <div class="outcome" id="outcome">
-    Guess the correct amount for each budget item. 
+    Select the correct budget allocations to show responsible management:
   </div>
   <div id="budget-game" style="margin-top:12px;">
-    <p>Bridge Repair Budget: 5000<br>How much did I spend on materials? The amount is less than 3000 but greater than 1000.</p>
-    <input type="number" class="input-field" id="q1">
-    <button class="choice-btn" onclick="checkQ1()">Submit</button>
+    <p>Bridge Repair Budget: Which option did I allocate to materials?</p>
+    <button class="choice-btn" onclick="checkChoice(1)">A) 1000</button>
+    <button class="choice-btn" onclick="checkChoice(2)">B) 2000</button>
+    <button class="choice-btn" onclick="checkChoice(3)">C) 3000</button>
+    <button class="choice-btn" onclick="checkChoice(4)">D) 4000</button>
   </div>
-  <div id="budget-result" style="margin-top:12px;"></div>
 </div>
 </div>
 <script>
-const answers = [2000, 750, 1000]; // correct numbers for each question
+const answers = [2, 3, 1]; // correct choices
 let currentQ = 0;
 
-function checkGuess(userGuess, correctAnswer) {
-  if(userGuess === correctAnswer) return "correct";
-  if(userGuess < correctAnswer) return "higher";
-  return "lower";
-}
-
-function checkQ1() {
-  const guess = Number(document.getElementById('q1').value);
-  const feedback = checkGuess(guess, answers[currentQ]);
-  const result = document.getElementById('budget-result');
-  if(feedback === "correct"){
-    result.innerHTML="<p>Correct!</p>";
+function checkChoice(choice){
+  const outcome = document.getElementById('outcome');
+  if(choice === answers[currentQ]){
+    outcome.innerHTML = "Correct!";
     currentQ++;
     nextQuestion();
   } else {
-    result.innerHTML="<p>"+feedback.toUpperCase()+"!</p>";
+    outcome.innerHTML = "Try again!";
   }
 }
 
 function nextQuestion(){
   const gameDiv = document.getElementById('budget-game');
-  if(currentQ===1){
+  if(currentQ === 1){
     gameDiv.innerHTML = `
-      <p>Staff Salaries: 3000<br>How much went to overtime? The amount is less than 1000 but greater than 600.</p>
-      <input type="number" class="input-field" id="q2">
-      <button class="choice-btn" onclick="checkQ2()">Submit</button>
+      <p>Staff Salaries: Which option went to overtime payments?</p>
+      <button class="choice-btn" onclick="checkChoice(1)">A) 500</button>
+      <button class="choice-btn" onclick="checkChoice(2)">B) 800</button>
+      <button class="choice-btn" onclick="checkChoice(3)">C) 750</button>
+      <button class="choice-btn" onclick="checkChoice(4)">D) 1000</button>
     `;
-  } else if(currentQ===2){
+  } else if(currentQ === 2){
     gameDiv.innerHTML = `
-      <p>City Projects Fund: 4000<br>How much went to community outreach?</p>
-      <input type="number" class="input-field" id="q3">
-      <button class="choice-btn" onclick="checkQ3()">Submit</button>
+      <p>City Projects Fund: How much went to community outreach?</p>
+      <button class="choice-btn" onclick="checkChoice(1)">A) 1000</button>
+      <button class="choice-btn" onclick="checkChoice(2)">B) 1500</button>
+      <button class="choice-btn" onclick="checkChoice(3)">C) 1200</button>
+      <button class="choice-btn" onclick="checkChoice(4)">D) 2000</button>
     `;
-  }
-}
-
-function checkQ2(){
-  const guess = Number(document.getElementById('q2').value);
-  const feedback = checkGuess(guess, answers[currentQ]);
-  const result = document.getElementById('budget-result');
-  if(feedback==="correct"){
-    result.innerHTML="<p>Correct!</p>";
-    currentQ++;
-    nextQuestion();
-  } else {
-    result.innerHTML="<p>"+feedback.toUpperCase()+"!</p>";
-  }
-}
-
-function checkQ3(){
-  const guess = Number(document.getElementById('q3').value);
-  const feedback = checkGuess(guess, answers[currentQ]);
-  const result = document.getElementById('budget-result');
-  if(feedback==="correct"){
-    result.innerHTML="<p>All budget allocations complete.</p>";
+  } else if(currentQ > 2){
     endGame();
-  } else {
-    result.innerHTML="<p>"+feedback.toUpperCase()+"!</p>";
   }
 }
 
 function endGame(){
   const gameDiv = document.getElementById('budget-game');
-  gameDiv.innerHTML="<p>The city sees a responsible mayor at work.</p>";
+  gameDiv.innerHTML="<p>All budget allocations completed.</p>";
   const outcome = document.getElementById('outcome');
-  outcome.innerHTML="<p>The public applauds my careful management. My hidden actions remain secret.</p>";
+  outcome.innerHTML = `
+    I performed maintenance checks personally and managed the budget responsibly.<br>
+    Publicly, I blamed the engineer and supervisor to maintain trust in the city.<br>
+    The public praises my actions, and the engineer and supervisor are arrested.<br>
+    The city sees a responsible mayor at work, while my hidden actions remain protected.
+  `;
   setTimeout(()=>{window.location.href='act4game.html';},3000);
 }
 </script>

@@ -166,6 +166,19 @@ p.lead{opacity:.9;margin:6px 0 18px;font-size:18px;line-height:1.6;}
   box-shadow:0 4px 12px rgba(0,0,0,0.3);
   transition:all 0.3s;
 }
+#miniGameBtn{
+  display:none;
+  margin-top:12px;
+  padding:10px 18px;
+  font-family:'Special Elite';
+  font-size:18px;
+  border:none;
+  border-radius:10px;
+  background:#78f7a2;
+  color:#0b0b0f;
+  cursor:pointer;
+}
+#miniGameBtn:hover{background:#0e5fff;color:#fff;}
 </style>
 </head>
 <body>
@@ -202,6 +215,7 @@ p.lead{opacity:.9;margin:6px 0 18px;font-size:18px;line-height:1.6;}
       <div id="status">Tasks Scheduled: <strong id="count">0</strong>/3</div>
     </div>
     <div class="outcome" id="publicStory">Arrange all tasks to record your supervision efforts.</div>
+    <button id="miniGameBtn" onclick="startMiniGame()">Start Mini-Game</button>
   </div>
   <aside class="inventory">
     <div class="inv-title">Scheduled Tasks</div>
@@ -215,6 +229,7 @@ const invList=document.getElementById("inventoryList");
 const countEl=document.getElementById("count");
 const finishBtn=document.getElementById("finishBtn");
 const publicStory=document.getElementById("publicStory");
+const miniBtn=document.getElementById("miniGameBtn");
 const resources = document.querySelectorAll('.resource');
 const slots = document.querySelectorAll('.day-slot');
 
@@ -272,9 +287,17 @@ function addItem(id,label){
 }
 
 finishBtn.onclick = () => {
-  publicStory.textContent = "All tasks scheduled. Your shift is over. Here's what happened: The bridge was sabotaged by a hidden rival, but your logs were filed as usual.";
-  setTimeout(()=>{window.location.href="act3game.html";},3000);
+  publicStory.innerHTML = "All tasks scheduled. Your shift is over.<br><br>" +
+    "The supervisor told the engineer not to fix the bridge, aiming to go against the mayor.<br>" +
+    "The public believes this shows negligence or sabotage.<br>" +
+    "Evidence suggests the supervisor was involved in the collapse.<br>" +
+    "The supervisor is arrested.";
+  miniBtn.style.display="inline-block";
 };
+
+function startMiniGame(){
+  window.location.href = "act3game.html";
+}
 </script>
 </body>
 </html>
