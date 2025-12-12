@@ -178,7 +178,7 @@ p.lead{opacity:.9;margin:6px 0 18px;font-size:18px;line-height:1.6;}
     <div class="description" id="sceneText">
       Rain lashes down as darkness envelops the city. Debris from the collapsed bridge litters the street. The air is heavy with tension, and distant sirens wail. You clutch your camera tightly, knowing that every photo and note you collect could change the story the city will believe.
     </div>
-    <img id="photoPlaceholder" class="placeholder-img" style="display:none" src="https://via.placeholder.com/400x180?text=Photo">
+    <img id="photoPlaceholder" class="placeholder-img" style="display:none" src="">
     <div class="hotspots" id="hotspots">
       <div class="hotspot" data-id="shadow">📸<br>Mysterious Shadow</div>
       <div class="hotspot" data-id="memo">📝<br>Supervisor's Memo</div>
@@ -202,7 +202,7 @@ p.lead{opacity:.9;margin:6px 0 18px;font-size:18px;line-height:1.6;}
 </div>
 </div>
 <script>
-let inventory=[]; 
+let inventory=[];
 const invList=document.getElementById("inventoryList");
 const countEl=document.getElementById("count");
 const photo=document.getElementById("photoPlaceholder");
@@ -263,12 +263,20 @@ function addItem(id,label,img,storyText){
 }
 document.querySelectorAll(".hotspot").forEach(h=>{
   h.onclick=()=>{
-    if(h.classList.contains("locked"))return;
-    let id=h.dataset.id;
-    if(id==="shadow"){addItem("shadow","Blurry Shadow Photo","/assets/shadowfigure.png","You capture a shadowy figure moving across the bridge, almost lost to the storm.");}
-    if(id==="memo"){addItem("memo","Supervisor Memo","/assets/memoredacted.png","A memo warning the engineer not to repair the bridge. The motives are unclear.");}
-    if(id==="witness"){addItem("witness","Witness Note","/assets/witnesshuhu.png","A witness notes the creaking sounds and panic the night before the collapse.");}
-    if(id==="weak"){addItem("weak","Mysterious Photo","https://via.placeholder.com/400x180?text=Bridge+Weakness","Hidden beneath the rubble, a photo reveals the ************.");}
+    if(h.classList.contains("locked")) return;
+    let id = h.dataset.id;
+    if(id === "shadow"){
+      addItem("shadow","Blurry Shadow Photo","assets/shadowfigure.png","You capture a shadowy figure moving across the bridge, almost lost to the storm.");
+    }
+    if(id === "memo"){
+      addItem("memo","Supervisor Memo","assets/memoredacted.png","A memo warning the engineer not to repair the bridge. The motives are unclear.");
+    }
+    if(id === "witness"){
+      addItem("witness","Witness Note","assets/witnesshuhu.png","A witness notes the creaking sounds and panic the night before the collapse.");
+    }
+    if(id === "weak"){
+      addItem("weak","Mysterious Photo","assets/weakphoto.png","Hidden beneath the rubble, a photo reveals the ************.");
+    }
   };
 });
 document.getElementById("investigateBtn").onclick=()=>{

@@ -256,9 +256,11 @@ slots.forEach(slot=>{
     if(slot.dataset.day===day && !inventory.some(x=>x.id===day)){
       const resName = [...resources].find(r=>r.dataset.day===day).textContent;
       addItem(day,resName+" assigned.");
-      publicStory.textContent=resName+" assigned successfully.";
-    } else {
-      publicStory.textContent="Incorrect slot. Try again.";
+      if(resName==="Engineer"){
+        publicStory.textContent="When scheduling the Engineer — I can't. I can't do this.";
+      } else {
+        publicStory.textContent=resName+" arranged here.";
+      }
     }
   });
 });
@@ -270,7 +272,7 @@ function addItem(id,label){
 }
 
 finishBtn.onclick = () => {
-  publicStory.textContent = "All tasks scheduled. Your shift is over. Here's what happened: The bridge was sabotaged by a hidden rival, but your logs were filed as usual. ";
+  publicStory.textContent = "All tasks scheduled. Your shift is over. Here's what happened: The bridge was sabotaged by a hidden rival, but your logs were filed as usual.";
   setTimeout(()=>{window.location.href="act3game.html";},3000);
 };
 </script>

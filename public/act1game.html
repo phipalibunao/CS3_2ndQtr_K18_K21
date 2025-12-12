@@ -230,6 +230,7 @@ const timerInterval = setInterval(()=>{
 },1000);
 
 function endGame(won){
+  clearInterval(timerInterval); // stop timer immediately
   document.querySelectorAll(".card").forEach(c=>c.onclick=null);
   clueDiv.style.display="block";
   if(won){
