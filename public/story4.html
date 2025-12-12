@@ -154,7 +154,7 @@ function nextQuestion(){
   const gameDiv = document.getElementById('budget-game');
   if(currentQ===1){
     gameDiv.innerHTML = `
-      <p>Staff Salaries: 3000<br>How much went to overtime? The amount is less that 1000 but greater than 600.</p>
+      <p>Staff Salaries: 3000<br>How much went to overtime? The amount is less than 1000 but greater than 600.</p>
       <input type="number" class="input-field" id="q2">
       <button class="choice-btn" onclick="checkQ2()">Submit</button>
     `;
@@ -197,7 +197,7 @@ function endGame(){
   gameDiv.innerHTML="<p>The city sees a responsible mayor at work.</p>";
   const outcome = document.getElementById('outcome');
   outcome.innerHTML="<p>The public applauds my careful management. My hidden actions remain secret.</p>";
-  setTimeout(()=>{window.location.href='story.html';},3000);
+  setTimeout(()=>{window.location.href='act4game.html';},3000);
 }
 </script>
 </body>
