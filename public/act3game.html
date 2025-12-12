@@ -127,6 +127,8 @@
                 holes[i].style.backgroundColor = "white";
                 holes[i].innerHTML = i+1;
 
+                correctlyPlaced.push(false);
+
                 container.appendChild(holes[i]);
             }
 
@@ -134,7 +136,6 @@
                 const box = document.createElement("div");
 
                 colors.push(i);
-                correctlyPlaced.push(false);
                 boxes.push(box);
 
                 boxes[i].classList.add('box');
@@ -150,9 +151,12 @@
                 boxes[i].addEventListener("mousedown", move);
 
                 assignment[i] = Math.floor(Math.random() * dates.length);
+                dates.splice(assignment[i], 1);
 
             }
-            
+            console.log(assignment);
+            console.log(dates);
+
             for (i = totalBoxes; i > 0; i--){
                 color = Math.floor(Math.random() * i);
                 boxes[totalBoxes - i].style.backgroundColor = `rgb(${Math.floor(Math.random() * ((colors[color] + 1) * 60 - 20) + 20)}, ${Math.floor(Math.random() * ((colors[color] + 1) * 40 - 10) + 10)}, ${Math.floor(Math.random() * ((colors[color] + 1) * 50 - 10) + 10)})`;
@@ -205,7 +209,7 @@
             for (i = 0; i < 30; i++){
                 if (event.clientX + parseInt(window.scrollX) < parseInt(holes[i].style.left) + parseInt(container.style.left) || event.clientX + parseInt(window.scrollX) > parseInt(holes[i].style.left) + parseInt(holes[i].style.width) + parseInt(container.style.left) || event.clientY + parseInt(window.scrollY) < parseInt(holes[i].style.top) + parseInt(container.style.top) || event.clientY + parseInt(window.scrollY) > parseInt(holes[i].style.top) + parseInt(holes[i].style.height) + parseInt(container.style.top)){
                     if (boxSelected != null){
-                        if (correctlyPlaced[i] == true && boxes[boxSelected].style.backgroundColor == holes[i].style.backgroundColor){
+                        if (correctlyPlaced[i] == true && assignment[boxSelected] == i){
                             score = score - 1;
                             correctlyPlaced[i] = false;
                         }
@@ -214,7 +218,7 @@
                 else{
                     if (boxSelected != null){
                         inHole = true;
-                        if (boxes[boxSelected].style.backgroundColor == holes[i].style.backgroundColor){
+                        if (assignment[boxSelected] == i){
                             if (correctlyPlaced[i] == false){
                                 score = score + 1;
                                 correctlyPlaced[i] = true;
