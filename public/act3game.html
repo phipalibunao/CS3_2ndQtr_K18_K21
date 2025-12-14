@@ -79,6 +79,8 @@
             color: white;
             text-shadow: 0 0 3px black, 0 0 3px black, 0 0 3px black, 0 0 3px black;
             z-index: 100;
+            pointer-events: none;
+            user-select: none;
         }
 
     </style>
@@ -86,11 +88,11 @@
 <body>
     <img class="bg" src="/assets/csminigamebg2.png">
     <p>yoyoyoy</p>
-    <p id="hinttext">nehnehnehnehnehnehneh</p>
+    <p id="hinttext"></p>
     
 
     <script>
-        totalBoxes = 5;
+        totalBoxes = 7;
         const CONTAINER_SPACE = 50;
         const CONTAINER_LEFT = "100px";
         const BOX_SPACE = 100;
@@ -104,6 +106,8 @@
         originalTop = [];
         boxStays = [];
         correctlyPlaced = [];
+        days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+        randomDay = [];
         dates = [];
         assignment = [];
         boxSelected = null;
@@ -148,6 +152,7 @@
 
                 colors.push(i);
                 boxes.push(box);
+                randomDay.push(Math.floor(Math.random() * (8-1)) + 1);
 
                 boxes[i].classList.add('box');
                 boxes[i].id = i;
@@ -162,9 +167,9 @@
                 boxes[i].addEventListener("mousedown", move);
                 boxes[i].addEventListener("mousemove", hints);
 
-                assignment[i] = Math.floor(Math.random() * dates.length);
-                dates.splice(assignment[i], 1);
-
+                while (!dates.includes(assignment[i]))
+                    assignment[i] = Math.floor(Math.random() * 30);
+                dates.splice(dates.indexOf(assignment[i]), 1);
             }
             console.log(assignment);
             console.log(dates);
@@ -188,7 +193,14 @@
             if (boxSelected == null && score < totalBoxes) {
                 boxHovered = event.target.id;
                 console.log(boxHovered);
-                hinttext.innerHTML = `Assignment ${parseInt(boxHovered) + 1} <br> yo`;
+                if (assignment[boxHovered] % 7 >= 5)
+                    dayType = "weekend";
+                else
+                    dayType = "weekday";
+                hinttext.innerHTML = `Assignment ${parseInt(boxHovered) + 1}: <br><br> 
+                                    I should assign this to a ${dayType}. <br>
+                                    This should be at row ${Math.floor(assignment[boxHovered]/7 + 1)}. <br>
+                                    The assignment should be ${randomDay[boxHovered]} day/s after a ${days.at((assignment[boxHovered] % 7) - randomDay[boxHovered])}.`;
             }
             
         }
