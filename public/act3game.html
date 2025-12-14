@@ -33,6 +33,7 @@
             user-select: none;
             -webkit-user-drag: none;
             overflow: hidden;
+            z-index: -10;
         }
         .box{
             position: absolute;
@@ -71,20 +72,29 @@
             100% {transform: translateX(0);}
         }
 
+        p{
+            position: relative;
+            text-align: right;
+            font-size: 4vmin;
+            color: white;
+            text-shadow: 0 0 3px black, 0 0 3px black, 0 0 3px black, 0 0 3px black;
+            z-index: 100;
+        }
+
     </style>
 </head>
 <body>
     <img class="bg" src="/assets/csminigamebg2.png">
-        
-    </div>
+    <p>yoyoyoy</p>
+    <p id="hinttext">nehnehnehnehnehnehneh</p>
     
 
     <script>
-        totalBoxes = 3;
+        totalBoxes = 5;
         const CONTAINER_SPACE = 50;
         const CONTAINER_LEFT = "100px";
-        const BOX_SPACE = 150;
-        const SIDE_LENGTH = "100px";
+        const BOX_SPACE = 100;
+        const SIDE_LENGTH = "80px";
 
         holes = [];
         boxes = [];
@@ -100,10 +110,11 @@
         score = 0;
 
         const container = document.createElement("div");
-        container.style.width = "1000px";
         container.style.top = "100px";
         container.classList.add('container');
         document.body.appendChild(container);
+
+        const hinttext = document.getElementById("hinttext");
 
         create();
 
@@ -149,6 +160,7 @@
                 originalTop[i] = boxes[i].style.top;
                 boxStays[i] = true;
                 boxes[i].addEventListener("mousedown", move);
+                boxes[i].addEventListener("mousemove", hints);
 
                 assignment[i] = Math.floor(Math.random() * dates.length);
                 dates.splice(assignment[i], 1);
@@ -168,15 +180,22 @@
             }
 
             container.style.height = `${parseInt(holes[29].style.top) + parseInt(holes[29].style.height) + CONTAINER_SPACE}px`;
+            container.style.width = `${parseInt(holes[6].style.left) + parseInt(holes[29].style.width)}px`;
 
         }
         
-        
+        function hints(event) {
+            if (boxSelected == null && score < totalBoxes) {
+                boxHovered = event.target.id;
+                console.log(boxHovered);
+                hinttext.innerHTML = `Assignment ${parseInt(boxHovered) + 1} <br> yo`;
+            }
+            
+        }
 
         function move(event) {
             if (score < totalBoxes){
                 boxSelected = event.target.id;
-                console.log(boxSelected);
                 boxStays[boxSelected] = false;
                 boxes[boxSelected].style.transition = "none";
             }
@@ -245,7 +264,6 @@
 
             boxStays[boxSelected] = true;
             boxSelected = null;
-            console.log(score);
         }
     </script>
 </body>
