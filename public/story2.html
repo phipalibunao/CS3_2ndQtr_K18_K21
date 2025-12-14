@@ -83,9 +83,9 @@ input[type=text]{padding:8px;border-radius:6px;border:none;outline:none;backgrou
   <div class="card-scene">
     <div class="description">The bridge creaks in the storm. Cameras watch. The transcript records your words.</div>
     <div class="hotspots" id="hotspots">
-      <div class="hotspot" data-id="q1">🔌<br>Question 1</div>
-      <div class="hotspot" data-id="q2">🛠️<br>Question 2</div>
-      <div class="hotspot" data-id="q3">🔍<br>Question 3</div>
+      <div class="hotspot" data-id="1">🔌<br>Question 1</div>
+      <div class="hotspot" data-id="2">🛠️<br>Question 2</div>
+      <div class="hotspot" data-id="3">🔍<br>Question 3</div>
     </div>
     <div class="transcript" id="transcript">
       <div class="timestamp" id="tsTop"></div>
@@ -125,18 +125,15 @@ const flashRed=document.getElementById("flashRed");
 const ticker=document.getElementById("ticker");
 
 const questions = {
-  q1: "Officer: Why were you at the bridge during the night of the incident?",
-  q2: "Officer: Multiple witnesses claim you were touching the wiring. What exactly were you doing?",
-  q3: "Officer: Why did you leave the bridge quickly when the patrol arrived?"
+  1: "Officer: Why were you at the bridge during the night of the incident?",
+  2: "Officer: Multiple witnesses claim you were touching the wiring. What exactly were you doing?",
+  3: "Officer: Why did you leave the bridge quickly when the patrol arrived?"
 };
 
 const storyLines = [
-  "The engineer reads about the memo.",
-  "They go to the bridge to instead try to make it worse.",
-  "The engineer is seen on the bridge.",
-  "They are forced to leave the bridge, and the next day, their blurred photo appears in news reports suggesting sabotage.",
-  "The engineer is accused of tampering with the bridge.",
-  "The engineer is arrested."
+  "The engineer reads about the memo. They go to the bridge to instead try to make it worse.",
+  "The engineer is seen on the bridge. They are forced to leave the bridge, and the next day, their blurred photo appears in news reports suggesting sabotage.",
+  "The engineer is accused of tampering with the bridge. A while later, they are arrested."
 ];
 
 function nowStamp(){
@@ -217,7 +214,7 @@ function addItem(id,label){
 }
 
 document.querySelectorAll(".hotspot").forEach(h=>{
-  h.onclick=()=> showQuestion(h.dataset.id);
+  h.onclick=()=> {if (countEl.innerHTML == parseInt(h.dataset.id) - 1){showQuestion(h.dataset.id);}}
 });
 
 finishBtn.onclick = () => {
