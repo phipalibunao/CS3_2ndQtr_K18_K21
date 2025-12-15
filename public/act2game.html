@@ -82,6 +82,7 @@
 
     <script>
         totalBoxes = 3;
+        levels = 5;
         const CONTAINER_SPACE = 50;
         const CONTAINER_LEFT = "100px";
         const BOX_SPACE = 150;
@@ -255,7 +256,9 @@
 
             if (score == totalBoxes && boxSelected != null){
                 console.log("Hooray!");
-                container.style.left = `-${parseInt(CONTAINER_LEFT) + parseInt(container.style.width)}px`;
+                levels--;
+                if (levels != 0)
+                    container.style.left = `-${parseInt(CONTAINER_LEFT) + parseInt(container.style.width)}px`;
                 for (i = 0; i < totalBoxes; i++){
                     boxes[i].style.cursor = "default";
                 }
