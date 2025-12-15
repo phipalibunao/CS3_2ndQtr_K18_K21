@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <!-- favicon -->
-    <link rel="icon" href="https://raw.githubusercontent.com/tomasdmacalintal/CS3_2ndQtrPortfolio/main/assets/images/cspairproj_favicon2.png" sizes="any">
-    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/tomasdmacalintal/CS3_2ndQtrPortfolio/main/assets/images/cspairproj_favicon2.png">
+    <link rel="icon" href="https://raw.githubusercontent.com/phipalibunao/CS3_2ndQtr_K18_K21/main/assets/cspairproj_favicon2.png" sizes="any">
+    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/phipalibunao/CS3_2ndQtr_K18_K21/main/assets/cspairproj_favicon2.png">
 
     <!-- Encoding + mobile responsiveness -->
     <meta charset="UTF-8">
@@ -33,6 +33,7 @@
             user-select: none;
             -webkit-user-drag: none;
             overflow: hidden;
+            z-index: -10;
         }
         .box{
             position: absolute;
@@ -71,20 +72,31 @@
             100% {transform: translateX(0);}
         }
 
+        p{
+            position: relative;
+            text-align: right;
+            font-size: 4vmin;
+            color: white;
+            text-shadow: 0 0 3px black, 0 0 3px black, 0 0 3px black, 0 0 3px black;
+            z-index: 100;
+            pointer-events: none;
+            user-select: none;
+        }
+
     </style>
 </head>
 <body>
     <img class="bg" src="/assets/csminigamebg2.png">
-        
-    </div>
+    <p>Assign the </p>
+    <p id="hinttext"></p>
     
 
     <script>
-        totalBoxes = 3;
+        totalBoxes = 7;
         const CONTAINER_SPACE = 50;
         const CONTAINER_LEFT = "100px";
-        const BOX_SPACE = 150;
-        const SIDE_LENGTH = "100px";
+        const BOX_SPACE = 100;
+        const SIDE_LENGTH = "80px";
 
         holes = [];
         boxes = [];
@@ -94,16 +106,19 @@
         originalTop = [];
         boxStays = [];
         correctlyPlaced = [];
+        days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+        randomDay = [];
         dates = [];
         assignment = [];
         boxSelected = null;
         score = 0;
 
         const container = document.createElement("div");
-        container.style.width = "1000px";
         container.style.top = "100px";
         container.classList.add('container');
         document.body.appendChild(container);
+
+        const hinttext = document.getElementById("hinttext");
 
         create();
 
@@ -137,6 +152,7 @@
 
                 colors.push(i);
                 boxes.push(box);
+                randomDay.push(Math.floor(Math.random() * (8-1)) + 1);
 
                 boxes[i].classList.add('box');
                 boxes[i].id = i;
@@ -149,10 +165,11 @@
                 originalTop[i] = boxes[i].style.top;
                 boxStays[i] = true;
                 boxes[i].addEventListener("mousedown", move);
+                boxes[i].addEventListener("mousemove", hints);
 
-                assignment[i] = Math.floor(Math.random() * dates.length);
-                dates.splice(assignment[i], 1);
-
+                while (!dates.includes(assignment[i]))
+                    assignment[i] = Math.floor(Math.random() * 30);
+                dates.splice(dates.indexOf(assignment[i]), 1);
             }
             console.log(assignment);
             console.log(dates);
@@ -168,15 +185,29 @@
             }
 
             container.style.height = `${parseInt(holes[29].style.top) + parseInt(holes[29].style.height) + CONTAINER_SPACE}px`;
+            container.style.width = `${parseInt(holes[6].style.left) + parseInt(holes[29].style.width)}px`;
 
         }
         
-        
+        function hints(event) {
+            if (boxSelected == null && score < totalBoxes) {
+                boxHovered = event.target.id;
+                console.log(boxHovered);
+                if (assignment[boxHovered] % 7 >= 5)
+                    dayType = "weekend";
+                else
+                    dayType = "weekday";
+                hinttext.innerHTML = `Assignment ${parseInt(boxHovered) + 1}: <br><br> 
+                                    I should assign this to a ${dayType}. <br>
+                                    This should be at row ${Math.floor(assignment[boxHovered]/7 + 1)}. <br>
+                                    The assignment should be ${randomDay[boxHovered]} day/s after a ${days.at((assignment[boxHovered] % 7) - randomDay[boxHovered])}.`;
+            }
+            
+        }
 
         function move(event) {
             if (score < totalBoxes){
                 boxSelected = event.target.id;
-                console.log(boxSelected);
                 boxStays[boxSelected] = false;
                 boxes[boxSelected].style.transition = "none";
             }
@@ -245,7 +276,6 @@
 
             boxStays[boxSelected] = true;
             boxSelected = null;
-            console.log(score);
         }
     </script>
 </body>

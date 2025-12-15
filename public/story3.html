@@ -270,7 +270,12 @@ slots.forEach(slot=>{
     const day = e.dataTransfer.getData('text');
     if(slot.dataset.day===day && !inventory.some(x=>x.id===day)){
       const resName = [...resources].find(r=>r.dataset.day===day).textContent;
-      addItem(day,resName+" assigned.");
+      if(resName==="Engineer"){
+        addItem(day,resName+".. NOT assigned.");
+      }
+      else{
+        addItem(day,resName+" assigned.");
+      }
       if(resName==="Engineer"){
         publicStory.textContent="When scheduling the Engineer — I can't. I can't do this.";
       } else {
