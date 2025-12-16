@@ -12,7 +12,7 @@
     <!-- Page info -->
     <title>Fractured Night — Wires</title>
     <meta name="description" content="Webpage about the second act's game.">
-    <meta name="author" content="Datu Macalintal, Phipa Libunao">
+    <meta name="author" content="Phipa Libunao, Datu Macalintal">
     <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
 
     <!-- Link Stylesheet -->
@@ -72,12 +72,70 @@
             100% {transform: translateX(0);}
         }
 
+        p{
+            position: relative;
+            text-align: right;
+            font-size: 4vmin;
+            color: white;
+            text-shadow: 0 0 3px black, 0 0 3px black, 0 0 3px black, 0 0 3px black;
+            z-index: 100;
+            pointer-events: none;
+            user-select: none;
+        }
+        #timer {
+            position: relative;
+            text-align: right;
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: white;
+            text-shadow: 0 0 4px black;
+            z-index: 100;
+        }
+        #nextChapterBtn {
+            display: none;
+            margin-top: 15px;
+            padding: 10px 20px;
+            font-family: 'Special Elite', monospace;
+            font-size: 18px;
+            color: #0e0e14;
+            background: #78a2f7;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            position: relative;
+            z-index: 100;
+            justify-self: center;
+        }
+        #nextChapterBtn:hover {
+            background: #0e5fff;
+        }
+        #hiddenClue {
+            margin-top: 20px;
+            padding: 15px;
+            font-size: 20px;
+            background: rgba(20,20,30,0.9);
+            border-radius: 12px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            display: none;
+            box-shadow: 0 0 12px rgba(0,0,0,0.8);
+            position: relative;
+            z-index: 100;
+            color: white;
+            justify-self: center;
+        }
+
     </style>
 </head>
 <body>
     <img class="bg" src="/assets/csminigamebg2.png">
-        
-    </div>
+    <p>Rearrange the wires<br> before the time ends. <br></p>
+    <div id="timer">Time Remaining: <span id="time">300</span>s</div>
+    <p id="hinttext"></p>
+    <div id="hiddenClue"></div>
+    <button id="nextChapterBtn" onclick="proceedChapter()">Proceed to Chapter 3</button>
     
 
     <script>
@@ -99,6 +157,11 @@
         correctlyPlaced = [];
         boxSelected = null;
         score = 0;
+
+        timeLeft = 300;
+        const timeEl = document.getElementById("time");
+        const clueDiv = document.getElementById("hiddenClue");
+        const nextBtn = document.getElementById("nextChapterBtn"); 
 
         const container = document.createElement("div");
         container.style.width = "1000px";
@@ -170,7 +233,13 @@
 
         }
         
-        
+        const timerInterval = setInterval(()=>{
+            timeLeft--;
+            timeEl.textContent=timeLeft;
+            if(timeLeft<=0){
+                endGame(false);
+            }
+        },1000);
 
         function move(event) {
             if (score < totalBoxes){
@@ -259,6 +328,8 @@
                 levels--;
                 if (levels != 0)
                     container.style.left = `-${parseInt(CONTAINER_LEFT) + parseInt(container.style.width)}px`;
+                else
+                    endGame(true);
                 for (i = 0; i < totalBoxes; i++){
                     boxes[i].style.cursor = "default";
                 }
@@ -298,6 +369,24 @@
             boxStays[boxSelected] = true;
             boxSelected = null;
             console.log(score);
+        }
+
+        function endGame(won){
+            clearInterval(timerInterval); // stop timer immediately
+            for (i = 0; i < totalBoxes; i++){
+                boxes[i].style.cursor = "default";
+            }
+            clueDiv.style.display="block";
+            if(won){
+                clueDiv.innerHTML="<strong>Hidden Clue Found!</strong><br>The engineer reads about the memo and ignores it. They try to restore the bridge, but they were framed of doing the opposite. The engineer knows something is wrong with the bridge.";
+            } else {
+                clueDiv.innerHTML="<strong>Time's Up!</strong><br>You couldn't reveal the hidden clue. The story continues with the version the city believes. The engineer reads about the memo and ignores it. They intentionally damaged the bridge.";
+            }
+            nextBtn.style.display="block";
+        }
+
+        function proceedChapter(){
+            window.location.href = "story3.html";
         }
     </script>
 </body>
