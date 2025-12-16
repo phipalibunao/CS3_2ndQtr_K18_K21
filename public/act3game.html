@@ -12,7 +12,7 @@
     <!-- Page info -->
     <title>Fractured Night — Calendar</title>
     <meta name="description" content="Webpage about the third act's game.">
-    <meta name="author" content="Datu Macalintal, Phipa Libunao">
+    <meta name="author" content="Phipa Libunao, Datu Macalintal">
     <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
 
     <!-- Link Stylesheet -->
@@ -102,6 +102,8 @@
             border-radius: 8px;
             cursor: pointer;
             text-decoration: none;
+            justify-self: center;
+            z-index: 10;
         }
         #nextChapterBtn:hover {
             background: #0e5fff;
@@ -126,12 +128,12 @@
     </style>
 </head>
 <body>
-    <img class="bg" src="/assets/csminigamebg2.png">
-    <p>Assign the pins to the right day on <br> the calendar before the time ends. <br> Use the hints to determine the day.</p>
+    <img class="bg" src="/assets/supervisortable.png">
+    <p>Assign the pins to the right day on <br> the calendar before the time ends. <br> Use the hints to determine the day. <br> (Calendar starts on Monday.)</p>
     <div id="timer">Time Remaining: <span id="time">300</span>s</div>
     <p id="hinttext"></p>
     <div id="hiddenClue"></div>
-    <button id="nextChapterBtn" onclick="proceedChapter()">Proceed to Chapter 2</button>
+    <button id="nextChapterBtn" onclick="proceedChapter()">Proceed to Chapter 4</button>
     
 
     <script>
@@ -340,9 +342,9 @@
             }
             clueDiv.style.display="block";
             if(won){
-                clueDiv.innerHTML="<strong>Hidden Clue Found!</strong><br>The journalist found photos showing the bridge structure already weak. They ignored it because a sabotage story was more exciting.";
+                clueDiv.innerHTML="<strong>Hidden Clue Found!</strong><br>The supervisor wanted to keep the engineer safe because they have low resources and people, so they sent the memo.";
             } else {
-                clueDiv.innerHTML="<strong>Time's Up!</strong><br>You couldn't reveal the hidden clue. The story continues with the version the city believes. The shadow figure on the bridge was sabotaging it, and the memo makes the engineer and supervisor guilty.";
+                clueDiv.innerHTML="<strong>Time's Up!</strong><br>You couldn't reveal the hidden clue. The story continues with the version the city believes. The supervisor tried to cause the bridge to collapse.";
             }
             nextBtn.style.display="inline-block";
         }
