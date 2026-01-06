@@ -1,4 +1,4 @@
-# CS3_2ndQtr_K18_K21
+# CS3 3rd Qtr Update
 Project Proposal of Phipa Libunao and Tomas Macalintal
 
 Team: WDProjPotassiumLibunaoMacalintal
@@ -152,6 +152,13 @@ The journalist found much more than the shadow photo. They find photos of the br
 - Images of the creators
 
 ---
+
+### 7. Features
+- **Interactive Narrative Experiences:** Users participate in a story-driven experience where they uncover events by exploring different perspectives and playing mini-tasks rather than simply reading content.
+- **Multiple Perspectives Gameplay:** The same event is experienced through four different characters, each with different information, biases, and motivations.
+- **Mini-Game Based Progression:** Each act has a mini-game that represents the character's role. Completing this games will show the hidden clues to the players. 
+- **Public Story vs True Story Mechanic:** The website contrasts the accepted public narrative with the hidden truth. Players may finish the story with only the public version if key clues are missed.
+- **Replayablity:** Players can replay the website to discover missed clues and gain a fulle runderstanding of the story.
 
 ## USE OF JAVASCRIPT ON THE WEBSITE
 JS will be used on the multiple games of the website to allow for drag and drop, points, and randomizing. JS will also be used on all pages for buttons, audio, and the changing of elements and text.
