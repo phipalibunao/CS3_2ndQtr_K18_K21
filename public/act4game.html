@@ -1,9 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Fractured Night — Public Duty EXTREME</title>
-<link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
+    <!-- favicon -->
+    <link rel="icon" href="https://raw.githubusercontent.com/phipalibunao/CS3_2ndQtr_K18_K21/main/assets/cspairproj_favicon2.png" sizes="any">
+    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/phipalibunao/CS3_2ndQtr_K18_K21/main/assets/cspairproj_favicon2.png">
+
+    <!-- Encoding + mobile responsiveness -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Page info -->
+    <title>Fractured Night — Budget Allocation</title>
+    <meta name="description" content="Webpage about the fourth act's game.">
+    <meta name="author" content="Phipa Libunao, Datu Macalintal">
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
+
+    <!-- Link Stylesheet -->
+
 <style>
 :root{
   --bg:#0b0b0f;
@@ -202,7 +215,7 @@ h1{
 <div class="wrap">
 <h1>Act 4: Public Duty</h1>
 <p class="lead">Drag the budgets to the correct project.<br><span style="color:var(--highlight);">Every wrong move = -7 seconds.</span></p>
-<h2 id="timer">60</h2>
+<h2 id="timer">85</h2>
 
 <div class="rain" id="rain"></div>
 
@@ -249,7 +262,7 @@ h1{
 <script>
 const items = document.querySelectorAll('.budget-item');
 const projects = document.querySelectorAll('.project');
-let timeLeft = 60;
+let timeLeft = 85;
 const timerDisplay = document.getElementById("timer");
 const hiddenClue = document.getElementById("hiddenClue");
 const gameOver = document.getElementById("gameOver");
@@ -302,7 +315,7 @@ function endGame(won){
   if(won){
     hiddenClue.innerHTML = "**True Clue:** The mayor cut the budget for reputation, other projects, and himself.";
   } else {
-    hiddenClue.innerHTML = "The mayor did maintenance and managed the budget.";
+    hiddenClue.innerHTML = "You weren't able to find the hidden clue. The story remains the same. The mayor did maintenance and managed the budget.";
   }
 }
 
