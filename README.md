@@ -158,7 +158,19 @@ The journalist found much more than the shadow photo. They find photos of the br
 - **Multiple Perspectives Gameplay:** The same event is experienced through four different characters, each with different information, biases, and motivations.
 - **Mini-Game Based Progression:** Each act has a mini-game that represents the character's role. Completing this games will show the hidden clues to the players. 
 - **Public Story vs True Story Mechanic:** The website contrasts the accepted public narrative with the hidden truth. Players may finish the story with only the public version if key clues are missed.
-- **Replayablity:** Players can replay the website to discover missed clues and gain a fulle runderstanding of the story.
+- **Replayablity:** Players can replay the website to discover missed clues and gain a full understanding of the story.
+- **Devices:** Works on Laptops and PCs.
+
+### 8. Details
+We will use HTML forms for a final question sequence for the user to answer, and being explained the story they collected, in addition to what would have happened if the story they found was brought out to the public. 
+One webpage will collect text data from the user, as they answer questions of the story. They get the text or code if they beat the game from the act. Another webpage will explain the story based on your answers and what that could cause if the public knew.
+One last webpage will show your accuracy or score based on what you answered in the form.
+
+### 9. Definition of Done
+- **Content:** The story is complete and readable, and all interactive elements are functional.
+- **Navigation:** All links between pages work correctly and are easily recognized.
+- **Design:** Visual elements (images, styles) display correctly, and are used to enhance the story.
+- **User:** The teacher or anyone as a user finds the website smooth to play, and at least a little enjoyable or enganging with its story and games.
 
 ## USE OF JAVASCRIPT ON THE WEBSITE
 JS will be used on the multiple games of the website to allow for drag and drop, points, and randomizing. JS will also be used on all pages for buttons, audio, and the changing of elements and text.
