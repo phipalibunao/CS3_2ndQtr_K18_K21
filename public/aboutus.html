@@ -1,22 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- favicon -->
-    <link rel="icon" href="https://raw.githubusercontent.com/phipalibunao/CS3_2ndQtr_K18_K21/main/assets/cspairproj_favicon2.png" sizes="any">
-    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/phipalibunao/CS3_2ndQtr_K18_K21/main/assets/cspairproj_favicon2.png">
-
-    <!-- Encoding + mobile responsiveness -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Page info -->
-    <title>Fractured Night — About Us</title>
-    <meta name="description" content="Webpage about the creators of Fractured Night.">
-    <meta name="author" content="Phipa Libunao, Datu Macalintal">
-    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
-
-    <!-- Link Stylesheet -->
-
+<link rel="icon" href="https://raw.githubusercontent.com/phipalibunao/CS3_2ndQtr_K18_K21/main/assets/cspairproj_favicon2.png" sizes="any">
+<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/phipalibunao/CS3_2ndQtr_K18_K21/main/assets/cspairproj_favicon2.png">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fractured Night — About Us</title>
+<meta name="description" content="Webpage about the creators of Fractured Night.">
+<meta name="author" content="Phipa Libunao, Datu Macalintal">
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
 <style>
 :root {
   --bg:#0b0b0f;
@@ -24,7 +16,6 @@
   --accent:#e6e6e6;
   --highlight:#0e5fff;
 }
-
 html, body {
   margin: 0;
   padding: 0;
@@ -34,7 +25,6 @@ html, body {
   color: var(--accent);
   overflow-x: hidden;
 }
-
 .navbar {
   width: 100%;
   background: #14141a;
@@ -46,18 +36,15 @@ html, body {
   top: 0;
   z-index: 100;
 }
-
 .navbar a {
   color: var(--accent);
   text-decoration: none;
   font-weight: bold;
   transition: 0.2s;
 }
-
 .navbar a:hover {
   color: var(--highlight);
 }
-
 .wrap {
   max-width: 1000px;
   margin: 40px auto;
@@ -66,7 +53,6 @@ html, body {
   flex-direction: column;
   gap: 40px;
 }
-
 header h1 {
   font-family: 'Spectral', serif;
   text-align: center;
@@ -74,20 +60,17 @@ header h1 {
   font-size: 2.5em;
   margin-bottom: 8px;
 }
-
 header p {
   text-align: center;
   color: #999;
   font-size: 1.1em;
 }
-
 .profiles {
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
   justify-content: center;
 }
-
 .profile-card {
   background: linear-gradient(135deg,#1c1c23,#262630);
   padding: 20px;
@@ -100,7 +83,6 @@ header p {
   align-items: center;
   text-align: center;
 }
-
 .profile-card img {
   width: 180px;
   height: 180px;
@@ -109,18 +91,15 @@ header p {
   border: 3px solid var(--highlight);
   margin-bottom: 15px;
 }
-
 .profile-card h2 {
   color: var(--highlight);
   margin-bottom: 10px;
   font-family: 'Spectral', serif;
 }
-
 .profile-card p {
   color: #ccc;
   line-height: 1.6em;
 }
-
 .rain {
   position: fixed;
   width: 2px;
@@ -129,46 +108,53 @@ header p {
   animation: fall linear infinite;
   z-index: 1;
 }
-
 @keyframes fall {
   to {transform: translateY(100vh);}
+}
+#playerTag {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 8px 15px;
+  background: rgba(30,30,30,0.7);
+  border: 2px solid #fff;
+  border-radius: 10px;
+  font-family: 'Special Elite', monospace;
+  font-size: 16px;
+  color: #fff;
+  z-index: 101;
 }
 </style>
 </head>
 <body>
-
+<div id="playerTag"></div>
 <div class="navbar">
   <a href="homepage.html">Home</a>
   <a href="story1.html">Act 1</a>
   <a href="story2.html">Act 2</a>
   <a href="story3.html">Act 3</a>
   <a href="story4.html">Act 4</a>
-  <a href="#">About Us</a>
+  <a href="aboutus.html">About Us</a>
 </div>
-
 <div class="wrap">
   <header>
     <h1>Phipa & Tomas</h1>
     <p>Meet the people behind the story</p>
   </header>
-
   <div class="profiles">
     <div class="profile-card">
       <img src="https://raw.githubusercontent.com/phipalibunao/CS3_2ndQtr_K18_K21/main/assets/phipapixel.png" alt="Phipa Picture">
       <h2>Phipa Libunao</h2>
       <p>Hi! I’m Phipa, a Grade 9 student from Potassium. I love coding, reading novels, watching movies, singing, and playing the guitar.</p>
     </div>
-
     <div class="profile-card">
       <img src="https://raw.githubusercontent.com/phipalibunao/CS3_2ndQtr_K18_K21/main/assets/tomaspixel.png" alt="Tomas Picture">
       <h2>Tomas Macalintal</h2>
-      <p>Hey, I’m Tomas, a Grade 9 student from Potassium. I enjoy coding, music, and arts & crafts. </p>
+      <p>Hey, I’m Tomas, a Grade 9 student from Potassium. I enjoy coding, music, and arts & crafts.</p>
     </div>
   </div>
 </div>
-
 <script>
-// Rain effect
 for(let i=0;i<150;i++){
   const drop=document.createElement('div');
   drop.className='rain';
@@ -178,7 +164,8 @@ for(let i=0;i<150;i++){
   document.body.appendChild(drop);
   drop.style.top='-20px';
 }
+const playerTag=document.getElementById("playerTag");
+playerTag.textContent="Player: "+(localStorage.getItem("playerName")||"Guest");
 </script>
-
 </body>
 </html>

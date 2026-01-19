@@ -1,192 +1,259 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- favicon -->
     <link rel="icon" href="https://raw.githubusercontent.com/phipalibunao/CS3_2ndQtr_K18_K21/main/assets/cspairproj_favicon2.png" sizes="any">
     <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/phipalibunao/CS3_2ndQtr_K18_K21/main/assets/cspairproj_favicon2.png">
 
-    <!-- Encoding + mobile responsiveness -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Page info -->
     <title>Fractured Night — Public Duty</title>
     <meta name="description" content="Webpage telling the story of the fourth act.">
     <meta name="author" content="Phipa Libunao, Datu Macalintal">
+
     <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
 
-    <!-- Link Stylesheet -->
-
 <style>
-:root{
-  --bg:#0b0b0f;
-  --card1:#1c1c23;
-  --card2:#262630;
-  --accent:#e6e6e6;
-  --nav:#14141a;
-  --nav-hover:#f7d678;
-  --highlight:#f7d678;
+:root {
+    --bg: #0b0b0f;
+    --card1: #1c1c23;
+    --card2: #262630;
+    --accent: #e6e6e6;
+    --nav: #14141a;
+    --nav-hover: #f7d678;
+    --highlight: #f7d678;
 }
-html,body{
-  height:100%;
-  margin:0;
-  font-family:'Special Elite',monospace;
-  background:var(--bg);
-  color:var(--accent);
+
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: 'Special Elite', monospace;
+    background: var(--bg);
+    color: var(--accent);
 }
-.navbar{
-  width:100%;
-  background:var(--nav);
-  padding:12px 0;
-  display:flex;
-  justify-content:center;
-  gap:24px;
-  position:sticky;
-  top:0;
-  z-index:100;
+
+.navbar {
+    width: 100%;
+    background: var(--nav);
+    padding: 12px 0;
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
-.navbar a{
-  color:var(--accent);
-  text-decoration:none;
-  font-weight:bold;
-  transition:.2s;
+
+.navbar a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: bold;
+    transition: .2s;
 }
-.navbar a:hover{color:var(--nav-hover);}
-.wrap{
-  min-height:100%;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  padding:28px;
-  box-sizing:border-box;
+
+.navbar a:hover {
+    color: var(--nav-hover);
 }
-header{text-align:center;width:100%;max-width:1000px}
-h1{margin:6px 0;font-size:36px;color:var(--highlight);}
-p.lead{opacity:.9;margin:6px 0 18px;font-size:18px;line-height:1.6;}
-.pov-sign{
-  display:inline-block;
-  background:rgba(247,214,120,0.1);
-  color:var(--highlight);
-  padding:6px 12px;
-  border-radius:12px;
-  font-weight:bold;
-  margin-bottom:12px;
+
+.wrap {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 28px;
+    box-sizing: border-box;
 }
-.card-scene{
-  background:linear-gradient(135deg,var(--card1),var(--card2));
-  border-radius:12px;
-  padding:18px;
-  min-height:400px;
-  width:100%;
-  max-width:900px;
+
+header {
+    text-align: center;
+    width: 100%;
+    max-width: 1000px;
 }
-.choice-btn{
-  background:#222228;
-  color:white;
-  padding:10px 14px;
-  border-radius:8px;
-  font-family:'Special Elite';
-  cursor:pointer;
-  margin-top:12px;
-  transition:.3s;
-  display:block;
-  width:100%;
-  max-width:250px;
-  text-align:center;
+
+h1 {
+    margin: 6px 0;
+    font-size: 36px;
+    color: var(--highlight);
 }
-.choice-btn:hover{background:var(--highlight);color:#000;}
-.outcome{
-  margin-top:16px;
-  background:rgba(255,255,255,0.03);
-  padding:12px;
-  border-radius:10px;
-  min-height:120px;
-  font-style:italic;
-  line-height:1.4;
+
+p.lead {
+    opacity: .9;
+    margin: 6px 0 18px;
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+.pov-sign {
+    display: inline-block;
+    background: rgba(247, 214, 120, 0.1);
+    color: var(--highlight);
+    padding: 6px 12px;
+    border-radius: 12px;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+.card-scene {
+    background: linear-gradient(135deg, var(--card1), var(--card2));
+    border-radius: 12px;
+    padding: 18px;
+    min-height: 400px;
+    width: 100%;
+    max-width: 900px;
+}
+
+.choice-btn {
+    background: #222228;
+    color: white;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-family: 'Special Elite';
+    cursor: pointer;
+    margin-top: 12px;
+    transition: .3s;
+    display: block;
+    width: 100%;
+    max-width: 250px;
+    text-align: center;
+}
+
+.choice-btn:hover {
+    background: var(--highlight);
+    color: #000;
+}
+
+.outcome {
+    margin-top: 16px;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 12px;
+    border-radius: 10px;
+    min-height: 120px;
+    font-style: italic;
+    line-height: 1.4;
+}
+
+/* PLAYER TAG STYLE */
+#playerTag {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 8px 15px;
+    background: rgba(30,30,30,0.7);
+    border: 2px solid #fff;
+    border-radius: 10px;
+    font-family: 'Special Elite', monospace;
+    font-size: 16px;
+    color: #fff;
+    z-index: 101;
 }
 </style>
 </head>
 <body>
+
+<!-- PLAYER TAG -->
+<div id="playerTag"></div>
+
 <div class="navbar">
-  <a href="homepage.html">Home</a>
-  <a href="story1.html">Act 1</a>
-  <a href="story2.html">Act 2</a>
-  <a href="story3.html">Act 3</a>
-  <a href="story4.html">Act 4</a>
-  <a href="aboutus.html">About Us</a>
+    <a href="homepage.html">Home</a>
+    <a href="story1.html">Act 1</a>
+    <a href="story2.html">Act 2</a>
+    <a href="story3.html">Act 3</a>
+    <a href="story4.html">Act 4</a>
+    <a href="aboutus.html">About Us</a>
 </div>
+
 <div class="wrap">
-<header>
-  <h1>Chapter 4: Public Duty</h1>
-  <div class="pov-sign">POV: Mayor</div>
-  <p class="lead">The bridge collapse shook the city. Publicly, I appear responsible, managing budgets and overseeing maintenance. Behind the scenes, I must protect the city's trust while holding others accountable.</p>
-</header>
-<div class="card-scene">
-  <div class="story-text" id="storyText">
-    I personally performed maintenance checks on the bridge and managed the budget responsibly. Publicly, I blame the engineer and supervisor to maintain trust in the city.
-  </div>
-  <div class="outcome" id="outcome">
-    Select the correct budget allocations to show responsible management:
-  </div>
-  <div id="budget-game" style="margin-top:12px;">
-    <p>Bridge Repair Budget: Which option did I allocate to materials?</p>
-    <button class="choice-btn" onclick="checkChoice(1)">A) 1000</button>
-    <button class="choice-btn" onclick="checkChoice(2)">B) 2000</button>
-    <button class="choice-btn" onclick="checkChoice(3)">C) 3000</button>
-    <button class="choice-btn" onclick="checkChoice(4)">D) 4000</button>
-  </div>
+    <header>
+        <h1>Chapter 4: Public Duty</h1>
+        <div class="pov-sign">POV: Mayor</div>
+        <p class="lead">
+            The bridge collapse shook the city. Publicly, I appear responsible, managing budgets and overseeing maintenance.
+            Behind the scenes, I must protect the city's trust while holding others accountable.
+        </p>
+    </header>
+
+    <div class="card-scene">
+        <div class="story-text" id="storyText">
+            I personally performed maintenance checks on the bridge and managed the budget responsibly.
+            Publicly, I blame the engineer and supervisor to maintain trust in the city.
+        </div>
+
+        <div class="outcome" id="outcome">
+            Select the correct budget allocations to show responsible management:
+        </div>
+
+        <div id="budget-game" style="margin-top: 12px;">
+            <p>Bridge Repair Budget: Which option did I allocate to materials?</p>
+            <button class="choice-btn" onclick="checkChoice(1)">A) 1000</button>
+            <button class="choice-btn" onclick="checkChoice(2)">B) 2000</button>
+            <button class="choice-btn" onclick="checkChoice(3)">C) 3000</button>
+            <button class="choice-btn" onclick="checkChoice(4)">D) 4000</button>
+        </div>
+    </div>
 </div>
-</div>
+
 <script>
-const answers = [2, 3, 1]; // correct choices
+// Set Player Tag
+const playerTag = document.getElementById("playerTag");
+const playerName = localStorage.getItem("playerName") || "Guest";
+playerTag.textContent = `Player: ${playerName}`;
+
+// Budget Game Logic
+const answers = [2, 3, 1];
 let currentQ = 0;
 
-function checkChoice(choice){
-  const outcome = document.getElementById('outcome');
-  if(choice === answers[currentQ]){
-    outcome.innerHTML = "Correct!";
-    currentQ++;
-    nextQuestion();
-  } else {
-    outcome.innerHTML = "Try again!";
-  }
+function checkChoice(choice) {
+    const outcome = document.getElementById('outcome');
+    if (choice === answers[currentQ]) {
+        outcome.innerHTML = "Correct!";
+        currentQ++;
+        nextQuestion();
+    } else {
+        outcome.innerHTML = "Try again!";
+    }
 }
 
-function nextQuestion(){
-  const gameDiv = document.getElementById('budget-game');
-  if(currentQ === 1){
-    gameDiv.innerHTML = `
-      <p>Staff Salaries: Which option went to overtime payments?</p>
-      <button class="choice-btn" onclick="checkChoice(1)">A) 500</button>
-      <button class="choice-btn" onclick="checkChoice(2)">B) 800</button>
-      <button class="choice-btn" onclick="checkChoice(3)">C) 750</button>
-      <button class="choice-btn" onclick="checkChoice(4)">D) 1000</button>
-    `;
-  } else if(currentQ === 2){
-    gameDiv.innerHTML = `
-      <p>City Projects Fund: How much went to community outreach?</p>
-      <button class="choice-btn" onclick="checkChoice(1)">A) 1000</button>
-      <button class="choice-btn" onclick="checkChoice(2)">B) 1500</button>
-      <button class="choice-btn" onclick="checkChoice(3)">C) 1200</button>
-      <button class="choice-btn" onclick="checkChoice(4)">D) 2000</button>
-    `;
-  } else if(currentQ > 2){
-    endGame();
-  }
+function nextQuestion() {
+    const gameDiv = document.getElementById('budget-game');
+
+    if (currentQ === 1) {
+        gameDiv.innerHTML = `
+            <p>Staff Salaries: Which option went to overtime payments?</p>
+            <button class="choice-btn" onclick="checkChoice(1)">A) 500</button>
+            <button class="choice-btn" onclick="checkChoice(2)">B) 800</button>
+            <button class="choice-btn" onclick="checkChoice(3)">C) 750</button>
+            <button class="choice-btn" onclick="checkChoice(4)">D) 1000</button>
+        `;
+    } else if (currentQ === 2) {
+        gameDiv.innerHTML = `
+            <p>City Projects Fund: How much went to community outreach?</p>
+            <button class="choice-btn" onclick="checkChoice(1)">A) 1000</button>
+            <button class="choice-btn" onclick="checkChoice(2)">B) 1500</button>
+            <button class="choice-btn" onclick="checkChoice(3)">C) 1200</button>
+            <button class="choice-btn" onclick="checkChoice(4)">D) 2000</button>
+        `;
+    } else if (currentQ > 2) {
+        endGame();
+    }
 }
 
-function endGame(){
-  const gameDiv = document.getElementById('budget-game');
-  gameDiv.innerHTML="<p>All budget allocations completed.</p>";
-  const outcome = document.getElementById('outcome');
-  outcome.innerHTML = `
-    I performed maintenance checks personally and managed the budget responsibly.<br>
-    Publicly, I blamed the engineer and supervisor to maintain trust in the city.<br>
-    The public praises my actions, and the engineer and supervisor are arrested.<br>
-    The city sees a responsible mayor at work, while I.. am protected.
-  `;
-  setTimeout(()=>{window.location.href='act4game.html';},3000);
+function endGame() {
+    const gameDiv = document.getElementById('budget-game');
+    gameDiv.innerHTML = "<p>All budget allocations completed.</p>";
+
+    const outcome = document.getElementById('outcome');
+    outcome.innerHTML = `
+        I performed maintenance checks personally and managed the budget responsibly.<br>
+        Publicly, I blamed the engineer and supervisor to maintain trust in the city.<br>
+        The public praises my actions, and the engineer and supervisor are arrested.<br>
+        The city sees a responsible mayor at work, while I.. am protected.
+    `;
+
+    setTimeout(() => {
+        window.location.href = 'act4game.html';
+    }, 3000);
 }
 </script>
+
 </body>
 </html>

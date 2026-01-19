@@ -1,21 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- favicon -->
-    <link rel="icon" href="https://raw.githubusercontent.com/phipalibunao/CS3_2ndQtr_K18_K21/main/assets/cspairproj_favicon2.png" sizes="any">
-    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/phipalibunao/CS3_2ndQtr_K18_K21/main/assets/cspairproj_favicon2.png">
-
-    <!-- Encoding + mobile responsiveness -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Page info -->
-    <title>Fractured Night — Silent Night</title>
-    <meta name="description" content="Webpage telling the story of the second act.">
-    <meta name="author" content="Phipa Libunao, Datu Macalintal">
-    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
-
-    <!-- Link Stylesheet -->
+<link rel="icon" href="https://raw.githubusercontent.com/phipalibunao/CS3_2ndQtr_K18_K21/main/assets/cspairproj_favicon2.png" sizes="any">
+<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/phipalibunao/CS3_2ndQtr_K18_K21/main/assets/cspairproj_favicon2.png">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fractured Night — Silent Night</title>
+<meta name="description" content="Webpage telling the story of the second act.">
+<meta name="author" content="Phipa Libunao, Datu Macalintal">
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
 
 <style>
 :root{
@@ -28,56 +21,75 @@
 }
 *{box-sizing:border-box}
 html,body{height:100%;margin:0;font-family:'Special Elite',monospace;background:var(--bg);color:var(--accent);overflow-x:hidden}
-#grain{
-  position:fixed;inset:0;pointer-events:none;z-index:9999;mix-blend-mode:overlay;opacity:0.12;background-image:
-  linear-gradient(transparent 50%, rgba(255,255,255,0.02) 50%),
-  linear-gradient(90deg, transparent 50%, rgba(255,255,255,0.02) 50%);
-  background-size:2px 2px,2px 2px;
-}
+#grain{position:fixed;inset:0;pointer-events:none;z-index:9999;mix-blend-mode:overlay;opacity:0.12;background-image:linear-gradient(transparent 50%, rgba(255,255,255,0.02) 50%),linear-gradient(90deg, transparent 50%, rgba(255,255,255,0.02) 50%);background-size:2px 2px,2px 2px}
+
 .navbar{width:100%;background:#0d0d10;padding:12px 0;display:flex;justify-content:center;gap:24px;position:sticky;top:0;z-index:50}
 .navbar a{color:var(--accent);text-decoration:none;font-weight:bold;transition:.2s}
 .navbar a:hover{color:var(--highlight)}
+
 .wrap{min-height:100%;display:flex;flex-direction:column;align-items:center;padding:28px;position:relative;z-index:2;width:100%}
 header{text-align:center;width:100%;max-width:1000px}
 h1{margin:6px 0;font-size:36px;color:var(--highlight)}
 .pov-sign{display:inline-block;background:rgba(18,18,18,0.6);color:var(--cctv-green);padding:6px 12px;border-radius:12px;font-weight:bold;margin-bottom:12px}
 .lead{opacity:.9;margin:6px 0 18px;font-size:16px;line-height:1.6}
+
 .scene{display:grid;grid-template-columns:2fr 1fr;gap:18px;max-width:1000px;width:100%}
 .card-scene{background:linear-gradient(135deg,#0b0b0f,#111117);border-radius:12px;padding:18px;position:relative;overflow:hidden;min-height:420px;z-index:2;box-shadow:0 6px 30px rgba(0,0,0,0.6)}
 .description{font-size:15px;line-height:1.5;opacity:0.95;transform:translateY(0)}
 .hotspots{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
 .hotspot{flex:1 1 140px;background:rgba(255,255,255,0.02);padding:12px;border-radius:10px;cursor:pointer;text-align:center;transition:.25s;font-weight:bold;color:var(--highlight)}
 .hotspot:hover{transform:scale(1.04);background:rgba(242,127,120,0.08)}
+
 .inventory{background:linear-gradient(135deg,#071017,#0c0d10);border-radius:12px;padding:14px;margin-top:20px}
 .inv-title{color:var(--cctv-green);font-weight:bold;margin-bottom:8px}
 .inv-empty{opacity:0.9}
+
 .action-card{width:100%;background:rgba(242,127,120,0.06);border-left:4px solid var(--highlight);padding:10px;margin:8px 0;border-radius:6px;color:var(--highlight);font-weight:bold;opacity:0;transform:translateY(8px);transition:all .45s}
 .action-card.show{opacity:1;transform:translateY(0)}
+
 .controls{display:flex;gap:12px;margin-top:14px;align-items:center;flex-wrap:wrap}
 .btn{background:#111114;color:white;padding:10px 14px;border-radius:8px;cursor:pointer;transition:all .25s;border:1px solid rgba(255,255,255,0.02)}
 .btn:hover{background:var(--highlight);color:#000}
 .btn.primary{background:var(--highlight);color:#000}
+
 .outcome{margin-top:16px;background:rgba(0,0,0,0.25);padding:12px;border-radius:10px;min-height:80px;font-style:italic;color:var(--cctv-green);border:1px solid rgba(155,231,155,0.06)}
-.transcript{
-  margin-top:14px;background:#060607;border-radius:8px;padding:12px;min-height:140px;color:var(--cctv-green);
-  font-family:monospace;font-size:14px;line-height:1.4;border:1px solid rgba(155,231,155,0.06);position:relative;overflow:auto;
-  max-height:220px;
-}
+
+.transcript{margin-top:14px;background:#060607;border-radius:8px;padding:12px;min-height:140px;color:var(--cctv-green);font-family:monospace;font-size:14px;line-height:1.4;border:1px solid rgba(155,231,155,0.06);position:relative;overflow:auto;max-height:220px}
 .timestamp{position:absolute;top:8px;right:12px;color:rgba(155,231,155,0.7);font-size:12px;letter-spacing:0.6px}
 .transcript .line{opacity:0.95;margin:6px 0}
+
 .input-row{display:flex;gap:8px;margin-top:10px}
 input[type=text]{padding:8px;border-radius:6px;border:none;outline:none;background:#0b0b0d;color:var(--accent);width:70%}
-.cctv-overlay{
-  position:fixed;inset:0;pointer-events:none;background:linear-gradient(transparent 40%, rgba(0,0,0,0.2) 100%);mix-blend-mode:multiply;z-index:40;opacity:0.9;filter:grayscale(1) contrast(0.95)
-}
+
+.cctv-overlay{position:fixed;inset:0;pointer-events:none;background:linear-gradient(transparent 40%, rgba(0,0,0,0.2) 100%);mix-blend-mode:multiply;z-index:40;opacity:0.9;filter:grayscale(1) contrast(0.95)}
 .screen-overlay{position:fixed;inset:0;z-index:1000;pointer-events:none;opacity:0;transition:opacity .45s}
 .flash-red{position:fixed;inset:0;background:rgba(255,0,0,0.55);z-index:1100;opacity:0;pointer-events:none}
 .cctv-ticker{position:fixed;left:12px;bottom:12px;color:rgba(155,231,155,0.6);font-family:monospace;font-size:12px;z-index:200}
+
+/* NEW PLAYER TAG STYLE */
+#playerTag {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 8px 15px;
+  background: rgba(30,30,30,0.7);
+  border: 2px solid #fff;
+  border-radius: 10px;
+  font-family: 'Special Elite', monospace;
+  font-size: 16px;
+  color: #fff;
+  z-index: 101;
+}
+
 @media(max-width:900px){.scene{grid-template-columns:1fr}.transcript{max-height:180px}}
 </style>
 </head>
 <body>
 <div id="grain"></div>
+
+<!-- PLAYER TAG -->
+<div id="playerTag"></div>
+
 <div class="navbar">
   <a href="homepage.html">Home</a>
   <a href="story1.html">Act 1</a>
@@ -86,6 +98,7 @@ input[type=text]{padding:8px;border-radius:6px;border:none;outline:none;backgrou
   <a href="story4.html">Act 4</a>
   <a href="aboutus.html">About Us</a>
 </div>
+
 <div class="wrap">
 <header>
   <h1>Chapter 2: Silent Night</h1>
@@ -120,11 +133,17 @@ input[type=text]{padding:8px;border-radius:6px;border:none;outline:none;backgrou
   </aside>
 </div>
 </div>
+
 <div class="cctv-overlay"></div>
 <div class="screen-overlay" id="screenOverlay"></div>
 <div class="flash-red" id="flashRed"></div>
 <div class="cctv-ticker" id="ticker"></div>
+
 <script>
+const playerTag = document.getElementById("playerTag");
+const playerName = localStorage.getItem("playerName") || "Guest";
+playerTag.textContent = `Player: ${playerName}`;
+
 let inventory=[];
 const invList=document.getElementById("inventoryList");
 const countEl=document.getElementById("count");
@@ -142,12 +161,6 @@ const questions = {
   2: "Officer: Multiple witnesses claim you were touching the wiring. What exactly were you doing?",
   3: "Officer: Why did you leave the bridge quickly when the patrol arrived?"
 };
-
-const storyLines = [
-  "The engineer reads about the memo. They go to the bridge to instead try to make it worse.",
-  "The engineer is seen on the bridge. They are forced to leave the bridge, and the next day, their blurred photo appears in news reports suggesting sabotage.",
-  "The engineer is accused of tampering with the bridge. A while later, they are arrested."
-];
 
 function nowStamp(){
   const d=new Date();
@@ -195,13 +208,7 @@ function typeLine(text,cb){
 }
 
 function showQuestion(id){
-  riddleArea.innerHTML = `
-    <div style="color:var(--cctv-green);font-family:monospace;margin-top:8px">${questions[id]}</div>
-    <div class="input-row">
-      <input type="text" id="answerInput" placeholder="Your response">
-      <button class="btn" id="submitAnswer">Submit</button>
-    </div>
-  `;
+  riddleArea.innerHTML = `<div style="color:var(--cctv-green);font-family:monospace;margin-top:8px">${questions[id]}</div><div class="input-row"><input type="text" id="answerInput" placeholder="Your response"><button class="btn" id="submitAnswer">Submit</button></div>`;
   document.getElementById("submitAnswer").onclick = () => {
     let user = document.getElementById("answerInput").value.trim();
     if(user.length>0){
@@ -210,12 +217,6 @@ function showQuestion(id){
       addItem(id, questions[id] + " — " + user);
       riddleArea.innerHTML = '';
       screenPulse();
-      const pub = document.getElementById('publicStory');
-      if(pub.children.length < storyLines.length){
-        const div=document.createElement('div');
-        div.textContent = storyLines[pub.children.length];
-        pub.appendChild(div);
-      }
     }
   };
 }
@@ -226,9 +227,7 @@ function addItem(id,label){
   refreshInv();
 }
 
-document.querySelectorAll(".hotspot").forEach(h=>{
-  h.onclick=()=> {if (countEl.innerHTML == parseInt(h.dataset.id) - 1){showQuestion(h.dataset.id);}}
-});
+document.querySelectorAll(".hotspot").forEach(h=>{h.onclick=()=> {if (countEl.innerHTML == parseInt(h.dataset.id) - 1){showQuestion(h.dataset.id);}}});
 
 finishBtn.onclick = () => {
   screenOverlay.style.background = 'rgba(0,0,0,0.6)';
@@ -244,7 +243,6 @@ function screenPulse(){
   screenOverlay.style.opacity = '1';
   setTimeout(()=>{screenOverlay.style.opacity='0'},240);
 }
-
 </script>
 </body>
 </html>

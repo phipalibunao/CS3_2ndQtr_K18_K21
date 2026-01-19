@@ -1,21 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- favicon -->
     <link rel="icon" href="https://raw.githubusercontent.com/phipalibunao/CS3_2ndQtr_K18_K21/main/assets/cspairproj_favicon2.png" sizes="any">
     <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/phipalibunao/CS3_2ndQtr_K18_K21/main/assets/cspairproj_favicon2.png">
 
-    <!-- Encoding + mobile responsiveness -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Page info -->
     <title>Fractured Night — Orders and Conflict</title>
     <meta name="description" content="Webpage telling the story of the third act.">
     <meta name="author" content="Phipa Libunao, Datu Macalintal">
     <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
-
-    <!-- Link Stylesheet -->
 
 <style>
 :root{
@@ -34,6 +29,19 @@ html,body{
   background:linear-gradient(135deg,#0b0b0f,#13131a);
   color:var(--accent);
   overflow-x:hidden;
+}
+#playerTag{
+  position: fixed;
+  top:20px;
+  right:20px;
+  padding:8px 15px;
+  background: rgba(30,30,30,0.7);
+  border:2px solid #fff;
+  border-radius:10px;
+  font-family:'Special Elite',monospace;
+  font-size:16px;
+  color:#fff;
+  z-index:101;
 }
 .navbar{
   width:100%;
@@ -195,6 +203,9 @@ p.lead{opacity:.9;margin:6px 0 18px;font-size:18px;line-height:1.6;}
 </style>
 </head>
 <body>
+
+<div id="playerTag"></div>
+
 <div class="navbar">
   <a href="homepage.html">Home</a>
   <a href="story1.html">Act 1</a>
@@ -203,6 +214,7 @@ p.lead{opacity:.9;margin:6px 0 18px;font-size:18px;line-height:1.6;}
   <a href="story4.html">Act 4</a>
   <a href="aboutus.html">About Us</a>
 </div>
+
 <div class="wrap">
 <header>
   <h1>Chapter 3: Orders and Conflict</h1>
@@ -236,6 +248,7 @@ p.lead{opacity:.9;margin:6px 0 18px;font-size:18px;line-height:1.6;}
   </aside>
 </div>
 </div>
+
 <script>
 let inventory=[];
 const invList=document.getElementById("inventoryList");
@@ -245,6 +258,9 @@ const publicStory=document.getElementById("publicStory");
 const miniBtn=document.getElementById("miniGameBtn");
 const resources = document.querySelectorAll('.resource');
 const slots = document.querySelectorAll('.day-slot');
+const playerTag = document.getElementById('playerTag');
+const playerName = localStorage.getItem('playerName');
+if(playerName){ playerTag.textContent = `Player: ${playerName}`;}
 
 function refreshInv(){
   invList.innerHTML="";

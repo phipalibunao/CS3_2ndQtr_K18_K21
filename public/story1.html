@@ -1,21 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- favicon -->
-    <link rel="icon" href="https://raw.githubusercontent.com/phipalibunao/CS3_2ndQtr_K18_K21/main/assets/cspairproj_favicon2.png" sizes="any">
-    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/phipalibunao/CS3_2ndQtr_K18_K21/main/assets/cspairproj_favicon2.png">
+<link rel="icon" href="https://raw.githubusercontent.com/phipalibunao/CS3_2ndQtr_K18_K21/main/assets/cspairproj_favicon2.png" sizes="any">
+<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/phipalibunao/CS3_2ndQtr_K18_K21/main/assets/cspairproj_favicon2.png">
 
-    <!-- Encoding + mobile responsiveness -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Page info -->
-    <title>Fractured Night — Headline</title>
-    <meta name="description" content="Webpage telling the story of the first act.">
-    <meta name="author" content="Phipa Libunao, Datu Macalintal">
-    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
+<title>Fractured Night — Headline</title>
+<meta name="description" content="Webpage telling the story of the first act.">
+<meta name="author" content="Phipa Libunao, Datu Macalintal">
 
-    <!-- Link Stylesheet -->
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
 
 <style>
 :root{
@@ -44,13 +40,13 @@ html,body{
   gap:24px;
   position:sticky;
   top:0;
-  z-index:100
+  z-index:100;
 }
 .navbar a{
   color:var(--accent);
   text-decoration:none;
   font-weight:bold;
-  transition:.2s
+  transition:.2s;
 }
 .navbar a:hover{color:var(--nav-hover)}
 .wrap{
@@ -65,8 +61,8 @@ html,body{
   width:100%;
 }
 header{text-align:center;width:100%;max-width:1000px}
-h1{margin:6px 0;font-size:36px;color:var(--highlight);}
-p.lead{opacity:.9;margin:6px 0 18px;font-size:18px;line-height:1.6;}
+h1{margin:6px 0;font-size:36px;color:var(--highlight)}
+p.lead{opacity:.9;margin:6px 0 18px;font-size:18px;line-height:1.6}
 .pov-sign{
   display:inline-block;
   background:rgba(14,95,255,0.1);
@@ -85,19 +81,17 @@ p.lead{opacity:.9;margin:6px 0 18px;font-size:18px;line-height:1.6;}
   overflow:hidden;
   min-height:380px;
   z-index:2;
-  transition: transform 0.5s ease;
+  transition:transform 0.5s ease;
 }
-.card-scene:hover{
-  transform:scale(1.02);
-}
+.card-scene:hover{transform:scale(1.02)}
 .description{
   font-size:16px;
   line-height:1.5;
   opacity:0;
   transform:translateY(10px);
-  transition: all 0.5s ease;
+  transition:all 0.5s ease;
 }
-.description.show{opacity:1;transform:translateY(0);}
+.description.show{opacity:1;transform:translateY(0)}
 .hotspots{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
 .hotspot{
   flex:1 1 140px;
@@ -110,10 +104,7 @@ p.lead{opacity:.9;margin:6px 0 18px;font-size:18px;line-height:1.6;}
   font-weight:bold;
   color:var(--highlight);
 }
-.hotspot:hover{
-  transform:scale(1.1);
-  background:rgba(14,95,255,0.2);
-}
+.hotspot:hover{transform:scale(1.1);background:rgba(14,95,255,0.2)}
 .hotspot.locked{opacity:.35;cursor:not-allowed}
 .hotspot:active{transform:translateY(2px)}
 .inventory{
@@ -133,7 +124,7 @@ p.lead{opacity:.9;margin:6px 0 18px;font-size:18px;line-height:1.6;}
   transition:all 0.5s ease;
   color:var(--highlight);
 }
-.inv-item.show{opacity:1;transform:translateY(0);}
+.inv-item.show{opacity:1;transform:translateY(0)}
 .outcome{
   margin-top:16px;
   background:rgba(255,255,255,0.03);
@@ -152,7 +143,7 @@ p.lead{opacity:.9;margin:6px 0 18px;font-size:18px;line-height:1.6;}
   object-fit:cover;
   transition:opacity 0.5s;
 }
-.controls{display:flex;gap:12px;margin-top:14px;flex-wrap:wrap;}
+.controls{display:flex;gap:12px;margin-top:14px;flex-wrap:wrap}
 .btn{
   background:#222228;
   color:white;
@@ -162,16 +153,34 @@ p.lead{opacity:.9;margin:6px 0 18px;font-size:18px;line-height:1.6;}
   cursor:pointer;
   transition:all 0.3s;
 }
-.btn:hover{background:var(--highlight);color:#000;}
+.btn:hover{background:var(--highlight);color:#000}
 .btn.primary{background:#0e5fff}
 @media(max-width:900px){.scene{grid-template-columns:1fr}}
 .rain{position:absolute;width:2px;height:15px;background:rgba(255,255,255,0.3);animation:fall linear infinite;z-index:1}
-@keyframes fall{to{transform:translateY(100vh);}}
-.flash{position:absolute;top:0;left:0;width:100%;height:100%;background:white;opacity:0;pointer-events:none;z-index:3;transition:opacity 0.1s;}
+@keyframes fall{to{transform:translateY(100vh)}}
+.flash{position:absolute;top:0;left:0;width:100%;height:100%;background:white;opacity:0;pointer-events:none;z-index:3;transition:opacity 0.1s}
+
+/* NEW PLAYER TAG STYLE */
+#playerTag {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 8px 15px;
+  background: rgba(30,30,30,0.7);
+  border: 2px solid #fff;
+  border-radius: 10px;
+  font-family: 'Special Elite', monospace;
+  font-size: 16px;
+  color: #fff;
+  z-index: 101;
+}
 </style>
 </head>
+
 <body>
+
 <div class="flash" id="flash"></div>
+
 <div class="navbar">
   <a href="homepage.html">Home</a>
   <a href="story1.html">Act 1</a>
@@ -180,135 +189,149 @@ p.lead{opacity:.9;margin:6px 0 18px;font-size:18px;line-height:1.6;}
   <a href="story4.html">Act 4</a>
   <a href="aboutus.html">About Us</a>
 </div>
+
+<!-- PLAYER TAG -->
+<div id="playerTag"></div>
+
 <div class="wrap">
 <header>
-  <h1>Chapter 1: Headline</h1>
-  <div class="pov-sign">POV: Journalist</div>
-  <p class="lead">Step into the shoes of a journalist on a stormy night. Explore the scene, uncover hidden truths, and decide what the city will see as reality.</p>
+<h1>Chapter 1: Headline</h1>
+<div class="pov-sign">POV: Journalist</div>
+<p class="lead">Step into the shoes of a journalist on a stormy night. Explore the scene, uncover hidden truths, and decide what the city will see as reality.</p>
 </header>
+
 <div class="scene">
-  <div class="card-scene" id="sceneArea">
-    <div class="description" id="sceneText">
-      Rain lashes down as darkness envelops the city. Debris from the collapsed bridge litters the street. The air is heavy with tension, and distant sirens wail. You clutch your camera tightly, knowing that every photo and note you collect could change the story the city will believe.
-    </div>
-    <img id="photoPlaceholder" class="placeholder-img" style="display:none" src="">
-    <div class="hotspots" id="hotspots">
-      <div class="hotspot" data-id="shadow">📸<br>Mysterious Shadow</div>
-      <div class="hotspot" data-id="memo">📝<br>Supervisor's Memo</div>
-      <div class="hotspot locked" id="weakSpot" data-id="weak">📷<br>❓</div>
-      <div class="hotspot" data-id="witness">👣<br>Witness Notes</div>
-    </div>
-    <div class="controls">
-      <button class="btn" id="investigateBtn">Investigate Deeper</button>
-      <button class="btn primary" id="publishBtn">Publish Findings</button>
-      <div style="flex:1"></div>
-      <div id="status">Evidence Collected: <strong id="count">0</strong></div>
-    </div>
-    <div class="outcome">
-      <div id="publicStory">The city waits. Each decision you make will shape their perception.</div>
-    </div>
-  </div>
-  <aside class="inventory">
-    <div class="inv-title">Collected Evidence</div>
-    <div id="inventoryList"><div class="inv-empty show">Nothing yet.</div></div>
-  </aside>
+<div class="card-scene">
+<div class="description" id="sceneText">
+Rain lashes down as darkness envelops the city. Debris from the collapsed bridge litters the street. The air is heavy with tension, and distant sirens wail. You clutch your camera tightly, knowing that every photo and note you collect could change the story the city will believe.
+</div>
+
+<img id="photoPlaceholder" class="placeholder-img" style="display:none">
+
+<div class="hotspots">
+<div class="hotspot" data-id="shadow">📸<br>Mysterious Shadow</div>
+<div class="hotspot" data-id="memo">📝<br>Supervisor's Memo</div>
+<div class="hotspot locked" id="weakSpot" data-id="weak">📷<br>❓</div>
+<div class="hotspot" data-id="witness">👣<br>Witness Notes</div>
+</div>
+
+<div class="controls">
+<button class="btn" id="investigateBtn">Investigate Deeper</button>
+<button class="btn primary" id="publishBtn">Publish Findings</button>
+<div style="flex:1"></div>
+<div>Evidence Collected: <strong id="count">0</strong></div>
+</div>
+
+<div class="outcome">
+<div id="publicStory">The city waits. Each decision you make will shape their perception.</div>
 </div>
 </div>
+
+<aside class="inventory">
+<div id="inventoryList"><div class="inv-empty show">Nothing yet.</div></div>
+</aside>
+</div>
+</div>
+
 <script>
-let inventory=[];
-const invList=document.getElementById("inventoryList");
-const countEl=document.getElementById("count");
-const photo=document.getElementById("photoPlaceholder");
-const publicStory=document.getElementById("publicStory");
-const weakSpot=document.getElementById("weakSpot");
-const flash=document.getElementById("flash");
-const desc=document.getElementById('sceneText');
-setTimeout(()=>{desc.classList.add('show')},300);
+const playerTag = document.getElementById("playerTag");
+const playerName = localStorage.getItem("playerName") || "Guest";
+playerTag.textContent = `Player: ${playerName}`;
+
+let inventory=[]
+const invList=document.getElementById("inventoryList")
+const countEl=document.getElementById("count")
+const photo=document.getElementById("photoPlaceholder")
+const publicStory=document.getElementById("publicStory")
+const weakSpot=document.getElementById("weakSpot")
+const flash=document.getElementById("flash")
+const desc=document.getElementById("sceneText")
+
+setTimeout(()=>{desc.classList.add("show")},300)
+
 for(let i=0;i<150;i++){
-  const drop=document.createElement('div');
-  drop.className='rain';
-  drop.style.left=Math.random()*100+'%';
-  drop.style.animationDuration=0.5+Math.random()*0.5+'s';
-  drop.style.animationDelay=Math.random()*2+'s';
-  document.body.appendChild(drop);
-  drop.style.top='-20px';
+  const drop=document.createElement("div")
+  drop.className="rain"
+  drop.style.left=Math.random()*100+"%"
+  drop.style.animationDuration=0.5+Math.random()*0.5+"s"
+  drop.style.animationDelay=Math.random()*2+"s"
+  document.body.appendChild(drop)
+  drop.style.top="-20px"
 }
+
 function lightning(){
-  flash.style.opacity=0.6;
-  setTimeout(()=>{flash.style.opacity=0;},100);
-  setTimeout(lightning, 2000 + Math.random()*4000);
+  flash.style.opacity=0.6
+  setTimeout(()=>{flash.style.opacity=0},100)
+  setTimeout(lightning,2000+Math.random()*4000)
 }
-lightning();
+lightning()
+
 function refreshInv(){
-  invList.innerHTML="";
+  invList.innerHTML=""
   if(inventory.length===0){
-    let e=document.createElement("div");
-    e.className="inv-empty show";
-    e.textContent="Nothing yet.";
-    invList.appendChild(e);
+    let e=document.createElement("div")
+    e.className="inv-empty show"
+    e.textContent="Nothing yet."
+    invList.appendChild(e)
   }else{
     inventory.forEach(i=>{
-      let box=document.createElement("div");
-      box.className="inv-item";
-      let span=document.createElement("span");
-      span.textContent=i.label;
-      let check=document.createElement("input");
-      check.type="checkbox";
-      check.checked=true;
-      check.dataset.id=i.id;
-      box.appendChild(span);
-      box.appendChild(check);
-      invList.appendChild(box);
-      setTimeout(()=>{box.classList.add('show')},50);
-    });
+      let box=document.createElement("div")
+      box.className="inv-item"
+      let span=document.createElement("span")
+      span.textContent=i.label
+      let check=document.createElement("input")
+      check.type="checkbox"
+      check.checked=true
+      check.dataset.id=i.id
+      box.appendChild(span)
+      box.appendChild(check)
+      invList.appendChild(box)
+      setTimeout(()=>{box.classList.add("show")},50)
+    })
   }
-  countEl.textContent=inventory.length;
+  countEl.textContent=inventory.length
 }
-function addItem(id,label,img,storyText){
-  if(inventory.some(x=>x.id===id))return;
-  inventory.push({id,label});
-  photo.style.display="block";
-  photo.style.opacity=0;
-  photo.src=img;
-  setTimeout(()=>{photo.style.opacity=1},50);
-  refreshInv();
-  publicStory.textContent=storyText;
+
+function addItem(id,label,img,text){
+  if(inventory.some(x=>x.id===id))return
+  inventory.push({id,label})
+  photo.style.display="block"
+  photo.style.opacity=0
+  photo.src=img
+  setTimeout(()=>{photo.style.opacity=1},50)
+  refreshInv()
+  publicStory.textContent=text
 }
+
 document.querySelectorAll(".hotspot").forEach(h=>{
   h.onclick=()=>{
-    if(h.classList.contains("locked")) return;
-    let id = h.dataset.id;
-    if(id === "shadow"){
-      addItem("shadow","Blurry Shadow Photo","https://raw.githubusercontent.com/phipalibunao/CS3_2ndQtr_K18_K21/main/assets/shadowfigure.png","You capture a shadowy figure moving across the bridge, almost lost to the storm.");
-    }
-    if(id === "memo"){
-      addItem("memo","Supervisor Memo","https://raw.githubusercontent.com/phipalibunao/CS3_2ndQtr_K18_K21/main/assets/memoredacted.png","A memo warning the engineer not to repair the bridge. The motives are unclear.");
-    }
-    if(id === "witness"){
-      addItem("witness","Witness Note","https://raw.githubusercontent.com/phipalibunao/CS3_2ndQtr_K18_K21/main/assets/witnesshuhu.png","A witness notes the creaking sounds and panic the night before the collapse.");
-    }
-    if(id === "weak"){
-      addItem("weak","Mysterious Photo","https://raw.githubusercontent.com/phipalibunao/CS3_2ndQtr_K18_K21/main/assets/blurbridge.png","Hidden beneath the rubble, a photo reveals the ************.");
-    }
-  };
-});
+    if(h.classList.contains("locked"))return
+    let id=h.dataset.id
+    if(id==="shadow")addItem("shadow","Blurry Shadow Photo","https://raw.githubusercontent.com/phipalibunao/CS3_2ndQtr_K18_K21/main/assets/shadowfigure.png","You capture a shadowy figure moving across the bridge, almost lost to the storm.")
+    if(id==="memo")addItem("memo","Supervisor Memo","https://raw.githubusercontent.com/phipalibunao/CS3_2ndQtr_K18_K21/main/assets/memoredacted.png","A memo warning the engineer not to repair the bridge. The motives are unclear.")
+    if(id==="witness")addItem("witness","Witness Note","https://raw.githubusercontent.com/phipalibunao/CS3_2ndQtr_K18_K21/main/assets/witnesshuhu.png","A witness notes the creaking sounds and panic the night before the collapse.")
+    if(id==="weak")addItem("weak","Mysterious Photo","https://raw.githubusercontent.com/phipalibunao/CS3_2ndQtr_K18_K21/main/assets/blurbridge.png","Hidden beneath the rubble, a photo reveals the ************.")
+  }
+})
+
 document.getElementById("investigateBtn").onclick=()=>{
-  weakSpot.classList.remove("locked");
-  publicStory.textContent="You dig through the debris, finding a hidden camera that might reveal more.";
-  setTimeout(()=>{publicStory.textContent="The camera holds a new, revealing photograph of ********."},1400);
-};
+  weakSpot.classList.remove("locked")
+  publicStory.textContent="You dig through the debris, finding a hidden camera that might reveal more."
+  setTimeout(()=>{publicStory.textContent="The camera holds a new, revealing photograph of ********."},1400)
+}
+
 document.getElementById("publishBtn").onclick=()=>{
-  let checked=[...invList.querySelectorAll("input[type=checkbox]")].filter(c=>c.checked).map(c=>c.dataset.id);
-  if(checked.length===0){publicStory.textContent="You publish nothing. The city remains hungry for answers.";return;}
-  publicStory.textContent="You publish the collected evidence. The city quickly spins the story into sabotage and blame.";
-  document.getElementById("publishBtn").style.display="none";
-  let truthBtn=document.createElement("button");
-  truthBtn.className="btn primary";
-  truthBtn.textContent="Discover the truth behind the shadows";
-  truthBtn.style.marginTop="12px";
-  truthBtn.onclick=()=>{window.location.href="act1game.html";};
-  document.querySelector(".controls").appendChild(truthBtn);
-};
+  if(inventory.length===0){publicStory.textContent="You publish nothing. The city remains hungry for answers.";return}
+  publicStory.textContent="You publish the collected evidence. The city quickly spins the story into sabotage and blame."
+  document.getElementById("publishBtn").style.display="none"
+  let truthBtn=document.createElement("button")
+  truthBtn.className="btn primary"
+  truthBtn.textContent="Discover the truth behind the shadows"
+  truthBtn.style.marginTop="12px"
+  truthBtn.onclick=()=>{window.location.href="act1game.html"}
+  document.querySelector(".controls").appendChild(truthBtn)
+}
 </script>
+
 </body>
 </html>

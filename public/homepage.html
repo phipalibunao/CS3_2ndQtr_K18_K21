@@ -1,21 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- favicon -->
     <link rel="icon" href="https://raw.githubusercontent.com/phipalibunao/CS3_2ndQtr_K18_K21/main/assets/cspairproj_favicon2.png" sizes="any">
     <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/phipalibunao/CS3_2ndQtr_K18_K21/main/assets/cspairproj_favicon2.png">
-
-    <!-- Encoding + mobile responsiveness -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Page info -->
     <title>Fractured Night</title>
     <meta name="description" content="Webpage starting off the Fractured Night.">
     <meta name="author" content="Phipa Libunao, Datu Macalintal">
     <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
-
-    <!-- Link Stylesheet -->
 
 <style>
 body, html {
@@ -26,6 +19,20 @@ body, html {
   font-family: 'Special Elite', monospace;
   background: black;
   color: white;
+}
+
+#playerTag {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 8px 15px;
+  background: rgba(30,30,30,0.7);
+  border: 2px solid #fff;
+  border-radius: 10px;
+  font-family: 'Special Elite', monospace;
+  font-size: 16px;
+  color: #fff;
+  z-index: 100;
 }
 
 #introScreen {
@@ -155,6 +162,8 @@ span.typing {
 </head>
 <body>
 
+<div id="playerTag"></div>
+
 <div id="introScreen">
   <h1>Click to Start</h1>
   <p>Enter the night…</p>
@@ -180,6 +189,12 @@ const authors = document.getElementById('authors');
 const subtitle = document.getElementById('subtitle');
 const storyBox = document.getElementById('storyBox');
 const startBtn = document.getElementById('startBtn');
+const playerTag = document.getElementById('playerTag');
+
+const playerName = localStorage.getItem('playerName');
+if(playerName){
+  playerTag.textContent = `Player: ${playerName}`;
+}
 
 let stormStarted = false;
 let rainDrops = [];
