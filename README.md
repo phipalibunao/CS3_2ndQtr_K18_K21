@@ -170,6 +170,12 @@ JavaScript will be used for:
 - Audio and visual effects  
 - Saving and retrieving form data using `localStorage`
 
+## Definition of Done
+- **Content:** The story is complete and readable, and all interactive elements are functional.
+- **Navigation:** All links between pages work correctly and are easily recognized.
+- **Design:** Visual elements (images, styles) display correctly, and are used to enhance the story.
+- **User:** The teacher or anyone as a user finds the website smooth to play, and at least a little enjoyable or enganging with its story and games.
+
 ---
 
 ## Wireframe
