@@ -1,22 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- favicon -->
-    <link rel="icon" href="https://raw.githubusercontent.com/phipalibunao/CS3_2ndQtr_K18_K21/main/assets/cspairproj_favicon2.png" sizes="any">
-    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/phipalibunao/CS3_2ndQtr_K18_K21/main/assets/cspairproj_favicon2.png">
-
-    <!-- Encoding + mobile responsiveness -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Page info -->
-    <title>Fractured Night — Budget Allocation</title>
-    <meta name="description" content="Webpage about the fourth act's game.">
-    <meta name="author" content="Phipa Libunao, Datu Macalintal">
-    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
-
-    <!-- Link Stylesheet -->
-
+<link rel="icon" href="https://raw.githubusercontent.com/phipalibunao/CS3_2ndQtr_K18_K21/main/assets/cspairproj_favicon2.png" sizes="any">
+<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/phipalibunao/CS3_2ndQtr_K18_K21/main/assets/cspairproj_favicon2.png">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fractured Night — Budget Allocation</title>
+<meta name="description" content="Webpage about the fourth act's game.">
+<meta name="author" content="Phipa Libunao, Datu Macalintal">
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#0b0b0f;
@@ -317,6 +309,7 @@ function endGame(won){
   } else {
     hiddenClue.innerHTML = "You weren't able to find the hidden clue. The story remains the same. The mayor did maintenance and managed the budget.";
   }
+  setTimeout(()=>{window.location.href='reeval.html';},5000);
 }
 
 function shuffleBudgets(){

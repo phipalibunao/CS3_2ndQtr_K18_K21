@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your Experience - Fractured Night</title>
+<link rel="icon" href="https://raw.githubusercontent.com/phipalibunao/CS3_2ndQtr_K18_K21/main/assets/cspairproj_favicon2.png" sizes="any">
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
+<style>
+body, html {
+  margin: 0; padding: 0;
+  height: 100%;
+  font-family: 'Special Elite', monospace;
+  background: black;
+  color: white;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#stormScreen {
+  position: fixed;
+  top:0; left:0; right:0; bottom:0;
+  background: #0b0b0f;
+  overflow: hidden;
+  z-index: 1;
+}
+.wind { position: absolute; width: 2px; height: 40px; background: rgba(255,255,255,0.2); animation: blow linear infinite; border-radius: 50%; opacity: 0.6; }
+@keyframes blow { 0% { transform: translateX(-100px) translateY(0) rotate(0deg); opacity: 0.3; } 50% { opacity:0.6; } 100% { transform: translateX(100vw) translateY(-50px) rotate(360deg); opacity:0; } }
+.flash { position: absolute; top:0; left:0; width:100%; height:100%; background:white; opacity:0; pointer-events:none; z-index: 10; }
+
+#reflectionCard {
+  position: relative;
+  background: rgba(30,30,40,0.9);
+  padding: 50px 40px;
+  border-radius: 20px;
+  max-width: 700px;
+  width: 90%;
+  z-index: 5;
+  box-shadow: 0 0 50px rgba(255,255,255,0.1);
+  opacity: 0;
+  animation: fadeIn 2s forwards 1s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+h1 span.typing { display: inline-block; overflow: hidden; white-space: nowrap; border-right: 0.15em solid #fff; animation: typing 3s steps(30,end), blink 0.75s step-end infinite; font-size: 2rem; text-align: center; }
+p { font-size: 18px; line-height: 1.6; text-align: center; }
+
+.matching-container { display: flex; justify-content: space-between; margin-top: 20px; width: 100%; flex-wrap: wrap; }
+.matching-list { width: 45%; background: rgba(0,0,0,0.6); padding: 15px; border-radius: 10px; margin-bottom: 20px; }
+.matching-list h3 { text-align: center; }
+.matching-item { background: rgba(255,255,255,0.1); padding: 10px; margin: 10px 0; border-radius: 6px; cursor: pointer; transition: all 0.3s ease; }
+.matching-item:hover { background: rgba(255,255,255,0.3); }
+
+button { padding: 15px 25px; font-family: 'Special Elite', monospace; font-size: 18px; border-radius: 50px; border: 2px solid #fff; background: linear-gradient(45deg, #111, #222); color: #fff; margin-top: 25px; cursor: pointer; transition: all 0.3s ease; }
+button:hover { background: linear-gradient(45deg, #fff, #ccc); color: black; box-shadow: 0 0 30px rgba(255,255,255,0.5); }
+
+#step2 p { margin-top: 15px; text-align: left; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes typing { from { width: 0; } to { width: 100%; } }
+@keyframes blink { 50% { border-color: transparent; } }
+</style>
+</head>
+<body>
+
+<div id="stormScreen"></div>
+<div class="flash" id="flash"></div>
+
+<div id="reflectionCard">
+  <h1><span class="typing">Your Investigation...</span></h1>
+  <p id="greeting"></p>
+
+  <div id="step1">
+    <p>Match the statements that you think explain what really happened with the bridge collapse:</p>
+    <div class="matching-container">
+      <div class="matching-list" id="choices">
+        <h3>Options</h3>
+      </div>
+      <div class="matching-list" id="selected">
+        <h3>Your Selection</h3>
+      </div>
+    </div>
+    <button id="submitThoughts">Reveal the Truth</button>
+  </div>
+
+  <div id="step2" style="display:none;">
+    <p id="truthStory"></p>
+    <p id="score"></p>
+    <button onclick="restartStory()">About Us</button>
+  </div>
+</div>
+
+<script>
+const playerName = localStorage.getItem('playerName') || 'Detective';
+document.getElementById('greeting').textContent = `Hello, ${playerName}. Can you uncover the truth?`;
+
+const statements = [
+  "The bridge was already weak",
+  "The engineer tried to fix it",
+  "The supervisor was protecting the engineer",
+  "The mayor restricted maintenance funds",
+  "The bridge collapse was caused by aliens",
+  "The journalist sabotaged the bridge"
+];
+
+const trueStatements = [
+  "The bridge was already weak",
+  "The engineer tried to fix it",
+  "The supervisor was protecting the engineer",
+  "The mayor restricted maintenance funds"
+];
+
+const choicesContainer = document.getElementById('choices');
+const selectedContainer = document.getElementById('selected');
+
+statements.forEach(text => {
+  const div = document.createElement('div');
+  div.className = 'matching-item';
+  div.textContent = text;
+  div.addEventListener('click', () => {
+    if(div.parentElement.id === 'choices') selectedContainer.appendChild(div);
+    else choicesContainer.appendChild(div);
+  });
+  choicesContainer.appendChild(div);
+});
+
+document.getElementById('submitThoughts').addEventListener('click', () => {
+  const selectedItems = Array.from(selectedContainer.querySelectorAll('.matching-item')).map(e => e.textContent);
+  let matches = 0;
+  selectedItems.forEach(item => { if(trueStatements.includes(item)) matches++; });
+  const accuracy = Math.round((matches / trueStatements.length) * 100);
+
+  const trueStoryText = `The truth:\n
+- The bridge was already weak
+- The engineer tried to fix it
+- The supervisor was protecting the engineer
+- The mayor restricted maintenance funds
+Only incomplete stories reached the public.`;
+
+  document.getElementById('truthStory').textContent = trueStoryText;
+  document.getElementById('score').textContent = `Your deduction matched ${accuracy}% of the truth.`;
+
+  document.getElementById('step1').style.display = 'none';
+  document.getElementById('step2').style.display = 'block';
+});
+
+function restartStory(){ window.location.href='aboutus.html'; }
+
+const storm = document.getElementById('stormScreen');
+const flash = document.getElementById('flash');
+for(let i=0;i<100;i++){
+    const gust = document.createElement('div');
+    gust.className = 'wind';
+    gust.style.top = Math.random()*100+'vh';
+    gust.style.animationDuration = 3 + Math.random()*3+'s';
+    gust.style.animationDelay = Math.random()*3+'s';
+    gust.style.width = 1 + Math.random()*3+'px';
+    gust.style.height = 20 + Math.random()*30+'px';
+    storm.appendChild(gust); 
+}
+setInterval(() => { flash.style.opacity = 0.4; setTimeout(()=>{ flash.style.opacity = 0; }, 150); }, 4000 + Math.random()*3000);
+</script>
+
+</body>
+</html>
