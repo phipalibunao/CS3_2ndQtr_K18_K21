@@ -379,6 +379,7 @@
             clueDiv.style.display="block";
             if(won){
                 clueDiv.innerHTML="<strong>Hidden Clue Found!</strong><br>The engineer reads about the memo and ignores it. They try to restore the bridge, but they were framed of doing the opposite. The engineer knows something is wrong with the bridge.";
+                localStorage.setItem('act2', 'The engineer tried to fix the bridge.');
             } else {
                 clueDiv.innerHTML="<strong>Time's Up!</strong><br>You couldn't reveal the hidden clue. The story continues with the version the city believes. The engineer reads about the memo and ignores it. They intentionally damaged the bridge.";
             }

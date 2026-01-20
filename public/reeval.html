@@ -95,21 +95,25 @@ button:hover { background: linear-gradient(45deg, #fff, #ccc); color: black; box
 const playerName = localStorage.getItem('playerName') || 'Detective';
 document.getElementById('greeting').textContent = `Hello, ${playerName}. Can you uncover the truth?`;
 
-const statements = [
-  "The bridge was already weak",
-  "The engineer tried to fix it",
-  "The supervisor was protecting the engineer",
-  "The mayor restricted maintenance funds",
-  "The bridge collapse was caused by aliens",
-  "The journalist sabotaged the bridge"
+statements = [
+  "The bridge was sabotaged.",
+  "The engineer broke the bridge.",
+  "The supervisor kept the bridge unable to be fixed.",
+  "The mayor did their job well."
 ];
 
 const trueStatements = [
-  "The bridge was already weak",
-  "The engineer tried to fix it",
-  "The supervisor was protecting the engineer",
-  "The mayor restricted maintenance funds"
+  localStorage.getItem("act1") || "x",
+  localStorage.getItem("act2") || "x",
+  localStorage.getItem("act3") || "x",
+  localStorage.getItem("act4") || "x"
 ];
+
+for (i=0;i<trueStatements.length;i++){
+  if (trueStatements[i]!="x"){
+    statements.push(trueStatements[i]);
+  }
+}
 
 const choicesContainer = document.getElementById('choices');
 const selectedContainer = document.getElementById('selected');
@@ -133,7 +137,7 @@ document.getElementById('submitThoughts').addEventListener('click', () => {
 
   const trueStoryText = `The truth:\n
 - The bridge was already weak
-- The engineer tried to fix it
+- The engineer tried to fix the bridge
 - The supervisor was protecting the engineer
 - The mayor restricted maintenance funds
 Only incomplete stories reached the public.`;

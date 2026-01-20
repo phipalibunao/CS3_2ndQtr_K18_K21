@@ -343,6 +343,7 @@
             clueDiv.style.display="block";
             if(won){
                 clueDiv.innerHTML="<strong>Hidden Clue Found!</strong><br>The supervisor wanted to keep the engineer safe because they have low resources and people, so they sent the memo.";
+                localStorage.setItem('act3', 'The supervisor was protecting the engineer.');
             } else {
                 clueDiv.innerHTML="<strong>Time's Up!</strong><br>You couldn't reveal the hidden clue. The story continues with the version the city believes. The supervisor tried to cause the bridge to collapse.";
             }
