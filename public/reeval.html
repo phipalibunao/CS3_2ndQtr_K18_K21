@@ -68,11 +68,11 @@ button:hover { background: linear-gradient(45deg, #fff, #ccc); color: black; box
 <div class="flash" id="flash"></div>
 
 <div id="reflectionCard">
-  <h1><span class="typing">Your Investigation...</span></h1>
+  <h1><span class="typing">Your Investigation..</span></h1>
   <p id="greeting"></p>
 
   <div id="step1">
-    <p>Match the statements that you think explain what really happened with the bridge collapse:</p>
+    <p>Match the 4 statements that you think explain what really happened with the bridge collapse:</p>
     <div class="matching-container">
       <div class="matching-list" id="choices">
         <h3>Options</h3>
@@ -146,11 +146,11 @@ document.getElementById('submitThoughts').addEventListener('click', () => {
   selectedItems.forEach(item => { if(trueStatements.includes(item)) matches++; });
   const accuracy = Math.round((matches / trueStatements.length) * 100);
 
-  const trueStoryText = `The truth:\n
-- The bridge was already weak
-- The engineer tried to fix the bridge
-- The supervisor was protecting the engineer
-- The mayor restricted maintenance funds
+  const trueStoryText = `The truth:
+The bridge was already weak.
+The engineer tried to fix the bridge.
+The supervisor was protecting the engineer.
+The mayor restricted maintenance funds.
 Only incomplete stories reached the public.`;
 
   document.getElementById('truthStory').textContent = trueStoryText;
