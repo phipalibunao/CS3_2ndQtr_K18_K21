@@ -224,12 +224,12 @@ h1{
 <div id="game">
   <div class="budget-item" draggable="true" data-type="reputation">💰 $45k</div>
   <div class="budget-item" draggable="true" data-type="maintenance">💰 $50k</div>
-  <div class="budget-item" draggable="true" data-type="parks">💰 $35k</div>
-  <div class="budget-item" draggable="true" data-type="reputation">💰 $10k</div>
+  <div class="budget-item" draggable="true" data-type="personal">💰 $35k</div>
+  <div class="budget-item" draggable="true" data-type="parks">💰 $10k</div>
   <div class="budget-item" draggable="true" data-type="personal">💰 $120k</div>
   <div class="budget-item" draggable="true" data-type="maintenance">💰 $30k</div>
-  <div class="budget-item" draggable="true" data-type="fake">💰 $5k</div>
-  <div class="budget-item" draggable="true" data-type="fake">💰 $60k</div>
+  <div class="budget-item" draggable="true" data-type="parks">💰 $5k</div>
+  <div class="budget-item" draggable="true" data-type="reputation">💰 $60k</div>
 </div>
 
 <div id="hiddenClue"></div>
@@ -305,7 +305,7 @@ function endGame(won){
   hiddenClue.style.display = 'block';
   gameOver.style.display = 'block';
   if(won){
-    hiddenClue.innerHTML = "**True Clue:** The mayor cut the budget to other projects, kept his reputation, and took the budget all for himself.";
+    hiddenClue.innerHTML = "Hidden Clue Found: The mayor cut the budget to other projects, kept his reputation, and took the budget all for himself.";
     localStorage.setItem('act4', 'The mayor restricted maintenance funds.');
   } else {
     hiddenClue.innerHTML = "You weren't able to find the hidden clue. The story remains the same. The mayor did maintenance and managed the budget.";
