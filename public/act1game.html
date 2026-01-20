@@ -24,7 +24,7 @@
 <h1>Evidence Memory Match</h1>
 
 <div id="summary">
-  Match pairs of symbols to uncover evidence. Wrong matches deduct 5 seconds. Time is limited — can you find the truth before the city believes the lie?
+  Match pairs of symbols to uncover evidence. Wrong matches deduct 5 seconds. Time is limited — can you find out what really happened before the lie of the public is the only truth?
 </div>
 
 <div id="timer">Time Remaining: <span id="time">30</span>s</div>
@@ -98,7 +98,7 @@ function endGame(won){
   document.querySelectorAll(".card").forEach(c=>c.onclick=null);
   clueDiv.style.display="block";
   if(won){
-    clueDiv.innerHTML="<strong>Hidden Clue Found!</strong><br>The journalist found photos showing the bridge structure already weak. They ignored it because a sabotage story was more exciting.";
+    clueDiv.innerHTML="<strong>Hidden Clue Found!</strong><br>The mysterious photo shows the bridge structure already weak. This opens the possibility of the bridge falling of natural causes. You ignored it because a sabotage story was more exciting.";
     localStorage.setItem('act1', 'The bridge was already weak.');
   } else {
     clueDiv.innerHTML="<strong>Time's Up!</strong><br>You couldn't reveal the hidden clue. The story continues with the version the city believes. The shadow figure on the bridge was sabotaging it, and the memo shows the engineer and supervisor guilty.";

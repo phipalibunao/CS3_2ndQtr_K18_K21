@@ -42,7 +42,7 @@
 <div class="scene">
 <div class="card-scene">
 <div class="description" id="sceneText">
-Rain lashes down as darkness envelops the city. Debris from the collapsed bridge litters the street. The air is heavy with tension, and distant sirens wail. You clutch your camera tightly, knowing that every photo and note you collect could change the story the city will believe.
+Rain lashes down as darkness envelops the city. Debris from the collapsed bridge litters the street. A few days ago, something caused the bridge of a city to break down, endangering many lives. The air is heavy with tension, and distant sirens wail. It is your duty to show what you can to the public. You clutch your camera tightly, knowing that every photo and note you collect could change the story the city will believe.
 </div>
 
 <img id="photoPlaceholder" class="placeholder-img" style="display:none">
@@ -146,9 +146,9 @@ document.querySelectorAll(".hotspot").forEach(h=>{
   h.onclick=()=>{
     if(h.classList.contains("locked"))return
     let id=h.dataset.id
-    if(id==="shadow")addItem("shadow","Blurry Shadow Photo","https://raw.githubusercontent.com/phipalibunao/CS3_2ndQtr_K18_K21/main/assets/shadowfigure.png","You capture a shadowy figure moving across the bridge, almost lost to the storm.")
-    if(id==="memo")addItem("memo","Supervisor Memo","https://raw.githubusercontent.com/phipalibunao/CS3_2ndQtr_K18_K21/main/assets/memoredacted.png","A memo warning the engineer not to repair the bridge. The motives are unclear.")
-    if(id==="witness")addItem("witness","Witness Note","https://raw.githubusercontent.com/phipalibunao/CS3_2ndQtr_K18_K21/main/assets/witnesshuhu.png","A witness notes the creaking sounds and panic the night before the collapse.")
+    if(id==="shadow")addItem("shadow","Blurry Shadow Photo","https://raw.githubusercontent.com/phipalibunao/CS3_2ndQtr_K18_K21/main/assets/shadowfigure.png","You find a photo of a shadowy figure moving across the bridge, almost lost to the storm.")
+    if(id==="memo")addItem("memo","Supervisor Memo","https://raw.githubusercontent.com/phipalibunao/CS3_2ndQtr_K18_K21/main/assets/memoredacted.png","A memo from a supervisor warning their engineer not to repair the bridge. The motives are unclear.")
+    if(id==="witness")addItem("witness","Witness Note","https://raw.githubusercontent.com/phipalibunao/CS3_2ndQtr_K18_K21/main/assets/witnesshuhu.png","A witness notes of sketchy activity the night before the collapse.")
     if(id==="weak")addItem("weak","Mysterious Photo","https://raw.githubusercontent.com/phipalibunao/CS3_2ndQtr_K18_K21/main/assets/blurbridge.png","Hidden beneath the rubble, a photo reveals the ************.")
   }
 })
@@ -160,8 +160,9 @@ document.getElementById("investigateBtn").onclick=()=>{
 }
 
 document.getElementById("publishBtn").onclick=()=>{
-  if(inventory.length===0){publicStory.textContent="You publish nothing. The city remains hungry for answers.";return}
-  publicStory.textContent="You publish the collected evidence. The city quickly spins the story into sabotage and blame."
+  if(inventory.length===0){publicStory.textContent="You publish nothing. The city remains hungry for answers. You need more information.";return}
+  if(inventory.length<4){publicStory.textContent="You feel as though you need more information. You hold off publishing and look for more clues.";return}
+  publicStory.textContent="You publish the collected evidence. But.. For some reason, you chose not to post the mysterious photo. Thus, the city quickly spins the story into sabotage and blame. The engineer and supervisor are now believed to work together. The engineer is taken into questioning, as they are most likely to be the one at the bridge."
   document.getElementById("publishBtn").style.display="none"
   let truthBtn=document.createElement("button")
   truthBtn.className="btn primary"

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your Experience - Fractured Night</title>
+<link rel="icon" href="https://raw.githubusercontent.com/phipalibunao/CS3_2ndQtr_K18_K21/main/assets/cspairproj_favicon2.png" sizes="any">
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/styles/end.css">
+
+</head>
+<body>
+
+<div id="stormScreen"></div>
+<div class="flash" id="flash"></div>
+
+<div id="reflectionCard">
+  <h1><span class="typing">Your Past Investigations..</span></h1>
+  <p id="greeting"></p>
+  <button id="saveButton" onclick="saveStory()">Save</button> 
+  <p id="saves"></p>
+
+</div>
+
+<script>
+const playerName = localStorage.getItem('playerName') || 'Detective';
+const trustNews = localStorage.getItem('trustNews') || "Don't know about it";
+const score = localStorage.getItem('score') || "0";
+const saveButton = document.getElementById("saveButton");
+const saves = document.getElementById("saves");
+
+savedStories = localStorage.getItem('savedStories') || ""
+saves.innerHTML = savedStories;
+document.getElementById('greeting').textContent = `Hello, ${playerName}. Here, you can save your investigation details and start anew.`;
+
+
+
+
+
+
+
+
+function saveStory(){
+    
+    saves.innerHTML = "<br>" + playerName + " - Saved: " + new Date().toLocaleString() + "<br> Score: " + score + "% <br> News? " + trustNews + "<br>" + savedStories;
+    localStorage.setItem('savedStories', saves.innerHTML);
+    savedStories = localStorage.getItem('savedStories') || "";
+
+}
+</script>
+
+</body>
+</html>

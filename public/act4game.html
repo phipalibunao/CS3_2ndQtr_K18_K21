@@ -52,7 +52,7 @@
 </div>
 
 <div id="hiddenClue"></div>
-<div id="gameOver">GAME OVER</div>
+<div id="gameOver">GAME OVER. Please wait for your reflection.</div>
 
 </div>
 
@@ -124,10 +124,10 @@ function endGame(won){
   hiddenClue.style.display = 'block';
   gameOver.style.display = 'block';
   if(won){
-    hiddenClue.innerHTML = "Hidden Clue Found: Did you notice? The mayor cut the budget to maintenance, kept his reputation, and took the budget all for himself.";
+    hiddenClue.innerHTML = "Hidden Clue Found: Did you notice? Maintenance budget was the lowest out of all. You could not let the engineer and supervisor voice out their opinions about you. In the end, you restricted the budget, kept your reputation, and took most of the budget all for yourself.";
     localStorage.setItem('act4', 'The mayor restricted maintenance funds.');
   } else {
-    hiddenClue.innerHTML = "You weren't able to find the hidden clue. The story remains the same. The mayor did maintenance and managed the budget.";
+    hiddenClue.innerHTML = "You weren't able to find the hidden clue. The story remains the same. You called for maintenance and managed the budget well.";
   }
   setTimeout(()=>{window.location.href='reeval.html';},5000);
 }

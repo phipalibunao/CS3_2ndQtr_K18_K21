@@ -146,3 +146,7 @@ p.lead {
     justify-self: center;
     z-index: 10;
 }
+
+#nextChapterBtn:hover {
+    background: #0e5fff;
+}

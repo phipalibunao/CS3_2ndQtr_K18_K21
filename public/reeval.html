@@ -92,13 +92,14 @@ document.getElementById('submitThoughts').addEventListener('click', () => {
   let matches = 0;
   selectedItems.forEach(item => { if(trueStatements.includes(item)) matches++; });
   const accuracy = Math.round((matches / trueStatements.length) * 100);
+  localStorage.setItem('score', accuracy);
 
   const trueStoryText = `The truth:
 The bridge was already weak.
 The engineer tried to fix the bridge.
 The supervisor was protecting the engineer.
 The mayor restricted maintenance funds.
-Only incomplete stories reached the public.`;
+Only incomplete stories reached the public, but you might have just pieced out what happened behind the scenes.`;
 
   document.getElementById('truthStory').textContent = trueStoryText;
   document.getElementById('score').textContent = `Your deduction matched ${accuracy}% of the truth.`;
