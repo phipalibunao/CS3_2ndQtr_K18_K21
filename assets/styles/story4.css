@@ -130,3 +130,19 @@ p.lead {
     color: #fff;
     z-index: 101;
 }
+
+#nextChapterBtn {
+    display: none;
+    margin-top: 15px;
+    padding: 10px 20px;
+    font-family: 'Special Elite', monospace;
+    font-size: 18px;
+    color: #0e0e14;
+    background: #78a2f7;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    justify-self: center;
+    z-index: 10;
+}
