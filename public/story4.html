@@ -146,6 +146,22 @@ p.lead {
     color: #fff;
     z-index: 101;
 }
+
+#nextChapterBtn {
+    display: none;
+    margin-top: 15px;
+    padding: 10px 20px;
+    font-family: 'Special Elite', monospace;
+    font-size: 18px;
+    color: #0e0e14;
+    background: #78a2f7;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    justify-self: center;
+    z-index: 10;
+}
 </style>
 </head>
 <body>
@@ -189,6 +205,7 @@ p.lead {
             <button class="choice-btn" onclick="checkChoice(3)">C) 3000</button>
             <button class="choice-btn" onclick="checkChoice(4)">D) 4000</button>
         </div>
+        <button id="nextChapterBtn" onclick="proceedChapter()">Proceed to the Final Game</button>
     </div>
 </div>
 
@@ -201,6 +218,8 @@ playerTag.textContent = `Player: ${playerName}`;
 // Budget Game Logic
 const answers = [2, 3, 1];
 let currentQ = 0;
+
+const nextBtn = document.getElementById("nextChapterBtn"); 
 
 function checkChoice(choice) {
     const outcome = document.getElementById('outcome');
@@ -239,7 +258,9 @@ function nextQuestion() {
 
 function endGame() {
     const gameDiv = document.getElementById('budget-game');
-    gameDiv.innerHTML = "<p>All budget allocations completed.</p>";
+    gameDiv.innerHTML = '<p>All budget allocations completed.</p>';
+    nextBtn.style.display = "block";
+    console.log("done");
 
     const outcome = document.getElementById('outcome');
     outcome.innerHTML = `
@@ -249,9 +270,11 @@ function endGame() {
         The city sees a responsible mayor at work, while I.. am protected.
     `;
 
-    setTimeout(() => {
-        window.location.href = 'act4game.html';
-    }, 3000);
+    
+}
+
+function proceedChapter(){
+    window.location.href = "reeval.html";
 }
 </script>
 
