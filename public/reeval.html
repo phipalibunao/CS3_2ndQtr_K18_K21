@@ -115,6 +115,8 @@ for (i=0;i<trueStatements.length;i++){
   }
 }
 
+cap = 4;
+
 const choicesContainer = document.getElementById('choices');
 const selectedContainer = document.getElementById('selected');
 
@@ -123,8 +125,17 @@ statements.forEach(text => {
   div.className = 'matching-item';
   div.textContent = text;
   div.addEventListener('click', () => {
-    if(div.parentElement.id === 'choices') selectedContainer.appendChild(div);
-    else choicesContainer.appendChild(div);
+    if(div.parentElement.id === 'choices'){
+      if (cap){
+        selectedContainer.appendChild(div);
+        cap--
+      }
+      
+    } 
+    else{
+      choicesContainer.appendChild(div);
+      cap++
+    } 
   });
   choicesContainer.appendChild(div);
 });
