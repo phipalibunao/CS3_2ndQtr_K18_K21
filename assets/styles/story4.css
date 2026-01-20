@@ -1,0 +1,132 @@
+:root {
+    --bg: #0b0b0f;
+    --card1: #1c1c23;
+    --card2: #262630;
+    --accent: #e6e6e6;
+    --nav: #14141a;
+    --nav-hover: #f7d678;
+    --highlight: #f7d678;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: 'Special Elite', monospace;
+    background: var(--bg);
+    color: var(--accent);
+}
+
+.navbar {
+    width: 100%;
+    background: var(--nav);
+    padding: 12px 0;
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.navbar a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: bold;
+    transition: .2s;
+}
+
+.navbar a:hover {
+    color: var(--nav-hover);
+}
+
+.wrap {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 28px;
+    box-sizing: border-box;
+}
+
+header {
+    text-align: center;
+    width: 100%;
+    max-width: 1000px;
+}
+
+h1 {
+    margin: 6px 0;
+    font-size: 36px;
+    color: var(--highlight);
+}
+
+p.lead {
+    opacity: .9;
+    margin: 6px 0 18px;
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+.pov-sign {
+    display: inline-block;
+    background: rgba(247, 214, 120, 0.1);
+    color: var(--highlight);
+    padding: 6px 12px;
+    border-radius: 12px;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+.card-scene {
+    background: linear-gradient(135deg, var(--card1), var(--card2));
+    border-radius: 12px;
+    padding: 18px;
+    min-height: 400px;
+    width: 100%;
+    max-width: 900px;
+}
+
+.choice-btn {
+    background: #222228;
+    color: white;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-family: 'Special Elite';
+    cursor: pointer;
+    margin-top: 12px;
+    transition: .3s;
+    display: block;
+    width: 100%;
+    max-width: 250px;
+    text-align: center;
+}
+
+.choice-btn:hover {
+    background: var(--highlight);
+    color: #000;
+}
+
+.outcome {
+    margin-top: 16px;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 12px;
+    border-radius: 10px;
+    min-height: 120px;
+    font-style: italic;
+    line-height: 1.4;
+}
+
+/* PLAYER TAG STYLE */
+#playerTag {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 8px 15px;
+    background: rgba(30,30,30,0.7);
+    border: 2px solid #fff;
+    border-radius: 10px;
+    font-family: 'Special Elite', monospace;
+    font-size: 16px;
+    color: #fff;
+    z-index: 101;
+}
