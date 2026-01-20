@@ -1,147 +1,53 @@
 body, html {
-  margin: 0;
-  padding: 0;
+  margin: 0; padding: 0;
   height: 100%;
-  overflow: hidden;
   font-family: 'Special Elite', monospace;
   background: black;
   color: white;
-}
-
-#playerTag {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  padding: 8px 15px;
-  background: rgba(30,30,30,0.7);
-  border: 2px solid #fff;
-  border-radius: 10px;
-  font-family: 'Special Elite', monospace;
-  font-size: 16px;
-  color: #fff;
-  z-index: 100;
-}
-
-#introScreen {
-  position: fixed;
-  top:0; left:0; right:0; bottom:0;
+  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
-  flex-direction: column;
-  background: black;
-  z-index: 10;
-  text-align: center;
 }
-
-#introScreen h1, #introScreen p {
-  font-family: 'Special Elite', monospace;
-  color: #fff;
-  margin: 0;
-  text-shadow: 2px 2px 15px #000;
-}
-
-#storyIntro {
-  position: fixed;
-  top:0; left:0; right:0; bottom:0;
-  display: none;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  background: rgba(0,0,0,0.85);
-  z-index: 15;
-  padding: 20px;
-  font-family: 'Special Elite', monospace;
-}
-
-#storyIntro h1 {
-  font-size: 60px;
-  margin-bottom: 10px;
-  text-shadow: 3px 3px 20px #000;
-}
-
-#storyIntro p {
-  font-size: 24px;
-  color: #ccc;
-  margin: 5px 0;
-}
-
-#storyBox {
-  max-width: 600px;
-  font-size: 18px;
-  margin: 20px 0;
-  opacity: 0;
-  animation: fadeIn 3s forwards 1s;
-}
-
-#startBtn {
-  padding: 12px 30px;
-  font-size: 20px;
-  cursor: pointer;
-  background: #222;
-  color: #fff;
-  border: 2px solid #fff;
-  border-radius: 10px;
-  transition: all 0.3s ease;
-  font-family: 'Special Elite', monospace;
-}
-
-#startBtn:hover {
-  background: #fff;
-  color: #000;
-}
-
 #stormScreen {
   position: fixed;
   top:0; left:0; right:0; bottom:0;
   background: #0b0b0f;
   overflow: hidden;
-  display: none;
-  z-index: 9;
-  transition: opacity 1s ease;
+  z-index: 1;
 }
+.wind { position: absolute; width: 2px; height: 40px; background: rgba(255,255,255,0.2); animation: blow linear infinite; border-radius: 50%; opacity: 0.6; }
+@keyframes blow { 0% { transform: translateX(-100px) translateY(0) rotate(0deg); opacity: 0.3; } 50% { opacity:0.6; } 100% { transform: translateX(100vw) translateY(-50px) rotate(360deg); opacity:0; } }
+.flash { position: absolute; top:0; left:0; width:100%; height:100%; background:white; opacity:0; pointer-events:none; z-index: 10; }
 
-.rain {
-  position: absolute;
-  width: 2px;
-  height: 15px;
-  background: rgba(255,255,255,0.3);
-  animation: fall linear infinite;
+#reflectionCard {
+  position: relative;
+  background: rgba(30,30,40,0.9);
+  padding: 50px 40px;
+  border-radius: 20px;
+  max-width: 700px;
+  width: 90%;
+  z-index: 5;
+  box-shadow: 0 0 50px rgba(255,255,255,0.1);
+  opacity: 0;
+  animation: fadeIn 2s forwards 1s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
+h1 span.typing { display: inline-block; overflow: hidden; white-space: nowrap; border-right: 0.15em solid #fff; animation: typing 3s steps(30,end), blink 0.75s step-end infinite; font-size: 2rem; text-align: center; }
+p { font-size: 18px; line-height: 1.6; text-align: center; }
 
-@keyframes fall {
-  to { transform: translateY(100vh); }
-}
+.matching-container { display: flex; justify-content: space-between; margin-top: 20px; width: 100%; flex-wrap: wrap; }
+.matching-list { width: 45%; background: rgba(0,0,0,0.6); padding: 15px; border-radius: 10px; margin-bottom: 20px; }
+.matching-list h3 { text-align: center; }
+.matching-item { background: rgba(255,255,255,0.1); padding: 10px; margin: 10px 0; border-radius: 6px; cursor: pointer; transition: all 0.3s ease; }
+.matching-item:hover { background: rgba(255,255,255,0.3); }
 
-.flash {
-  position: absolute;
-  top:0; left:0; width:100%; height:100%;
-  background: white;
-  opacity:0;
-  pointer-events:none;
-  z-index: 20;
-}
+button { padding: 15px 25px; font-family: 'Special Elite', monospace; font-size: 18px; border-radius: 50px; border: 2px solid #fff; background: linear-gradient(45deg, #111, #222); color: #fff; margin-top: 25px; cursor: pointer; transition: all 0.3s ease; }
+button:hover { background: linear-gradient(45deg, #fff, #ccc); color: black; box-shadow: 0 0 30px rgba(255,255,255,0.5); }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes typing {
-  from { width: 0; }
-  to { width: 100%; }
-}
-
-@keyframes blink {
-  50% { border-color: transparent; }
-}
-
-span.typing {
-  display: inline-block;
-  overflow: hidden; 
-  white-space: nowrap;
-  border-right: 0.15em solid #fff;
-  animation: typing 4s steps(30,end), blink 0.75s step-end infinite;
-}
+#step2 p { margin-top: 15px; text-align: left; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes typing { from { width: 0; } to { width: 100%; } }
+@keyframes blink { 50% { border-color: transparent; } }

@@ -137,3 +137,24 @@ p.lead{opacity:.9;margin:6px 0 18px;font-size:18px;line-height:1.6}
   cursor:pointer;
   transition:all 0.3s;
 }
+.btn:hover{background:var(--highlight);color:#000}
+.btn.primary{background:#0e5fff}
+@media(max-width:900px){.scene{grid-template-columns:1fr}}
+.rain{position:absolute;width:2px;height:15px;background:rgba(255,255,255,0.3);animation:fall linear infinite;z-index:1}
+@keyframes fall{to{transform:translateY(100vh)}}
+.flash{position:absolute;top:0;left:0;width:100%;height:100%;background:white;opacity:0;pointer-events:none;z-index:3;transition:opacity 0.1s}
+
+/* NEW PLAYER TAG STYLE */
+#playerTag {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 8px 15px;
+  background: rgba(30,30,30,0.7);
+  border: 2px solid #fff;
+  border-radius: 10px;
+  font-family: 'Special Elite', monospace;
+  font-size: 16px;
+  color: #fff;
+  z-index: 101;
+}

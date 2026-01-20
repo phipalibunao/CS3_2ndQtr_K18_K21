@@ -67,3 +67,5 @@ input[type=text]{padding:8px;border-radius:6px;border:none;outline:none;backgrou
   color: #fff;
   z-index: 101;
 }
+
+@media(max-width:900px){.scene{grid-template-columns:1fr}.transcript{max-height:180px}}
