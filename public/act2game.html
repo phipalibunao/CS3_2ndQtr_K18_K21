@@ -102,6 +102,7 @@
                 originalTop[i] = boxes[i].style.top;
                 boxStays[i] = true;
                 boxes[i].addEventListener("mousedown", move);
+                boxes[i].addEventListener("touchstart", move);
 
                 container.appendChild(holes[i]);
             }
@@ -142,6 +143,7 @@
         }
 
         document.addEventListener("mousemove", moving);
+        document.addEventListener("touchmove", moving);
         function moving(event) {
             if (boxStays[boxSelected] == false){
                 if (event.clientX + parseInt(window.scrollX) > parseInt(container.style.left) + parseInt(boxes[boxSelected].style.width)/2 && event.clientX + parseInt(window.scrollX) < parseInt(container.style.left) + parseInt(container.style.width) - parseInt(boxes[boxSelected].style.width)/2)
@@ -179,6 +181,7 @@
         }
 
         document.addEventListener("mouseup", stay);
+        document.addEventListener("touchend", stay);
         function stay(event) {
             inHole = false;
             for (i = 0; i < totalBoxes; i++){
