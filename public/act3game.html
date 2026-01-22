@@ -187,13 +187,13 @@
         document.addEventListener("mouseup", stay);
         function stay(event) {
             inHole = false;
-            boxes[boxSelected].style.border = "none";
             for (i = 0; i < 30; i++){
                 if (event.clientX + parseInt(window.scrollX) < parseInt(holes[i].style.left) + parseInt(container.style.left) || event.clientX + parseInt(window.scrollX) > parseInt(holes[i].style.left) + parseInt(holes[i].style.width) + parseInt(container.style.left) || event.clientY + parseInt(window.scrollY) < parseInt(holes[i].style.top) + parseInt(container.style.top) || event.clientY + parseInt(window.scrollY) > parseInt(holes[i].style.top) + parseInt(holes[i].style.height) + parseInt(container.style.top)){
                     if (boxSelected != null){
                         if (correctlyPlaced[i] == true && assignment[boxSelected] == i){
                             score = score - 1;
                             correctlyPlaced[i] = false;
+                            boxes[boxSelected].style.border = "none";
                         }
                     }
                 }
@@ -241,7 +241,7 @@
             } else {
                 clueDiv.innerHTML="<strong>Time's Up!</strong><br>You couldn't reveal the hidden clue. The story continues with the version the city believes: you tried to cause the bridge to collapse. The motive? Holding an unreasonable grudge against the mayor.";
             }
-            nextBtn.style.display="inline-block";
+            nextBtn.style.display="block";
         }
 
         function proceedChapter(){
