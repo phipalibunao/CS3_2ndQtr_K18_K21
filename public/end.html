@@ -17,7 +17,7 @@
 <div class="flash" id="flash"></div>
 
 <div id="reflectionCard">
-  <h1><span class="typing">Your Past Investigations..</span></h1>
+  <h1><span class="typing">Investigations..</span></h1>
   <p id="greeting"></p>
   <button id="saveButton" onclick="saveStory()">Save</button> 
   <p id="saves"></p>
@@ -33,7 +33,7 @@ const saves = document.getElementById("saves");
 
 savedStories = localStorage.getItem('savedStories') || ""
 saves.innerHTML = savedStories;
-document.getElementById('greeting').textContent = `Hello, ${playerName}. Here, you can save your investigation details and start anew.`;
+document.getElementById('greeting').textContent = `Welcome to the end, ${playerName}. Here, you can save your investigation details and start anew.`;
 
 
 

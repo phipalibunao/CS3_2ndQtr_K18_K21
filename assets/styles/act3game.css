@@ -68,6 +68,9 @@ p{
     margin-bottom: 15px;
     color: white;
     text-shadow: 0 0 4px black;
+    z-index: 100;
+    pointer-events: none;
+    user-select: none;
 }
 #nextChapterBtn {
     display: none;
