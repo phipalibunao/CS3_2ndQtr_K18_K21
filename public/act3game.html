@@ -109,7 +109,7 @@
                 boxes[i].addEventListener("mousedown", move);
                 boxes[i].addEventListener("mousemove", hints);
                 boxes[i].addEventListener("touchstart", move);
-                boxes[i].addEventListener("touchstart", hints);
+                boxes[i].addEventListener("touchmove", hints);
 
                 while (!dates.includes(assignment[i]))
                     assignment[i] = Math.floor(Math.random() * 30);
