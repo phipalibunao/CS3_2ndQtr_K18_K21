@@ -19,6 +19,7 @@ body{
     color: white;
     text-shadow: 0 0 3px black, 0 0 3px black, 0 0 3px black, 0 0 3px black;
     user-select: none;
+    touch-action: none;
 }
 .box:hover{
     cursor: grab;

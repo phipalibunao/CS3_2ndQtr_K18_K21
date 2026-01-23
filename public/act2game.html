@@ -301,7 +301,7 @@
         }
 
         function staymobile(event) {
-            touchLocation = event.targetTouches[0];
+            touchLocation = event.changedTouches[0];
             inHole = false;
             for (i = 0; i < totalBoxes; i++){
                 if (touchLocation.pageX < parseInt(holes[i].style.left) + parseInt(container.style.left) || touchLocation.pageX > parseInt(holes[i].style.left) + parseInt(holes[i].style.width) + parseInt(container.style.left) || touchLocation.pageY < parseInt(holes[i].style.top) + parseInt(container.style.top) || touchLocation.pageY > parseInt(holes[i].style.top) + parseInt(holes[i].style.height) + parseInt(container.style.top)){

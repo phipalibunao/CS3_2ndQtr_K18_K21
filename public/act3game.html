@@ -108,6 +108,8 @@
                 boxStays[i] = true;
                 boxes[i].addEventListener("mousedown", move);
                 boxes[i].addEventListener("mousemove", hints);
+                boxes[i].addEventListener("touchstart", move);
+                boxes[i].addEventListener("touchstart", hints);
 
                 while (!dates.includes(assignment[i]))
                     assignment[i] = Math.floor(Math.random() * 30);
@@ -164,6 +166,7 @@
         }
 
         document.addEventListener("mousemove", moving);
+        document.addEventListener("touchmove", movingmobile);
         function moving(event) {
             if (boxStays[boxSelected] == false){
                 
@@ -177,18 +180,75 @@
                         boxes[boxSelected].style.top = `${parseInt(holes[i].style.top) + parseInt(holes[i].style.height)}px`;
                     }
                 } 
+            }
+        }
+        function movingmobile(event) {
+            touchLocation = event.targetTouches[0];
+            if (boxStays[boxSelected] == false){
+                
+                boxes[boxSelected].style.left = `${touchLocation.pageX - parseInt(boxes[boxSelected].style.width)/2}px`;
+            
+                boxes[boxSelected].style.top = `${touchLocation.pageY - parseInt(boxes[boxSelected].style.height)/2}px`;
 
-                
-                
-                
+                for(i = 0; i < 30; i++){
+                    if (touchLocation.pageX >= parseInt(holes[i].style.left) + parseInt(container.style.left) && touchLocation.pageX <= parseInt(holes[i].style.left) + parseInt(holes[i].style.width) + parseInt(container.style.left) && touchLocation.pageY >= parseInt(holes[i].style.top) + parseInt(container.style.top) && touchLocation.pageY <= parseInt(holes[i].style.top) + parseInt(holes[i].style.height) + parseInt(container.style.top)){
+                        boxes[boxSelected].style.left = `${parseInt(holes[i].style.left) + parseInt(holes[i].style.width)}px`;
+                        boxes[boxSelected].style.top = `${parseInt(holes[i].style.top) + parseInt(holes[i].style.height)}px`;
+                    }
+                } 
             }
         }
 
         document.addEventListener("mouseup", stay);
+        document.addEventListener("touchend", staymobile);
         function stay(event) {
             inHole = false;
             for (i = 0; i < 30; i++){
                 if (event.clientX + parseInt(window.scrollX) < parseInt(holes[i].style.left) + parseInt(container.style.left) || event.clientX + parseInt(window.scrollX) > parseInt(holes[i].style.left) + parseInt(holes[i].style.width) + parseInt(container.style.left) || event.clientY + parseInt(window.scrollY) < parseInt(holes[i].style.top) + parseInt(container.style.top) || event.clientY + parseInt(window.scrollY) > parseInt(holes[i].style.top) + parseInt(holes[i].style.height) + parseInt(container.style.top)){
+                    if (boxSelected != null){
+                        if (correctlyPlaced[i] == true && assignment[boxSelected] == i){
+                            score = score - 1;
+                            correctlyPlaced[i] = false;
+                            boxes[boxSelected].style.border = "none";
+                        }
+                    }
+                }
+                else{
+                    if (boxSelected != null){
+                        inHole = true;
+                        if (assignment[boxSelected] == i){
+                            if (correctlyPlaced[i] == false){
+                                score = score + 1;
+                                correctlyPlaced[i] = true;
+                                boxes[boxSelected].style.border = "3px solid lime";
+                            }
+                            
+                        }
+                    }
+                }
+            }
+            if (inHole == false){
+                if (boxStays[boxSelected] == false){
+                    boxes[boxSelected].style.left = originalLeft[boxSelected];
+                    boxes[boxSelected].style.top = originalTop[boxSelected];
+                    boxes[boxSelected].style.transition = "ease-out 0.5s";
+                }
+            }
+
+            if (score == totalBoxes && boxSelected != null){
+                console.log("Hooray!");
+                endGame(true);
+                
+            }
+
+            boxStays[boxSelected] = true;
+            boxSelected = null;
+        }
+        function staymobile(event) {
+            touchLocation = event.changedTouches[0];
+            inHole = false;
+            for (i = 0; i < 30; i++){
+                if (touchLocation.pageX < parseInt(holes[i].style.left) + parseInt(container.style.left) || touchLocation.pageX > parseInt(holes[i].style.left) + parseInt(holes[i].style.width) + parseInt(container.style.left) || touchLocation.pageY < parseInt(holes[i].style.top) + parseInt(container.style.top) || touchLocation.pageY > parseInt(holes[i].style.top) + parseInt(holes[i].style.height) + parseInt(container.style.top)){
                     if (boxSelected != null){
                         if (correctlyPlaced[i] == true && assignment[boxSelected] == i){
                             score = score - 1;

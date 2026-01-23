@@ -41,14 +41,14 @@
 </div>
 
 <div id="game">
-  <div class="budget-item" draggable="true" data-type="reputation">💰 $45k</div>
-  <div class="budget-item" draggable="true" data-type="maintenance">💰 $10k</div>
-  <div class="budget-item" draggable="true" data-type="personal">💰 $180k</div>
-  <div class="budget-item" draggable="true" data-type="parks">💰 $50k</div>
-  <div class="budget-item" draggable="true" data-type="personal">💰 $120k</div>
-  <div class="budget-item" draggable="true" data-type="maintenance">💰 $5k</div>
-  <div class="budget-item" draggable="true" data-type="parks">💰 $30k</div>
-  <div class="budget-item" draggable="true" data-type="reputation">💰 $60k</div>
+  <div class="budget-item" draggable="true" data-type="reputation" data-budget="💰 $45k">💰 $45k</div>
+  <div class="budget-item" draggable="true" data-type="maintenance" data-budget="💰 $10k">💰 $10k</div>
+  <div class="budget-item" draggable="true" data-type="personal" data-budget="💰 $180k">💰 $180k</div>
+  <div class="budget-item" draggable="true" data-type="parks" data-budget="💰 $50k">💰 $50k</div>
+  <div class="budget-item" draggable="true" data-type="personal" data-budget="💰 $120k">💰 $120k</div>
+  <div class="budget-item" draggable="true" data-type="maintenance" data-budget="💰 $5k">💰 $5k</div>
+  <div class="budget-item" draggable="true" data-type="parks" data-budget="💰 $30k">💰 $30k</div>
+  <div class="budget-item" draggable="true" data-type="reputation" data-budget="💰 $60k">💰 $60k</div>
 </div>
 
 <div id="hiddenClue"></div>
@@ -91,7 +91,7 @@ const countdown = setInterval(() => {
 items.forEach(item => {
   item.addEventListener('dragstart', e => {
     e.dataTransfer.setData('type', item.dataset.type);
-    e.dataTransfer.setData('id', item.innerHTML);
+    e.dataTransfer.setData('text', item.dataset.budget);
     item.classList.add('dragging');
   });
   item.addEventListener('dragend', () => item.classList.remove('dragging'));
@@ -102,8 +102,8 @@ projects.forEach(proj => {
   proj.addEventListener('drop', e => {
     e.preventDefault();
     const type = e.dataTransfer.getData('type');
-    const draggedItem = [...items].find(i => i.innerHTML === e.dataTransfer.getData('id'));
-    if(proj.dataset.accept === type && type !== "fake"){
+    const draggedItem = [...items].find(i => i.innerHTML === e.dataTransfer.getData('text'));
+    if(proj.dataset.accept === type){
       draggedItem.classList.add('correct');
       draggedItem.setAttribute('draggable', false);
       if([...items].filter(i => i.dataset.type !== 'fake').every(i => i.classList.contains('correct'))){
