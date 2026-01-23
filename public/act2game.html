@@ -143,7 +143,7 @@
         }
 
         document.addEventListener("mousemove", moving);
-        document.addEventListener("touchmove", moving);
+        document.addEventListener("touchmove", movingmobile);
         function moving(event) {
             if (boxStays[boxSelected] == false){
                 if (event.clientX + parseInt(window.scrollX) > parseInt(container.style.left) + parseInt(boxes[boxSelected].style.width)/2 && event.clientX + parseInt(window.scrollX) < parseInt(container.style.left) + parseInt(container.style.width) - parseInt(boxes[boxSelected].style.width)/2)
@@ -179,13 +179,132 @@
                 
             }
         }
+        function movingmobile(event) {
+            touchLocation = event.targetTouches[0];
+            if (boxStays[boxSelected] == false){
+                if (touchLocation.pageX + parseInt(window.scrollX) > parseInt(container.style.left) + parseInt(boxes[boxSelected].style.width)/2 && touchLocation.pageX + parseInt(window.scrollX) < parseInt(container.style.left) + parseInt(container.style.width) - parseInt(boxes[boxSelected].style.width)/2)
+                    boxes[boxSelected].style.left = `${touchLocation.pageX - parseInt(boxes[boxSelected].style.width)/2 - parseInt(container.style.left) + parseInt(window.scrollX)}px`;
+                else if (touchLocation.pageX + parseInt(window.scrollX) <= parseInt(container.style.left) + parseInt(boxes[boxSelected].style.width)/2)
+                    boxes[boxSelected].style.left = 0;
+                else
+                    boxes[boxSelected].style.left = `${parseInt(container.style.width) - parseInt(boxes[boxSelected].style.width)}px`;
+                if (touchLocation.pageY + parseInt(window.scrollY) > parseInt(container.style.top) + parseInt(boxes[boxSelected].style.height)/2 && touchLocation.pageY + parseInt(window.scrollY) < parseInt(container.style.top) + parseInt(container.style.height) - parseInt(boxes[boxSelected].style.height)/2)
+                    boxes[boxSelected].style.top = `${touchLocation.pageY - parseInt(boxes[boxSelected].style.height)/2 - parseInt(container.style.top) + parseInt(window.scrollY)}px`;
+                else if (touchLocation.pageY + parseInt(window.scrollY) <= parseInt(container.style.top) + parseInt(boxes[boxSelected].style.height)/2)
+                    boxes[boxSelected].style.top = 0;
+                else
+                    boxes[boxSelected].style.top = `${parseInt(container.style.height) - parseInt(boxes[boxSelected].style.height)}px`;
+                for(i = 0; i < totalBoxes; i++){
+                    if (touchLocation.pageX + parseInt(window.scrollX) >= parseInt(holes[i].style.left) + parseInt(container.style.left) && touchLocation.pageX + parseInt(window.scrollX) <= parseInt(holes[i].style.left) + parseInt(holes[i].style.width) + parseInt(container.style.left) && touchLocation.pageY + parseInt(window.scrollY) >= parseInt(holes[i].style.top) + parseInt(container.style.top) && touchLocation.pageY + parseInt(window.scrollY) <= parseInt(holes[i].style.top) + parseInt(holes[i].style.height) + parseInt(container.style.top)){
+                        boxes[boxSelected].style.left = holes[i].style.left;
+                        boxes[boxSelected].style.top = holes[i].style.top;
+                    }
+                } 
+
+                angle = Math.atan2(parseInt(boxes[boxSelected].style.top) - parseInt(originalTop[boxSelected]), parseInt(boxes[boxSelected].style.left) - parseInt(originalLeft[boxSelected]));
+                displacement = Math.sqrt((parseInt(originalTop[boxSelected]) - parseInt(boxes[boxSelected].style.top))**2 + (parseInt(boxes[boxSelected].style.left) - parseInt(originalLeft[boxSelected]))**2);
+
+                
+                stretchboxes[boxSelected].style.rotate = `${angle}rad`;
+                stretchboxes[boxSelected].style.left = `${parseInt(originalLeft[boxSelected]) + parseInt(boxes[boxSelected].style.width)/2}px`;
+                boxes[boxSelected].style.rotate = `${angle}rad`;
+                stretchboxes[boxSelected].style.width = `${displacement}px`;
+
+                
+                
+                
+            }
+        }
 
         document.addEventListener("mouseup", stay);
-        document.addEventListener("touchend", stay);
+        document.addEventListener("touchend", staymobile);
         function stay(event) {
             inHole = false;
             for (i = 0; i < totalBoxes; i++){
                 if (event.clientX + parseInt(window.scrollX) < parseInt(holes[i].style.left) + parseInt(container.style.left) || event.clientX + parseInt(window.scrollX) > parseInt(holes[i].style.left) + parseInt(holes[i].style.width) + parseInt(container.style.left) || event.clientY + parseInt(window.scrollY) < parseInt(holes[i].style.top) + parseInt(container.style.top) || event.clientY + parseInt(window.scrollY) > parseInt(holes[i].style.top) + parseInt(holes[i].style.height) + parseInt(container.style.top)){
+                    if (boxSelected != null){
+                        if (correctlyPlaced[i] == true && boxes[boxSelected].style.backgroundColor == holes[i].style.backgroundColor){
+                            score = score - 1;
+                            correctlyPlaced[i] = false;
+                        }
+                    }
+                }
+                else{
+                    if (boxSelected != null){
+                        inHole = true;
+                        if (boxes[boxSelected].style.backgroundColor == holes[i].style.backgroundColor){
+                            if (correctlyPlaced[i] == false){
+                                score = score + 1;
+                                correctlyPlaced[i] = true;
+                            }
+                            
+                        }
+                    }
+                }
+            }
+            if (inHole == false){
+                if (boxStays[boxSelected] == false){
+                    stretchboxes[boxSelected].style.transition = "ease-out 0.5s";
+                    stretchboxes[boxSelected].style.width = "0px";
+                    boxes[boxSelected].style.left = originalLeft[boxSelected];
+                    boxes[boxSelected].style.top = originalTop[boxSelected];
+                    boxes[boxSelected].style.transition = "ease-out 0.5s";
+                }
+            }
+
+            if (score == totalBoxes && boxSelected != null){
+                console.log("Hooray!");
+                levels--;
+                if (levels != 0)
+                    container.style.left = `-${parseInt(CONTAINER_LEFT) + parseInt(container.style.width)}px`;
+                else
+                    endGame(true);
+                for (i = 0; i < totalBoxes; i++){
+                    boxes[i].style.cursor = "default";
+                }
+                
+                container.addEventListener("transitionend", restart);
+                function restart() {
+                    if (score == totalBoxes){
+                        for (i = 0; i < totalBoxes; i++){
+                            boxes[i].remove();
+                            holes[i].remove();
+                            stretchboxes[i].remove();
+                        }
+
+                        holes = [];
+                        stretchboxes = [];
+                        boxes = [];
+                        colors = [];
+                        
+                        originalLeft = [];
+                        originalTop = [];
+                        boxStays = [];
+                        correctlyPlaced = [];
+                        boxSelected = null;
+                        totalBoxes++;
+
+                        container.remove();
+                        document.body.appendChild(container);
+
+                        create();
+                        score = 0;
+                        console.log(boxes);
+                    }
+                }
+                
+            }
+
+            boxStays[boxSelected] = true;
+            boxSelected = null;
+            console.log(score);
+        }
+
+        function staymobile(event) {
+            touchLocation = event.targetTouches[0];
+            inHole = false;
+            for (i = 0; i < totalBoxes; i++){
+                if (touchLocation.pageX + parseInt(window.scrollX) < parseInt(holes[i].style.left) + parseInt(container.style.left) || touchLocation.pageX + parseInt(window.scrollX) > parseInt(holes[i].style.left) + parseInt(holes[i].style.width) + parseInt(container.style.left) || touchLocation.pageY + parseInt(window.scrollY) < parseInt(holes[i].style.top) + parseInt(container.style.top) || touchLocation.pageY + parseInt(window.scrollY) > parseInt(holes[i].style.top) + parseInt(holes[i].style.height) + parseInt(container.style.top)){
                     if (boxSelected != null){
                         if (correctlyPlaced[i] == true && boxes[boxSelected].style.backgroundColor == holes[i].style.backgroundColor){
                             score = score - 1;
