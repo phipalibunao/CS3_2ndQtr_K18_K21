@@ -182,20 +182,20 @@
         function movingmobile(event) {
             touchLocation = event.targetTouches[0];
             if (boxStays[boxSelected] == false){
-                if (touchLocation.pageX + parseInt(window.scrollX) > parseInt(container.style.left) + parseInt(boxes[boxSelected].style.width)/2 && touchLocation.pageX + parseInt(window.scrollX) < parseInt(container.style.left) + parseInt(container.style.width) - parseInt(boxes[boxSelected].style.width)/2)
-                    boxes[boxSelected].style.left = `${touchLocation.pageX - parseInt(boxes[boxSelected].style.width)/2 - parseInt(container.style.left) + parseInt(window.scrollX)}px`;
-                else if (touchLocation.pageX + parseInt(window.scrollX) <= parseInt(container.style.left) + parseInt(boxes[boxSelected].style.width)/2)
+                if (touchLocation.pageX > parseInt(container.style.left) + parseInt(boxes[boxSelected].style.width)/2 && touchLocation.pageX < parseInt(container.style.left) + parseInt(container.style.width) - parseInt(boxes[boxSelected].style.width)/2)
+                    boxes[boxSelected].style.left = `${touchLocation.pageX - parseInt(boxes[boxSelected].style.width)/2 - parseInt(container.style.left)}px`;
+                else if (touchLocation.pageX <= parseInt(container.style.left) + parseInt(boxes[boxSelected].style.width)/2)
                     boxes[boxSelected].style.left = 0;
                 else
                     boxes[boxSelected].style.left = `${parseInt(container.style.width) - parseInt(boxes[boxSelected].style.width)}px`;
-                if (touchLocation.pageY + parseInt(window.scrollY) > parseInt(container.style.top) + parseInt(boxes[boxSelected].style.height)/2 && touchLocation.pageY + parseInt(window.scrollY) < parseInt(container.style.top) + parseInt(container.style.height) - parseInt(boxes[boxSelected].style.height)/2)
+                if (touchLocation.pageY > parseInt(container.style.top) + parseInt(boxes[boxSelected].style.height)/2 && touchLocation.pageY < parseInt(container.style.top) + parseInt(container.style.height) - parseInt(boxes[boxSelected].style.height)/2)
                     boxes[boxSelected].style.top = `${touchLocation.pageY - parseInt(boxes[boxSelected].style.height)/2 - parseInt(container.style.top)}px`;
-                else if (touchLocation.pageY + parseInt(window.scrollY) <= parseInt(container.style.top) + parseInt(boxes[boxSelected].style.height)/2)
+                else if (touchLocation.pageY <= parseInt(container.style.top) + parseInt(boxes[boxSelected].style.height)/2)
                     boxes[boxSelected].style.top = 0;
                 else
                     boxes[boxSelected].style.top = `${parseInt(container.style.height) - parseInt(boxes[boxSelected].style.height)}px`;
                 for(i = 0; i < totalBoxes; i++){
-                    if (touchLocation.pageX + parseInt(window.scrollX) >= parseInt(holes[i].style.left) + parseInt(container.style.left) && touchLocation.pageX + parseInt(window.scrollX) <= parseInt(holes[i].style.left) + parseInt(holes[i].style.width) + parseInt(container.style.left) && touchLocation.pageY + parseInt(window.scrollY) >= parseInt(holes[i].style.top) + parseInt(container.style.top) && touchLocation.pageY + parseInt(window.scrollY) <= parseInt(holes[i].style.top) + parseInt(holes[i].style.height) + parseInt(container.style.top)){
+                    if (touchLocation.pageX >= parseInt(holes[i].style.left) + parseInt(container.style.left) && touchLocation.pageX <= parseInt(holes[i].style.left) + parseInt(holes[i].style.width) + parseInt(container.style.left) && touchLocation.pageY >= parseInt(holes[i].style.top) + parseInt(container.style.top) && touchLocation.pageY <= parseInt(holes[i].style.top) + parseInt(holes[i].style.height) + parseInt(container.style.top)){
                         boxes[boxSelected].style.left = holes[i].style.left;
                         boxes[boxSelected].style.top = holes[i].style.top;
                     }
@@ -305,7 +305,7 @@
             ypos = parseInt(boxes[boxSelected].style.top);
             inHole = false;
             for (i = 0; i < totalBoxes; i++){
-                if (xpos + parseInt(window.scrollX) < parseInt(holes[i].style.left) + parseInt(container.style.left) || xpos + parseInt(window.scrollX) > parseInt(holes[i].style.left) + parseInt(holes[i].style.width) + parseInt(container.style.left) || ypos + parseInt(window.scrollY) < parseInt(holes[i].style.top) + parseInt(container.style.top) || ypos + parseInt(window.scrollY) > parseInt(holes[i].style.top) + parseInt(holes[i].style.height) + parseInt(container.style.top)){
+                if (xpos < parseInt(holes[i].style.left) + parseInt(container.style.left) || xpos > parseInt(holes[i].style.left) + parseInt(holes[i].style.width) + parseInt(container.style.left) || ypos < parseInt(holes[i].style.top) + parseInt(container.style.top) || ypos > parseInt(holes[i].style.top) + parseInt(holes[i].style.height) + parseInt(container.style.top)){
                     if (boxSelected != null){
                         if (correctlyPlaced[i] == true && boxes[boxSelected].style.backgroundColor == holes[i].style.backgroundColor){
                             score = score - 1;
