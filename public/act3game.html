@@ -134,7 +134,7 @@
         }
         
         function hints(event) {
-            if (boxSelected == null && score < totalBoxes) {
+            if (score < totalBoxes) {
                 boxHovered = event.target.id;
                 console.log(boxHovered);
                 if (assignment[boxHovered] % 7 >= 5)
