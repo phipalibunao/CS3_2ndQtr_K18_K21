@@ -301,11 +301,10 @@
         }
 
         function staymobile(event) {
-            xpos = parseInt(boxes[boxSelected].style.left);
-            ypos = parseInt(boxes[boxSelected].style.top);
+            touchLocation = event.targetTouches[0];
             inHole = false;
             for (i = 0; i < totalBoxes; i++){
-                if (xpos < parseInt(holes[i].style.left) + parseInt(container.style.left) || xpos > parseInt(holes[i].style.left) + parseInt(holes[i].style.width) + parseInt(container.style.left) || ypos < parseInt(holes[i].style.top) + parseInt(container.style.top) || ypos > parseInt(holes[i].style.top) + parseInt(holes[i].style.height) + parseInt(container.style.top)){
+                if (touchLocation.pageX < parseInt(holes[i].style.left) + parseInt(container.style.left) || touchLocation.pageX > parseInt(holes[i].style.left) + parseInt(holes[i].style.width) + parseInt(container.style.left) || touchLocation.pageY < parseInt(holes[i].style.top) + parseInt(container.style.top) || touchLocation.pageY > parseInt(holes[i].style.top) + parseInt(holes[i].style.height) + parseInt(container.style.top)){
                     if (boxSelected != null){
                         if (correctlyPlaced[i] == true && boxes[boxSelected].style.backgroundColor == holes[i].style.backgroundColor){
                             score = score - 1;
