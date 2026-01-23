@@ -189,7 +189,7 @@
                 else
                     boxes[boxSelected].style.left = `${parseInt(container.style.width) - parseInt(boxes[boxSelected].style.width)}px`;
                 if (touchLocation.pageY + parseInt(window.scrollY) > parseInt(container.style.top) + parseInt(boxes[boxSelected].style.height)/2 && touchLocation.pageY + parseInt(window.scrollY) < parseInt(container.style.top) + parseInt(container.style.height) - parseInt(boxes[boxSelected].style.height)/2)
-                    boxes[boxSelected].style.top = `${touchLocation.pageY - parseInt(boxes[boxSelected].style.height)/2 - parseInt(container.style.top) + parseInt(window.scrollY)}px`;
+                    boxes[boxSelected].style.top = `${touchLocation.pageY - parseInt(boxes[boxSelected].style.height)/2 - parseInt(container.style.top)}px`;
                 else if (touchLocation.pageY + parseInt(window.scrollY) <= parseInt(container.style.top) + parseInt(boxes[boxSelected].style.height)/2)
                     boxes[boxSelected].style.top = 0;
                 else
