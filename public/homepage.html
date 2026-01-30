@@ -11,6 +11,155 @@
     <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/styles/homepage.css">
 
+    <style>
+    /* General body styling */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Special Elite', monospace;
+      background: linear-gradient(to bottom, #0d0d0d, #1a1a1a);
+      overflow: hidden;
+      color: #f0f0f0;
+    }
+
+    /* Intro Screen */
+    #introScreen {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+      cursor: pointer;
+      animation: fadeIn 1.5s ease forwards;
+    }
+
+    #introScreen h1 {
+      font-size: 3em;
+      margin: 0.5em 0;
+      transition: transform 0.3s, color 0.3s;
+    }
+    #introScreen h1:hover {
+      color: #fffc00;
+      transform: scale(1.1);
+    }
+    #introScreen p {
+      font-size: 1.5em;
+      opacity: 0.7;
+    }
+
+    /* Storm & Rain */
+    #stormScreen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .rain {
+      position: absolute;
+      width: 2px;
+      height: 15px;
+      background: rgba(255,255,255,0.7);
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-20px); opacity: 0; }
+      50% { opacity: 1; }
+      100% { transform: translateY(100vh); opacity: 0; }
+    }
+
+    /* Flash */
+    .flash {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: white;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 2;
+      transition: opacity 0.1s;
+    }
+
+    /* Story Intro */
+    #storyIntro {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      top:0;
+      left:0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(rgba(0,0,0,0.7), rgba(10,10,10,0.9));
+      text-align: center;
+      z-index: 3;
+    }
+
+    #storyIntro h1 {
+      font-size: 3em;
+      text-shadow: 2px 2px 10px #000;
+    }
+
+    #storyIntro p {
+      font-size: 1.2em;
+      margin: 0.5em 0;
+      transition: opacity 2s ease;
+    }
+
+    #storyBox {
+      margin-top: 2em;
+      padding: 1em 2em;
+      border: 1px solid #444;
+      background: rgba(0,0,0,0.5);
+      box-shadow: 0 0 20px rgba(255,255,255,0.1);
+      font-size: 1.2em;
+      width: 60%;
+      max-width: 600px;
+      border-radius: 10px;
+      opacity: 0;
+      transition: opacity 2s;
+      animation: typewriter 3s steps(40) forwards;
+      white-space: pre-wrap;
+    }
+
+    /* Button */
+    #startBtn {
+      margin-top: 2em;
+      padding: 0.8em 2em;
+      background: #222;
+      border: 2px solid #f0f0f0;
+      color: #f0f0f0;
+      font-family: 'Special Elite', monospace;
+      font-size: 1.2em;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    #startBtn:hover {
+      background: #f0f0f0;
+      color: #222;
+      transform: scale(1.1);
+    }
+
+    /* Typewriter Animation */
+    @keyframes typewriter {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    /* Fade-in Animation */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    </style>
 </head>
 <body>
 
@@ -33,6 +182,7 @@
 </div>
 
 <script>
+// Get all necessary elements
 const intro = document.getElementById('introScreen');
 const storm = document.getElementById('stormScreen');
 const flash = document.getElementById('flash');
@@ -43,6 +193,7 @@ const storyBox = document.getElementById('storyBox');
 const startBtn = document.getElementById('startBtn');
 const playerTag = document.getElementById('playerTag');
 
+// Retrieve player name from localStorage
 const playerName = localStorage.getItem('playerName');
 if(playerName){
   playerTag.textContent = `Player: ${playerName}`;
@@ -51,6 +202,7 @@ if(playerName){
 let stormStarted = false;
 let rainDrops = [];
 
+// Start storm animation when intro clicked
 intro.addEventListener('click', () => {
   if(!stormStarted){
     stormStarted = true;
@@ -60,6 +212,7 @@ intro.addEventListener('click', () => {
   }
 });
 
+// Function to generate raindrops and flash
 function startStorm() {
   for(let i=0;i<150;i++){
     const drop = document.createElement('div');
@@ -78,6 +231,7 @@ function startStorm() {
   }, 1000);
 }
 
+// Show the story intro after storm
 function showStoryIntro() {
   storm.style.opacity = 0.6;
   storyIntro.style.display = 'flex';
@@ -88,6 +242,7 @@ function showStoryIntro() {
   storyBox.style.opacity = 1;
 }
 
+// Start button redirects to story page
 startBtn.addEventListener('click', () => {
   window.location.href = 'story1.html';
 });
