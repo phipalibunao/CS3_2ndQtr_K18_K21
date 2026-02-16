@@ -2,220 +2,167 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Phipa & Tomas Portfolio</title>
-<link rel="icon" type="image/png" href="https://static.vecteezy.com/system/resources/previews/026/515/715/large_2x/cute-layer-chocolate-cake-in-pixel-art-free-png.png">
-<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;600&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<title>Her Pink Laptop</title>
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
 
 <style>
-html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  font-family: 'Poppins', sans-serif;
-  background: #f5f3ff;
+body{
+margin:0;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#ffe6f2,#ffd6ec,#fff0f7);
+font-family:'Special Elite',cursive;
+overflow:hidden;
 }
 
-.background {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: url('assets/cspmlwtbg.png') center/cover no-repeat;
-  opacity: 0.4;
-  z-index: 0;
-  filter: blur(3px);
+.laptop{
+width:920px;
+height:540px;
+background:#ffc2dd;
+border-radius:30px;
+box-shadow:0 40px 80px rgba(255,105,180,.3);
+padding:25px;
+display:flex;
+justify-content:center;
+align-items:center;
+position:relative;
 }
 
-.container {
-  display: flex;
-  height: 100%;
-  position: relative;
-  z-index: 10;
+.screen{
+width:100%;
+height:100%;
+background:#fff5fa;
+border-radius:20px;
+overflow:hidden;
+position:relative;
+display:flex;
+flex-direction:column;
 }
 
-.sidebar {
-  width: 260px;
-  backdrop-filter: blur(20px);
-  background: rgba(255, 255, 255, 0.6);
-  padding: 40px 25px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  border-right: 2px solid rgba(167, 139, 250, 0.35);
-  box-shadow: 2px 0 20px rgba(0,0,0,0.05);
+.topbar{
+background:#ff9ecf;
+padding:12px 20px;
+display:flex;
+justify-content:space-between;
+color:white;
+font-size:14px;
+letter-spacing:1px;
 }
 
-.sidebar h2 {
-  font-size: 22px;
-  color: #4c2e9a;
-  margin: 0 auto;
-  font-weight: 600;
+.desktop{
+flex:1;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+gap:25px;
 }
 
-.sidebar nav ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
+.icon{
+display:flex;
+flex-direction:column;
+align-items:center;
+cursor:pointer;
 }
 
-.sidebar nav a {
-  display: block;
-  background: linear-gradient(135deg, #a78bfa, #7c3aed);
-  color: white;
-  padding: 12px 18px;
-  border-radius: 12px;
-  font-weight: 500;
-  text-decoration: none;
-  box-shadow: 0 4px 10px rgba(124, 58, 237, 0.3);
-  transition: transform .2s, box-shadow .2s;
+.icon img{
+width:70px;
+filter:drop-shadow(0 8px 10px rgba(0,0,0,.2));
+transition:.3s;
 }
 
-.sidebar nav a:hover {
-  transform: scale(1.05);
-  box-shadow: 0 6px 14px rgba(124, 58, 237, 0.4);
+.icon:hover img{
+transform:scale(1.1);
 }
 
-.main {
-  flex: 1;
-  overflow-y: auto;
-  padding: 60px 80px;
-  display: flex;
-  flex-direction: column;
-  gap: 45px;
+.icon span{
+margin-top:10px;
+font-size:13px;
+color:#ff4fa3;
 }
 
-header, section, footer {
-  background: rgba(255, 255, 255, 0.65);
-  backdrop-filter: blur(16px);
-  border-radius: 25px;
-  padding: 40px 50px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+.note{
+position:absolute;
+bottom:20px;
+right:30px;
+color:#ff4fa3;
+font-size:12px;
+opacity:.7;
 }
 
-header h1 {
-  font-family: 'Spectral', serif;
-  font-size: 3em;
-  color: #d66a4d;
-  margin: 0;
-  text-align: center;
-  letter-spacing: 1px;
+.virus-screen{
+position:fixed;
+inset:0;
+background:black;
+color:#00ff88;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+font-size:14px;
+letter-spacing:2px;
+z-index:9999;
+opacity:0;
+pointer-events:none;
 }
 
-header p {
-  color: #9c7a6a;
-  text-align: center;
-  margin-top: 12px;
-  font-size: 1.1em;
+.glitch{
+animation:glitch .15s infinite alternate;
 }
 
-section h2 {
-  font-family: 'Spectral', serif;
-  color: #d66a4d;
-  font-size: 2em;
-  margin-bottom: 15px;
+@keyframes glitch{
+0%{transform:translateX(-3px);}
+100%{transform:translateX(3px);}
 }
 
-section p {
-  color: #4d3f38;
-  line-height: 1.9em;
-  font-size: 1.05em;
-}
-
-footer h3 {
-  font-family: 'Spectral', serif;
-  font-size: 1.8em;
-  color: #d66a4d;
-  margin-bottom: 20px;
-  text-align: center;
-}
-
-footer p {
-  text-align: center;
-  margin: 8px 0;
-  font-size: 1.05em;
-}
-
-footer a {
-  color: #7c3aed;
-  font-weight: 600;
-  text-decoration: none;
-  transition: color .2s;
-}
-
-footer a:hover {
-  color: #4c1d95;
-}
-
-footer div {
-  margin-top: 12px;
-  text-align: center;
-  color: #9c7a6a;
-  font-size: 0.95em;
-}
-
-.gif-bottom-right, .gif-bottom-left {
-  position: fixed;
-  bottom: 20px;
-  width: 190px;
-  filter: drop-shadow(0 5px 10px rgba(0,0,0,0.3));
-  z-index: 20;
-}
-
-.gif-bottom-right {
-  right: 20px;
-}
-
-.gif-bottom-left {
-  left: 20px;
+.fadeIn{
+opacity:1;
+pointer-events:auto;
 }
 </style>
 </head>
 
 <body>
 
-<div class="background"></div>
+<div class="laptop">
+<div class="screen">
 
-<div class="container">
-  <div class="sidebar">
-    <h2>🗂️ Tasks</h2>
-    <nav>
-      <ul>
-        <li><a href="./public/signupform.html">📁 Q2 Website Project</a></li>
-      </ul>
-    </nav>
-  </div>
-
-  <div class="main">
-    <header>
-      <h1>2nd Quarter Portfolio</h1>
-      <p>Welcome to our Second Quarter Portfolio !</p>
-    </header>
-
-    <section>
-      <h2>🍦 about phipa</h2>
-      <p>Hi! I’m Phipa, a Grade 9 student from Potassium who loves coding. I enjoy listening to musicals, watching movies, and reading novels.</p>
-    </section>
-
-    <section>
-      <h2>🍔 about tomas</h2>
-      <p>My name is Tomas, a Grade 9 student from Potassium who loves coding. I enjoy listening to music, MAKING music, and doing arts and crafts. My idol is my bed.</p>
-    </section>
-
-    <footer>
-      <h3>📬 Let's Connect</h3>
-      <p>Phipa's Email: <a href="mailto:b2029pmlibunao@pshs.edu.ph">b2029pmlibunao@pshs.edu.ph</a></p>
-      <p>Tomas' Email: <a href="mailto:b2029dptdmacalintal@pshs.edu.ph">b2029dptdmacalintal@pshs.edu.ph</a></p>
-      <div>&copy; 2025 Phipa Libunao & Tomas Macalintal ☕ All rights reserved.</div>
-    </footer>
-  </div>
+<div class="topbar">
+<span>♡ angel’s macbook ♡</span>
+<span>11:11 PM</span>
 </div>
 
-<img src="https://i.pinimg.com/originals/9d/9b/d1/9d9bd13afce1a798d22ecfd9897730ed.gif" class="gif-bottom-right">
-<img src="https://media1.giphy.com/media/pUNUMBHMdJc13Dbf5D/giphy.gif" class="gif-bottom-left">
+<div class="desktop">
+<div class="icon" onclick="downloadVirus()">
+<img src="https://cdn-icons-png.flaticon.com/512/732/732200.png">
+<span>download_cutie_app.exe</span>
+</div>
+</div>
+
+<div class="note">“new aesthetic diary app just dropped ♡”</div>
+
+</div>
+</div>
+
+<div class="virus-screen" id="virus">
+<div class="glitch">DOWNLOADING...</div>
+<div class="glitch">Installing Package...</div>
+<div class="glitch">System Breach Detected</div>
+<div class="glitch">FracturedNight.exe Activated</div>
+</div>
+
+<script>
+function downloadVirus(){
+const v=document.getElementById("virus");
+v.classList.add("fadeIn");
+
+setTimeout(()=>{
+window.location.href="/signupform.html";
+},3500);
+}
+</script>
 
 </body>
 </html>
