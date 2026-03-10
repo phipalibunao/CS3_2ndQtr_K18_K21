@@ -161,7 +161,7 @@
             if (score < totalBoxes){
                 boxSelected = event.target.id;
                 boxStays[boxSelected] = false;
-                boxes[boxSelected].style.transition = "none";
+                boxes[boxSelected].style.transition = "ease-out 0.5s";
             }
         }
 
@@ -203,6 +203,7 @@
         document.addEventListener("touchend", staymobile);
         function stay(event) {
             inHole = false;
+            boxes[boxSelected].style.transition = "ease-out 0.5s";
             for (i = 0; i < 30; i++){
                 if (event.clientX + parseInt(window.scrollX) < parseInt(holes[i].style.left) + parseInt(container.style.left) || event.clientX + parseInt(window.scrollX) > parseInt(holes[i].style.left) + parseInt(holes[i].style.width) + parseInt(container.style.left) || event.clientY + parseInt(window.scrollY) < parseInt(holes[i].style.top) + parseInt(container.style.top) || event.clientY + parseInt(window.scrollY) > parseInt(holes[i].style.top) + parseInt(holes[i].style.height) + parseInt(container.style.top)){
                     if (boxSelected != null){
@@ -231,7 +232,8 @@
                 if (boxStays[boxSelected] == false){
                     boxes[boxSelected].style.left = originalLeft[boxSelected];
                     boxes[boxSelected].style.top = originalTop[boxSelected];
-                    boxes[boxSelected].style.transition = "ease-out 0.5s";
+                    
+                    
                 }
             }
 
@@ -247,6 +249,7 @@
         function staymobile(event) {
             touchLocation = event.changedTouches[0];
             inHole = false;
+            boxes[boxSelected].style.transition = "ease-out 0.5s";
             for (i = 0; i < 30; i++){
                 if (touchLocation.pageX < parseInt(holes[i].style.left) + parseInt(container.style.left) || touchLocation.pageX > parseInt(holes[i].style.left) + parseInt(holes[i].style.width) + parseInt(container.style.left) || touchLocation.pageY < parseInt(holes[i].style.top) + parseInt(container.style.top) || touchLocation.pageY > parseInt(holes[i].style.top) + parseInt(holes[i].style.height) + parseInt(container.style.top)){
                     if (boxSelected != null){
@@ -275,7 +278,7 @@
                 if (boxStays[boxSelected] == false){
                     boxes[boxSelected].style.left = originalLeft[boxSelected];
                     boxes[boxSelected].style.top = originalTop[boxSelected];
-                    boxes[boxSelected].style.transition = "ease-out 0.5s";
+                    
                 }
             }
 
