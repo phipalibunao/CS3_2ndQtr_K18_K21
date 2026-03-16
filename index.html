@@ -18,7 +18,30 @@ overflow:hidden;
 position:relative;
 }
 
-/* floating sparkles */
+.epi-warning{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,0.95);
+color:white;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+font-size:18px;
+text-align:center;
+z-index:10000;
+}
+
+.epi-warning button{
+margin-top:20px;
+padding:10px 20px;
+border:none;
+background:#ff4fa3;
+color:white;
+font-family:'Special Elite',cursive;
+cursor:pointer;
+}
+
 body::before{
 content:"";
 position:absolute;
@@ -65,7 +88,6 @@ display:flex;
 flex-direction:column;
 }
 
-/* screen shine */
 .screen::after{
 content:"";
 position:absolute;
@@ -130,7 +152,6 @@ font-size:13px;
 color:#ff4fa3;
 }
 
-/* fake dock */
 .dock{
 height:60px;
 background:rgba(255,255,255,.4);
@@ -160,7 +181,6 @@ font-size:12px;
 opacity:.7;
 }
 
-/* virus screen */
 .virus-screen{
 position:fixed;
 inset:0;
@@ -201,6 +221,12 @@ to{width:260px;}
 </head>
 
 <body>
+
+<div class="epi-warning" id="epiWarning">
+<h2>Epilepsy Warning</h2>
+<p>This game contains flashing lights and animations that may trigger seizures for people with photosensitive epilepsy.</p>
+<button onclick="dismissWarning()">I Understand</button>
+</div>
 
 <div class="laptop">
 <div class="screen">
@@ -244,13 +270,14 @@ to{width:260px;}
 </div>
 
 <script>
+function dismissWarning(){
+document.getElementById('epiWarning').style.display='none';
+}
+
 function downloadVirus(){
 const v=document.getElementById("virus");
 v.classList.add("fadeIn");
-
-setTimeout(()=>{
-window.location.href="public/signupform.html";
-},4000);
+setTimeout(()=>{window.location.href="public/signupform.html";},4000);
 }
 </script>
 

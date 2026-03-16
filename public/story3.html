@@ -3,16 +3,53 @@
 <head>
     <link rel="icon" href="https://raw.githubusercontent.com/phipalibunao/CS3_2ndQtr_K18_K21/main/assets/cspairproj_favicon2.png" sizes="any">
     <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/phipalibunao/CS3_2ndQtr_K18_K21/main/assets/cspairproj_favicon2.png">
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <title>Fractured Night — Orders and Conflict</title>
     <meta name="description" content="Webpage telling the story of the third act.">
     <meta name="author" content="Phipa Libunao, Datu Macalintal">
     <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/styles/story3.css">
-
+    <style>
+    .popupSite{
+    position:fixed;
+    width:180px;
+    background:white;
+    border:2px solid #111;
+    font-family:'Special Elite',cursive;
+    box-shadow:0 10px 25px rgba(0,0,0,.3);
+    z-index:50;
+    animation:popupFloat 12s linear forwards;
+    }
+    .popupHeader{
+    background:#111;
+    color:white;
+    padding:5px 8px;
+    font-size:11px;
+    }
+    .popupBody{
+    padding:10px;
+    font-size:12px;
+    color:#222;
+    text-align:center;
+    }
+    @keyframes popupFloat{
+    0%{
+    transform:translateY(50px) scale(.8);
+    opacity:0;
+    }
+    10%{
+    opacity:1;
+    }
+    90%{
+    opacity:1;
+    }
+    100%{
+    transform:translateY(-150px) scale(.9);
+    opacity:0;
+    }
+    }
+    </style>
 </head>
 <body>
 
@@ -144,6 +181,35 @@ finishBtn.onclick = () => {
 function startMiniGame(){
   window.location.href = "act3game.html";
 }
+
+const popupMessages = [
+  "Remember: every choice affects the story…",
+  "Supervisor says: double-check your resources!",
+  "Did you notice the engineer’s tasks?",
+  "The public only sees part of the story.",
+  "You’re doing great… keep scheduling!",
+  "Shift almost over… did you assign correctly?",
+  "A glitch in the system? Or a clue?",
+  "Tasks, tasks, tasks… everything must align.",
+  "Click carefully, every resource counts.",
+  "DON'T ASSIGN THAT ON MONDAY",
+  "ASSIGN THAT ON MONDAY",
+];
+
+function createPopup(){
+  const pop=document.createElement("div");
+  pop.className="popupSite";
+  pop.style.left=Math.random()*80+"vw";
+  pop.style.top=Math.random()*80+"vh";
+  pop.innerHTML=`
+    <div class="popupHeader">fractured-night.site</div>
+    <div class="popupBody">${popupMessages[Math.floor(Math.random()*popupMessages.length)]}</div>
+  `;
+  document.body.appendChild(pop);
+  setTimeout(()=>{pop.remove();},12000);
+}
+
+setInterval(createPopup,1500);
 </script>
 </body>
 </html>

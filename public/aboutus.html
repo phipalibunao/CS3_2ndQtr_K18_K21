@@ -10,47 +10,139 @@
 <meta name="author" content="Phipa Libunao, Datu Macalintal">
 <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/styles/aboutus.css">
-</head>
-<body>
-<div id="playerTag"></div>
-<div class="navbar">
-  <a href="homepage.html">Home</a>
-  <a href="story1.html">Act 1</a>
-  <a href="story2.html">Act 2</a>
-  <a href="story3.html">Act 3</a>
-  <a href="story4.html">Act 4</a>
-  <a href="aboutus.html">About Us</a>
-</div>
-<div class="wrap">
-  <header>
-    <h1>Phipa & Tomas</h1>
-    <p>Meet the people behind the story</p>
-  </header>
-  <div class="profiles">
-    <div class="profile-card">
-      <img src="https://raw.githubusercontent.com/phipalibunao/CS3_2ndQtr_K18_K21/main/assets/phipapixel.png" alt="Phipa Picture">
-      <h2>Phipa Libunao</h2>
-      <p>Hi! I’m Phipa, a Grade 9 student from Potassium. I love coding, reading novels, watching movies, singing, and playing the guitar.</p>
-    </div>
-    <div class="profile-card">
-      <img src="https://raw.githubusercontent.com/phipalibunao/CS3_2ndQtr_K18_K21/main/assets/tomaspixel.png" alt="Tomas Picture">
-      <h2>Tomas Macalintal</h2>
-      <p>Hey, I’m Tomas, a Grade 9 student from Potassium. I enjoy coding, music, and arts & crafts.</p>
-    </div>
-  </div>
-</div>
-<script>
-for(let i=0;i<150;i++){
-  const drop=document.createElement('div');
-  drop.className='rain';
-  drop.style.left=Math.random()*100+'%';
-  drop.style.animationDuration=0.5+Math.random()*1+'s';
-  drop.style.animationDelay=Math.random()*2+'s';
-  document.body.appendChild(drop);
-  drop.style.top='-20px';
+
+<style>
+.popupSite{
+position:fixed;
+width:180px;
+background:white;
+border:2px solid #111;
+font-family:'Special Elite',cursive;
+box-shadow:0 10px 25px rgba(0,0,0,.3);
+z-index:50;
+animation:popupFloat 12s linear forwards;
 }
+
+.popupHeader{
+background:#111;
+color:white;
+padding:5px 8px;
+font-size:11px;
+}
+
+.popupBody{
+padding:10px;
+font-size:12px;
+color:#222;
+text-align:center;
+}
+
+@keyframes popupFloat{
+0%{
+transform:translateY(50px) scale(.8);
+opacity:0;
+}
+10%{
+opacity:1;
+}
+90%{
+opacity:1;
+}
+100%{
+transform:translateY(-150px) scale(.9);
+opacity:0;
+}
+}
+</style>
+
+</head>
+
+<body>
+
+<div id="playerTag"></div>
+
+<div class="navbar">
+<a href="homepage.html">Home</a>
+<a href="story1.html">Act 1</a>
+<a href="story2.html">Act 2</a>
+<a href="story3.html">Act 3</a>
+<a href="story4.html">Act 4</a>
+<a href="aboutus.html">About Us</a>
+</div>
+
+<div class="wrap">
+
+<header>
+<h1>Phipa & Tomas</h1>
+<p>Meet the people behind the story</p>
+</header>
+
+<div class="profiles">
+
+<div class="profile-card">
+<img src="https://raw.githubusercontent.com/phipalibunao/CS3_2ndQtr_K18_K21/main/assets/phipapixel.png" alt="Phipa Picture">
+<h2>Phipa Libunao</h2>
+<p>Hi! I’m Phipa, a Grade 9 student from Potassium. I love coding, reading novels, watching movies, singing, and playing the guitar.</p>
+</div>
+
+<div class="profile-card">
+<img src="https://raw.githubusercontent.com/phipalibunao/CS3_2ndQtr_K18_K21/main/assets/tomaspixel.png" alt="Tomas Picture">
+<h2>Tomas Macalintal</h2>
+<p>Hey, I’m Tomas, a Grade 9 student from Potassium. I enjoy coding, music, and arts & crafts.</p>
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+for(let i=0;i<150;i++){
+const drop=document.createElement('div');
+drop.className='rain';
+drop.style.left=Math.random()*100+'%';
+drop.style.animationDuration=0.5+Math.random()*1+'s';
+drop.style.animationDelay=Math.random()*2+'s';
+document.body.appendChild(drop);
+drop.style.top='-20px';
+}
+
 const playerTag=document.getElementById("playerTag");
 playerTag.textContent="Player: "+(localStorage.getItem("playerName")||"Guest");
+
+const messages=[
+"Thanks for playing Fractured Night!",
+"The truth is never simple.",
+"Did you find the real story?",
+"YOU FAILED ALL GAMESSS",
+"We hope you enjoyed the mystery!",
+"Look closer next time...",
+"Do you still trust the news now?"
+];
+
+function createPopup(){
+
+const pop=document.createElement("div");
+pop.className="popupSite";
+
+pop.style.left=Math.random()*80+"vw";
+pop.style.top=Math.random()*80+"vh";
+
+pop.innerHTML=`
+<div class="popupHeader">fractured-night.site</div>
+<div class="popupBody">${messages[Math.floor(Math.random()*messages.length)]}</div>
+`;
+
+document.body.appendChild(pop);
+
+setTimeout(()=>{pop.remove();},12000);
+
+}
+
+setInterval(createPopup,2000);
+
 </script>
+
 </body>
 </html>
+```
