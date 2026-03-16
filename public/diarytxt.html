@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Confidential Bridge Report</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family:"Courier New", monospace;
+    background:radial-gradient(circle,#1a1a1a,#0d0d0d);
+    color:#ddd;
+}
+
+/* TOP BAR */
+
+.header{
+    background:#111;
+    padding:15px;
+    text-align:center;
+    border-bottom:2px solid #444;
+    letter-spacing:3px;
+}
+
+.header span{
+    color:#ff4d4d;
+    font-weight:bold;
+}
+
+/* FILE CONTAINER */
+
+.file{
+    max-width:900px;
+    margin:40px auto;
+    background:#1b1b1b;
+    padding:40px;
+    border:2px solid #444;
+    box-shadow:0 0 25px black;
+    position:relative;
+}
+
+/* CLASSIFIED STAMP */
+
+.stamp{
+    position:absolute;
+    top:20px;
+    right:30px;
+    color:#ff4d4d;
+    border:3px solid #ff4d4d;
+    padding:8px 20px;
+    transform:rotate(15deg);
+    font-weight:bold;
+    letter-spacing:2px;
+}
+
+/* REDACTION */
+
+.redact{
+    background:black;
+    color:black;
+    padding:3px 8px;
+    border-radius:3px;
+    cursor:pointer;
+    transition:0.2s;
+}
+
+.redact:hover{
+    background:#222;
+}
+
+.revealed{
+    background:none;
+    color:#ffcc66;
+}
+
+/* EVIDENCE BAR */
+
+.progressContainer{
+    margin-top:30px;
+    background:#333;
+    height:20px;
+    border-radius:10px;
+}
+
+.progressBar{
+    height:100%;
+    width:0%;
+    background:#ff4d4d;
+    border-radius:10px;
+    transition:0.4s;
+}
+
+/* BUTTON */
+
+button{
+    margin-top:30px;
+    padding:10px 20px;
+    background:#ff4d4d;
+    border:none;
+    color:white;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#ff7777;
+}
+
+/* STICKY NOTE */
+
+.note{
+    position:absolute;
+    bottom:-40px;
+    left:-30px;
+    background:#fff2a8;
+    color:#333;
+    padding:15px;
+    width:160px;
+    transform:rotate(-5deg);
+    font-family:sans-serif;
+    box-shadow:0 5px 10px rgba(0,0,0,0.4);
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="header">
+CASE FILE: <span>BRIDGE 07 INCIDENT</span>
+</div>
+
+<div class="file">
+
+<div class="stamp">CLASSIFIED</div>
+
+<h1>Structural Integrity Report</h1>
+
+<p>
+Author: <span class="redact">Engineer D. Reyes</span><br>
+Department: City Infrastructure Division<br>
+Date: April 12, 2024
+</p>
+
+<h2>Inspection Summary</h2>
+
+<p>
+Inspection revealed <span class="redact">severe cable fatigue</span> 
+and <span class="redact">advanced corrosion</span> along the western support lines.  
+Failure risk increases significantly during 
+<span class="redact">heavy night traffic</span>.
+</p>
+
+<h2>Maintenance History</h2>
+
+<p>
+Repair proposals submitted during 
+<span class="redact">January 2022</span> and 
+<span class="redact">October 2023</span>.
+</p>
+
+<p>
+Requests were <span class="redact">denied due to restricted maintenance budget</span>.
+</p>
+
+<h2>Internal Memo</h2>
+
+<p>
+Recommendation for bridge closure sent to 
+<span class="redact">Office of the Mayor</span>.
+</p>
+
+<h2>Final Warning</h2>
+
+<p>
+Without repair within 
+<span class="redact">6 months</span>, structural collapse becomes 
+<span class="redact">statistically probable</span>.
+</p>
+
+<button onclick="revealAll()">Reveal Entire Document</button>
+
+<div class="progressContainer">
+<div class="progressBar" id="progressBar"></div>
+</div>
+
+<div class="note">
+Check who denied the repair funding.
+</div>
+
+</div>
+
+<script>
+
+const redacts = document.querySelectorAll(".redact");
+let revealed = 0;
+
+redacts.forEach(item=>{
+    item.addEventListener("click", function(){
+
+        if(!item.classList.contains("revealed")){
+            revealed++;
+        }
+
+        item.classList.toggle("revealed");
+
+        updateProgress();
+    });
+});
+
+function updateProgress(){
+
+    let percent = (revealed / redacts.length) * 100;
+
+    document.getElementById("progressBar").style.width = percent + "%";
+}
+
+function revealAll(){
+
+    redacts.forEach(item=>{
+        item.classList.add("revealed");
+    });
+
+    document.getElementById("progressBar").style.width = "100%";
+}
+
+</script>
+
+</body>
+</html>
