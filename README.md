@@ -1,4 +1,3 @@
-```md
 # CS3 3rd Qtr Update
 Project Proposal of Phipa Libunao and Tomas Macalintal
 
@@ -180,4 +179,32 @@ JavaScript will be used for:
 
 ## Wireframe
 [Wireframe](https://www.canva.com/design/DAG3Kq1fF2w/QB8ZXY0owkpqdNUfHf5pgw/edit?utm_content=DAG3Kq1fF2w&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
-```
+
+---
+
+# FINAL MODIFICATION PROPOSAL
+This 4th Quarter, the website will completely implement the CRUD process on saved data with new pages. Each processes' purpose on the website and how they are utilized are as follows:
+
+## Create and Read 
+From last quarter, local storage data created from forms and won games are read from different pages and used to show different pieces of information (Name of Detective, True Story).
+
+## Update
+A new webpage marking 'The End' of the game is created. After the user has reflected and pieced together their story, this page allows them to save their score among many other runs. What saves includes the time they ended their journey, name, view on the news, and score.
+
+**Means to implement Update** 
+- One element holds the run history
+- Updated to add another run when user clicks on save button
+- Combines different local storage items in a specific format
+- Placed on top of previous runs, then that text is saved as the new history
+
+## Delete
+On the same page, all local storage items may be deleted here. Once the user's adventure is saved, they may reset and try again in a new name. All game history will be erased so you can have a chance to get a better score. Additionally, they may also reset the run history if needed.
+
+**Means to implement Delete**
+- New game button, once pressed, necessary local storage items are erased (Name of Detective, Game History, View on News)
+- Delete history button, once pressed, previous runs are deleted from local storage
+
+---
+
+## Wireframe
+[Wireframe](https://www.canva.com/design/DAG3Kq1fF2w/QB8ZXY0owkpqdNUfHf5pgw/edit?utm_content=DAG3Kq1fF2w&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
