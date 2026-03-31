@@ -8,9 +8,132 @@
 <meta name="description" content="Webpage to save investigations.">
 <meta name="author" content="Phipa Libunao, Datu Macalintal">
 <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/styles/end.css">
 
+<style>
+body{
+margin:0;
+height:100vh;
+overflow:hidden;
+font-family:'Special Elite',cursive;
+background:radial-gradient(circle at top, #000000, #1a0a1a);
+display:flex;
+justify-content:center;
+align-items:center;
+color:white;
+}
+
+#stormScreen{
+position:fixed;
+inset:0;
+background:radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px);
+background-size:50px 50px;
+animation:stormMove 60s linear infinite;
+z-index:1;
+}
+
+@keyframes stormMove{
+from{background-position:0 0;}
+to{background-position:1000px 1000px;}
+}
+
+.flash{
+position:fixed;
+inset:0;
+background:white;
+opacity:0;
+z-index:2;
+pointer-events:none;
+}
+
+@keyframes flashAnim{
+0%,100%{opacity:0;}
+50%{opacity:0.6;}
+}
+
+#reflectionCard{
+position:relative;
+z-index:3;
+background:rgba(30,0,30,0.85);
+padding:40px;
+border-radius:20px;
+width:90%;
+max-width:500px;
+text-align:center;
+box-shadow:0 0 40px rgba(255,79,163,0.5), 0 0 80px rgba(0,255,255,0.2);
+backdrop-filter:blur(6px);
+animation:cardPulse 4s ease-in-out infinite alternate;
+}
+
+@keyframes cardPulse{
+from{box-shadow:0 0 40px rgba(255,79,163,0.5), 0 0 80px rgba(0,255,255,0.2);}
+to{box-shadow:0 0 60px rgba(255,79,163,0.8), 0 0 100px rgba(0,255,255,0.3);}
+}
+
+h1{
+font-size:1.5rem;
+color:#ff4fa3;
+margin-bottom:20px;
+text-shadow:0 0 10px #ff4fa3, 0 0 20px #ff85c1;
+}
+
+.typing{
+border-right:2px solid #ff4fa3;
+white-space:nowrap;
+overflow:hidden;
+display:inline-block;
+animation:typing 3s steps(30,end), blink .8s infinite;
+}
+
+@keyframes typing{
+from{width:0;}
+to{width:260px;}
+}
+
+@keyframes blink{
+50%{border-color:transparent;}
+}
+
+p{
+font-size:1rem;
+line-height:1.5;
+opacity:0.9;
+margin-bottom:20px;
+}
+
+#saveButton{
+padding:12px 28px;
+border:none;
+border-radius:12px;
+background:linear-gradient(135deg,#ff4fa3,#ff85c1);
+color:white;
+font-family:'Special Elite',cursive;
+cursor:pointer;
+font-size:1rem;
+transition:.3s;
+box-shadow:0 0 15px rgba(255,79,163,.5);
+}
+
+#saveButton:hover{
+transform:scale(1.05);
+box-shadow:0 0 30px rgba(255,79,163,.8);
+}
+
+#saves{
+margin-top:20px;
+text-align:left;
+font-size:.9rem;
+line-height:1.4;
+opacity:0.85;
+max-height:200px;
+overflow-y:auto;
+background:rgba(0,0,0,0.2);
+padding:15px;
+border-radius:10px;
+box-shadow:inset 0 0 10px rgba(255,79,163,.2);
+}
+</style>
 </head>
+
 <body>
 
 <div id="stormScreen"></div>
@@ -21,33 +144,24 @@
   <p id="greeting"></p>
   <button id="saveButton" onclick="saveStory()">Save</button> 
   <p id="saves"></p>
-
 </div>
 
 <script>
 const playerName = localStorage.getItem('playerName') || 'Detective';
 const trustNews = localStorage.getItem('trustNews') || "Don't know about it";
 const score = localStorage.getItem('score') || "0";
-const saveButton = document.getElementById("saveButton");
 const saves = document.getElementById("saves");
 
-savedStories = localStorage.getItem('savedStories') || ""
+let savedStories = localStorage.getItem('savedStories') || ""
 saves.innerHTML = savedStories;
+
 document.getElementById('greeting').textContent = `Welcome to the end, ${playerName}. Here, you can save your investigation details and start anew.`;
 
-
-
-
-
-
-
-
 function saveStory(){
-    
-    saves.innerHTML = "<br>" + playerName + " - Saved: " + new Date().toLocaleString() + "<br> Score: " + score + "% <br> News? " + trustNews + "<br>" + savedStories;
+    const timeStamp = new Date().toLocaleString();
+    saves.innerHTML = "<br>" + playerName + " - Saved: " + timeStamp + "<br> Score: " + score + "% <br> News? " + trustNews + "<br>" + savedStories;
     localStorage.setItem('savedStories', saves.innerHTML);
     savedStories = localStorage.getItem('savedStories') || "";
-
 }
 </script>
 

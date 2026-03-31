@@ -21,25 +21,52 @@ position:relative;
 .epi-warning{
 position:fixed;
 inset:0;
-background:rgba(0,0,0,0.95);
-color:white;
+background:radial-gradient(circle at center, rgba(0,0,0,0.85), rgba(0,0,0,0.97));
 display:flex;
 justify-content:center;
 align-items:center;
-flex-direction:column;
-font-size:18px;
-text-align:center;
 z-index:10000;
 }
 
-.epi-warning button{
-margin-top:20px;
-padding:10px 20px;
+.epi-box{
+width:90%;
+max-width:420px;
+background:#1a0a12;
+border:2px solid #ff4fa3;
+border-radius:20px;
+padding:30px;
+text-align:center;
+color:white;
+box-shadow:0 0 30px rgba(255,79,163,.4);
+}
+
+.epi-box h2{
+margin:0 0 15px;
+font-size:1.4rem;
+color:#ff4fa3;
+}
+
+.epi-box p{
+font-size:.95rem;
+line-height:1.6;
+opacity:.85;
+margin-bottom:20px;
+}
+
+.epi-box button{
+padding:12px 24px;
 border:none;
-background:#ff4fa3;
+border-radius:10px;
+background:linear-gradient(135deg,#ff4fa3,#ff85c1);
 color:white;
 font-family:'Special Elite',cursive;
 cursor:pointer;
+transition:.3s;
+}
+
+.epi-box button:hover{
+transform:scale(1.05);
+box-shadow:0 0 15px rgba(255,79,163,.6);
 }
 
 body::before{
@@ -223,9 +250,11 @@ to{width:260px;}
 <body>
 
 <div class="epi-warning" id="epiWarning">
-<h2>Epilepsy Warning</h2>
-<p>This game contains flashing lights and animations that may trigger seizures for people with photosensitive epilepsy.</p>
-<button onclick="dismissWarning()">I Understand</button>
+<div class="epi-box">
+<h2>⚠ Epilepsy Warning</h2>
+<p>This experience contains flashing lights and animations that may trigger seizures for individuals with photosensitive epilepsy.</p>
+<button onclick="dismissWarning()">Enter</button>
+</div>
 </div>
 
 <div class="laptop">
