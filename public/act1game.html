@@ -38,6 +38,23 @@
 <button id="nextChapterBtn" onclick="proceedChapter()">Proceed to Chapter 2</button>
 
 <script>
+// ===================== GAME LOCK SYSTEM =====================
+const gameState = localStorage.getItem("act1_status");
+
+if(gameState === "playing"){
+  document.body.innerHTML = "<h2>You already started this game. Finish it first before playing again.</h2>";
+  throw new Error("Game locked");
+}
+
+if(gameState === "done"){
+  document.body.innerHTML = "<h2>You already completed this game. You cannot replay it.</h2>";
+  throw new Error("Game finished");
+}
+
+// Mark as started
+localStorage.setItem("act1_status", "playing");
+
+// ===================== GAME LOGIC =====================
 const items = ["📝","📝","📸","📸","👤","👤","📄","📄","🔍","🔍","🕒","🕒"];
 const game = document.getElementById("game");
 let flipped = [];
@@ -76,7 +93,10 @@ function flipCard(card){
       timeLeft = Math.max(0,timeLeft-5);
       flipped.forEach(c => c.classList.add("wrong"));
       setTimeout(()=>{
-        flipped.forEach(c=>{c.classList.remove("flipped","wrong"); c.textContent="";});
+        flipped.forEach(c=>{
+          c.classList.remove("flipped","wrong"); 
+          c.textContent="";
+        });
         flipped=[];
       },700);
     }
@@ -94,15 +114,20 @@ const timerInterval = setInterval(()=>{
 },1000);
 
 function endGame(won){
-  clearInterval(timerInterval); // stop timer immediately
+  clearInterval(timerInterval);
   document.querySelectorAll(".card").forEach(c=>c.onclick=null);
   clueDiv.style.display="block";
+
   if(won){
     clueDiv.innerHTML="<strong>Hidden Clue Found!</strong><br>The mysterious photo shows the bridge structure already weak. This opens the possibility of the bridge falling of natural causes. You ignored it because a sabotage story was more exciting.";
     localStorage.setItem('act1', 'The bridge was already weak.');
   } else {
     clueDiv.innerHTML="<strong>Time's Up!</strong><br>You couldn't reveal the hidden clue. The story continues with the version the city believes. The shadow figure on the bridge was sabotaging it, and the memo shows the engineer and supervisor guilty.";
   }
+
+  // Mark as finished
+  localStorage.setItem("act1_status", "done");
+
   nextBtn.style.display="inline-block";
 }
 

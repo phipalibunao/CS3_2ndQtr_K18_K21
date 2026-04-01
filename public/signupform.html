@@ -20,6 +20,19 @@ body {
   color:#00ff88;
 }
 
+/* Matrix code background */
+#matrix {
+  position:fixed;
+  inset:0;
+  z-index:0;
+  color:#00ff88;
+  font-family:monospace;
+  font-size:14px;
+  white-space:pre;
+  overflow:hidden;
+}
+
+/* Loading screen */
 #loadingScreen {
   position:fixed;
   inset:0;
@@ -44,6 +57,7 @@ body {
   100%{transform:translateX(-2px);}
 }
 
+/* storm streaks */
 #stormScreen {
   position:fixed;
   inset:0;
@@ -68,7 +82,7 @@ body {
   inset:0;
   background:white;
   opacity:0;
-  transition:opacity .1s;
+  transition:opacity .05s;
   z-index:2;
   pointer-events:none;
 }
@@ -80,21 +94,22 @@ body {
   height:5px;
   opacity:0.2;
   z-index:5;
-  animation:corruptFade 0.5s infinite alternate;
+  animation:corruptFade 0.3s infinite alternate;
 }
 
 @keyframes corruptFade {
   0%{opacity:0;}
-  100%{opacity:0.3;}
+  100%{opacity:0.6;}
 }
 
+/* form */
 form {
   position:relative;
   z-index:3;
   background:rgba(0,0,0,0.95);
   padding:40px;
   border:2px solid #00ff88;
-  box-shadow:0 0 30px rgba(0,255,136,0.3);
+  box-shadow:0 0 40px rgba(0,255,136,0.5);
   display:none;
   flex-direction:column;
   gap:20px;
@@ -103,22 +118,23 @@ form {
 }
 
 @keyframes pop {
-  from{transform:scale(.7) rotate(-2deg);opacity:0;}
+  from{transform:scale(.7) rotate(-5deg);opacity:0;}
   to{transform:scale(1) rotate(0deg);opacity:1;}
 }
 
 @keyframes shake {
   0%,100%{transform:translateX(0);}
-  20%{transform:translateX(-5px);}
-  40%{transform:translateX(5px);}
-  60%{transform:translateX(-3px);}
-  80%{transform:translateX(3px);}
+  20%{transform:translateX(-8px);}
+  40%{transform:translateX(8px);}
+  60%{transform:translateX(-5px);}
+  80%{transform:translateX(5px);}
 }
 
 h1 {
   font-size:1.3rem;
   text-align:center;
   color:#00ff88;
+  text-shadow:0 0 8px #00ff88;
 }
 
 input,select {
@@ -147,6 +163,8 @@ button:hover {
 </head>
 
 <body>
+
+<div id="matrix"></div>
 
 <div id="loadingScreen">
   <div class="glitch">SYSTEM BREACH DETECTED</div>
@@ -177,6 +195,26 @@ const loading = document.getElementById("loadingScreen");
 const form = document.getElementById("playerForm");
 const storm = document.getElementById("stormScreen");
 const flash = document.getElementById("flash");
+const matrix = document.getElementById("matrix");
+
+// === MATRIX CODE ===
+const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%^&*()*&^%';
+let columns = [];
+const colCount = Math.floor(window.innerWidth / 20);
+
+for(let i=0;i<colCount;i++) columns[i]=0;
+
+function drawMatrix(){
+  let result = '';
+  for(let i=0;i<columns.length;i++){
+    let char = chars[Math.floor(Math.random()*chars.length)];
+    result += char + '\n';
+    columns[i]++;
+    if(columns[i]*14 > window.innerHeight && Math.random() > 0.975) columns[i]=0;
+  }
+  matrix.textContent=result;
+}
+setInterval(drawMatrix,50);
 
 // loading screen delay
 window.addEventListener("load", () => {
@@ -208,18 +246,18 @@ for(let i=0;i<100;i++){
 
 // flashing screen
 setInterval(() => {
-  flash.style.opacity=0.4;
-  setTimeout(()=>{flash.style.opacity=0;},150);
-}, 2000+Math.random()*2000);
+  flash.style.opacity=0.5;
+  setTimeout(()=>{flash.style.opacity=0;},100);
+}, 1500+Math.random()*1500);
 
 // random corruption blocks
-for(let i=0;i<200;i++){
+for(let i=0;i<300;i++){
   const block=document.createElement("div");
   block.className="corruptBlock";
   block.style.top=Math.random()*100+"vh";
   block.style.left=Math.random()*100+"vw";
-  block.style.width=2+Math.random()*5+"px";
-  block.style.height=2+Math.random()*5+"px";
+  block.style.width=2+Math.random()*6+"px";
+  block.style.height=2+Math.random()*6+"px";
   storm.appendChild(block);
 }
 </script>

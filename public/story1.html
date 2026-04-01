@@ -18,6 +18,23 @@
 
 <body>
 
+<!-- CASE 07 POPUP -->
+<div id="casePopup" style="
+  position: fixed;
+  inset: 0;
+  background: black;
+  color: #00ff88;
+  font-family: 'Special Elite', cursive;
+  font-size: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  text-shadow: 0 0 8px #00ff88, 0 0 15px #00ff88;
+">
+  CASE 07 LOADED
+</div>
+
 <div class="flash" id="flash"></div>
 
 <div class="navbar">
@@ -171,6 +188,14 @@ document.getElementById("publishBtn").onclick=()=>{
   truthBtn.onclick=()=>{window.location.href="act1game.html"}
   document.querySelector(".controls").appendChild(truthBtn)
 }
+
+// SHOW CASE 07 BEFORE STORY
+window.addEventListener("load", () => {
+  const popup = document.getElementById("casePopup");
+  setTimeout(() => {
+    popup.style.display = "none";
+  }, 2000); // popup shows for 2 seconds
+});
 </script>
 
 </body>
