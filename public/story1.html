@@ -35,6 +35,23 @@
   CASE 07 LOADED
 </div>
 
+<!-- POV POPUP -->
+<div id="povPopup" style="
+  position: fixed;
+  inset: 0;
+  background: black;
+  color: #4da6ff;
+  font-family: 'Special Elite', cursive;
+  font-size: 2rem;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  text-shadow: 0 0 8px #4da6ff, 0 0 15px #4da6ff;
+">
+  POV: JOURNALIST
+</div>
+
 <div class="flash" id="flash"></div>
 
 <div class="navbar">
@@ -189,12 +206,21 @@ document.getElementById("publishBtn").onclick=()=>{
   document.querySelector(".controls").appendChild(truthBtn)
 }
 
-// SHOW CASE 07 BEFORE STORY
+// POPUP SEQUENCE
 window.addEventListener("load", () => {
-  const popup = document.getElementById("casePopup");
+  const casePopup = document.getElementById("casePopup");
+  const povPopup = document.getElementById("povPopup");
+
   setTimeout(() => {
-    popup.style.display = "none";
-  }, 2000); // popup shows for 2 seconds
+    casePopup.style.display = "none";
+
+    povPopup.style.display = "flex";
+
+    setTimeout(() => {
+      povPopup.style.display = "none";
+    }, 2000);
+
+  }, 2000);
 });
 </script>
 

@@ -10,9 +10,27 @@
 <meta name="author" content="Phipa Libunao, Datu Macalintal">
 <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/styles/story2.css">
-
 </head>
+
 <body>
+
+<!-- POV POPUP -->
+<div id="povPopup" style="
+  position: fixed;
+  inset: 0;
+  background: black;
+  color: #ffb77d;  /* peach color */
+  font-family: 'Special Elite', cursive;
+  font-size: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  text-shadow: 0 0 8px #ff6f7b, 0 0 15px #ff86af;
+">
+  POV: ENGINEER
+</div>
+
 <div id="grain"></div>
 
 <!-- PLAYER TAG -->
@@ -33,28 +51,34 @@
   <div class="pov-sign">POV: Engineer</div>
   <p class="lead">This is your interrogation record. Try to answer for your freedom, or let the public narrative stand.</p>
 </header>
+
 <div class="scene">
   <div class="card-scene">
     <div class="description">The broken bridge creaks in the storm. Cameras watch. The transcript records your words. This does not look good for you. In fact, you ARE the person at the bridge before the collapse.</div>
+
     <div class="hotspots" id="hotspots">
       <div class="hotspot" data-id="1">🔌<br>Question 1</div>
       <div class="hotspot" data-id="2">🛠️<br>Question 2</div>
       <div class="hotspot" data-id="3">🔍<br>Question 3</div>
     </div>
+
     <div class="transcript" id="transcript">
       <div class="timestamp" id="tsTop"></div>
       <div id="lines">
         <div class="line">[SYSTEM] Camera feed active. Recording initiated.</div>
       </div>
     </div>
+
     <div class="controls">
       <div id="riddleArea"></div>
       <button class="btn primary" id="finishBtn" disabled>Finish Shift</button>
       <div style="flex:1"></div>
       <div id="status">Actions Recorded: <strong id="count">0</strong></div>
     </div>
+
     <div class="outcome" id="publicStory"></div>
   </div>
+
   <aside class="inventory">
     <div class="inv-title">Recorded Actions</div>
     <div id="inventoryList"><div class="inv-empty">Nothing yet.</div></div>
@@ -95,6 +119,7 @@ function nowStamp(){
   const pad=(n)=>n.toString().padStart(2,'0');
   return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
 }
+
 function updateTimestamps(){
   tsTop.textContent = 'REC: ' + nowStamp();
   ticker.textContent = 'CAM 03 | ' + nowStamp();
@@ -155,7 +180,13 @@ function addItem(id,label){
   refreshInv();
 }
 
-document.querySelectorAll(".hotspot").forEach(h=>{h.onclick=()=> {if (countEl.innerHTML == parseInt(h.dataset.id) - 1){showQuestion(h.dataset.id);}}});
+document.querySelectorAll(".hotspot").forEach(h=>{
+  h.onclick=()=>{
+    if (countEl.innerHTML == parseInt(h.dataset.id) - 1){
+      showQuestion(h.dataset.id);
+    }
+  }
+});
 
 finishBtn.onclick = () => {
   screenOverlay.style.background = 'rgba(0,0,0,0.6)';
@@ -171,6 +202,17 @@ function screenPulse(){
   screenOverlay.style.opacity = '1';
   setTimeout(()=>{screenOverlay.style.opacity='0'},240);
 }
+
+// SHOW POV POPUP ONLY
+window.addEventListener("load", () => {
+  const povPopup = document.getElementById("povPopup");
+  povPopup.style.display = "flex";
+
+  setTimeout(() => {
+    povPopup.style.display = "none";
+  }, 2000);
+});
 </script>
+
 </body>
 </html>

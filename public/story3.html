@@ -12,46 +12,64 @@
     <link rel="stylesheet" href="../assets/styles/story3.css">
     <style>
     .popupSite{
-    position:fixed;
-    width:180px;
-    background:white;
-    border:2px solid #111;
-    font-family:'Special Elite',cursive;
-    box-shadow:0 10px 25px rgba(0,0,0,.3);
-    z-index:50;
-    animation:popupFloat 12s linear forwards;
+        position:fixed;
+        width:180px;
+        background:white;
+        border:2px solid #111;
+        font-family:'Special Elite',cursive;
+        box-shadow:0 10px 25px rgba(0,0,0,.3);
+        z-index:50;
+        animation:popupFloat 12s linear forwards;
     }
     .popupHeader{
-    background:#111;
-    color:white;
-    padding:5px 8px;
-    font-size:11px;
+        background:#111;
+        color:white;
+        padding:5px 8px;
+        font-size:11px;
     }
     .popupBody{
-    padding:10px;
-    font-size:12px;
-    color:#222;
-    text-align:center;
+        padding:10px;
+        font-size:12px;
+        color:#222;
+        text-align:center;
     }
     @keyframes popupFloat{
-    0%{
-    transform:translateY(50px) scale(.8);
-    opacity:0;
+        0%{
+            transform:translateY(50px) scale(.8);
+            opacity:0;
+        }
+        10%{
+            opacity:1;
+        }
+        90%{
+            opacity:1;
+        }
+        100%{
+            transform:translateY(-150px) scale(.9);
+            opacity:0;
+        }
     }
-    10%{
-    opacity:1;
-    }
-    90%{
-    opacity:1;
-    }
-    100%{
-    transform:translateY(-150px) scale(.9);
-    opacity:0;
-    }
+
+    /* POV Popup for Act 3 */
+    #povPopup{
+        position: fixed;
+        inset: 0;
+        background: black;
+        color: #00ff88; /* green */
+        font-family: 'Special Elite', cursive;
+        font-size: 2rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 10000;
+        text-shadow: 0 0 8px #00ff88, 0 0 15px #00ff88;
     }
     </style>
 </head>
 <body>
+
+<!-- POV Popup -->
+<div id="povPopup">POV: SUPERVISOR</div>
 
 <div id="playerTag"></div>
 
@@ -210,6 +228,13 @@ function createPopup(){
 }
 
 setInterval(createPopup,1500);
+
+// POV Popup
+window.addEventListener("load", () => {
+  const povPopup = document.getElementById("povPopup");
+  povPopup.style.display = "flex";
+  setTimeout(() => { povPopup.style.display = "none"; }, 2000);
+});
 </script>
 </body>
 </html>
