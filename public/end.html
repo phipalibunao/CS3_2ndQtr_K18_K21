@@ -20,6 +20,7 @@
   <h1><span class="typing">Investigations..</span></h1>
   <p id="greeting"></p>
   <button id="saveButton" onclick="saveStory()">Save</button> 
+  <button id="saveButton" onclick="resetStory()">Retry</button>
   <p id="saves"></p>
 
 </div>
@@ -48,6 +49,11 @@ function saveStory(){
     localStorage.setItem('savedStories', saves.innerHTML);
     savedStories = localStorage.getItem('savedStories') || "";
 
+}
+
+function resetStory(){
+  localStorage.clear();
+  window.location.href='signupform.html';
 }
 </script>
 
