@@ -18,6 +18,40 @@
 
 <body>
 
+<!-- CASE 07 POPUP -->
+<div id="casePopup" style="
+  position: fixed;
+  inset: 0;
+  background: black;
+  color: #00ff88;
+  font-family: 'Special Elite', cursive;
+  font-size: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  text-shadow: 0 0 8px #00ff88, 0 0 15px #00ff88;
+">
+  CASE 07 LOADED
+</div>
+
+<!-- POV POPUP -->
+<div id="povPopup" style="
+  position: fixed;
+  inset: 0;
+  background: black;
+  color: #4da6ff;
+  font-family: 'Special Elite', cursive;
+  font-size: 2rem;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  text-shadow: 0 0 8px #4da6ff, 0 0 15px #4da6ff;
+">
+  POV: JOURNALIST
+</div>
+
 <div class="flash" id="flash"></div>
 
 <div class="navbar">
@@ -42,7 +76,7 @@
 <div class="scene">
 <div class="card-scene">
 <div class="description" id="sceneText">
-Rain lashes down as darkness envelops the city. Debris from the collapsed bridge litters the street. A few days ago, something caused the bridge of a city to break down, endangering many lives. The air is heavy with tension, and distant sirens wail. It is your duty to show what you can to the public. You clutch your camera tightly, knowing that every photo and note you collect could change the story the city will believe.
+Rain pours down as darkness envelops the city. Debris from the collapsed bridge litters the street. A few days ago, something caused the bridge of a city to break down, endangering many lives. The air is heavy, and distant sirens wail. It is your duty to show what you can to the public. You clutch your camera tightly, knowing that every photo and note you collect could change the story the city will believe.
 </div>
 
 <img id="photoPlaceholder" class="placeholder-img" style="display:none">
@@ -171,6 +205,23 @@ document.getElementById("publishBtn").onclick=()=>{
   truthBtn.onclick=()=>{window.location.href="act1game.html"}
   document.querySelector(".controls").appendChild(truthBtn)
 }
+
+// POPUP SEQUENCE
+window.addEventListener("load", () => {
+  const casePopup = document.getElementById("casePopup");
+  const povPopup = document.getElementById("povPopup");
+
+  setTimeout(() => {
+    casePopup.style.display = "none";
+
+    povPopup.style.display = "flex";
+
+    setTimeout(() => {
+      povPopup.style.display = "none";
+    }, 2000);
+
+  }, 2000);
+});
 </script>
 
 </body>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Her Pink Laptop</title>
+<title>Homescreen</title>
 <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
 
 <style>
@@ -16,95 +16,119 @@ background:linear-gradient(135deg,#ffe6f2,#ffd6ec,#fff0f7);
 font-family:'Special Elite',cursive;
 overflow:hidden;
 position:relative;
+cursor:none;
 }
 
+/* cursor */
+.cursor{
+position:fixed;
+width:18px;
+height:18px;
+border-radius:50%;
+background:#ff4fa3;
+pointer-events:none;
+mix-blend-mode:screen;
+box-shadow:0 0 15px #ff4fa3,0 0 30px #ff85c1;
+z-index:99999;
+}
+
+/* epilepsy warning */
 .epi-warning{
 position:fixed;
 inset:0;
-background:rgba(0,0,0,0.95);
-color:white;
+background:radial-gradient(circle at center, rgba(0,0,0,0.85), rgba(0,0,0,0.97));
 display:flex;
 justify-content:center;
 align-items:center;
-flex-direction:column;
-font-size:18px;
-text-align:center;
 z-index:10000;
 }
 
-.epi-warning button{
-margin-top:20px;
-padding:10px 20px;
-border:none;
-background:#ff4fa3;
+.epi-box{
+width:90%;
+max-width:420px;
+background:#1a0a12;
+border:2px solid #ff4fa3;
+border-radius:20px;
+padding:30px;
+text-align:center;
 color:white;
-font-family:'Special Elite',cursive;
+box-shadow:0 0 30px rgba(255,79,163,.4);
+}
+
+.epi-box h2{
+margin:0 0 15px;
+color:#ff4fa3;
+}
+
+.epi-box button{
+padding:12px 24px;
+border:none;
+border-radius:10px;
+background:linear-gradient(135deg,#ff4fa3,#ff85c1);
+color:white;
 cursor:pointer;
 }
 
-body::before{
-content:"";
-position:absolute;
-width:200%;
-height:200%;
-background-image:radial-gradient(white 1px, transparent 1px);
-background-size:40px 40px;
-opacity:.2;
-animation:moveStars 60s linear infinite;
-}
-
-@keyframes moveStars{
-from{transform:translate(0,0);}
-to{transform:translate(-500px,-500px);}
-}
-
+/* MACBOOK (cartoon pink) */
 .laptop{
-width:920px;
-height:540px;
-background:#ffc2dd;
-border-radius:30px;
-box-shadow:0 40px 80px rgba(255,105,180,.3);
-padding:25px;
 display:flex;
-justify-content:center;
+flex-direction:column;
 align-items:center;
+}
+
+/* frame */
+.screen-frame{
+width:920px;
+height:560px;
+background:linear-gradient(145deg,#ffc2dd,#ffd6ec);
+border-radius:30px;
+padding:20px;
+box-shadow:
+0 25px 60px rgba(255,105,180,.35),
+inset 0 3px 6px rgba(255,255,255,.5);
 position:relative;
-animation:glow 3s ease-in-out infinite alternate;
 }
 
-@keyframes glow{
-from{box-shadow:0 40px 80px rgba(255,105,180,.3);}
-to{box-shadow:0 50px 120px rgba(255,105,180,.6);}
+/* notch */
+.notch{
+position:absolute;
+top:6px;
+left:50%;
+transform:translateX(-50%);
+width:110px;
+height:16px;
+background:#ff9ecf;
+border-radius:0 0 12px 12px;
 }
 
+/* screen */
 .screen{
 width:100%;
 height:100%;
 background:#fff5fa;
 border-radius:20px;
 overflow:hidden;
-position:relative;
 display:flex;
 flex-direction:column;
+position:relative;
 }
 
-.screen::after{
+/* soft texture */
+.screen::before{
 content:"";
 position:absolute;
-top:0;
-left:-50%;
-width:50%;
-height:100%;
-background:linear-gradient(120deg,rgba(255,255,255,.3),transparent);
-transform:skewX(-20deg);
-animation:shine 6s infinite;
+inset:0;
+background:repeating-linear-gradient(
+0deg,
+rgba(255,105,180,.03) 0px,
+rgba(255,105,180,.03) 1px,
+transparent 1px,
+transparent 3px
+);
+pointer-events:none;
 }
 
-@keyframes shine{
-0%{left:-50%;}
-100%{left:150%;}
-}
-
+/* topbar */
 .topbar{
 background:#ff9ecf;
 padding:12px 20px;
@@ -112,9 +136,9 @@ display:flex;
 justify-content:space-between;
 color:white;
 font-size:14px;
-letter-spacing:1px;
 }
 
+/* desktop */
 .desktop{
 flex:1;
 display:flex;
@@ -124,6 +148,7 @@ gap:60px;
 flex-wrap:wrap;
 }
 
+/* icons */
 .icon{
 display:flex;
 flex-direction:column;
@@ -133,17 +158,12 @@ transition:.3s;
 }
 
 .icon img{
-width:70px;
-filter:drop-shadow(0 8px 10px rgba(0,0,0,.2));
-transition:.3s;
+width:65px;
+filter:drop-shadow(0 6px 10px rgba(255,105,180,.3));
 }
 
 .icon:hover{
-transform:translateY(-6px);
-}
-
-.icon:hover img{
-transform:scale(1.1) rotate(-3deg);
+transform:translateY(-6px) scale(1.05);
 }
 
 .icon span{
@@ -152,35 +172,29 @@ font-size:13px;
 color:#ff4fa3;
 }
 
-.dock{
-height:60px;
-background:rgba(255,255,255,.4);
-backdrop-filter:blur(10px);
-display:flex;
-justify-content:center;
-align-items:center;
-gap:30px;
-border-top:1px solid rgba(255,255,255,.5);
-}
-
-.dock img{
-width:35px;
-transition:.3s;
-}
-
-.dock img:hover{
-transform:scale(1.3);
-}
-
+/* removed dock completely */
 .note{
 position:absolute;
-bottom:90px;
+bottom:20px;
 right:30px;
 color:#ff4fa3;
 font-size:12px;
-opacity:.7;
 }
 
+/* popup */
+.popup{
+position:absolute;
+top:100px;
+left:100px;
+width:250px;
+background:white;
+border-radius:12px;
+box-shadow:0 10px 30px rgba(0,0,0,.2);
+padding:15px;
+display:none;
+}
+
+/* virus */
 .virus-screen{
 position:fixed;
 inset:0;
@@ -190,8 +204,6 @@ display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
-font-size:14px;
-letter-spacing:2px;
 z-index:9999;
 opacity:0;
 pointer-events:none;
@@ -217,23 +229,42 @@ to{width:260px;}
 @keyframes blink{
 50%{border-color:transparent;}
 }
+
+/* base */
+.base{
+width:960px;
+height:20px;
+background:linear-gradient(to bottom,#ffc2dd,#ff9ecf);
+border-radius:0 0 40px 40px;
+box-shadow:0 10px 25px rgba(255,105,180,.4);
+margin-top:-8px;
+}
+
 </style>
 </head>
 
 <body>
 
+<div class="cursor" id="cursor"></div>
+
 <div class="epi-warning" id="epiWarning">
-<h2>Epilepsy Warning</h2>
-<p>This game contains flashing lights and animations that may trigger seizures for people with photosensitive epilepsy.</p>
-<button onclick="dismissWarning()">I Understand</button>
+<div class="epi-box">
+<h2>⚠ Epilepsy Warning</h2>
+<p>Flashing lights ahead.</p>
+<button onclick="dismissWarning()">Enter</button>
+</div>
 </div>
 
 <div class="laptop">
+
+<div class="screen-frame">
+<div class="notch"></div>
+
 <div class="screen">
 
 <div class="topbar">
 <span>♡ angel’s macbook ♡</span>
-<span>11:11 PM</span>
+<span id="clock"></span>
 </div>
 
 <div class="desktop">
@@ -242,7 +273,7 @@ to{width:260px;}
 <span>download_cutie_app.exe</span>
 </div>
 
-<div class="icon">
+<div class="icon" onclick="openPopup()">
 <img src="https://cdn-icons-png.flaticon.com/512/888/888879.png">
 <span>diary.txt</span>
 </div>
@@ -253,15 +284,17 @@ to{width:260px;}
 </div>
 </div>
 
-<div class="note">“new aesthetic diary app just dropped ♡”</div>
+<div class="note">new aesthetic diary app just dropped!</div>
 
-<div class="dock">
-<img src="https://cdn-icons-png.flaticon.com/512/888/888853.png">
-<img src="https://cdn-icons-png.flaticon.com/512/888/888879.png">
-<img src="https://cdn-icons-png.flaticon.com/512/2991/2991148.png">
+<div class="popup" id="popup">
+<p>dear diary… something feels off tonight.</p>
 </div>
 
 </div>
+</div>
+
+<div class="base"></div>
+
 </div>
 
 <div class="virus-screen" id="virus">
@@ -270,8 +303,26 @@ to{width:260px;}
 </div>
 
 <script>
+
+/* cursor */
+document.addEventListener("mousemove",e=>{
+const c=document.getElementById("cursor");
+c.style.left=e.clientX+"px";
+c.style.top=e.clientY+"px";
+});
+
+/* clock */
+setInterval(()=>{
+const d=new Date();
+document.getElementById("clock").textContent=d.toLocaleTimeString();
+},1000);
+
 function dismissWarning(){
 document.getElementById('epiWarning').style.display='none';
+}
+
+function openPopup(){
+document.getElementById("popup").style.display="block";
 }
 
 function downloadVirus(){
@@ -279,6 +330,7 @@ const v=document.getElementById("virus");
 v.classList.add("fadeIn");
 setTimeout(()=>{window.location.href="public/signupform.html";},4000);
 }
+
 </script>
 
 </body>

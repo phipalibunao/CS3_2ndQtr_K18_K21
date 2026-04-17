@@ -14,8 +14,27 @@
     <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/styles/story4.css">
 
+    <style>
+        /* POV Popup for Act 4 */
+        #povPopup {
+            position: fixed;
+            inset: 0;
+            background: black;
+            color: #ffff66; /* yellow */
+            font-family: 'Special Elite', cursive;
+            font-size: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            text-shadow: 0 0 8px #ffff66, 0 0 15px #ffff66;
+        }
+    </style>
 </head>
 <body>
+
+<!-- POV Popup -->
+<div id="povPopup">POV: MAYOR</div>
 
 <!-- PLAYER TAG -->
 <div id="playerTag"></div>
@@ -61,10 +80,17 @@
 </div>
 
 <script>
-// Set Player Tag
+// Show Player Tag
 const playerTag = document.getElementById("playerTag");
 const playerName = localStorage.getItem("playerName") || "Guest";
 playerTag.textContent = `Player: ${playerName}`;
+
+// POV Popup Logic
+window.addEventListener("load", () => {
+    const povPopup = document.getElementById("povPopup");
+    povPopup.style.display = "flex";
+    setTimeout(() => { povPopup.style.display = "none"; }, 2000); // show 2 seconds
+});
 
 // Budget Game Logic
 const answers = [2, 3, 1];
@@ -111,7 +137,6 @@ function endGame() {
     const gameDiv = document.getElementById('budget-game');
     gameDiv.innerHTML = '<p>All budget allocations completed.</p>';
     nextBtn.style.display = "block";
-    console.log("done");
 
     const outcome = document.getElementById('outcome');
     outcome.innerHTML = `
@@ -120,8 +145,6 @@ function endGame() {
         The public praises my actions, and the engineer and supervisor are arrested.<br>
         The city sees a responsible mayor at work, while I.. am protected.
     `;
-
-    
 }
 
 function proceedChapter(){
